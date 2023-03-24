@@ -33,7 +33,8 @@ public class Connexion : MonoBehaviour
     websocket.OnMessage += (bytes) =>
     {
     var message = System.Text.Encoding.UTF8.GetString(bytes);
-    Debug.Log("OnMessage! " + message);    };
+    Debug.Log("Server : " + message);
+    };
 
     // waiting for messages
     await websocket.Connect();
@@ -49,8 +50,8 @@ public class Connexion : MonoBehaviour
 
   async void SendWebSocketMessage()
   {
-    // string json = "{'type': 'join', 'params':{'code': 'YO7JI'}}";
-    string json = "{'type': 'create'}";
+    string json = "{'type': 'join', 'params':{'code': 'WSYQ7'}}";
+    // string json = "{'type': 'create'}";
 
     await websocket.SendText(json);
   }
