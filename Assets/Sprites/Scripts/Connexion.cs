@@ -2,11 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 using NativeWebSocket;
 
 public class Connexion : MonoBehaviour
 {
+  [SerializeField] private GameObject Counter;
+
   WebSocket websocket;
 
   // Start is called before the first frame update
@@ -33,7 +37,10 @@ public class Connexion : MonoBehaviour
     websocket.OnMessage += (bytes) =>
     {
     var message = System.Text.Encoding.UTF8.GetString(bytes);
-    Debug.Log("Server : " + message);
+    
+    // Debug.Log(JsonUtility.FromJson<T>(message));
+    
+    Counter.GetComponent<TextMeshProUGUI>().text=message;
     };
 
     // waiting for messages
@@ -50,8 +57,8 @@ public class Connexion : MonoBehaviour
 
   async void SendWebSocketMessage()
   {
-    string json = "{'type': 'join', 'params':{'code': 'WSYQ7'}}";
-    // string json = "{'type': 'create'}";
+    // string json = "{'type': 'join', 'params':{'code': 'WSYQ7'}}";
+    string json = "{'type': 'create'}";
 
     await websocket.SendText(json);
   }
@@ -59,5 +66,10 @@ public class Connexion : MonoBehaviour
   private async void OnApplicationQuit()
   {
     await websocket.Close();
+  }
+
+  public async void IncrementInteger(){
+    string json = "{'type': 'action', 'params':{'action': 'IncrementInteger'}}";
+    await websocket.SendText(json);
   }
 }
