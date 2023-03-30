@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 public class WebsocketManager : MonoBehaviour
 {
     string websocketURL = "ws://localhost:1234";
+    public string joinedRoomCode;
     public WebSocket websocket;
 
     [Serializable]
@@ -67,12 +68,13 @@ public class WebsocketManager : MonoBehaviour
             {
                 case "createdRoom":
                     GameObject.Find("CreatedRoomPincode").GetComponent<TextMeshProUGUI>().text = "Created room " + _ParsedJSON.@params.data;
+                    joinedRoomCode = _ParsedJSON.@params.data;
                     break;
 
                 case "joinedRoom":
 
                     GameObject.Find("JoinedRoomPincode").GetComponent<TextMeshProUGUI>().text = "Joined room " + _ParsedJSON.@params.data;
-
+                    joinedRoomCode = _ParsedJSON.@params.data;
                     break;
                 default:
                     // code block
