@@ -12,8 +12,8 @@ public class WebsocketManager : MonoBehaviour
     string websocketURL = "ws://localhost:1234";
     public string joinedRoomCode;
     public WebSocket websocket;
+    public GameObject WaitingInRoomCanvas;
 
-    [Serializable]
     public class ParsedJSON
     {
         public string type
@@ -72,8 +72,8 @@ public class WebsocketManager : MonoBehaviour
                     break;
 
                 case "joinedRoom":
-
-                    GameObject.Find("JoinedRoomPincode").GetComponent<TextMeshProUGUI>().text = "Joined room " + _ParsedJSON.@params.data;
+                    GameObject.Find("JoinRoomCanvas").SetActive(false);
+                    WaitingInRoomCanvas.SetActive(true);
                     joinedRoomCode = _ParsedJSON.@params.data;
                     break;
                 default:

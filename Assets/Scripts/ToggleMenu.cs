@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class ToggleMenu : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class ToggleMenu : MonoBehaviour
 
     public void disableMenu()
     {
-        menuToDisable.SetActive(false);
+/*        menuToDisable.transform.DOMoveX(-425, 3);
+*/      menuToDisable.SetActive(false);
     }
     public void enableMenu()
     {
