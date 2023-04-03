@@ -11,18 +11,31 @@ public class WaitingScreen : MonoBehaviour
     private GameObject WebsocketManager;
     string pincode;
 
-    // Start is called before the first frame update
+    [SerializeField]
+    private List<GameObject> playersListGameObject;
     void Start()
     {
         WebsocketManager = GameObject.Find("WebsocketManager");
-        pincode =  WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode;
+        pincode = WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode;
+        var playersList = WebsocketManager.GetComponent<WebsocketManager>().playersList;
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         pincode = WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode;
         roomPincodeText.GetComponent<TextMeshProUGUI>().text = "Room " + pincode;
+        var playersList = WebsocketManager.GetComponent<WebsocketManager>().playersList;
+        if (playersList.Count > 0)
+        {
+            for (int i = 0; i < playersList.Count; i++)
+            {
+                GameObject playerNumber = playersListGameObject[playersList[i].id - 1];
+                playerNumber.SetActive(true);
+                if (WebsocketManager.GetComponent<WebsocketManager>().playerID == playersList[i].id.ToString())
+                    playerNumber.GetComponent<PlayerNumber>().isClient = true;
+            }
+        }
 
     }
 }

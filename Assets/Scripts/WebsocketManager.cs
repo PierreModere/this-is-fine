@@ -11,8 +11,11 @@ public class WebsocketManager : MonoBehaviour
 {
     string websocketURL = "ws://localhost:1234";
     public string joinedRoomCode;
+    public string playerID;
     public WebSocket websocket;
     public GameObject WaitingInRoomCanvas;
+
+    public List<ClientsList> playersList;
 
     public class ParsedJSON
     {
@@ -27,6 +30,21 @@ public class WebsocketManager : MonoBehaviour
             set;
         }
     }
+
+    public class Data
+    {
+        public List<ClientsList> clientsList
+        {
+            get;
+            set;
+        }
+        public string message
+        {
+            get;
+            set;
+        }
+    }
+
     public class Params
     {
         public string action
@@ -34,7 +52,21 @@ public class WebsocketManager : MonoBehaviour
             get;
             set;
         }
-        public string data
+        public Data data
+        {
+            get;
+            set;
+        }
+    }
+
+    public class ClientsList
+    {
+        public int id
+        {
+            get;
+            set;
+        }
+        public string chosenCharacter
         {
             get;
             set;
@@ -43,7 +75,6 @@ public class WebsocketManager : MonoBehaviour
 
     private ParsedJSON _ParsedJSON;
 
-    // Start is called before the first frame update
     async void Start()
     {
         websocket = new WebSocket(websocketURL);
@@ -62,19 +93,26 @@ public class WebsocketManager : MonoBehaviour
 
         websocket.OnMessage += (bytes) => {
             var json = System.Text.Encoding.UTF8.GetString(bytes);
-            _ParsedJSON = JsonConvert.DeserializeObject<ParsedJSON>(json);
+            var jsonResult = JsonConvert.DeserializeObject(json).ToString();
+
+            _ParsedJSON = JsonConvert.DeserializeObject<ParsedJSON>(jsonResult);
 
             switch (_ParsedJSON.type)
             {
                 case "createdRoom":
-                    GameObject.Find("CreatedRoomPincode").GetComponent<TextMeshProUGUI>().text = "Created room " + _ParsedJSON.@params.data;
-                    joinedRoomCode = _ParsedJSON.@params.data;
+                    GameObject.Find("CreatedRoomPincode").GetComponent<TextMeshProUGUI>().text = "Created room " + _ParsedJSON.@params.data.message;
+                    joinedRoomCode = _ParsedJSON.@params.@data.message;
                     break;
-
                 case "joinedRoom":
                     GameObject.Find("JoinRoomCanvas").SetActive(false);
                     WaitingInRoomCanvas.SetActive(true);
-                    joinedRoomCode = _ParsedJSON.@params.data;
+                    joinedRoomCode = _ParsedJSON.@params.@data.message;
+                    break;
+                case "getMyPlayerID":
+                    playerID = _ParsedJSON.@params.@data.message;
+                    break;
+                case "receivedPlayersList":
+                    playersList = _ParsedJSON.@params.@data.clientsList;
                     break;
                 default:
                     // code block
@@ -98,4 +136,4 @@ public class WebsocketManager : MonoBehaviour
         await websocket.Close();
     }
 
-}
+}   
