@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
-public class WaitingScreen : MonoBehaviour
+public class LobbyScreen : MonoBehaviour
 {
 
     [SerializeField]
@@ -11,31 +12,45 @@ public class WaitingScreen : MonoBehaviour
     private GameObject WebsocketManager;
     string pincode;
 
+    public Sprite notReadySprite;
+    public Sprite readySprite;
+
     [SerializeField]
     private List<GameObject> playersListGameObject;
     void Start()
     {
-        WebsocketManager = GameObject.Find("WebsocketManager");
         pincode = WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode;
-        var playersList = WebsocketManager.GetComponent<WebsocketManager>().playersList;
-
+        roomPincodeText.GetComponent<TextMeshProUGUI>().text = "Room " + pincode;
     }
 
     void Update()
     {
-        pincode = WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode;
-        roomPincodeText.GetComponent<TextMeshProUGUI>().text = "Room " + pincode;
+
+    }
+
+    public void updatePlayersListInLobby()
+    {
+        WebsocketManager = GameObject.Find("WebsocketManager");
         var playersList = WebsocketManager.GetComponent<WebsocketManager>().playersList;
+
+        foreach ( var player in playersListGameObject)
+        {
+            player.SetActive(false);
+        }
         if (playersList.Count > 0)
         {
-            for (int i = 0; i < playersList.Count; i++)
+            for (int i = 0; i < playersList.Count; i++) 
             {
                 GameObject playerNumber = playersListGameObject[playersList[i].id - 1];
                 playerNumber.SetActive(true);
+                if (playersList[i].isReady == true)
+                {
+                    playerNumber.transform.Find("ReadyState").GetComponent<Image>().sprite = readySprite;
+                }
                 if (WebsocketManager.GetComponent<WebsocketManager>().playerID == playersList[i].id.ToString())
-                    playerNumber.GetComponent<PlayerNumber>().isClient = true;
+                    playerNumber.GetComponent<PlayerNumber>().isLocalClient = true;
             }
-        }
 
+        }
     }
 }

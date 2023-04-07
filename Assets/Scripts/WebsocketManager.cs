@@ -9,11 +9,14 @@ using Newtonsoft.Json;
 
 public class WebsocketManager : MonoBehaviour
 {
-    string websocketURL = "ws://localhost:1234";
+    [SerializeField]
+    private string websocketURL;
     public string joinedRoomCode;
     public string playerID;
+    public bool isHost;
     public WebSocket websocket;
-    public GameObject WaitingInRoomCanvas;
+    public GameObject LobbyCanvas;
+    public GameObject ErrorCanvas;
 
     public List<ClientsList> playersList;
 
@@ -71,6 +74,12 @@ public class WebsocketManager : MonoBehaviour
             get;
             set;
         }
+
+        public bool isReady
+        {
+            get;
+            set;
+        }
     }
 
     private ParsedJSON _ParsedJSON;
@@ -84,7 +93,8 @@ public class WebsocketManager : MonoBehaviour
         };
 
         websocket.OnError += (e) => {
-            Debug.Log("Error! " + e);
+            var ErrorsManager = ErrorCanvas.GetComponent<ErrorsManager>();
+            ErrorsManager.manageErrors(e);
         };
 
         websocket.OnClose += (e) => {
@@ -102,17 +112,20 @@ public class WebsocketManager : MonoBehaviour
                 case "createdRoom":
                     GameObject.Find("CreatedRoomPincode").GetComponent<TextMeshProUGUI>().text = "Created room " + _ParsedJSON.@params.data.message;
                     joinedRoomCode = _ParsedJSON.@params.@data.message;
+                    isHost = true;
                     break;
                 case "joinedRoom":
                     GameObject.Find("JoinRoomCanvas").SetActive(false);
-                    WaitingInRoomCanvas.SetActive(true);
+                    LobbyCanvas.SetActive(true);
                     joinedRoomCode = _ParsedJSON.@params.@data.message;
+                    isHost = false;
                     break;
                 case "getMyPlayerID":
                     playerID = _ParsedJSON.@params.@data.message;
                     break;
                 case "receivedPlayersList":
                     playersList = _ParsedJSON.@params.@data.clientsList;
+                    LobbyCanvas.GetComponent<LobbyScreen>().updatePlayersListInLobby();
                     break;
                 default:
                     // code block
@@ -133,7 +146,11 @@ public class WebsocketManager : MonoBehaviour
 
     private async void OnApplicationQuit()
     {
+        if (joinedRoomCode != null && joinedRoomCode!="") {
+            string json = "{'type': 'leave', 'params':{'code': '" + joinedRoomCode + "','id': '" + playerID + "'}}";
+            await websocket.SendText(json);
+        }
         await websocket.Close();
     }
 
-}   
+}

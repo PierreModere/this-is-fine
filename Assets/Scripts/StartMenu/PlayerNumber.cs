@@ -5,18 +5,13 @@ using TMPro;
 
 public class PlayerNumber : MonoBehaviour
 {
-    public bool isClient;
+    public bool isLocalClient=false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        isClient = false;
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (isClient)
+        if (isLocalClient)
         {
             gameObject.GetComponent<TextMeshProUGUI>().color = new Color(0.3176471f, 0.9686275f, 1f);
         }

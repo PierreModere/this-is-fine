@@ -133,8 +133,9 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
-  bundleVersion: 1.3.5
-  preloadedAssets: []
+  bundleVersion: 1.5.1
+  preloadedAssets:
+  - {fileID: 682578776057017342, guid: 126ac55d127d7f74fb20e3d0ce589ed0, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -419,7 +420,7 @@ PlayerSettings:
   openGLRequireES31AEP: 0
   openGLRequireES32: 0
   m_TemplateCustomTags:
-    PRODUCT_DESCRIPTION: Notre jeu :)
+    PRODUCT_DESCRIPTION: 
     SHOW_DIAGNOSTICS: 
     WORKER_FILENAME: 
   mobileMTRendering:
