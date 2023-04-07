@@ -43,9 +43,13 @@ public class LobbyScreen : MonoBehaviour
             {
                 GameObject playerNumber = playersListGameObject[playersList[i].id - 1];
                 playerNumber.SetActive(true);
-                if (playersList[i].isReady == true)
+                if (playersList.Count >1 && WebsocketManager.GetComponent<WebsocketManager>().isHost == true)
                 {
-                    playerNumber.transform.Find("ReadyState").GetComponent<Image>().sprite = readySprite;
+                    transform.Find("Continue").gameObject.SetActive(true);
+                }
+                else
+                {
+                    transform.Find("Continue").gameObject.SetActive(false);
                 }
                 if (WebsocketManager.GetComponent<WebsocketManager>().playerID == playersList[i].id.ToString())
                     playerNumber.GetComponent<PlayerNumber>().isLocalClient = true;
