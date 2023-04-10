@@ -12,9 +12,6 @@ public class LobbyScreen : MonoBehaviour
     private GameObject WebsocketManager;
     string pincode;
 
-    public Sprite notReadySprite;
-    public Sprite readySprite;
-
     [SerializeField]
     private List<GameObject> playersListGameObject;
     void Start()

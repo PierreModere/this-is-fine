@@ -82,4 +82,9 @@ public class JoinRoom : MonoBehaviour
         await websocket.SendText(json);
     }
 
+    void OnDisable()
+    {
+        PinInput.GetComponent<TMP_InputField>().text = "";
+    }
+
 }

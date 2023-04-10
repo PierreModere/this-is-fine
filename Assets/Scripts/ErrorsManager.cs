@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ErrorsManager : MonoBehaviour
 {
@@ -27,6 +28,13 @@ public class ErrorsManager : MonoBehaviour
             gameObject.SetActive(true);
             activeErrorCanvas = errorGameobjectList.Find(obj => obj.name == "NoWSConnexion");
             activeErrorCanvas.SetActive(true);
+        }
+        if (error.Contains("is full") || error.Contains("not exist"))
+        {
+            gameObject.SetActive(true);
+            activeErrorCanvas = errorGameobjectList.Find(obj => obj.name == "RoomError");
+            activeErrorCanvas.SetActive(true);
+            activeErrorCanvas.transform.Find("RoomErrorText").gameObject.GetComponent<TextMeshProUGUI>().text = error;
         }
         /*    switch (error)
             {

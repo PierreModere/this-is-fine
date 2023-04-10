@@ -115,8 +115,10 @@ public class WebsocketManager : MonoBehaviour
                     isHost = true;
                     break;
                 case "joinedRoom":
+                    GameObject.Find("JoinRoomCanvas").tag = "Untagged";
                     GameObject.Find("JoinRoomCanvas").SetActive(false);
                     LobbyCanvas.SetActive(true);
+                    LobbyCanvas.tag = "activeScreen";
                     joinedRoomCode = _ParsedJSON.@params.@data.message;
                     isHost = false;
                     break;
@@ -126,6 +128,13 @@ public class WebsocketManager : MonoBehaviour
                 case "receivedPlayersList":
                     playersList = _ParsedJSON.@params.@data.clientsList;
                     LobbyCanvas.GetComponent<LobbyScreen>().updatePlayersListInLobby();
+                    break;
+                case "changedScreen":
+                    changeScreenForEveryone(_ParsedJSON.@params.@data.message);
+                    break;
+                case "serverErrorMessage":
+                    var ErrorsManager = ErrorCanvas.GetComponent<ErrorsManager>();
+                    ErrorsManager.manageErrors(_ParsedJSON.@params.@data.message);
                     break;
                 default:
                     // code block
@@ -146,11 +155,39 @@ public class WebsocketManager : MonoBehaviour
 
     private async void OnApplicationQuit()
     {
-        if (joinedRoomCode != null && joinedRoomCode!="") {
+        if (joinedRoomCode != null && joinedRoomCode != "")
+        {
             string json = "{'type': 'leave', 'params':{'code': '" + joinedRoomCode + "','id': '" + playerID + "'}}";
             await websocket.SendText(json);
         }
         await websocket.Close();
+    }
+
+    void changeScreenForEveryone(string screenName)
+    {
+        var screenToEnable = FindInactiveObjectByName(screenName);
+        var screenToDisable = GameObject.FindWithTag("activeScreen");
+        if (screenToEnable != null && screenToDisable != null)
+        {
+            Debug.Log("ok!");
+            screenToEnable.SetActive(true);
+            screenToEnable.tag = "activeScreen";
+            screenToDisable.SetActive(false);
+            screenToDisable.tag = "Untagged";
+        }
+    }
+
+    GameObject FindInactiveObjectByName(string name)
+    {
+        Transform[] objs = Resources.FindObjectsOfTypeAll<Transform>() as Transform[];
+        foreach (Transform obj in objs)
+        {
+            if (obj.name == name && !obj.gameObject.activeInHierarchy)
+            {
+                return obj.gameObject;
+            }
+        }
+        return null;
     }
 
 }
