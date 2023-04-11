@@ -29,7 +29,7 @@ public class ErrorsManager : MonoBehaviour
             activeErrorCanvas = errorGameobjectList.Find(obj => obj.name == "NoWSConnexion");
             activeErrorCanvas.SetActive(true);
         }
-        if (error.Contains("is full") || error.Contains("not exist"))
+        if (error.Contains("is full") || error.Contains("not exist") || error.Contains("The host has closed the room"))
         {
             gameObject.SetActive(true);
             activeErrorCanvas = errorGameobjectList.Find(obj => obj.name == "RoomError");

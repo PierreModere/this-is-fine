@@ -5527,6 +5527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomPincodeText: {fileID: 1492512384}
+  requiredPlayersNumber: 2
   playersListGameObject:
   - {fileID: 1458826672}
   - {fileID: 1613174759}

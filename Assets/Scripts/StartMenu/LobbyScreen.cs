@@ -12,17 +12,14 @@ public class LobbyScreen : MonoBehaviour
     private GameObject WebsocketManager;
     string pincode;
 
+    public int requiredPlayersNumber;
+
     [SerializeField]
     private List<GameObject> playersListGameObject;
     void Start()
     {
         pincode = WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode;
         roomPincodeText.GetComponent<TextMeshProUGUI>().text = "Room " + pincode;
-    }
-
-    void Update()
-    {
-
     }
 
     public void updatePlayersListInLobby()
@@ -40,7 +37,7 @@ public class LobbyScreen : MonoBehaviour
             {
                 GameObject playerNumber = playersListGameObject[playersList[i].id - 1];
                 playerNumber.SetActive(true);
-                if (playersList.Count >1 && WebsocketManager.GetComponent<WebsocketManager>().isHost == true)
+                if (playersList.Count >(requiredPlayersNumber - 1) && WebsocketManager.GetComponent<WebsocketManager>().isHost == true)
                 {
                     transform.Find("Continue").gameObject.SetActive(true);
                 }
