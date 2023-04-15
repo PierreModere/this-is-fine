@@ -6,8 +6,6 @@ using UnityEngine.UI;
 using TMPro;
 using NativeWebSocket;
 using Newtonsoft.Json;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static WebsocketManager;
 
 public class WebsocketManager : MonoBehaviour
 {

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class CharactersSelection : MonoBehaviour
 {
@@ -42,6 +43,22 @@ public class CharactersSelection : MonoBehaviour
         }
     }
 
+    void removeClickEventOnCharactersGrid()
+    {
+        Transform CharactersGrid = transform.Find("CharactersGrid");
+        for (int i = 0; i < CharactersGrid.childCount; i++)
+        {
+            GameObject characterSprite = CharactersGrid.GetChild(i).gameObject;
+            Button button = characterSprite.GetComponentInChildren<Button>();
+
+            if (button != null)
+            {
+                button.onClick.RemoveAllListeners();
+
+            }
+        }
+    }
+
     async void selectCharacter(string characterName)
     {
         var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
@@ -51,16 +68,42 @@ public class CharactersSelection : MonoBehaviour
 
     }
 
+    async void unselectCharacter()
+    {
+        transform.Find("Cancel").DOScale(0f, 0f);
+        addClickEventOnCharactersGrid();
+        var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
+        string playerID = WebsocketManager.GetComponent<WebsocketManager>().playerID;
+        string json = "{'type': 'unselectCharacter', 'params':{'code': '" + pincode + "','id':'" + playerID + "'}}";
+        await websocket.SendText(json);
+    }
+
     public void updateSelectedAndAvailableCharacters()
     {
-        var playersList = WebsocketManager.GetComponent<WebsocketManager>().playersList;
+        if (WebsocketManager.GetComponent<WebsocketManager>().selectedCharacter != "" && WebsocketManager.GetComponent<WebsocketManager>().selectedCharacter != null)
+        {
+            removeClickEventOnCharactersGrid();
+            transform.Find("Cancel").DOScale(1f , 0.4f );
+            transform.Find("Cancel").gameObject.GetComponent<Button>().onClick.AddListener(unselectCharacter);
+        }
 
-        foreach (var player in selectedCharactersGameobject)
+        foreach (GameObject player in selectedCharactersGameobject)
         {
             player.SetActive(false);
         }
-
         Transform CharactersGrid = transform.Find("CharactersGrid");
+
+        foreach (Transform characterInGrid in CharactersGrid)
+        {
+            Image characterInGridSprite = characterInGrid.gameObject.GetComponent<Image>();
+            var tempColor = characterInGridSprite.color;
+            tempColor.a = 1f;
+            characterInGridSprite.color = tempColor;
+            characterInGrid.gameObject.GetComponent<Button>().enabled = true;
+
+        }
+
+        var playersList = WebsocketManager.GetComponent<WebsocketManager>().playersList;
 
         if (playersList.Count > 0)
         {
@@ -68,27 +111,23 @@ public class CharactersSelection : MonoBehaviour
             {
                 selectedCharactersGameobject[i].SetActive(true);
 
-
+                GameObject selectedCharacterSprite = selectedCharactersGameobject.Find(g => g.name == "Player" + playersList[i].id.ToString()).transform.Find("Character").gameObject;
+                
 
                 if (playersList[i].selectedCharacter != null && playersList[i].selectedCharacter != "")
                 {
-                    selectedCharactersGameobject.Find(g => g.name == "Player" + playersList[i].id.ToString()).transform.Find("Character").gameObject.SetActive(true);
-                    selectedCharactersGameobject.Find(g => g.name == "Player" + playersList[i].id.ToString()).transform.Find("Character").gameObject.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == playersList[i].selectedCharacter);
-                    Image characterSprite = CharactersGrid.Find(playersList[i].selectedCharacter).gameObject.GetComponent<Image>();
-                    var tempColor = characterSprite.color;
+                    selectedCharacterSprite.SetActive(true);
+                    selectedCharacterSprite.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == playersList[i].selectedCharacter);
+                    Image characterInGridSprite = CharactersGrid.Find(playersList[i].selectedCharacter).gameObject.GetComponent<Image>();
+                    var tempColor = characterInGridSprite.color;
                     tempColor.a = 0.5f;
-                    characterSprite.color = tempColor;
+                    characterInGridSprite.color = tempColor;
                     CharactersGrid.Find(playersList[i].selectedCharacter).gameObject.GetComponent<Button>().enabled = false;
                 }
                 else
                 {
-                    selectedCharactersGameobject.Find(g => g.name == "Player" + playersList[i].id.ToString()).transform.Find("Character").gameObject.SetActive(false);
-                    selectedCharactersGameobject.Find(g => g.name == "Player" + playersList[i].id.ToString()).transform.Find("Character").gameObject.GetComponent<Image>().sprite = null;
-                    Image characterSprite = CharactersGrid.Find(playersList[i].selectedCharacter).gameObject.GetComponent<Image>();
-                    var tempColor = characterSprite.color;
-                    tempColor.a = 1f;
-                    characterSprite.color = tempColor;
-                    CharactersGrid.Find(playersList[i].selectedCharacter).gameObject.GetComponent<Button>().enabled = false;
+                    selectedCharacterSprite.GetComponent<Image>().sprite = null;
+                    selectedCharacterSprite.SetActive(false);
                 }
             }
 
