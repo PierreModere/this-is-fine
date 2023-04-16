@@ -13,6 +13,7 @@ public class WebsocketManager : MonoBehaviour
     private string websocketURL;
     public string joinedRoomCode;
     public string playerID;
+    public string selectedCharacter;
     public bool isHost;
     public WebSocket websocket;
     public GameObject LobbyCanvas;
@@ -69,7 +70,7 @@ public class WebsocketManager : MonoBehaviour
             get;
             set;
         }
-        public string chosenCharacter
+        public string selectedCharacter
         {
             get;
             set;
@@ -125,9 +126,16 @@ public class WebsocketManager : MonoBehaviour
                 case "getMyPlayerID":
                     playerID = _ParsedJSON.@params.@data.message;
                     break;
+                case "getMySelectedCharacter":
+                    selectedCharacter = _ParsedJSON.@params.@data.message;
+                    break;
                 case "receivedPlayersList":
                     playersList = _ParsedJSON.@params.@data.clientsList;
                     LobbyCanvas.GetComponent<LobbyScreen>().updatePlayersListInLobby();
+                    if (GameObject.FindWithTag("activeScreen").name == "CharactersSelectionCanvas")
+                    {
+                        FindInactiveObjectByName("CharactersSelectionCanvas").GetComponent<CharactersSelection>().updateSelectedAndAvailableCharacters();
+                    }
                     break;
                 case "changedScreen":
                     changeScreenForEveryone(_ParsedJSON.@params.@data.message);
@@ -136,6 +144,7 @@ public class WebsocketManager : MonoBehaviour
                     var ErrorsManager = ErrorCanvas.GetComponent<ErrorsManager>();
                     ErrorsManager.manageErrors(_ParsedJSON.@params.@data.message);
                     break;
+
                 default:
                     // code block
                     break;
@@ -182,7 +191,7 @@ public class WebsocketManager : MonoBehaviour
         Transform[] objs = Resources.FindObjectsOfTypeAll<Transform>() as Transform[];
         foreach (Transform obj in objs)
         {
-            if (obj.name == name && !obj.gameObject.activeInHierarchy)
+            if (obj.name == name && !obj.gameObject.activeInHierarchy || obj.name == name && obj.gameObject.activeInHierarchy)
             {
                 return obj.gameObject;
             }
