@@ -17,6 +17,10 @@ public class LobbyScreen : MonoBehaviour
     [SerializeField]
     private List<GameObject> playersListGameObject;
 
+    void Start()
+    {
+        updatePlayersListInLobby();
+    }
     public void setPincode(string getPincode) {
         pincode = getPincode;
         roomPincodeText.GetComponent<TextMeshProUGUI>().text = "Room " + pincode;

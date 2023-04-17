@@ -117,11 +117,11 @@ public class WebsocketManager : MonoBehaviour
                     break;
                 case "joinedRoom":
                     joinedRoomCode = _ParsedJSON.@params.@data.message;
-                    FindInactiveObjectByName("LobbyCanvas").GetComponent<LobbyScreen>().setPincode(joinedRoomCode);
                     GameObject.Find("JoinRoomCanvas").tag = "Untagged";
                     GameObject.Find("JoinRoomCanvas").SetActive(false);
                     FindInactiveObjectByName("LobbyCanvas").SetActive(true);
                     FindInactiveObjectByName("LobbyCanvas").tag = "activeScreen";
+                    FindInactiveObjectByName("LobbyCanvas").GetComponent<LobbyScreen>().setPincode(joinedRoomCode);
                     isHost = false;
                     break;
                 case "getMyPlayerID":
@@ -195,7 +195,6 @@ public class WebsocketManager : MonoBehaviour
         var screenToDisable = GameObject.FindWithTag("activeScreen");
         if (screenToEnable != null && screenToDisable != null)
         {
-            Debug.Log("ok!");
             screenToEnable.SetActive(true);
             screenToEnable.tag = "activeScreen";
             screenToDisable.SetActive(false);
