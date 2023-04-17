@@ -3,13 +3,17 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using TMPro;
-using Unity.VisualScripting;
+using DG.Tweening;
 
 public class CharactersSelection : MonoBehaviour
 {
     private GameObject WebsocketManager;
     UnityAction UA;
     string pincode;
+
+    public GameObject ReturnButton;
+    public GameObject CancelButton;
+    public GameObject OkButton;
 
     [SerializeField]
     private List<GameObject> selectedCharactersGameobject;
@@ -22,7 +26,7 @@ public class CharactersSelection : MonoBehaviour
         pincode = WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode;
         addClickEventOnCharactersGrid();
         updateSelectedAndAvailableCharacters();
-        transform.Find("Cancel").gameObject.GetComponent<Button>().onClick.AddListener(unselectCharacter);
+        CancelButton.GetComponent<Button>().onClick.AddListener(unselectCharacter);
 
     }
 
@@ -49,8 +53,7 @@ public class CharactersSelection : MonoBehaviour
         for (int i = 0; i < CharactersGrid.childCount; i++)
         {
             GameObject characterSprite = CharactersGrid.GetChild(i).gameObject;
-      /*      Button button = characterSprite.GetComponentInChildren<Button>();
-            button.interactable = false;*/
+            characterSprite.GetComponentInChildren<Button>().interactable = false;
 
         }
     }
@@ -63,8 +66,8 @@ public class CharactersSelection : MonoBehaviour
         for (int i = 0; i < CharactersGrid.childCount; i++)
         {
             GameObject characterSprite = CharactersGrid.GetChild(i).gameObject;
-/*            characterSprite.GetComponentInChildren<Button>().enabled = false;
-*/            
+            characterSprite.GetComponentInChildren<Button>().interactable = true;
+
         }
     }
 
@@ -81,7 +84,7 @@ public class CharactersSelection : MonoBehaviour
 
     async void unselectCharacter()
     {
-        transform.Find("Cancel").localScale = new Vector3(0f, 0f, 0f);
+        CancelButton.SetActive(false);
         reenableClickEvents();
         var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
         string playerID = WebsocketManager.GetComponent<WebsocketManager>().playerID;
@@ -107,7 +110,7 @@ public class CharactersSelection : MonoBehaviour
             var tempColor = characterInGridSprite.color;
             tempColor.a = 1f;
             characterInGridSprite.color = tempColor;
-            characterInGrid.gameObject.GetComponent<Button>().enabled = true;
+            characterInGrid.gameObject.GetComponent<Button>().interactable = true;
 
         }
 
@@ -120,6 +123,9 @@ public class CharactersSelection : MonoBehaviour
                 GameObject selectedCharacterFrame = selectedCharactersGameobject.Find(g => g.name == playersList[i].selectedCharacter).gameObject;
                 selectedCharacterFrame.transform.Find("PlayerColor").Find("PlayerNumber").GetComponent<TextMeshProUGUI>().text= playersList[i].id.ToString();
                 selectedCharacterFrame.SetActive(true);
+
+                CharactersGrid.Find(playersList[i].selectedCharacter).gameObject.GetComponent<Button>().interactable=false;
+
 
                 switch (playersList[i].id.ToString())
                 {
@@ -140,6 +146,7 @@ public class CharactersSelection : MonoBehaviour
                 {
                     selectedCharacterFrame.transform.Find("LocalSelected").gameObject.SetActive(true);
                     selectedCharacterFrame.transform.Find("LocalSelected").gameObject.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "SelectedFrame"+playersList[i].id.ToString());
+                    selectedCharacterFrame.transform.Find("LocalSelected").DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.1f).OnComplete(() => { selectedCharacterFrame.transform.Find("LocalSelected").DOScale(new Vector3(1f, 1f, 1f), 0.1f); });
                 }
                 else
                 {
@@ -161,10 +168,11 @@ public class CharactersSelection : MonoBehaviour
                 everyoneReady = false;
         }
         if (everyoneReady && WebsocketManager.GetComponent<WebsocketManager>().isHost)
-            transform.Find("Play").localScale = new Vector3(1f, 1f, 1f);
-        else transform.Find("Play").localScale = new Vector3(0f, 0f, 0f);
-
-
+        {  OkButton.SetActive(true);
+        }
+        else {
+            OkButton.SetActive(false);
+        }
     }
 
     void hasSelectedCharacter()
@@ -172,7 +180,15 @@ public class CharactersSelection : MonoBehaviour
         if (WebsocketManager.GetComponent<WebsocketManager>().selectedCharacter != "")
         {
             removeClickEventOnCharactersGrid();
-            transform.Find("Cancel").localScale = new Vector3(1f, 1f, 1f);
+            CancelButton.SetActive(true);
+
+            if (WebsocketManager.GetComponent<WebsocketManager>().isHost)
+                ReturnButton.SetActive(false);
+        }
+        else {
+            if (WebsocketManager.GetComponent<WebsocketManager>().isHost)
+                ReturnButton.SetActive(true);
+            else CancelButton.SetActive(false);
         }
     }
 }
