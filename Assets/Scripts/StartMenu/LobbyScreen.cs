@@ -16,10 +16,11 @@ public class LobbyScreen : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> playersListGameObject;
-    void Start()
-    {
-        pincode = WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode;
+
+    public void setPincode(string getPincode) {
+        pincode = getPincode;
         roomPincodeText.GetComponent<TextMeshProUGUI>().text = "Room " + pincode;
+
     }
 
     public void updatePlayersListInLobby()

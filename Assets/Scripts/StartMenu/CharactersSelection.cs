@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using TMPro;
 using System.Collections.Generic;
-using DG.Tweening;
+using UnityEngine.Events;
+
+
+
 
 public class CharactersSelection : MonoBehaviour
 {
@@ -14,17 +15,22 @@ public class CharactersSelection : MonoBehaviour
     private List<GameObject> selectedCharactersGameobject;
     [SerializeField]
     private List<Sprite> charactersSprites;
+   
+    UnityAction UA; 
     void Start()
     {
         WebsocketManager = GameObject.Find("WebsocketManager");
         pincode = WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode;
         addClickEventOnCharactersGrid();
         updateSelectedAndAvailableCharacters();
+        transform.Find("Cancel").gameObject.GetComponent<Button>().onClick.AddListener(unselectCharacter);
+
     }
 
     void addClickEventOnCharactersGrid()
     {
         Transform CharactersGrid = transform.Find("CharactersGrid");
+
 
         for (int i = 0; i < CharactersGrid.childCount; i++)
         {
@@ -34,11 +40,28 @@ public class CharactersSelection : MonoBehaviour
             if (button != null)
             {
                 string characterName = characterSprite.name;
+                UA = new UnityAction(() => selectCharacter(characterName));
 
-                button.onClick.AddListener(delegate {
-                    selectCharacter(characterName);
-                });
+                button.onClick.AddListener(UA);
 
+            }
+        }
+    }
+
+    void reenableClickEvents()
+    {
+        Transform CharactersGrid = transform.Find("CharactersGrid");
+
+
+        for (int i = 0; i < CharactersGrid.childCount; i++)
+        {
+            GameObject characterSprite = CharactersGrid.GetChild(i).gameObject;
+            Button button = characterSprite.GetComponentInChildren<Button>();
+
+            if (button != null)
+            {
+                button.interactable = true;
+   
             }
         }
     }
@@ -53,15 +76,13 @@ public class CharactersSelection : MonoBehaviour
 
             if (button != null)
             {
-                button.onClick.RemoveAllListeners();
-
+                button.interactable = false;
             }
         }
     }
 
     async void selectCharacter(string characterName)
     {
-        var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
         string playerID = WebsocketManager.GetComponent<WebsocketManager>().playerID;
         string json = "{'type': 'selectCharacter', 'params':{'code': '" + pincode + "','characterName':'" + characterName + "','id':'" + playerID + "'}}";
         await websocket.SendText(json);
@@ -70,21 +91,20 @@ public class CharactersSelection : MonoBehaviour
 
     async void unselectCharacter()
     {
-        transform.Find("Cancel").DOScale(0f, 0f);
-        addClickEventOnCharactersGrid();
+        transform.Find("Cancel").localScale = new Vector3(0f, 0f, 0f);
+        reenableClickEvents();
         var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
         string playerID = WebsocketManager.GetComponent<WebsocketManager>().playerID;
         string json = "{'type': 'unselectCharacter', 'params':{'code': '" + pincode + "','id':'" + playerID + "'}}";
         await websocket.SendText(json);
     }
-
     public void updateSelectedAndAvailableCharacters()
     {
-        if (WebsocketManager.GetComponent<WebsocketManager>().selectedCharacter != "" && WebsocketManager.GetComponent<WebsocketManager>().selectedCharacter != null)
+    
+        if (WebsocketManager.GetComponent<WebsocketManager>().selectedCharacter != "")
         {
             removeClickEventOnCharactersGrid();
-            transform.Find("Cancel").DOScale(1f , 0.4f );
-            transform.Find("Cancel").gameObject.GetComponent<Button>().onClick.AddListener(unselectCharacter);
+            transform.Find("Cancel").localScale = new Vector3(1f,1f,1f);
         }
 
         foreach (GameObject player in selectedCharactersGameobject)

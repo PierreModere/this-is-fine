@@ -15,8 +15,7 @@ public class WebsocketManager : MonoBehaviour
     public string playerID;
     public string selectedCharacter;
     public bool isHost;
-    public WebSocket websocket;
-    public GameObject LobbyCanvas;
+    public WebSocket websocket; 
     public GameObject ErrorCanvas;
 
     public List<ClientsList> playersList;
@@ -113,14 +112,16 @@ public class WebsocketManager : MonoBehaviour
                 case "createdRoom":
                     GameObject.Find("CreatedRoomPincode").GetComponent<TextMeshProUGUI>().text = "Created room " + _ParsedJSON.@params.data.message;
                     joinedRoomCode = _ParsedJSON.@params.@data.message;
+                    FindInactiveObjectByName("LobbyCanvas").GetComponent<LobbyScreen>().setPincode(joinedRoomCode);
                     isHost = true;
                     break;
                 case "joinedRoom":
+                    joinedRoomCode = _ParsedJSON.@params.@data.message;
+                    FindInactiveObjectByName("LobbyCanvas").GetComponent<LobbyScreen>().setPincode(joinedRoomCode);
                     GameObject.Find("JoinRoomCanvas").tag = "Untagged";
                     GameObject.Find("JoinRoomCanvas").SetActive(false);
-                    LobbyCanvas.SetActive(true);
-                    LobbyCanvas.tag = "activeScreen";
-                    joinedRoomCode = _ParsedJSON.@params.@data.message;
+                    FindInactiveObjectByName("LobbyCanvas").SetActive(true);
+                    FindInactiveObjectByName("LobbyCanvas").tag = "activeScreen";
                     isHost = false;
                     break;
                 case "getMyPlayerID":
@@ -131,11 +132,17 @@ public class WebsocketManager : MonoBehaviour
                     break;
                 case "receivedPlayersList":
                     playersList = _ParsedJSON.@params.@data.clientsList;
-                    LobbyCanvas.GetComponent<LobbyScreen>().updatePlayersListInLobby();
-                    if (GameObject.FindWithTag("activeScreen").name == "CharactersSelectionCanvas")
+
+                    switch(GameObject.FindWithTag("activeScreen").name)
                     {
-                        FindInactiveObjectByName("CharactersSelectionCanvas").GetComponent<CharactersSelection>().updateSelectedAndAvailableCharacters();
+                        case "LobbyCanvas":
+                            FindInactiveObjectByName("LobbyCanvas").GetComponent<LobbyScreen>().updatePlayersListInLobby();
+                            break;
+                        case "CharactersSelectionCanvas":
+                            FindInactiveObjectByName("CharactersSelectionCanvas").GetComponent<CharactersSelection>().updateSelectedAndAvailableCharacters();
+                            break;
                     }
+
                     break;
                 case "changedScreen":
                     changeScreenForEveryone(_ParsedJSON.@params.@data.message);
@@ -163,6 +170,16 @@ public class WebsocketManager : MonoBehaviour
     }
 
     private async void OnApplicationQuit()
+    {
+        if (joinedRoomCode != null && joinedRoomCode != "")
+        {
+            string json = "{'type': 'leave', 'params':{'code': '" + joinedRoomCode + "','id': '" + playerID + "'}}";
+            await websocket.SendText(json);
+        }
+        await websocket.Close();
+    }
+
+    public async void OnWebglClose()
     {
         if (joinedRoomCode != null && joinedRoomCode != "")
         {
