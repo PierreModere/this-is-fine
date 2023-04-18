@@ -27,7 +27,9 @@ public class CharactersSelection : MonoBehaviour
         addClickEventOnCharactersGrid();
         updateSelectedAndAvailableCharacters();
         CancelButton.GetComponent<Button>().onClick.AddListener(unselectCharacter);
-
+        if (WebsocketManager.GetComponent<WebsocketManager>().isHost)
+            OkButton.SetActive(true);
+            OkButton.GetComponent<Button>().onClick.AddListener(startGame);
     }
 
     void addClickEventOnCharactersGrid()
@@ -132,7 +134,8 @@ public class CharactersSelection : MonoBehaviour
                 {
                         selectedCharacterFrame.transform.Find("LocalSelected").gameObject.SetActive(true);
                         selectedCharacterFrame.transform.Find("LocalSelected").gameObject.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "SelectedFrame" + playersList[i].id.ToString());
-                        selectedCharacterFrame.transform.Find("LocalSelected").DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.1f).OnComplete(() => { selectedCharacterFrame.transform.Find("LocalSelected").DOScale(new Vector3(1f, 1f, 1f), 0.1f); });
+                        if (!selectedCharacterFrame.transform.Find("LocalSelected").gameObject.activeSelf)    
+                            selectedCharacterFrame.transform.Find("LocalSelected").DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.1f).OnComplete(() => { selectedCharacterFrame.transform.Find("LocalSelected").DOScale(new Vector3(1f, 1f, 1f), 0.1f); });
                     
                 }
                 else
@@ -155,10 +158,10 @@ public class CharactersSelection : MonoBehaviour
                 everyoneReady = false;
         }
         if (everyoneReady && WebsocketManager.GetComponent<WebsocketManager>().isHost)
-        {  OkButton.SetActive(true);
+        {  OkButton.GetComponent<Button>().interactable=true;
         }
         else {
-            OkButton.SetActive(false);
+            OkButton.GetComponent<Button>().interactable = false;
         }
     }
 
@@ -178,5 +181,18 @@ public class CharactersSelection : MonoBehaviour
                 ReturnButton.SetActive(true);
             else CancelButton.SetActive(false);
         }
+    }
+
+    async public void startGame()
+    {
+        var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
+        string json = "{'type': 'startGame', 'params':{'code': '" + pincode + "'}}";
+        await websocket.SendText(json);
+
+        string sceneName = "StartGameScene";
+        
+        string json2 = "{'type': 'changeScene', 'params':{'code': '" + pincode + "','sceneName':'" + sceneName + "'}}";
+        await websocket.SendText(json2);
+        
     }
 }

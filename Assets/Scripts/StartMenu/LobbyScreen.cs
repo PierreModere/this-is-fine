@@ -20,6 +20,7 @@ public class LobbyScreen : MonoBehaviour
     void Start()
     {
         updatePlayersListInLobby();
+        transform.Find("Return").gameObject.GetComponent<Button>().onClick.AddListener(quitLobby);
     }
     public void setPincode(string getPincode) {
         pincode = getPincode;
@@ -44,11 +45,11 @@ public class LobbyScreen : MonoBehaviour
                 playerNumber.SetActive(true);
                 if (playersList.Count >(requiredPlayersNumber - 1) && WebsocketManager.GetComponent<WebsocketManager>().isHost == true)
                 {
-                    transform.Find("Continue").gameObject.SetActive(true);
+                    transform.Find("Ok").gameObject.SetActive(true);
                 }
                 else
                 {
-                    transform.Find("Continue").gameObject.SetActive(false);
+                    transform.Find("Ok").gameObject.SetActive(false);
                 }
                 if (WebsocketManager.GetComponent<WebsocketManager>().playerID == playersList[i].id.ToString())
                     playerNumber.GetComponent<PlayerNumber>().isLocalClient = true;
@@ -56,4 +57,18 @@ public class LobbyScreen : MonoBehaviour
 
         }
     }
+
+    async public void quitLobby()
+    {
+        if (pincode != "")
+        {
+            string json;
+            var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
+            json = "{'type': 'leave', 'params':{'code': '" + pincode + "','id': '" + WebsocketManager.GetComponent<WebsocketManager>().playerID + "'}}";
+            
+            await websocket.SendText(json);
+            WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode = "";
+        }
+    }
+
 }

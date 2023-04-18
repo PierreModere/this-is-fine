@@ -13,11 +13,13 @@ public class ToggleMenu : MonoBehaviour
     public void disableMenu()
     {
         menuToDisable.SetActive(false);
+
         menuToDisable.tag = "Untagged";
     }
     public void enableMenu()
     {
         menuToEnable.SetActive(true);
+        menuToEnable.transform.DOScale(new Vector3(1.05f, 1.05f, 1.05f), 0.1f).OnComplete(() => { menuToEnable.transform.DOScale(new Vector3(1f, 1f, 1f), 0.15f); });
         menuToEnable.tag = "activeScreen";
     }
 }

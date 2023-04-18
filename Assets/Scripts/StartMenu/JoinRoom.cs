@@ -30,7 +30,7 @@ public class JoinRoom : MonoBehaviour
             {
                 string buttonValue = childObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
 
-                if (buttonValue != "join" && buttonValue != "delete")
+                if (buttonValue != "delete" && buttonValue != "RET.")
                 {
                     childButton.onClick.AddListener(delegate {
                         addDigitToPin(buttonValue);
@@ -39,11 +39,6 @@ public class JoinRoom : MonoBehaviour
                 if (buttonValue == "delete")
                 {
                     childButton.onClick.AddListener(deleteLastDigit);
-                }
-
-                if (buttonValue == "join")
-                {
-                    childButton.onClick.AddListener(joinRoom);
                 }
             }
         }
@@ -59,7 +54,7 @@ public class JoinRoom : MonoBehaviour
 
         if (PinInput.GetComponent<TMP_InputField>().text.Length > 3)
         {
-            joinButton.SetActive(true);
+            joinRoom();
         }
 
     }
@@ -69,7 +64,6 @@ public class JoinRoom : MonoBehaviour
         if (PinInput.GetComponent<TMP_InputField>().text.Length > 0)
         {
             PinInput.GetComponent<TMP_InputField>().text = PinInput.GetComponent<TMP_InputField>().text.Remove(PinInput.GetComponent<TMP_InputField>().text.Length - 1);
-            joinButton.SetActive(false);
         }
 
     }
