@@ -15,6 +15,7 @@ public class WebsocketManager : MonoBehaviour
     public string joinedRoomCode;
     public string playerID;
     public string selectedCharacter;
+    public string displayedMinigameID="2";
     public bool isHost;
     public WebSocket websocket; 
 
@@ -125,16 +126,20 @@ public class WebsocketManager : MonoBehaviour
                     break;
                 case "receivedPlayersList":
                     playersList = _ParsedJSON.@params.@data.clientsList;
-                    FindInactiveObjectByName("LobbyCanvas").GetComponent<LobbyScreen>().updatePlayersListInLobby();
 
                     if (GameObject.FindWithTag("activeScreen")!= null)
 
                     {
                         switch (GameObject.FindWithTag("activeScreen").name)
                         {
-                  
+                            case "LobbyCanvas":
+                                FindInactiveObjectByName("LobbyCanvas").GetComponent<LobbyScreen>().updatePlayersListInLobby();
+                                break;
                             case "CharactersSelectionCanvas":
                                 FindInactiveObjectByName("CharactersSelectionCanvas").GetComponent<CharactersSelection>().updateSelectedAndAvailableCharacters();
+                                break;
+                            case "MinigameInstructionsCanvas":
+                                FindInactiveObjectByName("MinigameInstructionsCanvas").GetComponent<MinigameInstructions>().updatePlayersList();
                                 break;
                         }
                     }

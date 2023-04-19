@@ -10,9 +10,24 @@ public class FirstMinigameAnimation : MonoBehaviour
     public GameObject FirstMinigamePreview;
     public GameObject FirstMinigamePreviewShadow;
     public GameObject OkButton;
+
+    private GameObject WebsocketManager;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        WebsocketManager = GameObject.Find("WebsocketManager");
+        bool isHost = WebsocketManager.GetComponent<WebsocketManager>().isHost;
+        if (isHost)
+        {
+            OkButton.SetActive(true);
+        }
+        else
+        {
+            OkButton.SetActive(false);
+        }
+
         // Grab a free Sequence to use
         Sequence mySequence = DOTween.Sequence();
         // Add a movement tween at the beginning
@@ -26,6 +41,8 @@ public class FirstMinigameAnimation : MonoBehaviour
         mySequence.Append(OkButton.transform.DOLocalMoveY(-740f, 0.8f).SetDelay(-0.2f));
 
          OkButton.GetComponent<Button>().onClick.AddListener(onBtnClick);
+
+
     }
 
     public void onBtnClick()

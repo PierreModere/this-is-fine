@@ -17,12 +17,6 @@ public class SendWSScreenUpdate : MonoBehaviour
         pincode = WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public async void sendScreenNameToSwitchTo()
     {
         pincode = WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode;
