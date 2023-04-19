@@ -7,5 +7,5 @@ public class Minigame: ScriptableObject
     public string title;
     public string instruction;
     public string id;
-    public Sprite MinigamePreview;
+    public Sprite preview;
 }

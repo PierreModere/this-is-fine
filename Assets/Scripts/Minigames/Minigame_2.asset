@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Minigame_2
   m_EditorClassIdentifier: 
   title: "D\xE9dale Bancale"
-  instruction: sdfgtegerg
+  instruction: "Appuie sur le haut du gratte ciel pour y d\xE9poser un nouvel \xE9tage
+    gr\xE2ce \xE0 la grue, attends que celle-ci soit bien au dessus du b\xE2timent. "
   id: 2
-  MinigamePreview: {fileID: 21300000, guid: e75c193f0c011e54a950b55c620edf1c, type: 3}
+  preview: {fileID: 21300000, guid: e75c193f0c011e54a950b55c620edf1c, type: 3}

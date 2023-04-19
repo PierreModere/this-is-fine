@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Newtonsoft.Json.Bson;
 
 public class FirstMinigameAnimation : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class FirstMinigameAnimation : MonoBehaviour
     public GameObject OkButton;
 
     private GameObject WebsocketManager;
+
+    public List<Minigame> minigamesList;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +31,8 @@ public class FirstMinigameAnimation : MonoBehaviour
         {
             OkButton.SetActive(false);
         }
+
+        setRandomFirstMinigame();
 
         // Grab a free Sequence to use
         Sequence mySequence = DOTween.Sequence();
@@ -51,6 +57,14 @@ public class FirstMinigameAnimation : MonoBehaviour
         // Add a movement tween at the beginning
         test.Append(OkButton.transform.DOLocalMoveY(-715f, 0.2f));
         test.Append(OkButton.transform.DOLocalMoveY(-1150, 0.3f));
+
+    }
+
+    void setRandomFirstMinigame()
+    {
+        var randomID = Random.Range(1, minigamesList.Count);
+        FirstMinigamePreview.GetComponent<Image>().sprite = minigamesList[randomID-1].preview;
+        WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(randomID);
 
     }
 

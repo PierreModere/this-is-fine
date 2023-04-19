@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using static WebsocketManager;
@@ -12,7 +13,10 @@ public class MinigameInstructions : MonoBehaviour
     public GameObject ReadyButton;
     public GameObject minigameMode;
     public GameObject minigameTitle;
+    public GameObject minigamePreview;
     public GameObject instructionText;
+    public List<Sprite> charactersSprites;
+    public List<GameObject> playersGameobjects;
 
     bool isDuel = false;
 
@@ -37,19 +41,51 @@ public class MinigameInstructions : MonoBehaviour
             GoButton.SetActive(false);
         }
         if (displayedMinigameID!= "") setMinigameData();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        updatePlayersList();
     }
 
     public void updatePlayersList()
     {
         var playersList = WebsocketManager.GetComponent<WebsocketManager>().playersList;
+        unactiveAllPlayersGameobjects();
         checkPlayersReadyState();
 
+        for (int i = 0; i < playersList.Count; i++)
+        {
+
+            if (playersList[i].selectedCharacter != "")
+            {
+                GameObject playerGameObject = playersGameobjects.Find(g => g.name == "Player"+playersList[i].id);
+                playerGameObject.SetActive(true);
+
+                switch (playersList[i].id.ToString())
+                {
+                    case "1":
+                        playerGameObject.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
+                        break;
+                    case "2":
+                        playerGameObject.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
+                        break;
+                    case "3":
+                        playerGameObject.GetComponent<Image>().color = new Color32(0, 255, 0, 255);
+                        break;
+                    case "4":
+                        playerGameObject.GetComponent<Image>().color = new Color32(255, 255, 0, 255);
+                        break;
+                }
+
+                GameObject playerCharacter = playerGameObject.transform.Find("PlayerCharacter").gameObject;
+                playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == playersList[i].selectedCharacter);
+
+                if (playersList[i].isReady)
+                {   
+                    GameObject isReadyIcon = playerGameObject.transform.Find("isReady").gameObject;
+                    isReadyIcon.SetActive(true);
+                    isReadyIcon.transform.DOScale(1.05f, 0.1f).OnComplete(() => { isReadyIcon.transform.DOScale(1f, 0.1f); });
+                }
+            }
+        }
     }
 
     public void setMinigameMode()
@@ -63,6 +99,7 @@ public class MinigameInstructions : MonoBehaviour
         Minigame displayedMinigame = minigamesList.Find(mg => mg.id == displayedMinigameID);
         minigameTitle.GetComponent<TextMeshProUGUI>().text = displayedMinigame.title;
         instructionText.GetComponent<TextMeshProUGUI>().text = displayedMinigame.instruction;
+        minigamePreview.GetComponent<Image>().sprite = displayedMinigame.preview;
     }
 
     void checkPlayersReadyState()
@@ -71,7 +108,7 @@ public class MinigameInstructions : MonoBehaviour
         var playersList = WebsocketManager.GetComponent<WebsocketManager>().playersList;
         foreach (var player in playersList)
         {
-            if (!player.isReady)
+            if (!player.isReady && player.id!=1)
                 everyoneReady = false;
         }
         if (everyoneReady && WebsocketManager.GetComponent<WebsocketManager>().isHost)
@@ -82,5 +119,29 @@ public class MinigameInstructions : MonoBehaviour
         {
             GoButton.GetComponent<Button>().interactable = false;
         }
+    }
+
+    void unactiveAllPlayersGameobjects()
+    {
+        foreach (GameObject player in playersGameobjects)
+        {
+            player.SetActive(false);
+        }
+    }
+
+    public async void sendReady()
+    {
+        var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
+        string json = "{'type': 'playerIsReady', 'params':{'code': '" + WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode + "','id':'" + WebsocketManager.GetComponent<WebsocketManager>().playerID + "'}}";
+        await websocket.SendText(json);
+        ReadyButton.GetComponent<Button>().interactable = false;
+    }
+
+    public async void lauchMinigame()
+    {
+        var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
+        string sceneName = "Minigame"+ WebsocketManager.GetComponent<WebsocketManager>().displayedMinigameID;
+        string json = "{'type': 'changeScene', 'params':{'code': '" + WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode + "','sceneName':'" + sceneName + "'}}";
+        await websocket.SendText(json);
     }
 }

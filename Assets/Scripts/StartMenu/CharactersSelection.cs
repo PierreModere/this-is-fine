@@ -187,12 +187,6 @@ public class CharactersSelection : MonoBehaviour
     {
         var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
         string json = "{'type': 'startGame', 'params':{'code': '" + pincode + "'}}";
-        await websocket.SendText(json);
-
-        string sceneName = "StartGameScene";
-        
-        string json2 = "{'type': 'changeScene', 'params':{'code': '" + pincode + "','sceneName':'" + sceneName + "'}}";
-        await websocket.SendText(json2);
-        
+        await websocket.SendText(json);        
     }
 }

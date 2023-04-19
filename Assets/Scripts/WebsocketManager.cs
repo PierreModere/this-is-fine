@@ -145,6 +145,9 @@ public class WebsocketManager : MonoBehaviour
                     }
 
                     break;
+                case "receivedSelectedMinigame":
+                    displayedMinigameID = _ParsedJSON.@params.@data.message;
+                    break;
                 case "changedScreen":
                     changeScreenForEveryone(_ParsedJSON.@params.@data.message);
                     break;
@@ -227,6 +230,12 @@ public class WebsocketManager : MonoBehaviour
             screenToDisable.SetActive(false);
             screenToDisable.tag = "Untagged";
         }
+    }
+
+    public async void sendSelectedMinigame(int minigameID)
+    {
+        string json = "{'type': 'selectMinigame', 'params':{'code': '" + joinedRoomCode + "','minigameID':'" + minigameID.ToString() + "'}}";
+        await websocket.SendText(json);
     }
 
     GameObject FindInactiveObjectByName(string name)

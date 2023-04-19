@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Minigame_1
   m_EditorClassIdentifier: 
   title: Cartouches en folie
-  instruction: dezfezgfrret
+  instruction: "Reste appuyer n\u2019importe o\xF9 sur l\u2019\xE9cran pour remplir
+    la cartouche. Rel\xE2che lorsque tu as termin\xE9 pour passer \xE0 la suivante."
   id: 1
-  MinigamePreview: {fileID: 21300000, guid: 317c74ff7810d3644805d8e85e93c344, type: 3}
+  preview: {fileID: 21300000, guid: 317c74ff7810d3644805d8e85e93c344, type: 3}
