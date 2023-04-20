@@ -14,6 +14,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartGameScene.unity
     guid: 54516a88a4d825d449bbc69c082bab92
+  - enabled: 1
+    path: Assets/Scenes/Minigames/Minigame1.unity
+    guid: 4c152e50ae495f44c9e7be324a1b1947
+  - enabled: 1
+    path: Assets/Scenes/Minigames/Minigame2.unity
+    guid: 2968e1392cbb0ad449ca3db776adee91
+  - enabled: 1
+    path: Assets/Scenes/Minigames/Minigame3.unity
+    guid: 4fca209b37c4501438c72c99e0e02e10
+  - enabled: 1
+    path: Assets/Scenes/Minigames/Minigame4.unity
+    guid: b3194c382b58fd84a92dbee3cfa7ebf7
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 126ac55d127d7f74fb20e3d0ce589ed0, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 242ea15da6fa08e4884333fece534ede, type: 2}

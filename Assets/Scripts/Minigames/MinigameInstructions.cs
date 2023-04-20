@@ -18,8 +18,6 @@ public class MinigameInstructions : MonoBehaviour
     public List<Sprite> charactersSprites;
     public List<GameObject> playersGameobjects;
 
-    bool isDuel = false;
-
     private GameObject WebsocketManager;
     public List<Minigame> minigamesList;
     string displayedMinigameID;
@@ -42,6 +40,7 @@ public class MinigameInstructions : MonoBehaviour
         }
         if (displayedMinigameID!= "") setMinigameData();
 
+        setMinigameMode();
         updatePlayersList();
     }
 
@@ -90,9 +89,17 @@ public class MinigameInstructions : MonoBehaviour
 
     public void setMinigameMode()
     {
+        var mode = WebsocketManager.GetComponent<WebsocketManager>().minigameMode;
         TextMeshProUGUI minigameModeText = minigameMode.GetComponent<TextMeshProUGUI>();
-        if (isDuel) minigameModeText.text = "Duel";
-        else minigameModeText.text = "Bataille";
+        if (mode == "Duel")
+        {
+            minigameModeText.text = "Duel";
+        }
+        else if (mode == "Battle")
+        {
+            minigameModeText.text = "Bataille";
+        }
+      
     }
 
     void setMinigameData() {

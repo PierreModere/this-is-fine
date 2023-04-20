@@ -16,6 +16,12 @@ public class FirstMinigameAnimation : MonoBehaviour
 
     public List<Minigame> minigamesList;
 
+    public float timeInterval = 0.08f; // intervalle de temps entre chaque changement de sprite
+    public float totalTime = 2.5f; // temps total pour le changement de sprite
+    private int currentSpriteIndex; // index actuel dans le tableau de sprites
+    private float timeElapsed; // temps écoulé depuis le début du changement de sprite
+    private bool isChangingSprite; // flag indiquant si le changement de sprite est en cours
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,11 +40,9 @@ public class FirstMinigameAnimation : MonoBehaviour
 
         setRandomFirstMinigame();
 
-        // Grab a free Sequence to use
         Sequence mySequence = DOTween.Sequence();
-        // Add a movement tween at the beginning
+
         mySequence.Append(InstructionText.transform.DOScale(1.25f, 0.15f));
-        // Add a rotation tween as soon as the previous one is finished
         mySequence.Append(InstructionText.transform.DOScale(1f, 0.2f));
         mySequence.Append(InstructionText.transform.DOLocalMoveY(775f, 0.7f).SetDelay(0.6f));
         mySequence.Join(FirstMinigamePreview.transform.DOLocalMoveY(75f, 0.8f));
@@ -46,7 +50,7 @@ public class FirstMinigameAnimation : MonoBehaviour
 
         mySequence.Append(OkButton.transform.DOLocalMoveY(-740f, 0.8f).SetDelay(-0.2f));
 
-         OkButton.GetComponent<Button>().onClick.AddListener(onBtnClick);
+        OkButton.GetComponent<Button>().onClick.AddListener(onBtnClick);
 
 
     }
@@ -63,14 +67,69 @@ public class FirstMinigameAnimation : MonoBehaviour
     void setRandomFirstMinigame()
     {
         var randomID = Random.Range(1, minigamesList.Count);
-        FirstMinigamePreview.GetComponent<Image>().sprite = minigamesList[randomID-1].preview;
-        WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(randomID);
-
+        WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(randomID.ToString());
     }
 
-    // Update is called once per frame
-    void Update()
+    public void displaySelectedMinigame()
     {
-        
+        ChangeSpriteOverTime();
+    }
+
+    // fonction pour changer le sprite toutes les `timeInterval` secondes pendant `totalTime` secondes
+    public void ChangeSpriteOverTime()
+    {
+        // ne commencez pas un nouveau changement de sprite si un est déjà en cours
+        if (isChangingSprite)
+        {
+            return;
+        }
+
+        // initialiser les variables
+        currentSpriteIndex = 0;
+        timeElapsed = 0f;
+        isChangingSprite = true;
+
+        // démarrer une coroutine pour changer le sprite
+        StartCoroutine(ChangeSpriteCoroutine());
+    }
+
+    // coroutine pour changer le sprite toutes les `timeInterval` secondes pendant `totalTime` secondes
+    private IEnumerator ChangeSpriteCoroutine()
+    {
+        while (timeElapsed < totalTime)
+        {
+            // changer le sprite affiché sur le composant Image
+            FirstMinigamePreview.GetComponent<Image>().sprite = minigamesList[currentSpriteIndex].preview;
+
+            // incrémenter l'index du sprite actuel
+            currentSpriteIndex++;
+
+            // si on a atteint la fin du tableau de sprites, revenir au début
+            if (currentSpriteIndex >= minigamesList.Count)
+            {
+                currentSpriteIndex = 0;
+            }
+
+            // attendre `timeInterval` secondes avant de changer le sprite suivant
+            yield return new WaitForSeconds(timeInterval);
+
+            // ajouter le temps écoulé depuis le début du changement de sprite
+            timeElapsed += timeInterval;
+        }
+
+        string displayedMinigameID = WebsocketManager.GetComponent<WebsocketManager>().displayedMinigameID;
+
+        Sequence mySequence = DOTween.Sequence();
+
+        mySequence.Append(FirstMinigamePreview.transform.DOScale(7.3f, 0.1f).OnComplete(() => {
+            FirstMinigamePreview.GetComponent<Image>().sprite = minigamesList.Find(mg => mg.id == displayedMinigameID).preview;
+        }));
+        mySequence.Append(FirstMinigamePreview.transform.DOScale(7f, 0.15f));
+
+
+        // réinitialiser les variables
+        currentSpriteIndex = 0;
+        timeElapsed = 0f;
+        isChangingSprite = false;
     }
 }

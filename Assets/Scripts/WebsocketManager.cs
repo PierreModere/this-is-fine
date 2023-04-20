@@ -15,7 +15,8 @@ public class WebsocketManager : MonoBehaviour
     public string joinedRoomCode;
     public string playerID;
     public string selectedCharacter;
-    public string displayedMinigameID="2";
+    public string displayedMinigameID;
+    public string minigameMode;
     public bool isHost;
     public WebSocket websocket; 
 
@@ -77,6 +78,11 @@ public class WebsocketManager : MonoBehaviour
         }
 
         public bool isReady
+        {
+            get;
+            set;
+        }
+        public bool isDuel
         {
             get;
             set;
@@ -147,6 +153,21 @@ public class WebsocketManager : MonoBehaviour
                     break;
                 case "receivedSelectedMinigame":
                     displayedMinigameID = _ParsedJSON.@params.@data.message;
+
+                    if (GameObject.FindWithTag("activeScreen") != null)
+
+                    {
+                        switch (GameObject.FindWithTag("activeScreen").name)
+                        {
+                            case "FirstMinigameInstructionCanvas":
+                                FindInactiveObjectByName("FirstMinigameInstructionCanvas").GetComponent<FirstMinigameAnimation>().displaySelectedMinigame();
+                                break;
+                        }
+                    }
+
+                    break;
+                case "setMinigameMode":
+                    minigameMode = _ParsedJSON.@params.@data.message;
                     break;
                 case "changedScreen":
                     changeScreenForEveryone(_ParsedJSON.@params.@data.message);
@@ -232,9 +253,17 @@ public class WebsocketManager : MonoBehaviour
         }
     }
 
-    public async void sendSelectedMinigame(int minigameID)
+    public async void sendSelectedMinigame(string minigameID)
     {
-        string json = "{'type': 'selectMinigame', 'params':{'code': '" + joinedRoomCode + "','minigameID':'" + minigameID.ToString() + "'}}";
+        string json = "{'type': 'selectMinigame', 'params':{'code': '" + joinedRoomCode + "','minigameID':'" + minigameID + "'}}";
+        await websocket.SendText(json);
+    }
+
+    public async void sendMinigameMode(string mode, string id)
+    {
+        string json;
+        if (id != null && id != "") json = "{'type': 'setMinigameMode', 'params':{'code': '" + joinedRoomCode + "','mode':'" + mode + "','id':'" + id + "'}}"; 
+        else json = "{'type': 'setMinigameMode', 'params':{'code': '" + joinedRoomCode + "','mode':'" + mode + "'}}";
         await websocket.SendText(json);
     }
 
