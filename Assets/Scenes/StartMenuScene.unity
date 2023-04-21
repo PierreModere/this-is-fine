@@ -351,6 +351,7 @@ MonoBehaviour:
   displayedMinigameID: 
   minigameMode: 
   isHost: 0
+  isDuelHost: 0
 --- !u!1 &30509724
 GameObject:
   m_ObjectHideFlags: 0
@@ -5150,6 +5151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 863141570}
+  - component: {fileID: 863141571}
   m_Layer: 0
   m_Name: ----------- ERROR -----------
   m_TagString: Untagged
@@ -5172,6 +5174,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &863141571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863141569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c86083834582f349b9cf3520256f684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &919684830
 GameObject:
   m_ObjectHideFlags: 0
@@ -8144,6 +8158,7 @@ GameObject:
   - component: {fileID: 1417172308}
   - component: {fileID: 1417172307}
   - component: {fileID: 1417172310}
+  - component: {fileID: 1417172311}
   m_Layer: 5
   m_Name: ErrorCanvas
   m_TagString: Untagged
@@ -8251,6 +8266,18 @@ MonoBehaviour:
   errorGameobjectList:
   - {fileID: 461335320}
   - {fileID: 1513210601}
+--- !u!114 &1417172311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417172305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c86083834582f349b9cf3520256f684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1418509419
 GameObject:
   m_ObjectHideFlags: 0

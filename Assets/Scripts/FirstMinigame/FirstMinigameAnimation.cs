@@ -67,7 +67,7 @@ public class FirstMinigameAnimation : MonoBehaviour
     void setRandomFirstMinigame()
     {
         var randomID = Random.Range(1, minigamesList.Count);
-        WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(randomID.ToString());
+        WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(randomID.ToString(),true);
     }
 
     public void displaySelectedMinigame()

@@ -21,19 +21,21 @@ public class MinigameSelection : MonoBehaviour
     void Start()
     {
         WebsocketManager = GameObject.Find("WebsocketManager");
-        isHost = WebsocketManager.GetComponent<WebsocketManager>().isHost;
+        addClickEvents();
+    }
 
-        if (isHost)
-        {
+    void addClickEvents()
+    {
+       
             foreach (GameObject minigameButton in minigameButtons)
             {
                 var button = minigameButton.GetComponent<Button>();
                 string minigameID = minigameButton.transform.Find("MinigameID").transform.GetComponent<Text>().text;
                 button.onClick.AddListener(() => { selectMinigame(minigameID, minigameButton); });
             }
-  
 
-        }
+
+        
     }
 
     void toggleOkButton()
@@ -56,9 +58,11 @@ public class MinigameSelection : MonoBehaviour
     public void cancelSelection()
     {
         isSelected = false;
-        selectedMinigame.transform.Find("Selected").gameObject.SetActive(isSelected);
         selectedMinigame = null;
         selectedMinigameID = null;
+        WebsocketManager.GetComponent<WebsocketManager>().resetDuelStatus();
+        WebsocketManager.GetComponent<WebsocketManager>().isDuelHost = false;
+
         toggleOkButton();
     }
 
@@ -67,9 +71,12 @@ public class MinigameSelection : MonoBehaviour
         if (selectedMinigameID != null && selectedMinigameID != "")
         {
             WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(selectedMinigameID);
-            cancelSelection();
+            toggleOkButton();
+
+            isSelected = false;
+            selectedMinigame.SetActive(isSelected);
+            selectedMinigame = null;
+            selectedMinigameID = null;
         }
     }
-
-
 }

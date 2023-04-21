@@ -18,6 +18,8 @@ public class WebsocketManager : MonoBehaviour
     public string displayedMinigameID;
     public string minigameMode;
     public bool isHost;
+    public bool isDuelHost;
+
     public WebSocket websocket; 
 
     public List<ClientsList> playersList;
@@ -253,9 +255,11 @@ public class WebsocketManager : MonoBehaviour
         }
     }
 
-    public async void sendSelectedMinigame(string minigameID)
+    public async void sendSelectedMinigame(string minigameID, bool isFirstMinigame=false)
     {
-        string json = "{'type': 'selectMinigame', 'params':{'code': '" + joinedRoomCode + "','minigameID':'" + minigameID + "'}}";
+        string json;
+        if (isFirstMinigame) json = "{'type': 'selectMinigame', 'params':{'code': '" + joinedRoomCode + "','minigameID':'" + minigameID + "','isFirstMinigame':'" + isFirstMinigame + "'}}";
+        else json = "{'type': 'selectMinigame', 'params':{'code': '" + joinedRoomCode + "','minigameID':'" + minigameID + "'}}";
         await websocket.SendText(json);
     }
 
@@ -264,6 +268,21 @@ public class WebsocketManager : MonoBehaviour
         string json;
         if (id != null && id != "") json = "{'type': 'setMinigameMode', 'params':{'code': '" + joinedRoomCode + "','mode':'" + mode + "','id':'" + id + "'}}"; 
         else json = "{'type': 'setMinigameMode', 'params':{'code': '" + joinedRoomCode + "','mode':'" + mode + "'}}";
+        await websocket.SendText(json);
+    }
+
+    public async void resetDuelStatus()
+    {
+        string json = "{'type': 'resetDuelStatus', 'params':{'code': '" + joinedRoomCode + "'}}";
+        await websocket.SendText(json);
+
+        isDuelHost = false;
+
+    }
+
+    public async void endMinigame()
+    {
+        string json = "{'type': 'endMinigame', 'params':{'code': '" + joinedRoomCode + "'}}";
         await websocket.SendText(json);
     }
 
