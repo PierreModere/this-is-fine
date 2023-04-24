@@ -1,24 +1,14 @@
-using System;
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using NativeWebSocket;
 using Newtonsoft.Json;
 using DG.Tweening;
 
 public class WebsocketManager : MonoBehaviour
 {
-    [SerializeField]
-    private string websocketURL;
-    public string joinedRoomCode;
-    public string playerID;
-    public string selectedCharacter;
-    public string displayedMinigameID;
-    public string minigameMode;
-    public bool isHost;
-    public bool isDuelHost;
+
+    public GameData GameData;
 
     public WebSocket websocket; 
 
@@ -95,7 +85,7 @@ public class WebsocketManager : MonoBehaviour
 
     async void Start()
     {
-        websocket = new WebSocket(websocketURL);
+        websocket = new WebSocket(GameData.websocketURL);
 
         websocket.OnOpen += () => {
             Debug.Log("Connexion open!");
@@ -120,20 +110,20 @@ public class WebsocketManager : MonoBehaviour
             {
                 case "createdRoom":
                     showLobbyScreen(true);
-                    isHost = true;
+                    GameData.isHost = true;
                     break;
                 case "joinedRoom":
                     showLobbyScreen(false);
-                    isHost = false;
+                    GameData.isHost = false;
                     break;
                 case "getMyPlayerID":
-                    playerID = _ParsedJSON.@params.@data.message;
+                    GameData.playerID = _ParsedJSON.@params.@data.message;
                     break;
                 case "getMySelectedCharacter":
-                    selectedCharacter = _ParsedJSON.@params.@data.message;
+                    GameData.selectedCharacter = _ParsedJSON.@params.@data.message;
                     break;
                 case "receivedPlayersList":
-                    playersList = _ParsedJSON.@params.@data.clientsList;
+                    GameData.playersList = _ParsedJSON.@params.@data.clientsList;
 
                     if (GameObject.FindWithTag("activeScreen")!= null)
 
@@ -154,22 +144,12 @@ public class WebsocketManager : MonoBehaviour
 
                     break;
                 case "receivedSelectedMinigame":
-                    displayedMinigameID = _ParsedJSON.@params.@data.message;
+                    GameData.displayedMinigameID = _ParsedJSON.@params.@data.message;
 
-                    if (GameObject.FindWithTag("activeScreen") != null)
-
-                    {
-                        switch (GameObject.FindWithTag("activeScreen").name)
-                        {
-                            case "FirstMinigameInstructionCanvas":
-                                FindInactiveObjectByName("FirstMinigameInstructionCanvas").GetComponent<FirstMinigameAnimation>().displaySelectedMinigame();
-                                break;
-                        }
-                    }
 
                     break;
                 case "setMinigameMode":
-                    minigameMode = _ParsedJSON.@params.@data.message;
+                    GameData.minigameMode = _ParsedJSON.@params.@data.message;
                     break;
                 case "changedScreen":
                     changeScreenForEveryone(_ParsedJSON.@params.@data.message);
@@ -203,9 +183,9 @@ public class WebsocketManager : MonoBehaviour
 
     private async void OnApplicationQuit()
     {
-        if (joinedRoomCode != null && joinedRoomCode != "")
+        if (GameData.joinedRoomCode != null && GameData.joinedRoomCode != "")
         {
-            string json = "{'type': 'leave', 'params':{'code': '" + joinedRoomCode + "','id': '" + playerID + "'}}";
+            string json = "{'type': 'leave', 'params':{'code': '" + GameData.joinedRoomCode + "','id': '" + GameData.playerID + "'}}";
             await websocket.SendText(json);
         }
         await websocket.Close();
@@ -213,9 +193,9 @@ public class WebsocketManager : MonoBehaviour
 
     public async void OnWebglClose()
     {
-        if (joinedRoomCode != null && joinedRoomCode != "")
+        if (GameData.joinedRoomCode != null && GameData.joinedRoomCode != "")
         {
-            string json = "{'type': 'leave', 'params':{'code': '" + joinedRoomCode + "','id': '" + playerID + "'}}";
+            string json = "{'type': 'leave', 'params':{'code': '" + GameData.joinedRoomCode + "','id': '" + GameData.playerID + "'}}";
             await websocket.SendText(json);
         }
         await websocket.Close();
@@ -223,7 +203,7 @@ public class WebsocketManager : MonoBehaviour
 
     void showLobbyScreen(bool isHost)
     {
-        joinedRoomCode = _ParsedJSON.@params.@data.message;
+        GameData.joinedRoomCode = _ParsedJSON.@params.@data.message;
         if(isHost)
         {
             GameObject.Find("CreateRoomCanvas").tag = "Untagged";
@@ -238,7 +218,7 @@ public class WebsocketManager : MonoBehaviour
         FindInactiveObjectByName("LobbyCanvas").SetActive(true);
         FindInactiveObjectByName("LobbyCanvas").transform.DOScale(new Vector3(1.03f, 1.03f, 1.03f), 0.1f).OnComplete(() => { FindInactiveObjectByName("LobbyCanvas").transform.DOScale(new Vector3(1f, 1f, 1f), 0.15f); });
         FindInactiveObjectByName("LobbyCanvas").tag = "activeScreen";
-        FindInactiveObjectByName("LobbyCanvas").GetComponent<LobbyScreen>().setPincode(joinedRoomCode);
+        FindInactiveObjectByName("LobbyCanvas").GetComponent<LobbyScreen>().setPincode(GameData.joinedRoomCode);
     }
 
     void changeScreenForEveryone(string screenName)
@@ -255,34 +235,40 @@ public class WebsocketManager : MonoBehaviour
         }
     }
 
+    public async void sendScreenNameToSwitchTo(GameObject ScreenToSwitchTo)
+    {
+            string json = "{'type': 'changeScreen', 'params':{'code': '" + GameData.joinedRoomCode + "','screenName':'" + ScreenToSwitchTo.name + "'}}";
+            await websocket.SendText(json);
+    }
+
     public async void sendSelectedMinigame(string minigameID, bool isFirstMinigame=false)
     {
         string json;
-        if (isFirstMinigame) json = "{'type': 'selectMinigame', 'params':{'code': '" + joinedRoomCode + "','minigameID':'" + minigameID + "','isFirstMinigame':'" + isFirstMinigame + "'}}";
-        else json = "{'type': 'selectMinigame', 'params':{'code': '" + joinedRoomCode + "','minigameID':'" + minigameID + "'}}";
+        if (isFirstMinigame) json = "{'type': 'selectMinigame', 'params':{'code': '" + GameData.joinedRoomCode + "','minigameID':'" + minigameID + "','isFirstMinigame':'" + isFirstMinigame + "'}}";
+        else json = "{'type': 'selectMinigame', 'params':{'code': '" + GameData.joinedRoomCode + "','minigameID':'" + minigameID + "'}}";
         await websocket.SendText(json);
     }
 
     public async void sendMinigameMode(string mode, string id)
     {
         string json;
-        if (id != null && id != "") json = "{'type': 'setMinigameMode', 'params':{'code': '" + joinedRoomCode + "','mode':'" + mode + "','id':'" + id + "'}}"; 
-        else json = "{'type': 'setMinigameMode', 'params':{'code': '" + joinedRoomCode + "','mode':'" + mode + "'}}";
+        if (id != null && id != "") json = "{'type': 'setMinigameMode', 'params':{'code': '" + GameData.joinedRoomCode + "','mode':'" + mode + "','id':'" + id + "'}}"; 
+        else json = "{'type': 'setMinigameMode', 'params':{'code': '" + GameData.joinedRoomCode + "','mode':'" + mode + "'}}";
         await websocket.SendText(json);
     }
 
     public async void resetDuelStatus()
     {
-        string json = "{'type': 'resetDuelStatus', 'params':{'code': '" + joinedRoomCode + "'}}";
+        string json = "{'type': 'resetDuelStatus', 'params':{'code': '" + GameData.joinedRoomCode + "'}}";
         await websocket.SendText(json);
 
-        isDuelHost = false;
+        GameData.isDuelHost = false;
 
     }
 
     public async void endMinigame()
     {
-        string json = "{'type': 'endMinigame', 'params':{'code': '" + joinedRoomCode + "'}}";
+        string json = "{'type': 'endMinigame', 'params':{'code': '" + GameData.joinedRoomCode + "'}}";
         await websocket.SendText(json);
     }
 

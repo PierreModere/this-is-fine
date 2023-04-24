@@ -775,6 +775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31f706b8bb9a9e48828f63ccff172b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameData: {fileID: 11400000, guid: ba3771a198f3a604e9265af00ab5b853, type: 2}
   GoButton: {fileID: 728021313}
   ReadyButton: {fileID: 2111719763}
   minigameMode: {fileID: 488957470}
@@ -2775,6 +2776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449125d7384e3354c9ca92914cfffb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameData: {fileID: 11400000, guid: ba3771a198f3a604e9265af00ab5b853, type: 2}
   BattleButton: {fileID: 76705013}
   DuelButton: {fileID: 952553096}
   EndGameButton: {fileID: 1217114329}
@@ -5862,6 +5864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8626d1443790f10459cf459bf51ae793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameData: {fileID: 11400000, guid: ba3771a198f3a604e9265af00ab5b853, type: 2}
   InstructionText: {fileID: 1491342480}
   FirstMinigamePreview: {fileID: 139526810}
   FirstMinigamePreviewShadow: {fileID: 1516401644}
@@ -6143,6 +6146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d85674242a17994092e9d7ab3b39c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameData: {fileID: 11400000, guid: ba3771a198f3a604e9265af00ab5b853, type: 2}
   ReturnButton: {fileID: 1494502389}
   OkButton: {fileID: 1865592774}
   minigameButtons:
@@ -11658,6 +11662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c952d2f3f68ca4d9c5b3e6fcbfc515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameData: {fileID: 11400000, guid: ba3771a198f3a604e9265af00ab5b853, type: 2}
   ReturnButton: {fileID: 1797020892}
   OkButton: {fileID: 473110684}
   charactersSprites:

@@ -6,6 +6,8 @@ using TMPro;
 
 public class MinigameSelection : MonoBehaviour
 {
+    public GameData GameData;
+
     public GameObject ReturnButton;
     public GameObject OkButton;
 
@@ -20,7 +22,6 @@ public class MinigameSelection : MonoBehaviour
 
     void Start()
     {
-        WebsocketManager = GameObject.Find("WebsocketManager");
         addClickEvents();
     }
 
@@ -57,11 +58,13 @@ public class MinigameSelection : MonoBehaviour
 
     public void cancelSelection()
     {
+        WebsocketManager = GameObject.Find("WebsocketManager");
+
         isSelected = false;
         selectedMinigame = null;
         selectedMinigameID = null;
         WebsocketManager.GetComponent<WebsocketManager>().resetDuelStatus();
-        WebsocketManager.GetComponent<WebsocketManager>().isDuelHost = false;
+        GameData.isDuelHost = false;
 
         toggleOkButton();
     }
@@ -70,6 +73,8 @@ public class MinigameSelection : MonoBehaviour
     {
         if (selectedMinigameID != null && selectedMinigameID != "")
         {
+            WebsocketManager = GameObject.Find("WebsocketManager");
+
             WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(selectedMinigameID);
             toggleOkButton();
 

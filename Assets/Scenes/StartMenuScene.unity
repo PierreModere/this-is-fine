@@ -344,14 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e8da8aface43649af0ea9c8434d61d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  websocketURL: ws://localhost:1234
-  joinedRoomCode: 
-  playerID: 
-  selectedCharacter: 
-  displayedMinigameID: 
-  minigameMode: 
-  isHost: 0
-  isDuelHost: 0
+  GameData: {fileID: 11400000, guid: ba3771a198f3a604e9265af00ab5b853, type: 2}
 --- !u!1 &30509724
 GameObject:
   m_ObjectHideFlags: 0
@@ -3820,6 +3813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 589579320}
+  - component: {fileID: 589579321}
   m_Layer: 5
   m_Name: PlayersList
   m_TagString: Untagged
@@ -3848,9 +3842,35 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -384.2}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: -630}
+  m_SizeDelta: {x: 600, y: 630}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &589579321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589579319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: -70
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &644326189
 GameObject:
   m_ObjectHideFlags: 0
@@ -5990,6 +6010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6cd5a6526ab9dd489aac41421fcbca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameData: {fileID: 11400000, guid: ba3771a198f3a604e9265af00ab5b853, type: 2}
 --- !u!114 &997738526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6067,7 +6088,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PinInput: {fileID: 299695066}
-  joinButton: {fileID: 30509724}
 --- !u!1 &1081711823
 GameObject:
   m_ObjectHideFlags: 0
@@ -6774,10 +6794,10 @@ RectTransform:
   m_Father: {fileID: 589579320}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 105.29997, y: -560}
-  m_SizeDelta: {x: 915.3, y: 150}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 457.65, y: -105}
+  m_SizeDelta: {x: 915.3, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1237158881
 MonoBehaviour:
@@ -7413,6 +7433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc0d50cfb345c44a8d4d87b2c789add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameData: {fileID: 11400000, guid: ba3771a198f3a604e9265af00ab5b853, type: 2}
   roomPincodeText: {fileID: 1492512384}
   requiredPlayersNumber: 1
   playersListGameObject:
@@ -8629,10 +8650,10 @@ RectTransform:
   m_Father: {fileID: 589579320}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 105.29997, y: -20}
-  m_SizeDelta: {x: 915.3, y: 150}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 457.65, y: -105}
+  m_SizeDelta: {x: 915.3, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1458826674
 MonoBehaviour:
@@ -9685,10 +9706,10 @@ RectTransform:
   m_Father: {fileID: 589579320}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 105.29997, y: -200}
-  m_SizeDelta: {x: 915.3, y: 150}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 457.65, y: -105}
+  m_SizeDelta: {x: 915.3, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1613174761
 MonoBehaviour:
@@ -10389,6 +10410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf5555c585d7664a863eb85d44b004b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameData: {fileID: 11400000, guid: ba3771a198f3a604e9265af00ab5b853, type: 2}
   ReturnButton: {fileID: 411428403}
   CancelButton: {fileID: 1607895051}
   OkButton: {fileID: 422382197}
@@ -10739,7 +10761,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PinInput: {fileID: 299695066}
-  joinButton: {fileID: 0}
 --- !u!114 &1827644727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11772,10 +11793,10 @@ RectTransform:
   m_Father: {fileID: 589579320}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 105.29997, y: -380}
-  m_SizeDelta: {x: 915.3, y: 150}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 457.65, y: -105}
+  m_SizeDelta: {x: 915.3, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2066528826
 MonoBehaviour:

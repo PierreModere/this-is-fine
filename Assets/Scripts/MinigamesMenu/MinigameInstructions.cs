@@ -9,21 +9,21 @@ using static WebsocketManager;
 
 public class MinigameInstructions : MonoBehaviour
 {
+    public GameData GameData;
+
+    private GameObject WebsocketManager;
+
     public GameObject GoButton;
     public GameObject ReadyButton;
     public GameObject minigameMode;
     public GameObject minigameTitle;
     public GameObject minigamePreview;
     public GameObject instructionText;
+
     public List<Sprite> charactersSprites;
     public List<GameObject> playersGameobjects;
-
-    private GameObject WebsocketManager;
     public List<Minigame> minigamesList;
-    string displayedMinigameID;
 
-    bool isHost;
-    bool isDuelHost;
 
     // Start is called before the first frame update
     void Start()
@@ -38,13 +38,7 @@ public class MinigameInstructions : MonoBehaviour
 
     void initScreen()
     {
-        WebsocketManager = GameObject.Find("WebsocketManager");
-        isHost = GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().isHost;
-        isDuelHost = GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().isDuelHost;
-
-        displayedMinigameID = WebsocketManager.GetComponent<WebsocketManager>().displayedMinigameID;
-
-        if (isHost || isDuelHost)
+         if ((GameData.isHost && GameData.minigameMode!="Duel") || GameData.isDuelHost)
         {
             GoButton.SetActive(true);
             ReadyButton.SetActive(false);
@@ -54,15 +48,17 @@ public class MinigameInstructions : MonoBehaviour
             ReadyButton.SetActive(true);
             GoButton.SetActive(false);
         }
-        if (displayedMinigameID != "") setMinigameData();
-
-        setMinigameMode();
-        updatePlayersList();
+        if (GameData.displayedMinigameID != "")
+        {
+            setMinigameData();
+            setMinigameMode();
+            updatePlayersList();
+        }
     }
 
     public void updatePlayersList()
     {
-        var playersList = WebsocketManager.GetComponent<WebsocketManager>().playersList;
+        var playersList = GameData.playersList;
         unactiveAllPlayersGameobjects();
         checkPlayersReadyState();
 
@@ -73,9 +69,9 @@ public class MinigameInstructions : MonoBehaviour
             {
                 GameObject playerGameObject = playersGameobjects.Find(g => g.name == "Player"+playersList[i].id);
 
-                if (WebsocketManager.GetComponent<WebsocketManager>().minigameMode=="Duel" && playersList[i].isDuel==true) 
+                if (GameData.minigameMode=="Duel" && playersList[i].isDuel==true) 
                     playerGameObject.SetActive(true);   
-                else if (WebsocketManager.GetComponent<WebsocketManager>().minigameMode == "Battle")
+                else if (GameData.minigameMode == "Battle")
                     playerGameObject.SetActive(true);
 
                 switch (playersList[i].id.ToString())
@@ -109,13 +105,12 @@ public class MinigameInstructions : MonoBehaviour
 
     public void setMinigameMode()
     {
-        var mode = WebsocketManager.GetComponent<WebsocketManager>().minigameMode;
         TextMeshProUGUI minigameModeText = minigameMode.GetComponent<TextMeshProUGUI>();
-        if (mode == "Duel")
+        if (GameData.minigameMode == "Duel")
         {
             minigameModeText.text = "Duel";
         }
-        else if (mode == "Battle")
+        else if (GameData.minigameMode == "Battle")
         {
             minigameModeText.text = "Bataille";
         }
@@ -123,10 +118,13 @@ public class MinigameInstructions : MonoBehaviour
     }
 
     public void setMinigameData() {
-        Minigame displayedMinigame = minigamesList.Find(mg => mg.id == displayedMinigameID);
-        minigameTitle.GetComponent<TextMeshProUGUI>().text = displayedMinigame.title;
-        instructionText.GetComponent<TextMeshProUGUI>().text = displayedMinigame.instruction;
-        minigamePreview.GetComponent<Image>().sprite = displayedMinigame.preview;
+        Minigame displayedMinigame = minigamesList.Find(mg => mg.id == GameData.displayedMinigameID);
+        if (displayedMinigame != null)
+        {
+            minigameTitle.GetComponent<TextMeshProUGUI>().text = displayedMinigame.title;
+            instructionText.GetComponent<TextMeshProUGUI>().text = displayedMinigame.instruction;
+            minigamePreview.GetComponent<Image>().sprite = displayedMinigame.preview;
+        }
     }
 
     void checkPlayersReadyState()
@@ -135,17 +133,17 @@ public class MinigameInstructions : MonoBehaviour
 
         List<ClientsList> playersList;
 
-        if (WebsocketManager.GetComponent<WebsocketManager>().minigameMode == "Duel")
-            playersList = WebsocketManager.GetComponent<WebsocketManager>().playersList.FindAll(player => player.isDuel);
+        if (GameData.minigameMode == "Duel")
+            playersList = GameData.playersList.FindAll(player => player.isDuel);
        
-        else playersList = WebsocketManager.GetComponent<WebsocketManager>().playersList;
+        else playersList = GameData.playersList;
 
         foreach (var player in playersList)
         {
-            if (!player.isReady && player.id!= int.Parse(WebsocketManager.GetComponent<WebsocketManager>().playerID))
+            if (!player.isReady && player.id!= int.Parse(GameData.playerID))
                 everyoneReady = false;
         }
-        if (everyoneReady && isHost || (everyoneReady && isDuelHost))
+        if ((everyoneReady && GameData.isHost && GameData.minigameMode != "Duel") || (everyoneReady && GameData.isDuelHost))
         {
             GoButton.GetComponent<Button>().interactable = true;
         }
@@ -165,17 +163,21 @@ public class MinigameInstructions : MonoBehaviour
 
     public async void sendReady()
     {
+        WebsocketManager = GameObject.Find("WebsocketManager");
+
         var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
-        string json = "{'type': 'playerIsReady', 'params':{'code': '" + WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode + "','id':'" + WebsocketManager.GetComponent<WebsocketManager>().playerID + "'}}";
+        string json = "{'type': 'playerIsReady', 'params':{'code': '" + GameData.joinedRoomCode + "','id':'" + GameData.playerID + "'}}";
         await websocket.SendText(json);
         ReadyButton.GetComponent<Button>().interactable = false;
     }
 
     public async void lauchMinigame()
     {
+        WebsocketManager = GameObject.Find("WebsocketManager");
+
         var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
-        string sceneName = "Minigame"+ WebsocketManager.GetComponent<WebsocketManager>().displayedMinigameID;
-        string json = "{'type': 'changeScene', 'params':{'code': '" + WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode + "','sceneName':'" + sceneName + "'}}";
+        string sceneName = "Minigame"+ GameData.displayedMinigameID;
+        string json = "{'type': 'changeScene', 'params':{'code': '" + GameData.joinedRoomCode + "','sceneName':'" + sceneName + "'}}";
         await websocket.SendText(json);
     }
 }

@@ -4,16 +4,11 @@ using System.Collections;
 
 public class CreateRoom : MonoBehaviour
 {
+    public GameData GameData;
     private GameObject WebsocketManager;
-    string pincode; 
     void Start()
     {
         WebsocketManager = GameObject.Find("WebsocketManager");
-    }
-
-    void Update()
-    {
-        pincode = WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode;
     }
 
     async public void createRoom()
@@ -25,6 +20,7 @@ public class CreateRoom : MonoBehaviour
 
     async public void deleteCreatedRoom()
     {
+        string pincode = GameData.joinedRoomCode;
         if (pincode != null)
         {
             var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;

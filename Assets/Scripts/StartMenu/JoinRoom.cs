@@ -7,13 +7,10 @@ public class JoinRoom : MonoBehaviour
 {
     [SerializeField]
     private GameObject PinInput;
-    [SerializeField]
-    private GameObject joinButton;
     private GameObject WebsocketManager;
 
     void Start()
     {
-        WebsocketManager = GameObject.Find("WebsocketManager");
         addClickEventOnKeys();
     }
 
@@ -70,6 +67,7 @@ public class JoinRoom : MonoBehaviour
 
     async public void joinRoom()
     {
+        WebsocketManager = GameObject.Find("WebsocketManager");
         string pincode = PinInput.GetComponent<TMP_InputField>().text.ToUpper();
         var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
         string json = "{'type': 'join', 'params':{'code': '" + pincode + "'}}";

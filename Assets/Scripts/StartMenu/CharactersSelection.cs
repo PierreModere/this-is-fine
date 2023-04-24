@@ -7,10 +7,11 @@ using DG.Tweening;
 
 public class CharactersSelection : MonoBehaviour
 {
+    public GameData GameData;
+
     private GameObject WebsocketManager;
     UnityAction UA;
-    string pincode;
-
+    
     public GameObject ReturnButton;
     public GameObject CancelButton;
     public GameObject OkButton;
@@ -23,19 +24,22 @@ public class CharactersSelection : MonoBehaviour
     void Start()
     {
         WebsocketManager = GameObject.Find("WebsocketManager");
-        pincode = WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode;
         addClickEventOnCharactersGrid();
         updateSelectedAndAvailableCharacters();
         CancelButton.GetComponent<Button>().onClick.AddListener(unselectCharacter);
-        if (WebsocketManager.GetComponent<WebsocketManager>().isHost)
+        if (GameData.isHost)
             OkButton.SetActive(true);
             OkButton.GetComponent<Button>().onClick.AddListener(startGame);
+    }
+
+    private void OnEnable()
+    {
+        updateSelectedAndAvailableCharacters();
     }
 
     void addClickEventOnCharactersGrid()
     {
         Transform CharactersGrid = transform.Find("CharactersGrid");
-
 
         for (int i = 0; i < CharactersGrid.childCount; i++)
         {
@@ -76,8 +80,8 @@ public class CharactersSelection : MonoBehaviour
     async void selectCharacter(string characterName)
     {
         var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
-        string playerID = WebsocketManager.GetComponent<WebsocketManager>().playerID;
-        string json = "{'type': 'selectCharacter', 'params':{'code': '" + pincode + "','characterName':'" + characterName + "','id':'" + playerID + "'}}";
+        string playerID = GameData.playerID;
+        string json = "{'type': 'selectCharacter', 'params':{'code': '" + GameData.joinedRoomCode + "','characterName':'" + characterName + "','id':'" + playerID + "'}}";
         await websocket.SendText(json);
 
     }
@@ -86,13 +90,13 @@ public class CharactersSelection : MonoBehaviour
     {
         CancelButton.SetActive(false);
         var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
-        string playerID = WebsocketManager.GetComponent<WebsocketManager>().playerID;
-        string json = "{'type': 'unselectCharacter', 'params':{'code': '" + pincode + "','id':'" + playerID + "'}}";
+        string playerID = GameData.playerID;
+        string json = "{'type': 'unselectCharacter', 'params':{'code': '" + GameData.joinedRoomCode + "','id':'" + playerID + "'}}";
         await websocket.SendText(json);
     }
     public void updateSelectedAndAvailableCharacters()
     {
-        var playersList = WebsocketManager.GetComponent<WebsocketManager>().playersList;
+        var playersList = GameData.playersList;
         hasSelectedCharacter();
         checkPlayersReadyState();
 
@@ -130,7 +134,7 @@ public class CharactersSelection : MonoBehaviour
                         selectedCharacterFrame.transform.Find("PlayerColor").GetComponent<Image>().color = new Color32(255, 255, 0, 255);
                         break;
                 }
-                if (playersList[i].selectedCharacter == WebsocketManager.GetComponent<WebsocketManager>().selectedCharacter)
+                if (playersList[i].selectedCharacter == GameData.selectedCharacter)
                 {
                         selectedCharacterFrame.transform.Find("LocalSelected").gameObject.SetActive(true);
                         selectedCharacterFrame.transform.Find("LocalSelected").gameObject.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "SelectedFrame" + playersList[i].id.ToString());
@@ -151,13 +155,13 @@ public class CharactersSelection : MonoBehaviour
     void checkPlayersReadyState()
     {
         bool everyoneReady = true;
-        var playersList = WebsocketManager.GetComponent<WebsocketManager>().playersList;
+        var playersList = GameData.playersList;
         foreach (var player in playersList)
         {
             if (!player.isReady)
                 everyoneReady = false;
         }
-        if (everyoneReady && WebsocketManager.GetComponent<WebsocketManager>().isHost)
+        if (everyoneReady && GameData.isHost)
         {  OkButton.GetComponent<Button>().interactable=true;
         }
         else {
@@ -167,17 +171,17 @@ public class CharactersSelection : MonoBehaviour
 
     void hasSelectedCharacter()
     {
-        if (WebsocketManager.GetComponent<WebsocketManager>().selectedCharacter != "")
+        if (GameData.selectedCharacter != "")
         {
             removeClickEventOnCharactersGrid();
             CancelButton.SetActive(true);
 
-            if (WebsocketManager.GetComponent<WebsocketManager>().isHost)
+            if (GameData.isHost)
                 ReturnButton.SetActive(false);
         }
         else {
             reenableClickEvents();
-            if (WebsocketManager.GetComponent<WebsocketManager>().isHost)
+            if (GameData.isHost)
                 ReturnButton.SetActive(true);
             else CancelButton.SetActive(false);
         }
@@ -186,7 +190,7 @@ public class CharactersSelection : MonoBehaviour
     async public void startGame()
     {
         var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
-        string json = "{'type': 'startGame', 'params':{'code': '" + pincode + "'}}";
+        string json = "{'type': 'startGame', 'params':{'code': '" + GameData.joinedRoomCode + "'}}";
         await websocket.SendText(json);        
     }
 }

@@ -7,6 +7,8 @@ using Newtonsoft.Json.Bson;
 
 public class FirstMinigameAnimation : MonoBehaviour
 {
+    public GameData GameData;
+
     public GameObject InstructionText;
     public GameObject FirstMinigamePreview;
     public GameObject FirstMinigamePreviewShadow;
@@ -22,13 +24,15 @@ public class FirstMinigameAnimation : MonoBehaviour
     private float timeElapsed; // temps écoulé depuis le début du changement de sprite
     private bool isChangingSprite; // flag indiquant si le changement de sprite est en cours
 
+    int randomID;
+
 
     // Start is called before the first frame update
     void Start()
     {
 
         WebsocketManager = GameObject.Find("WebsocketManager");
-        bool isHost = WebsocketManager.GetComponent<WebsocketManager>().isHost;
+        bool isHost = GameData.isHost;
         if (isHost)
         {
             OkButton.SetActive(true);
@@ -61,12 +65,13 @@ public class FirstMinigameAnimation : MonoBehaviour
         // Add a movement tween at the beginning
         test.Append(OkButton.transform.DOLocalMoveY(-715f, 0.2f));
         test.Append(OkButton.transform.DOLocalMoveY(-1150, 0.3f));
+        WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(randomID.ToString());
 
     }
 
     void setRandomFirstMinigame()
     {
-        var randomID = Random.Range(1, minigamesList.Count);
+        randomID = Random.Range(1, minigamesList.Count);
         WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(randomID.ToString(),true);
     }
 
@@ -117,7 +122,7 @@ public class FirstMinigameAnimation : MonoBehaviour
             timeElapsed += timeInterval;
         }
 
-        string displayedMinigameID = WebsocketManager.GetComponent<WebsocketManager>().displayedMinigameID;
+        string displayedMinigameID = GameData.displayedMinigameID;
 
         Sequence mySequence = DOTween.Sequence();
 

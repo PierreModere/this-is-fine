@@ -7,6 +7,8 @@ using DG.Tweening;
 
 public class DashboardCanvas : MonoBehaviour
 {
+    public GameData GameData;
+
     public GameObject BattleButton;
     public GameObject DuelButton;
     public GameObject EndGameButton;
@@ -25,10 +27,8 @@ public class DashboardCanvas : MonoBehaviour
 
     void Start()
     {
-        WebsocketManager = GameObject.Find("WebsocketManager");
-        isHost = WebsocketManager.GetComponent<WebsocketManager>().isHost;
 
-        if (isHost)
+        if (GameData.isHost)
         {
             BattleButton.GetComponent<Button>().interactable = true;
             EndGameButton.GetComponent<Button>().interactable = true;
@@ -40,6 +40,12 @@ public class DashboardCanvas : MonoBehaviour
 
         DuelButton.GetComponent<Button>().onClick.AddListener(() => { buttonOnClick("Duel", DuelButton); });
 
+    }
+
+    private void OnEnable()
+    {
+        toggleBottomButtons();
+        updateSubtitle();
     }
 
     void toggleBottomButtons()
@@ -75,7 +81,9 @@ public class DashboardCanvas : MonoBehaviour
     {
         if (selectedMode != null && selectedMode != "")
         {
-            if (selectedMode == "Duel") WebsocketManager.GetComponent<WebsocketManager>().sendMinigameMode(selectedMode, WebsocketManager.GetComponent<WebsocketManager>().playerID);
+            WebsocketManager = GameObject.Find("WebsocketManager");
+
+            if (selectedMode == "Duel") WebsocketManager.GetComponent<WebsocketManager>().sendMinigameMode(selectedMode, GameData.playerID);
             else WebsocketManager.GetComponent<WebsocketManager>().sendMinigameMode(selectedMode, null);
             isSelected = false;
             selectedButton.transform.Find("Selected").gameObject.SetActive(isSelected);
@@ -105,10 +113,4 @@ public class DashboardCanvas : MonoBehaviour
         }
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

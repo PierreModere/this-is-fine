@@ -6,6 +6,7 @@ using TMPro;
 
 public class LobbyScreen : MonoBehaviour
 {
+    public GameData GameData;
 
     [SerializeField]
     private GameObject roomPincodeText;
@@ -30,8 +31,7 @@ public class LobbyScreen : MonoBehaviour
 
     public void updatePlayersListInLobby()
     {
-        WebsocketManager = GameObject.Find("WebsocketManager");
-        var playersList = WebsocketManager.GetComponent<WebsocketManager>().playersList;
+        var playersList = GameData.playersList;
 
         foreach ( var player in playersListGameObject)
         {
@@ -43,7 +43,7 @@ public class LobbyScreen : MonoBehaviour
             {
                 GameObject playerNumber = playersListGameObject[playersList[i].id - 1];
                 playerNumber.SetActive(true);
-                if (playersList.Count >(requiredPlayersNumber - 1) && WebsocketManager.GetComponent<WebsocketManager>().isHost == true)
+                if (playersList.Count >(requiredPlayersNumber - 1) && GameData.isHost == true)
                 {
                     transform.Find("Ok").gameObject.SetActive(true);
                 }
@@ -51,7 +51,7 @@ public class LobbyScreen : MonoBehaviour
                 {
                     transform.Find("Ok").gameObject.SetActive(false);
                 }
-                if (WebsocketManager.GetComponent<WebsocketManager>().playerID == playersList[i].id.ToString())
+                if (GameData.playerID == playersList[i].id.ToString())
                     playerNumber.GetComponent<PlayerNumber>().isLocalClient = true;
             }
 
@@ -63,11 +63,12 @@ public class LobbyScreen : MonoBehaviour
         if (pincode != "")
         {
             string json;
+            WebsocketManager = GameObject.Find("WebsocketManager");
             var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
-            json = "{'type': 'leave', 'params':{'code': '" + pincode + "','id': '" + WebsocketManager.GetComponent<WebsocketManager>().playerID + "'}}";
+            json = "{'type': 'leave', 'params':{'code': '" + pincode + "','id': '" + GameData.playerID + "'}}";
             
             await websocket.SendText(json);
-            WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode = "";
+            GameData.joinedRoomCode = "";
         }
     }
 

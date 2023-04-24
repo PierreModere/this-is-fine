@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class DuelSelection : MonoBehaviour
 {
+    public GameData GameData;
+
     public GameObject ReturnButton;
     public GameObject OkButton;
 
@@ -23,7 +25,6 @@ public class DuelSelection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       WebsocketManager = GameObject.Find("WebsocketManager");
        displayPlayers();
 
     }
@@ -39,7 +40,7 @@ public class DuelSelection : MonoBehaviour
     void displayPlayers()
     {
         unactivePlayersGameobjects();
-        var playersList = WebsocketManager.GetComponent<WebsocketManager>().playersList;
+        var playersList = GameData.playersList;
 
         for (int i = 0; i < playersList.Count; i++)
         {
@@ -103,6 +104,10 @@ public class DuelSelection : MonoBehaviour
         isSelected = false;
         selectedContester = null;
         selectedContesterID = null;
+
+        WebsocketManager.GetComponent<WebsocketManager>().resetDuelStatus();
+        GameData.isDuelHost = false;
+
         toggleOkButton();
     }
 
@@ -110,13 +115,14 @@ public class DuelSelection : MonoBehaviour
     {
         if (selectedContesterID != null && selectedContesterID != "")
         {
+            WebsocketManager = GameObject.Find("WebsocketManager");
+
             var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
 
-            var joinedRoomCode = WebsocketManager.GetComponent<WebsocketManager>().joinedRoomCode;
-            string json = "{'type': 'selectDuelContester', 'params':{'code': '" + joinedRoomCode + "','id':'" + selectedContesterID + "'}}";
+            string json = "{'type': 'selectDuelContester', 'params':{'code': '" + GameData.joinedRoomCode + "','id':'" + selectedContesterID + "'}}";
             await websocket.SendText(json);
 
-            WebsocketManager.GetComponent<WebsocketManager>().isDuelHost = true;
+            GameData.isDuelHost = true;
 
             isSelected = false;
             selectedContester.SetActive(isSelected);
