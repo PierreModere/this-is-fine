@@ -3066,7 +3066,7 @@ GameObject:
   - component: {fileID: 1838971758}
   m_Layer: 5
   m_Name: MinigameInfoCanvas
-  m_TagString: Untagged
+  m_TagString: activeScreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

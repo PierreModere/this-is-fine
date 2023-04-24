@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Minigame1 : MonoBehaviour
 {
@@ -17,9 +18,12 @@ public class Minigame1 : MonoBehaviour
     public List<GameObject> buttonsGameobjects;
 
     public MinigameUI MinigameUI;
+    private GameObject WebsocketManager;
 
-      public void initMinigame()
+    public void initMinigame()
     {
+        WebsocketManager = GameObject.Find("WebsocketManager");
+
         playerProgressIndex = 0;
         for (int i = 0; i < indexesSuite.Length; i++)
         {
@@ -41,6 +45,7 @@ public class Minigame1 : MonoBehaviour
         {
             valve.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z -45f), 0.2f);
             playerProgressIndex++;
+            sendScore();
             if (playerProgressIndex < indexesSuite.Length)
                 updateInstruction();
             else endMinigame();
@@ -67,5 +72,9 @@ public class Minigame1 : MonoBehaviour
         }
         buttonInstruction.GetComponent<Image>().DOFade(0f, 0.2f);
         MinigameUI.endMinigame();
+    }
+    void sendScore()
+    {
+        WebsocketManager.GetComponent<WebsocketManager>().sendScore(playerProgressIndex);
     }
 }
