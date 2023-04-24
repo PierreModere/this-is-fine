@@ -272,6 +272,12 @@ public class WebsocketManager : MonoBehaviour
 
     }
 
+    public async void sendScore(int score)
+    {
+        string json = "{'type': 'updatePlayerScore', 'params':{'code': '" + GameData.joinedRoomCode + "','id':'" + GameData.playerID + "','score':'" + score + "'}}";
+        await websocket.SendText(json);
+    }
+
     public async void endMinigame()
     {
         string json = "{'type': 'endMinigame', 'params':{'code': '" + GameData.joinedRoomCode + "'}}";

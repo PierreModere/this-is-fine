@@ -19,3 +19,4 @@ MonoBehaviour:
   preview: {fileID: 21300000, guid: e75c193f0c011e54a950b55c620edf1c, type: 3}
   gameTime: 60
   cutsceneTime: 5
+  hasTimer: 1

@@ -10,8 +10,10 @@ public class MinigameUI : MonoBehaviour
     // Start is called before the first frame update
     public GameData GameData;
     public Minigame minigameData;
+    public GameObject minigameLogic;
     public bool isPlaying;
 
+    public GameObject timerGameobject;
     public TextMeshProUGUI TimerUI;
     float timeLeft;
     bool isCutscene = true;
@@ -29,20 +31,21 @@ public class MinigameUI : MonoBehaviour
     {
         cutsceneTimeLeft = minigameData.cutsceneTime;
         timeLeft = minigameData.gameTime;
-        TimerUI.text= timeLeft.ToString();
+        TimerUI.text = timeLeft.ToString();
         gameObject.GetComponent<CanvasGroup>().alpha = 0f;
     }
 
     private void OnEnable()
     {
-        if (GameData.playersList!=null) updatePlayersListAndScore();
+        if (GameData.playersList != null) updatePlayersListAndScore();
         gameObject.GetComponent<CanvasGroup>().alpha = 0f;
+        if (!minigameData.hasTimer) timerGameobject.SetActive(false);
 
     }
 
     void Update()
     {
-       if (isCutscene)
+        if (isCutscene)
         {
             if (cutsceneTimeLeft > 0)
             {
@@ -52,13 +55,13 @@ public class MinigameUI : MonoBehaviour
             {
                 cutsceneTimeLeft = 0;
                 isCutscene = false;
-                gameObject.GetComponent<CanvasGroup>().DOFade(1f, 0.4f).OnComplete(() => {
+                gameObject.GetComponent<CanvasGroup>().DOFade(1f, 0.1f).OnComplete(() => {
                     popUpAnimationText(GoText);
                 });
 
             }
         }
-       if (isPlaying)
+        if (isPlaying && minigameData.hasTimer)
         {
             if (timeLeft > 0)
             {
@@ -69,12 +72,11 @@ public class MinigameUI : MonoBehaviour
             {
                 timeLeft = 0;
                 isPlaying = false;
-                popUpAnimationText(FinishText);
+                endMinigame();
 
             }
         }
     }
-          
 
     void updateTimer(float currentTime)
     {
@@ -87,11 +89,8 @@ public class MinigameUI : MonoBehaviour
 
     public void endMinigame()
     {
-        WebsocketManager = GameObject.Find("WebsocketManager");
-        var websocket = WebsocketManager.GetComponent<WebsocketManager>();
-        websocket.endMinigame();
-
-    }
+        popUpAnimationText(FinishText);
+     }
 
     public void updatePlayersListAndScore()
     {
@@ -115,7 +114,7 @@ public class MinigameUI : MonoBehaviour
                     playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == playersList[i].selectedCharacter);
 
                 GameObject playerScore = playerGameObject.transform.Find("PlayerScore").gameObject;
-                if (playersList[i].score !=null && playersList[i].score != "")
+                if (playersList[i].score != null && playersList[i].score != "")
                     playerScore.GetComponent<TextMeshProUGUI>().text = playersList[i].score;
 
             }
@@ -137,8 +136,35 @@ public class MinigameUI : MonoBehaviour
 
         mySequence.Append(textTarget.transform.DOScale(1.05f, 0.1f));
         mySequence.Append(textTarget.transform.DOScale(1f, 0.1f));
-        mySequence.Append(textTarget.transform.DOScale(1.1f, 0.11f).SetDelay(1.2f));
-        mySequence.Append(textTarget.transform.DOScale(0f, 0.08f).OnComplete(() => { textTarget.SetActive(false); if (textTarget.name == "GoText") { isPlaying = true; } }));
+        mySequence.Append(textTarget.transform.DOScale(1.1f, 0.11f).SetDelay(1.2f).OnComplete(() => {
+            if (textTarget.name == "GoText")
+            {
+                initMinigame();
+            }; }));
+               mySequence.Append(textTarget.transform.DOScale(0f, 0.08f).OnComplete(() => {
+            textTarget.SetActive(false);
+            if (textTarget.name == "GoText")
+            {
+                isPlaying = true;
+            }
+            if (textTarget.name == "FinishText")
+            {
+                WebsocketManager = GameObject.Find("WebsocketManager");
+                var websocket = WebsocketManager.GetComponent<WebsocketManager>();
+                websocket.endMinigame();
+            }
+        }));
 
+    }
+
+    void initMinigame()
+    {
+        switch (minigameData.id)
+        {
+            case "1":
+                minigameLogic.GetComponent<Minigame1>().initMinigame();
+                break;
+        }
+       
     }
 }

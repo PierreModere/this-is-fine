@@ -10,4 +10,6 @@ public class Minigame: ScriptableObject
     public Sprite preview;
     public int gameTime;
     public int cutsceneTime;
+    public bool hasTimer;
+
 }
