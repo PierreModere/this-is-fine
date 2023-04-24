@@ -69,6 +69,12 @@ public class WebsocketManager : MonoBehaviour
             set;
         }
 
+        public string score
+        {
+            get;
+            set;
+        }
+
         public bool isReady
         {
             get;
@@ -270,6 +276,7 @@ public class WebsocketManager : MonoBehaviour
     {
         string json = "{'type': 'endMinigame', 'params':{'code': '" + GameData.joinedRoomCode + "'}}";
         await websocket.SendText(json);
+        resetDuelStatus();
     }
 
     GameObject FindInactiveObjectByName(string name)

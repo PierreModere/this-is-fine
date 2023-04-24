@@ -1,20 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class MinigameUI : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    public GameData GameData;
     public Minigame minigameData;
     public bool isPlaying;
 
-    public GameObject TimerGameobject;
-    TextMeshProUGUI TimerUI;
+    public TextMeshProUGUI TimerUI;
     float timeLeft;
     bool isCutscene = true;
     float cutsceneTimeLeft;
+
+    public GameObject GoText;
+    public GameObject FinishText;
+
+    public List<GameObject> playersGameobjects;
+    public List<Sprite> charactersSprites;
 
     private GameObject WebsocketManager;
 
@@ -22,8 +29,15 @@ public class MinigameUI : MonoBehaviour
     {
         cutsceneTimeLeft = minigameData.cutsceneTime;
         timeLeft = minigameData.gameTime;
-        TimerUI = TimerGameobject.GetComponent<TextMeshProUGUI>();
         TimerUI.text= timeLeft.ToString();
+        gameObject.GetComponent<CanvasGroup>().alpha = 0f;
+    }
+
+    private void OnEnable()
+    {
+        if (GameData.playersList!=null) updatePlayersListAndScore();
+        gameObject.GetComponent<CanvasGroup>().alpha = 0f;
+
     }
 
     void Update()
@@ -36,10 +50,12 @@ public class MinigameUI : MonoBehaviour
             }
             else
             {
-                Debug.Log("Fin de la cutscene !");
                 cutsceneTimeLeft = 0;
                 isCutscene = false;
-                isPlaying = true;
+                gameObject.GetComponent<CanvasGroup>().DOFade(1f, 0.4f).OnComplete(() => {
+                    popUpAnimationText(GoText);
+                });
+
             }
         }
        if (isPlaying)
@@ -51,9 +67,10 @@ public class MinigameUI : MonoBehaviour
             }
             else
             {
-                Debug.Log("Time is UP!");
                 timeLeft = 0;
                 isPlaying = false;
+                popUpAnimationText(FinishText);
+
             }
         }
     }
@@ -73,6 +90,55 @@ public class MinigameUI : MonoBehaviour
         WebsocketManager = GameObject.Find("WebsocketManager");
         var websocket = WebsocketManager.GetComponent<WebsocketManager>();
         websocket.endMinigame();
+
+    }
+
+    public void updatePlayersListAndScore()
+    {
+        var playersList = GameData.playersList;
+        unactiveAllPlayersGameobjects();
+
+        for (int i = 0; i < playersList.Count; i++)
+        {
+
+            if (playersList[i].selectedCharacter != "")
+            {
+                GameObject playerGameObject = playersGameobjects.Find(g => g.name == "Player" + playersList[i].id);
+
+                if (GameData.minigameMode == "Duel" && playersList[i].isDuel == true && !playerGameObject.activeSelf)
+                    playerGameObject.SetActive(true);
+                else if (GameData.minigameMode == "Battle" && !playerGameObject.activeSelf)
+                    playerGameObject.SetActive(true);
+
+                GameObject playerCharacter = playerGameObject.transform.Find("PlayerCharacter").gameObject;
+                if (playerCharacter.GetComponent<Image>().sprite == null)
+                    playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == playersList[i].selectedCharacter);
+
+                GameObject playerScore = playerGameObject.transform.Find("PlayerScore").gameObject;
+                if (playersList[i].score !=null && playersList[i].score != "")
+                    playerScore.GetComponent<TextMeshProUGUI>().text = playersList[i].score;
+
+            }
+        }
+    }
+    void unactiveAllPlayersGameobjects()
+    {
+        foreach (GameObject player in playersGameobjects)
+        {
+            player.SetActive(false);
+        }
+    }
+
+    void popUpAnimationText(GameObject textTarget)
+    {
+        textTarget.SetActive(true);
+
+        Sequence mySequence = DOTween.Sequence();
+
+        mySequence.Append(textTarget.transform.DOScale(1.05f, 0.1f));
+        mySequence.Append(textTarget.transform.DOScale(1f, 0.1f));
+        mySequence.Append(textTarget.transform.DOScale(1.1f, 0.11f).SetDelay(1.2f));
+        mySequence.Append(textTarget.transform.DOScale(0f, 0.08f).OnComplete(() => { textTarget.SetActive(false); if (textTarget.name == "GoText") { isPlaying = true; } }));
 
     }
 }
