@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -25,7 +24,7 @@ public class DuelSelection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       displayPlayers();
+        displayPlayers();
 
     }
 
@@ -60,10 +59,10 @@ public class DuelSelection : MonoBehaviour
                         playerGameObject.transform.Find("PlayerColor").transform.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
                         break;
                     case "2":
-                        playerGameObject.transform.Find("PlayerColor").transform.GetComponent<Image>().color =  new Color32(0, 0, 255, 255);
+                        playerGameObject.transform.Find("PlayerColor").transform.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
                         break;
                     case "3":
-                        playerGameObject.transform.Find("PlayerColor").transform.GetComponent<Image>().color =  new Color32(0, 255, 0, 255);
+                        playerGameObject.transform.Find("PlayerColor").transform.GetComponent<Image>().color = new Color32(0, 255, 0, 255);
                         break;
                     case "4":
                         playerGameObject.transform.Find("PlayerColor").transform.GetComponent<Image>().color = new Color32(255, 255, 0, 255);
@@ -73,7 +72,7 @@ public class DuelSelection : MonoBehaviour
                 playerGameObject.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == playersList[i].selectedCharacter);
 
                 if (playersList[i].isDuel)
-                {   
+                {
                     playerGameObject.GetComponent<Button>().interactable = false;
                     GameObject selectedFrame = playerGameObject.transform.Find("Selected").gameObject;
                     selectedFrame.SetActive(true);
@@ -98,7 +97,7 @@ public class DuelSelection : MonoBehaviour
     {
         OkButton.GetComponent<Button>().interactable = isSelected;
     }
-    
+
     public void cancelSelection()
     {
         isSelected = false;

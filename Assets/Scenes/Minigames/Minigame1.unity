@@ -1024,7 +1024,10 @@ MonoBehaviour:
   - {fileID: 493947089}
   - {fileID: 425217620}
   - {fileID: 416692845}
+  FeedbackTextPrefab: {fileID: 0}
   MinigameUI: {fileID: 1838971758}
+  GameData: {fileID: 11400000, guid: ba3771a198f3a604e9265af00ab5b853, type: 2}
+  isMultiPressed: 0
 --- !u!1 &455519232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,10 +1517,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2129767780}
   - {fileID: 1752088539}
   - {fileID: 1295200464}
   - {fileID: 1541967499}
+  - {fileID: 2129767780}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3189,6 +3192,8 @@ MonoBehaviour:
   - {fileID: -289493313, guid: 7e2830b13b2be99429bc52594706c127, type: 3}
   - {fileID: 1872260092, guid: 7e2830b13b2be99429bc52594706c127, type: 3}
   - {fileID: -92523172, guid: 7e2830b13b2be99429bc52594706c127, type: 3}
+  goodFeedbackPrefab: {fileID: 6678758044579635928, guid: 936b002ec6d51234c89a226e936de313, type: 3}
+  badFeedbackPrefab: {fileID: 3348082482859645401, guid: 26e835fbcc2aaa240b59cd9471318d4f, type: 3}
 --- !u!225 &1838971759
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3922,7 +3927,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 67f14fbcabde6484a9e97f6425bb2cb9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0f857b13ca16bca48bd8bb7c009ba557, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

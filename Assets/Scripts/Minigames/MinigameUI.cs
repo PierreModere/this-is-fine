@@ -1,9 +1,8 @@
-using System.Collections;
+using DG.Tweening;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using DG.Tweening;
 
 public class MinigameUI : MonoBehaviour
 {
@@ -24,6 +23,9 @@ public class MinigameUI : MonoBehaviour
 
     public List<GameObject> playersGameobjects;
     public List<Sprite> charactersSprites;
+
+    public GameObject goodFeedbackPrefab;
+    public GameObject badFeedbackPrefab;
 
     private GameObject WebsocketManager;
 
@@ -55,7 +57,8 @@ public class MinigameUI : MonoBehaviour
             {
                 cutsceneTimeLeft = 0;
                 isCutscene = false;
-                gameObject.GetComponent<CanvasGroup>().DOFade(1f, 0.1f).OnComplete(() => {
+                gameObject.GetComponent<CanvasGroup>().DOFade(1f, 0.1f).OnComplete(() =>
+                {
                     popUpAnimationText(GoText);
                 });
 
@@ -89,8 +92,17 @@ public class MinigameUI : MonoBehaviour
 
     public void endMinigame()
     {
+
+        WebsocketManager = GameObject.Find("WebsocketManager");
+        var websocket = WebsocketManager.GetComponent<WebsocketManager>();
+        websocket.sendFinishMinigameAnimation();
+
+    }
+
+    public void finishMinigameAnimation()
+    {
         popUpAnimationText(FinishText);
-     }
+    }
 
     public void updatePlayersListAndScore()
     {
@@ -136,22 +148,26 @@ public class MinigameUI : MonoBehaviour
 
         mySequence.Append(textTarget.transform.DOScale(1.05f, 0.1f));
         mySequence.Append(textTarget.transform.DOScale(1f, 0.1f));
-        mySequence.Append(textTarget.transform.DOScale(1.1f, 0.11f).SetDelay(1.2f).OnComplete(() => {
+        mySequence.Append(textTarget.transform.DOScale(1.1f, 0.11f).SetDelay(1.2f).OnComplete(() =>
+        {
             if (textTarget.name == "GoText")
             {
                 initMinigame();
-            }; }));
-               mySequence.Append(textTarget.transform.DOScale(0f, 0.08f).OnComplete(() => {
+            };
+        }));
+        mySequence.Append(textTarget.transform.DOScale(0f, 0.08f).OnComplete(async () =>
+        {
             textTarget.SetActive(false);
             if (textTarget.name == "GoText")
             {
                 isPlaying = true;
             }
-            if (textTarget.name == "FinishText")
+            if (textTarget.name == "FinishText" && GameData.isHost)
             {
-                WebsocketManager = GameObject.Find("WebsocketManager");
-                var websocket = WebsocketManager.GetComponent<WebsocketManager>();
-                websocket.endMinigame();
+                var websocket = GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().websocket;
+                string sceneName = "ResultsScene";
+                string json = "{'type': 'changeScene', 'params':{'code': '" + GameData.joinedRoomCode + "','sceneName':'" + sceneName + "'}}";
+                await websocket.SendText(json);
             }
         }));
 
@@ -165,6 +181,35 @@ public class MinigameUI : MonoBehaviour
                 minigameLogic.GetComponent<Minigame1>().initMinigame();
                 break;
         }
-       
+
+    }
+
+    public void displayFeedback(bool isGoodFeedback)
+    {
+        int randomIndex;
+        GameObject text;
+        if (isGoodFeedback)
+        {
+            randomIndex = Random.Range(0, minigameData.goodFeedbacks.Length);
+            text = Instantiate(goodFeedbackPrefab, new Vector3(0, 0, 0), Quaternion.identity,transform);
+            text.GetComponent<TextMeshProUGUI>().text = minigameData.goodFeedbacks[randomIndex];
+        }
+        else
+        {
+            randomIndex = Random.Range(0, minigameData.badFeedbacks.Length);
+            text = Instantiate(badFeedbackPrefab, new Vector3(0, 0, 0), Quaternion.identity,transform);
+            text.GetComponent<TextMeshProUGUI>().text = minigameData.badFeedbacks[randomIndex];
+        }
+
+        Sequence feedBackAnim = DOTween.Sequence();
+
+        feedBackAnim.Append(text.transform.DOLocalMove(new Vector3(0, -100, 0), 0f));
+        feedBackAnim.Append(text.transform.DOScale(1.05f, 0.1f));
+        feedBackAnim.Append(text.transform.DOScale(1f, 0.1f));
+        feedBackAnim.Append(text.transform.DOScale(1.1f, 0.11f).SetDelay(0.5f));
+        feedBackAnim.Append(text.transform.DOScale(0f, 0.08f).OnComplete(() => {
+            Destroy(text);
+        }));
+
     }
 }

@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class PlayerNumber : MonoBehaviour
 {
-    public bool isLocalClient=false;
+    public bool isLocalClient = false;
 
 
     // Update is called once per frame

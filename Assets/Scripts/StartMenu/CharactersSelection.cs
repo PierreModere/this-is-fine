@@ -1,9 +1,9 @@
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
-using UnityEngine.Events;
-using TMPro;
 using DG.Tweening;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class CharactersSelection : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class CharactersSelection : MonoBehaviour
 
     private GameObject WebsocketManager;
     UnityAction UA;
-    
+
     public GameObject ReturnButton;
     public GameObject CancelButton;
     public GameObject OkButton;
@@ -29,7 +29,7 @@ public class CharactersSelection : MonoBehaviour
         CancelButton.GetComponent<Button>().onClick.AddListener(unselectCharacter);
         if (GameData.isHost)
             OkButton.SetActive(true);
-            OkButton.GetComponent<Button>().onClick.AddListener(startGame);
+        OkButton.GetComponent<Button>().onClick.AddListener(startGame);
     }
 
     private void OnEnable()
@@ -45,11 +45,11 @@ public class CharactersSelection : MonoBehaviour
         {
             GameObject characterSprite = CharactersGrid.GetChild(i).gameObject;
             Button button = characterSprite.GetComponentInChildren<Button>();
-                string characterName = characterSprite.name;
-                UA = new UnityAction(() => selectCharacter(characterName));
-                button.onClick.AddListener(UA);
+            string characterName = characterSprite.name;
+            UA = new UnityAction(() => selectCharacter(characterName));
+            button.onClick.AddListener(UA);
 
-            
+
         }
     }
 
@@ -75,7 +75,7 @@ public class CharactersSelection : MonoBehaviour
         }
     }
 
- 
+
 
     async void selectCharacter(string characterName)
     {
@@ -110,13 +110,13 @@ public class CharactersSelection : MonoBehaviour
         for (int i = 0; i < playersList.Count; i++)
         {
 
-        if (playersList[i].selectedCharacter != "")
+            if (playersList[i].selectedCharacter != "")
             {
                 GameObject selectedCharacterFrame = selectedCharactersGameobject.Find(g => g.name == playersList[i].selectedCharacter).gameObject;
-                selectedCharacterFrame.transform.Find("PlayerColor").Find("PlayerNumber").GetComponent<TextMeshProUGUI>().text= playersList[i].id.ToString();
+                selectedCharacterFrame.transform.Find("PlayerColor").Find("PlayerNumber").GetComponent<TextMeshProUGUI>().text = playersList[i].id.ToString();
                 selectedCharacterFrame.SetActive(true);
 
-                CharactersGrid.Find(playersList[i].selectedCharacter).gameObject.GetComponent<Button>().interactable=false;
+                CharactersGrid.Find(playersList[i].selectedCharacter).gameObject.GetComponent<Button>().interactable = false;
 
 
                 switch (playersList[i].id.ToString())
@@ -136,15 +136,15 @@ public class CharactersSelection : MonoBehaviour
                 }
                 if (playersList[i].selectedCharacter == GameData.selectedCharacter)
                 {
-                        selectedCharacterFrame.transform.Find("LocalSelected").gameObject.SetActive(true);
-                        selectedCharacterFrame.transform.Find("LocalSelected").gameObject.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "SelectedFrame" + playersList[i].id.ToString());
-                        if (!selectedCharacterFrame.transform.Find("LocalSelected").gameObject.activeSelf)    
-                            selectedCharacterFrame.transform.Find("LocalSelected").DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.1f).OnComplete(() => { selectedCharacterFrame.transform.Find("LocalSelected").DOScale(new Vector3(1f, 1f, 1f), 0.1f); });
-                    
+                    selectedCharacterFrame.transform.Find("LocalSelected").gameObject.SetActive(true);
+                    selectedCharacterFrame.transform.Find("LocalSelected").gameObject.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "SelectedFrame" + playersList[i].id.ToString());
+                    if (!selectedCharacterFrame.transform.Find("LocalSelected").gameObject.activeSelf)
+                        selectedCharacterFrame.transform.Find("LocalSelected").DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.1f).OnComplete(() => { selectedCharacterFrame.transform.Find("LocalSelected").DOScale(new Vector3(1f, 1f, 1f), 0.1f); });
+
                 }
                 else
                 {
-                    selectedCharacterFrame.transform.Find("LocalSelected").gameObject.SetActive(false); 
+                    selectedCharacterFrame.transform.Find("LocalSelected").gameObject.SetActive(false);
                 }
             }
         }
@@ -162,9 +162,11 @@ public class CharactersSelection : MonoBehaviour
                 everyoneReady = false;
         }
         if (everyoneReady && GameData.isHost)
-        {  OkButton.GetComponent<Button>().interactable=true;
+        {
+            OkButton.GetComponent<Button>().interactable = true;
         }
-        else {
+        else
+        {
             OkButton.GetComponent<Button>().interactable = false;
         }
     }
@@ -179,7 +181,8 @@ public class CharactersSelection : MonoBehaviour
             if (GameData.isHost)
                 ReturnButton.SetActive(false);
         }
-        else {
+        else
+        {
             reenableClickEvents();
             if (GameData.isHost)
                 ReturnButton.SetActive(true);
@@ -191,6 +194,6 @@ public class CharactersSelection : MonoBehaviour
     {
         var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
         string json = "{'type': 'startGame', 'params':{'code': '" + GameData.joinedRoomCode + "'}}";
-        await websocket.SendText(json);        
+        await websocket.SendText(json);
     }
 }

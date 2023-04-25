@@ -1,9 +1,8 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
-using Newtonsoft.Json.Bson;
 
 public class FirstMinigameAnimation : MonoBehaviour
 {
@@ -64,15 +63,14 @@ public class FirstMinigameAnimation : MonoBehaviour
         Sequence test = DOTween.Sequence();
         // Add a movement tween at the beginning
         test.Append(OkButton.transform.DOLocalMoveY(-715f, 0.2f));
-        test.Append(OkButton.transform.DOLocalMoveY(-1150, 0.3f));
-        WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(randomID.ToString());
-
+        test.Append(OkButton.transform.DOLocalMoveY(-1150, 0.3f)).OnComplete(()=> { WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(randomID.ToString()); });
+        
     }
 
     void setRandomFirstMinigame()
     {
         randomID = Random.Range(1, minigamesList.Count);
-        WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(randomID.ToString(),true);
+        WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(randomID.ToString(), true);
     }
 
     public void displaySelectedMinigame()
@@ -124,12 +122,15 @@ public class FirstMinigameAnimation : MonoBehaviour
 
         string displayedMinigameID = GameData.displayedMinigameID;
 
+        Debug.Log(displayedMinigameID);
+
         Sequence mySequence = DOTween.Sequence();
 
-        mySequence.Append(FirstMinigamePreview.transform.DOScale(7.3f, 0.1f).OnComplete(() => {
+        mySequence.Append(FirstMinigamePreview.transform.DOScale(7.3f, 0.1f).OnComplete(() =>
+        {
             FirstMinigamePreview.GetComponent<Image>().sprite = minigamesList.Find(mg => mg.id == displayedMinigameID).preview;
         }));
-        mySequence.Append(FirstMinigamePreview.transform.DOScale(7f, 0.15f));
+        mySequence.Append(FirstMinigamePreview.transform.DOScale(7f, 0.15f));   
 
 
         // réinitialiser les variables

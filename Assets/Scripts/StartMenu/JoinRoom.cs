@@ -1,7 +1,6 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using TMPro;
 
 public class JoinRoom : MonoBehaviour
 {
@@ -29,7 +28,8 @@ public class JoinRoom : MonoBehaviour
 
                 if (buttonValue != "delete" && buttonValue != "RET.")
                 {
-                    childButton.onClick.AddListener(delegate {
+                    childButton.onClick.AddListener(delegate
+                    {
                         addDigitToPin(buttonValue);
                     });
                 }

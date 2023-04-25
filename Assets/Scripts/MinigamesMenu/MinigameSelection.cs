@@ -1,8 +1,7 @@
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
-using TMPro;
 
 public class MinigameSelection : MonoBehaviour
 {
@@ -27,16 +26,16 @@ public class MinigameSelection : MonoBehaviour
 
     void addClickEvents()
     {
-       
-            foreach (GameObject minigameButton in minigameButtons)
-            {
-                var button = minigameButton.GetComponent<Button>();
-                string minigameID = minigameButton.transform.Find("MinigameID").transform.GetComponent<Text>().text;
-                button.onClick.AddListener(() => { selectMinigame(minigameID, minigameButton); });
-            }
+
+        foreach (GameObject minigameButton in minigameButtons)
+        {
+            var button = minigameButton.GetComponent<Button>();
+            string minigameID = minigameButton.transform.Find("MinigameID").transform.GetComponent<Text>().text;
+            button.onClick.AddListener(() => { selectMinigame(minigameID, minigameButton); });
+        }
 
 
-        
+
     }
 
     void toggleOkButton()
@@ -44,7 +43,7 @@ public class MinigameSelection : MonoBehaviour
         OkButton.GetComponent<Button>().interactable = isSelected;
     }
 
-    public void selectMinigame(string id,GameObject button)
+    public void selectMinigame(string id, GameObject button)
     {
         if (selectedMinigame != null) selectedMinigame.transform.Find("Selected").gameObject.SetActive(false);
         isSelected = true;

@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class LobbyScreen : MonoBehaviour
 {
@@ -23,7 +22,8 @@ public class LobbyScreen : MonoBehaviour
         updatePlayersListInLobby();
         transform.Find("Return").gameObject.GetComponent<Button>().onClick.AddListener(quitLobby);
     }
-    public void setPincode(string getPincode) {
+    public void setPincode(string getPincode)
+    {
         pincode = getPincode;
         roomPincodeText.GetComponent<TextMeshProUGUI>().text = "Room " + pincode;
 
@@ -33,17 +33,17 @@ public class LobbyScreen : MonoBehaviour
     {
         var playersList = GameData.playersList;
 
-        foreach ( var player in playersListGameObject)
+        foreach (var player in playersListGameObject)
         {
             player.SetActive(false);
         }
         if (playersList.Count > 0)
         {
-            for (int i = 0; i < playersList.Count; i++) 
+            for (int i = 0; i < playersList.Count; i++)
             {
                 GameObject playerNumber = playersListGameObject[playersList[i].id - 1];
                 playerNumber.SetActive(true);
-                if (playersList.Count >(requiredPlayersNumber - 1) && GameData.isHost == true)
+                if (playersList.Count > (requiredPlayersNumber - 1) && GameData.isHost == true)
                 {
                     transform.Find("Ok").gameObject.SetActive(true);
                 }
@@ -66,7 +66,7 @@ public class LobbyScreen : MonoBehaviour
             WebsocketManager = GameObject.Find("WebsocketManager");
             var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
             json = "{'type': 'leave', 'params':{'code': '" + pincode + "','id': '" + GameData.playerID + "'}}";
-            
+
             await websocket.SendText(json);
             GameData.joinedRoomCode = "";
         }

@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 public class DashboardCanvas : MonoBehaviour
 {
@@ -56,7 +54,7 @@ public class DashboardCanvas : MonoBehaviour
 
     public void buttonOnClick(string mode, GameObject button)
     {
-        if (selectedButton!=null) selectedButton.transform.Find("Selected").gameObject.SetActive(false);
+        if (selectedButton != null) selectedButton.transform.Find("Selected").gameObject.SetActive(false);
         isSelected = true;
         selectedMode = mode;
         selectedButton = button;

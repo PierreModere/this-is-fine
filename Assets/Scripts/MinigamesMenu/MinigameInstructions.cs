@@ -1,8 +1,6 @@
 using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using static WebsocketManager;
@@ -38,7 +36,7 @@ public class MinigameInstructions : MonoBehaviour
 
     void initScreen()
     {
-         if ((GameData.isHost && GameData.minigameMode!="Duel") || GameData.isDuelHost)
+        if ((GameData.isHost && GameData.minigameMode != "Duel") || GameData.isDuelHost)
         {
             GoButton.SetActive(true);
             ReadyButton.SetActive(false);
@@ -67,10 +65,10 @@ public class MinigameInstructions : MonoBehaviour
 
             if (playersList[i].selectedCharacter != "")
             {
-                GameObject playerGameObject = playersGameobjects.Find(g => g.name == "Player"+playersList[i].id);
+                GameObject playerGameObject = playersGameobjects.Find(g => g.name == "Player" + playersList[i].id);
 
-                if (GameData.minigameMode=="Duel" && playersList[i].isDuel==true) 
-                    playerGameObject.SetActive(true);   
+                if (GameData.minigameMode == "Duel" && playersList[i].isDuel == true)
+                    playerGameObject.SetActive(true);
                 else if (GameData.minigameMode == "Battle")
                     playerGameObject.SetActive(true);
 
@@ -94,7 +92,7 @@ public class MinigameInstructions : MonoBehaviour
                 playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == playersList[i].selectedCharacter);
 
                 if (playersList[i].isReady)
-                {   
+                {
                     GameObject isReadyIcon = playerGameObject.transform.Find("isReady").gameObject;
                     isReadyIcon.SetActive(true);
                     isReadyIcon.transform.DOScale(1.05f, 0.1f).OnComplete(() => { isReadyIcon.transform.DOScale(1f, 0.1f); });
@@ -114,10 +112,11 @@ public class MinigameInstructions : MonoBehaviour
         {
             minigameModeText.text = "Bataille";
         }
-      
+
     }
 
-    public void setMinigameData() {
+    public void setMinigameData()
+    {
         Minigame displayedMinigame = minigamesList.Find(mg => mg.id == GameData.displayedMinigameID);
         if (displayedMinigame != null)
         {
@@ -135,12 +134,12 @@ public class MinigameInstructions : MonoBehaviour
 
         if (GameData.minigameMode == "Duel")
             playersList = GameData.playersList.FindAll(player => player.isDuel);
-       
+
         else playersList = GameData.playersList;
 
         foreach (var player in playersList)
         {
-            if (!player.isReady && player.id!= int.Parse(GameData.playerID))
+            if (!player.isReady && player.id != int.Parse(GameData.playerID))
                 everyoneReady = false;
         }
         if ((everyoneReady && GameData.isHost && GameData.minigameMode != "Duel") || (everyoneReady && GameData.isDuelHost))
@@ -176,7 +175,7 @@ public class MinigameInstructions : MonoBehaviour
         WebsocketManager = GameObject.Find("WebsocketManager");
 
         var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
-        string sceneName = "Minigame"+ GameData.displayedMinigameID;
+        string sceneName = "Minigame" + GameData.displayedMinigameID;
         string json = "{'type': 'changeScene', 'params':{'code': '" + GameData.joinedRoomCode + "','sceneName':'" + sceneName + "'}}";
         await websocket.SendText(json);
     }

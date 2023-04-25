@@ -1,16 +1,16 @@
 
-using System.Collections.Generic;
-using UnityEngine;
+using DG.Tweening;
 using NativeWebSocket;
 using Newtonsoft.Json;
-using DG.Tweening;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class WebsocketManager : MonoBehaviour
 {
 
     public GameData GameData;
 
-    public WebSocket websocket; 
+    public WebSocket websocket;
 
     public List<ClientsList> playersList;
 
@@ -93,20 +93,24 @@ public class WebsocketManager : MonoBehaviour
     {
         websocket = new WebSocket(GameData.websocketURL);
 
-        websocket.OnOpen += () => {
+        websocket.OnOpen += () =>
+        {
             Debug.Log("Connexion open!");
         };
 
-        websocket.OnError += (e) => {
+        websocket.OnError += (e) =>
+        {
             var ErrorsManager = FindInactiveObjectByName("ErrorCanvas").GetComponent<ErrorsManager>();
             ErrorsManager.manageErrors(e);
         };
 
-        websocket.OnClose += (e) => {
+        websocket.OnClose += (e) =>
+        {
             Debug.Log("Connexion closed!");
         };
 
-        websocket.OnMessage += (bytes) => {
+        websocket.OnMessage += (bytes) =>
+        {
             var json = System.Text.Encoding.UTF8.GetString(bytes);
             var jsonResult = JsonConvert.DeserializeObject(json).ToString();
 
@@ -131,7 +135,7 @@ public class WebsocketManager : MonoBehaviour
                 case "receivedPlayersList":
                     GameData.playersList = _ParsedJSON.@params.@data.clientsList;
 
-                    if (GameObject.FindWithTag("activeScreen")!= null)
+                    if (GameObject.FindWithTag("activeScreen") != null)
 
                     {
                         switch (GameObject.FindWithTag("activeScreen").name)
@@ -156,10 +160,19 @@ public class WebsocketManager : MonoBehaviour
                 case "receivedSelectedMinigame":
                     GameData.displayedMinigameID = _ParsedJSON.@params.@data.message;
 
-
-                    break;
+                    switch (GameObject.FindWithTag("activeScreen").name)
+                    {
+                        case "FirstMinigameInstructionCanvas":
+                            FindInactiveObjectByName("FirstMinigameInstructionCanvas").GetComponent<FirstMinigameAnimation>().displaySelectedMinigame();
+                              break;
+                      
+                    }
+                     break;
                 case "setMinigameMode":
                     GameData.minigameMode = _ParsedJSON.@params.@data.message;
+                    break;
+                case "finishMinigameAnimation":
+                    FindInactiveObjectByName("MinigameInfoCanvas").GetComponent<MinigameUI>().finishMinigameAnimation();
                     break;
                 case "changedScreen":
                     changeScreenForEveryone(_ParsedJSON.@params.@data.message);
@@ -169,7 +182,7 @@ public class WebsocketManager : MonoBehaviour
                     if (sceneName != "")
                         GameObject.Find("SceneManager").GetComponent<ChangeScene>().changeScene(sceneName);
                     break;
-                        case "serverErrorMessage":
+                case "serverErrorMessage":
                     var ErrorsManager = FindInactiveObjectByName("ErrorCanvas").GetComponent<ErrorsManager>();
                     ErrorsManager.manageErrors(_ParsedJSON.@params.@data.message);
                     break;
@@ -214,11 +227,11 @@ public class WebsocketManager : MonoBehaviour
     void showLobbyScreen(bool isHost)
     {
         GameData.joinedRoomCode = _ParsedJSON.@params.@data.message;
-        if(isHost)
+        if (isHost)
         {
             GameObject.Find("CreateRoomCanvas").tag = "Untagged";
             GameObject.Find("CreateRoomCanvas").SetActive(false);
-    
+
         }
         else
         {
@@ -235,7 +248,7 @@ public class WebsocketManager : MonoBehaviour
     {
         var screenToEnable = FindInactiveObjectByName(screenName);
         var screenToDisable = GameObject.FindWithTag("activeScreen");
-        if (screenToEnable != null && screenToDisable != null)
+        if (screenToEnable != null && screenToDisable != null && screenName!= screenToDisable.name)
         {
             screenToEnable.SetActive(true);
             screenToEnable.transform.DOScale(new Vector3(1.03f, 1.03f, 1.03f), 0.1f).OnComplete(() => { screenToEnable.transform.DOScale(new Vector3(1f, 1f, 1f), 0.15f); });
@@ -247,11 +260,11 @@ public class WebsocketManager : MonoBehaviour
 
     public async void sendScreenNameToSwitchTo(GameObject ScreenToSwitchTo)
     {
-            string json = "{'type': 'changeScreen', 'params':{'code': '" + GameData.joinedRoomCode + "','screenName':'" + ScreenToSwitchTo.name + "'}}";
-            await websocket.SendText(json);
+        string json = "{'type': 'changeScreen', 'params':{'code': '" + GameData.joinedRoomCode + "','screenName':'" + ScreenToSwitchTo.name + "'}}";
+        await websocket.SendText(json);
     }
 
-    public async void sendSelectedMinigame(string minigameID, bool isFirstMinigame=false)
+    public async void sendSelectedMinigame(string minigameID, bool isFirstMinigame = false)
     {
         string json;
         if (isFirstMinigame) json = "{'type': 'selectMinigame', 'params':{'code': '" + GameData.joinedRoomCode + "','minigameID':'" + minigameID + "','isFirstMinigame':'" + isFirstMinigame + "'}}";
@@ -262,7 +275,7 @@ public class WebsocketManager : MonoBehaviour
     public async void sendMinigameMode(string mode, string id)
     {
         string json;
-        if (id != null && id != "") json = "{'type': 'setMinigameMode', 'params':{'code': '" + GameData.joinedRoomCode + "','mode':'" + mode + "','id':'" + id + "'}}"; 
+        if (id != null && id != "") json = "{'type': 'setMinigameMode', 'params':{'code': '" + GameData.joinedRoomCode + "','mode':'" + mode + "','id':'" + id + "'}}";
         else json = "{'type': 'setMinigameMode', 'params':{'code': '" + GameData.joinedRoomCode + "','mode':'" + mode + "'}}";
         await websocket.SendText(json);
     }
@@ -271,7 +284,6 @@ public class WebsocketManager : MonoBehaviour
     {
         string json = "{'type': 'resetDuelStatus', 'params':{'code': '" + GameData.joinedRoomCode + "'}}";
         await websocket.SendText(json);
-
         GameData.isDuelHost = false;
 
     }
@@ -282,11 +294,18 @@ public class WebsocketManager : MonoBehaviour
         await websocket.SendText(json);
     }
 
-    public async void endMinigame()
+    public async void sendFinishMinigameAnimation()
     {
         string json = "{'type': 'endMinigame', 'params':{'code': '" + GameData.joinedRoomCode + "'}}";
         await websocket.SendText(json);
-        resetDuelStatus();
+    }
+
+    public async void returnToDashboard()
+    {
+        string json = "{'type': 'returnToDashboard', 'params':{'code': '" + GameData.joinedRoomCode + "'}}";
+        await websocket.SendText(json);
+        GameData.isDuelHost = false;
+
     }
 
     GameObject FindInactiveObjectByName(string name)

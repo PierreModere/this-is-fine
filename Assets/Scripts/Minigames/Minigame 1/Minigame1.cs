@@ -1,14 +1,13 @@
-using System.Collections;
+using DG.Tweening;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class Minigame1 : MonoBehaviour
 {
     int playerProgressIndex;
-    int[] indexesSuite = new int[25];
+    int[] indexesSuite = new int[5];
 
     public GameObject valve;
     public GameObject buttonInstruction;
@@ -17,12 +16,21 @@ public class Minigame1 : MonoBehaviour
     public List<Sprite> buttonsInstructionsSprites;
     public List<GameObject> buttonsGameobjects;
 
+    public GameObject FeedbackTextPrefab;
+
     public MinigameUI MinigameUI;
+    public GameData GameData;
     private GameObject WebsocketManager;
+
+    public bool isMultiPressed=false;
+    Vector3 valvePos;
 
     public void initMinigame()
     {
         WebsocketManager = GameObject.Find("WebsocketManager");
+
+        valvePos = valve.transform.position;
+
 
         playerProgressIndex = 0;
         for (int i = 0; i < indexesSuite.Length; i++)
@@ -41,28 +49,46 @@ public class Minigame1 : MonoBehaviour
     }
     public void checkButton(int index)
     {
-        if (indexesSuite[playerProgressIndex] == index)
+        if (indexesSuite[playerProgressIndex] == index && !isMultiPressed)
         {
-            valve.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z -45f), 0.2f);
+            valve.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z - 45f), 0.2f);
             playerProgressIndex++;
             sendScore();
+            MinigameUI.displayFeedback(true);
             if (playerProgressIndex < indexesSuite.Length)
                 updateInstruction();
             else endMinigame();
 
+        }
+        else if (indexesSuite[playerProgressIndex] != index && !isMultiPressed)
+        {
+            MinigameUI.displayFeedback(false);
+
+            valve.transform.DOShakePosition(0.3f, 20f).OnComplete(() => {
+                valve.transform.DOMove(valvePos, 0.1f).SetAutoKill(false);
+            });
+
+            foreach (Transform child in GameObject.Find("BackgroundCanvas").transform)
+            {
+                Vector3 defaultPos = child.position;
+                child.DOShakePosition(0.3f, 15f).OnComplete(()=> {
+                    child.DOMove(defaultPos, 0.1f);
+                });
+            }
         }
     }
 
     void activeButtons()
     {
         controls.transform.DOLocalMoveY(-1348, 0f);
-        controls.transform.DOLocalMoveY(-585, 0.4f).OnComplete(() => {
+        controls.transform.DOLocalMoveY(-585, 0.4f).OnComplete(() =>
+        {
             foreach (GameObject button in buttonsGameobjects)
             {
                 button.GetComponent<Button>().interactable = true;
             }
         });
-        }
+    }
 
     void endMinigame()
     {
@@ -75,6 +101,16 @@ public class Minigame1 : MonoBehaviour
     }
     void sendScore()
     {
-        WebsocketManager.GetComponent<WebsocketManager>().sendScore(playerProgressIndex);
+        if (GameData.joinedRoomCode!="")
+            WebsocketManager.GetComponent<WebsocketManager>().sendScore(playerProgressIndex);
+    }
+
+     private void Update()
+    {
+        if (Input.touchCount > 1)
+        {
+            isMultiPressed = true;
+        }
+        else isMultiPressed = false;
     }
 }
