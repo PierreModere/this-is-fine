@@ -146,6 +146,9 @@ public class WebsocketManager : MonoBehaviour
                             case "CharactersSelectionCanvas":
                                 FindInactiveObjectByName("CharactersSelectionCanvas").GetComponent<CharactersSelection>().updateSelectedAndAvailableCharacters();
                                 break;
+                            case "DashboardCanvas":
+                                if (GameData.isFirstMinigame) GameData.isFirstMinigame = false;
+                                break;
                             case "MinigameInstructionsCanvas":
                                 FindInactiveObjectByName("MinigameInstructionsCanvas").GetComponent<MinigameInstructions>().updatePlayersList();
                                 break;

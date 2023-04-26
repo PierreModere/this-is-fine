@@ -15,6 +15,8 @@ public class ResultsCanvas : MonoBehaviour
 
     public GameObject BattleText;
     public GameObject DuelText;
+    public GameObject FirstMinigameText;
+
 
     public List<GameObject> winnersGameobjects;
 
@@ -37,15 +39,24 @@ public class ResultsCanvas : MonoBehaviour
             okButton.SetActive(false);
         }
 
-        if (GameData.minigameMode == "Battel")
+        if (GameData.isFirstMinigame)
         {
-            BattleText.SetActive(true);
+            FirstMinigameText.SetActive(true);
+            BattleText.SetActive(false);
             DuelText.SetActive(false);
         }
         else
         {
-            BattleText.SetActive(false);
-            DuelText.SetActive(true);
+            if (GameData.minigameMode == "Battle")
+            {
+                BattleText.SetActive(true);
+                DuelText.SetActive(false);
+            }
+            else
+            {
+                BattleText.SetActive(false);
+                DuelText.SetActive(true);
+            }
         }
         updateWinnersList();
     }
@@ -57,24 +68,7 @@ public class ResultsCanvas : MonoBehaviour
 
         List<ClientsList> sortedList = playersList.OrderByDescending(x => int.Parse(x.score)).ToList();
 
-        if (GameData.minigameMode == "Battle")
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                GameObject winnerGameobject = winnersGameobjects[i];
-
-                winnerGameobject.SetActive(true);
-
-                GameObject playerCharacter = winnerGameobject.transform.Find("PlayerCharacter").gameObject;
-                if (playerCharacter.GetComponent<Image>().sprite == null)
-                    playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == sortedList[i].selectedCharacter);
-
-                GameObject PlayerNumber = winnerGameobject.transform.Find("PlayerNumber").gameObject;
-                PlayerNumber.GetComponent<TextMeshProUGUI>().text = "Joueur " + sortedList[i].id;
-
-            }
-        }
-        else
+        if (GameData.isFirstMinigame)
         {
             GameObject winnerGameobject = winnersGameobjects[2];
 
@@ -86,6 +80,40 @@ public class ResultsCanvas : MonoBehaviour
 
             GameObject PlayerNumber = winnerGameobject.transform.Find("PlayerNumber").gameObject;
             PlayerNumber.GetComponent<TextMeshProUGUI>().text = "Joueur " + sortedList[0].id;
+        }
+
+        else
+        {
+            if (GameData.minigameMode == "Battle")
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    GameObject winnerGameobject = winnersGameobjects[i];
+
+                    winnerGameobject.SetActive(true);
+
+                    GameObject playerCharacter = winnerGameobject.transform.Find("PlayerCharacter").gameObject;
+                    if (playerCharacter.GetComponent<Image>().sprite == null)
+                        playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == sortedList[i].selectedCharacter);
+
+                    GameObject PlayerNumber = winnerGameobject.transform.Find("PlayerNumber").gameObject;
+                    PlayerNumber.GetComponent<TextMeshProUGUI>().text = "Joueur " + sortedList[i].id;
+
+                }
+            }
+            else
+            {
+                GameObject winnerGameobject = winnersGameobjects[2];
+
+                winnerGameobject.SetActive(true);
+
+                GameObject playerCharacter = winnerGameobject.transform.Find("PlayerCharacter").gameObject;
+                if (playerCharacter.GetComponent<Image>().sprite == null)
+                    playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == sortedList[0].selectedCharacter);
+
+                GameObject PlayerNumber = winnerGameobject.transform.Find("PlayerNumber").gameObject;
+                PlayerNumber.GetComponent<TextMeshProUGUI>().text = "Joueur " + sortedList[0].id;
+            }
         }
 
     }

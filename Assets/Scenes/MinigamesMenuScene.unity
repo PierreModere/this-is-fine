@@ -2672,11 +2672,11 @@ GameObject:
   - component: {fileID: 567116013}
   m_Layer: 5
   m_Name: DashboardCanvas
-  m_TagString: activeScreen
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &567116009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5761,11 +5761,11 @@ GameObject:
   - component: {fileID: 1044013266}
   m_Layer: 5
   m_Name: FirstMinigameInstructionCanvas
-  m_TagString: Untagged
+  m_TagString: activeScreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1044013262
 MonoBehaviour:
   m_ObjectHideFlags: 0
