@@ -180,6 +180,9 @@ public class MinigameUI : MonoBehaviour
             case "1":
                 minigameLogic.GetComponent<Minigame1>().initMinigame();
                 break;
+            case "2":
+                minigameLogic.GetComponent<Minigame2>().initMinigame();
+                break;
         }
 
     }

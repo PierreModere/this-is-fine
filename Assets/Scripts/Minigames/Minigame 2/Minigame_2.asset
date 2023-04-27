@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ea15ad910fcfd43a585cf6076f65ea, type: 3}
   m_Name: Minigame_2
   m_EditorClassIdentifier: 
-  title: "D\xE9dale Bancale"
-  instruction: "Appuie sur le haut du gratte ciel pour y d\xE9poser un nouvel \xE9tage
-    gr\xE2ce \xE0 la grue, attends que celle-ci soit bien au dessus du b\xE2timent. "
+  title: "Contrats \xE0 la cha\xEEne"
+  instruction: "Appuie le plus de fois possible sur ton \xE9cran afin de signer un
+    maximum de contrat."
   id: 2
   preview: {fileID: 21300000, guid: e75c193f0c011e54a950b55c620edf1c, type: 3}
-  gameTime: 60
-  cutsceneTime: 5
+  gameTime: 15
+  cutsceneTime: 0
   hasTimer: 1
+  goodFeedbacks: []
+  badFeedbacks: []
