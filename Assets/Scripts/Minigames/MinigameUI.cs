@@ -111,6 +111,9 @@ public class MinigameUI : MonoBehaviour
             case "1":
                 minigameLogic.GetComponent<Minigame1>().finishMinigame();
                 break;
+            case "2":
+                minigameLogic.GetComponent<Minigame2>().initMinigame();
+                break;
             case "3":
                 minigameLogic.GetComponent<Minigame3>().finishMinigame();
                 break;
@@ -199,6 +202,9 @@ public class MinigameUI : MonoBehaviour
                 break;
             case "2":
                 minigameLogic.GetComponent<Minigame2>().initMinigame();
+                break;
+            case "3":
+                minigameLogic.GetComponent<Minigame3>().initMinigame();
                 break;
             case "4":
                 minigameLogic.GetComponent<Minigame4>().initMinigame();
