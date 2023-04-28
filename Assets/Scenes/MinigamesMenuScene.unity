@@ -795,6 +795,7 @@ MonoBehaviour:
   minigamesList:
   - {fileID: 11400000, guid: 12dcf25b43f4d7340b690c9bda6731e8, type: 2}
   - {fileID: 11400000, guid: 0450f4d0adf6957419e02cdf3f9d530e, type: 2}
+  - {fileID: 11400000, guid: 0a57f74d0932df34f9551a14f792fcbd, type: 2}
 --- !u!1 &223460628
 GameObject:
   m_ObjectHideFlags: 0
@@ -2088,7 +2089,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0.0000037116006, y: -26.7}
+  m_AnchoredPosition: {x: 0.0000037116006, y: 5}
   m_SizeDelta: {x: 915.3, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &488957472
@@ -9594,7 +9595,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -0.000015258789, y: -130}
-  m_SizeDelta: {x: 915.3, y: 150}
+  m_SizeDelta: {x: 1025.39, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1537533590
 MonoBehaviour:

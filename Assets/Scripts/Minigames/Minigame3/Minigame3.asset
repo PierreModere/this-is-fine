@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7ea15ad910fcfd43a585cf6076f65ea, type: 3}
+  m_Name: Minigame3
+  m_EditorClassIdentifier: 
+  title: Cartouches en folie
+  instruction: "Toi aussi tu peux mettre la main \xE0 la p\xE2te. Aujourd\u2019hui
+    tu te rends dans ton usine Esponne ! Remplis les cartouches d\u2019encre mais
+    pas trop non plus, on n\u2019est pas une \u0153uvre de charit\xE9."
+  id: 3
+  preview: {fileID: 21300000, guid: fcb4a373db1998a4e8ff13900f8a9e84, type: 3}
+  gameTime: 5
+  cutsceneTime: 0
+  hasTimer: 1
+  goodFeedbacks:
+  - Parfait !
+  - "Quel g\xE9nie !"
+  - Oui !!
+  - Continuez
+  - Quel businessman !
+  badFeedbacks:
+  - "Trop g\xE9n\xE9reux !"
+  - Pas ouf..
+  - Faites un effort

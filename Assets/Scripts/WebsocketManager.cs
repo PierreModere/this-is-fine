@@ -14,6 +14,8 @@ public class WebsocketManager : MonoBehaviour
 
     public List<ClientsList> playersList;
 
+    public int receivedMinigameTime = 0;
+
     public class ParsedJSON
     {
         public string type
@@ -88,7 +90,11 @@ public class WebsocketManager : MonoBehaviour
     }
 
     private ParsedJSON _ParsedJSON;
+    private void Awake()
+    {
+        resetGameData();
 
+    }
     async void Start()
     {
         websocket = new WebSocket(GameData.websocketURL);
@@ -146,9 +152,6 @@ public class WebsocketManager : MonoBehaviour
                             case "CharactersSelectionCanvas":
                                 FindInactiveObjectByName("CharactersSelectionCanvas").GetComponent<CharactersSelection>().updateSelectedAndAvailableCharacters();
                                 break;
-                            case "DashboardCanvas":
-                                if (GameData.isFirstMinigame) GameData.isFirstMinigame = false;
-                                break;
                             case "MinigameInstructionsCanvas":
                                 FindInactiveObjectByName("MinigameInstructionsCanvas").GetComponent<MinigameInstructions>().updatePlayersList();
                                 break;
@@ -163,6 +166,8 @@ public class WebsocketManager : MonoBehaviour
                 case "receivedSelectedMinigame":
                     GameData.displayedMinigameID = _ParsedJSON.@params.@data.message;
 
+                    receivedMinigameTime++;
+            
                     switch (GameObject.FindWithTag("activeScreen").name)
                     {
                         case "FirstMinigameInstructionCanvas":
@@ -200,6 +205,19 @@ public class WebsocketManager : MonoBehaviour
         await websocket.Connect();
     }
 
+    void resetGameData()
+    {
+        GameData.joinedRoomCode = "";
+        GameData.playerID = "";
+        GameData.selectedCharacter = "";
+        GameData.displayedMinigameID = "";
+        GameData.minigameMode = "Battle";
+        GameData.isFirstMinigame = true;
+        GameData.isDuelHost = false;
+        GameData.isHost = false;
+
+    }
+
     void Update()
     {
 #if !UNITY_WEBGL || UNITY_EDITOR
@@ -225,6 +243,8 @@ public class WebsocketManager : MonoBehaviour
             await websocket.SendText(json);
         }
         await websocket.Close();
+        resetGameData();
+
     }
 
     void showLobbyScreen(bool isHost)
@@ -247,7 +267,7 @@ public class WebsocketManager : MonoBehaviour
         FindInactiveObjectByName("LobbyCanvas").GetComponent<LobbyScreen>().setPincode(GameData.joinedRoomCode);
     }
 
-    void changeScreenForEveryone(string screenName)
+    public void changeScreenForEveryone(string screenName)
     {
         var screenToEnable = FindInactiveObjectByName(screenName);
         var screenToDisable = GameObject.FindWithTag("activeScreen");

@@ -104,6 +104,8 @@ public class DuelSelection : MonoBehaviour
         selectedContester = null;
         selectedContesterID = null;
 
+        WebsocketManager = GameObject.Find("WebsocketManager");
+
         WebsocketManager.GetComponent<WebsocketManager>().resetDuelStatus();
         GameData.isDuelHost = false;
 

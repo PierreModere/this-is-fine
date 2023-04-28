@@ -102,6 +102,16 @@ public class MinigameUI : MonoBehaviour
     public void finishMinigameAnimation()
     {
         popUpAnimationText(FinishText);
+
+        switch (minigameData.id)
+        {
+            case "1":
+                minigameLogic.GetComponent<Minigame1>().finishMinigame();
+                break;
+            case "3":
+                minigameLogic.GetComponent<Minigame3>().finishMinigame();
+                break;
+        }
     }
 
     public void updatePlayersListAndScore()
