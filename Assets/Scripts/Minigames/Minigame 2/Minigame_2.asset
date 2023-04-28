@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Minigame_2
   m_EditorClassIdentifier: 
   title: "D\xE9dale Bancale"
-  instruction: "Appuie sur le haut du gratte ciel pour y d\xE9poser un nouvel \xE9tage
-    gr\xE2ce \xE0 la grue, attends que celle-ci soit bien au dessus du b\xE2timent. "
+  instruction: Signe le plus de contrat possible
   id: 2
-  preview: {fileID: 21300000, guid: e75c193f0c011e54a950b55c620edf1c, type: 3}
-  gameTime: 60
+  preview: {fileID: 21300000, guid: aabad1661f340874a84230683dedeeb4, type: 3}
+  gameTime: 45
   cutsceneTime: 5
   hasTimer: 1
+  goodFeedbacks: []
+  badFeedbacks: []

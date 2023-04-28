@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class FirstMinigameAnimation : MonoBehaviour
@@ -17,20 +18,26 @@ public class FirstMinigameAnimation : MonoBehaviour
 
     public List<Minigame> minigamesList;
 
-    public float timeInterval = 0.08f; // intervalle de temps entre chaque changement de sprite
-    public float totalTime = 2.5f; // temps total pour le changement de sprite
-    private int currentSpriteIndex; // index actuel dans le tableau de sprites
-    private float timeElapsed; // temps écoulé depuis le début du changement de sprite
-    private bool isChangingSprite; // flag indiquant si le changement de sprite est en cours
+    public float timeInterval = 0.08f;
+    public float totalTime = 2.5f; 
+    private int currentSpriteIndex; 
+    private float timeElapsed; 
+    private bool isChangingSprite; 
 
     int randomID;
 
+    private void OnEnable()
+    {
+        initScreen();
+    }
 
-    // Start is called before the first frame update
-    void Start()
+    void initScreen()
     {
 
         WebsocketManager = GameObject.Find("WebsocketManager");
+
+        if (!GameData.isFirstMinigame) WebsocketManager.GetComponent<WebsocketManager>().changeScreenForEveryone("DashboardCanvas");
+
         bool isHost = GameData.isHost;
         if (isHost)
         {
@@ -54,14 +61,11 @@ public class FirstMinigameAnimation : MonoBehaviour
         mySequence.Append(OkButton.transform.DOLocalMoveY(-740f, 0.8f).SetDelay(-0.2f));
 
         OkButton.GetComponent<Button>().onClick.AddListener(onBtnClick);
-
-
     }
 
     public void onBtnClick()
     {
         Sequence test = DOTween.Sequence();
-        // Add a movement tween at the beginning
         test.Append(OkButton.transform.DOLocalMoveY(-715f, 0.2f));
         test.Append(OkButton.transform.DOLocalMoveY(-1150, 0.3f)).OnComplete(()=> { WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(randomID.ToString()); });
         
@@ -78,10 +82,8 @@ public class FirstMinigameAnimation : MonoBehaviour
         ChangeSpriteOverTime();
     }
 
-    // fonction pour changer le sprite toutes les `timeInterval` secondes pendant `totalTime` secondes
     public void ChangeSpriteOverTime()
     {
-        // ne commencez pas un nouveau changement de sprite si un est déjà en cours
         if (isChangingSprite)
         {
             return;

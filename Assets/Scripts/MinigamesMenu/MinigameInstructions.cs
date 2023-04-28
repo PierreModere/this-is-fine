@@ -118,6 +118,7 @@ public class MinigameInstructions : MonoBehaviour
     public void setMinigameData()
     {
         Minigame displayedMinigame = minigamesList.Find(mg => mg.id == GameData.displayedMinigameID);
+
         if (displayedMinigame != null)
         {
             minigameTitle.GetComponent<TextMeshProUGUI>().text = displayedMinigame.title;

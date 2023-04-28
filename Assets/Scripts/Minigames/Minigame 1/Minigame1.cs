@@ -12,6 +12,7 @@ public class Minigame1 : MonoBehaviour
     public GameObject valve;
     public GameObject buttonInstruction;
     public GameObject controls;
+    public GameObject redAlert;
 
     public List<Sprite> buttonsInstructionsSprites;
     public List<GameObject> buttonsGameobjects;
@@ -68,6 +69,10 @@ public class Minigame1 : MonoBehaviour
                 valve.transform.DOMove(valvePos, 0.1f).SetAutoKill(false);
             });
 
+            redAlert.GetComponent<Image>().DOFade(0.25f,0.1f).OnComplete(() => {
+                redAlert.GetComponent<Image>().DOFade(0, 0.2f);
+            });
+
             foreach (Transform child in GameObject.Find("BackgroundCanvas").transform)
             {
                 Vector3 defaultPos = child.position;
@@ -92,16 +97,21 @@ public class Minigame1 : MonoBehaviour
 
     void endMinigame()
     {
+        MinigameUI.endMinigame();
+    }
+
+    public void finishMinigame()
+    {
         foreach (GameObject button in buttonsGameobjects)
         {
             button.GetComponent<Button>().interactable = false;
         }
         buttonInstruction.GetComponent<Image>().DOFade(0f, 0.2f);
-        MinigameUI.endMinigame();
     }
+
     void sendScore()
     {
-        if (GameData.joinedRoomCode!="")
+        if (GameData.joinedRoomCode!="" && GameData.joinedRoomCode!=null)
             WebsocketManager.GetComponent<WebsocketManager>().sendScore(playerProgressIndex);
     }
 

@@ -47,6 +47,8 @@ public class ResultsCanvas : MonoBehaviour
         }
         else
         {
+            FirstMinigameText.SetActive(false);
+
             if (GameData.minigameMode == "Battle")
             {
                 BattleText.SetActive(true);
@@ -59,6 +61,13 @@ public class ResultsCanvas : MonoBehaviour
             }
         }
         updateWinnersList();
+
+
+        if (GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().receivedMinigameTime > 1)
+        {
+            GameData.isFirstMinigame = false;
+            GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().changeScreenForEveryone("DashboardCanvas");
+        }
     }
 
     public void updateWinnersList()
