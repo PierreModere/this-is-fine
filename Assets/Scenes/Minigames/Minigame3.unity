@@ -2792,6 +2792,16 @@ MonoBehaviour:
   - {fileID: -92523172, guid: 7e2830b13b2be99429bc52594706c127, type: 3}
   goodFeedbackPrefab: {fileID: 6678758044579635928, guid: 936b002ec6d51234c89a226e936de313, type: 3}
   badFeedbackPrefab: {fileID: 3348082482859645401, guid: 26e835fbcc2aaa240b59cd9471318d4f, type: 3}
+  feedbackPositions:
+  - {x: -185, y: 300, z: 0}
+  - {x: 250, y: 300, z: 0}
+  - {x: 185, y: -300, z: 0}
+  - {x: -175, y: -300, z: 0}
+  feedbackRotation:
+  - {x: 0, y: 0, z: 20}
+  - {x: 0, y: 0, z: -20}
+  - {x: 0, y: 0, z: 20}
+  - {x: 0, y: 0, z: -20}
 --- !u!225 &1838971759
 CanvasGroup:
   m_ObjectHideFlags: 0
