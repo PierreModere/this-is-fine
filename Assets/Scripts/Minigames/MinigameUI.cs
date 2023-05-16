@@ -27,6 +27,9 @@ public class MinigameUI : MonoBehaviour
     public GameObject goodFeedbackPrefab;
     public GameObject badFeedbackPrefab;
 
+    public Vector3[] feedbackPositions = new Vector3[3];
+    public Vector3[] feedbackRotation = new Vector3[3];
+
     private GameObject WebsocketManager;
 
     void Start()
@@ -111,6 +114,10 @@ public class MinigameUI : MonoBehaviour
             case "3":
                 minigameLogic.GetComponent<Minigame3>().finishMinigame();
                 break;
+            case "4":
+                minigameLogic.GetComponent<Minigame4>().finishMinigame();
+                break;
+
         }
     }
 
@@ -193,6 +200,9 @@ public class MinigameUI : MonoBehaviour
             case "2":
                 minigameLogic.GetComponent<Minigame2>().initMinigame();
                 break;
+            case "4":
+                minigameLogic.GetComponent<Minigame4>().initMinigame();
+                break;
         }
 
     }
@@ -216,7 +226,10 @@ public class MinigameUI : MonoBehaviour
 
         Sequence feedBackAnim = DOTween.Sequence();
 
-        feedBackAnim.Append(text.transform.DOLocalMove(new Vector3(0, -100, 0), 0f));
+        int randomPosIndex = Random.Range(0, feedbackPositions.Length);
+
+        feedBackAnim.Append(text.transform.DOLocalMove(feedbackPositions[randomPosIndex], 0f));
+        feedBackAnim.Join(text.transform.DOLocalRotate(feedbackRotation[randomPosIndex], 0f));
         feedBackAnim.Append(text.transform.DOScale(1.05f, 0.1f));
         feedBackAnim.Append(text.transform.DOScale(1f, 0.1f));
         feedBackAnim.Append(text.transform.DOScale(1.1f, 0.11f).SetDelay(0.5f));

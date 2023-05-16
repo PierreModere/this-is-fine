@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Minigame1 : MonoBehaviour
 {
     int playerProgressIndex;
-    int[] indexesSuite = new int[5];
+    int[] indexesSuite = new int[25];
 
     public GameObject valve;
     public GameObject buttonInstruction;
