@@ -124,7 +124,6 @@ NavMeshSettings:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &60317868
---- !u!1 &60317868
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,12 +134,7 @@ GameObject:
   - component: {fileID: 60317871}
   - component: {fileID: 60317870}
   - component: {fileID: 60317869}
-  - component: {fileID: 60317871}
-  - component: {fileID: 60317870}
-  - component: {fileID: 60317869}
   m_Layer: 0
-  m_Name: Camera
-  m_TagString: Untagged
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,23 +142,19 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!81 &60317869
---- !u!81 &60317869
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60317868}
-  m_GameObject: {fileID: 60317868}
   m_Enabled: 1
---- !u!20 &60317870
 --- !u!20 &60317870
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60317868}
   m_GameObject: {fileID: 60317868}
   m_Enabled: 1
   serializedVersion: 2
@@ -194,9 +184,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 0
-  orthographic: 0
   orthographic size: 5
-  m_Depth: 0
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -213,13 +201,11 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &60317871
---- !u!4 &60317871
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60317868}
   m_GameObject: {fileID: 60317868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 45.42404, y: 392.2991, z: -4.82374}
