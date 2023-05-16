@@ -31,9 +31,13 @@ public class Minigame2 : MonoBehaviour
             {
                 // Duplicate contract GameObject
                 GameObject contractObject = contractsList.transform.GetChild(0).gameObject;
-
                 Instantiate(contractObject, contractObject.transform.position, Quaternion.identity, contractsList.transform);
-                Destroy(contractsList.transform.GetChild(0).gameObject);
+
+                // Destroy contract if more than 2
+                if (contractsList.transform.childCount > 2)
+                {
+                    Destroy(contractsList.transform.GetChild(0).gameObject);
+                }
 
                 // Increase player score
                 playerScore++;
