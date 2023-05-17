@@ -111,6 +111,9 @@ public class MinigameUI : MonoBehaviour
             case "1":
                 minigameLogic.GetComponent<Minigame1>().finishMinigame();
                 break;
+            case "2":
+                minigameLogic.GetComponent<Minigame2>().finishMinigame();
+                break;
             case "3":
                 minigameLogic.GetComponent<Minigame3>().finishMinigame();
                 break;

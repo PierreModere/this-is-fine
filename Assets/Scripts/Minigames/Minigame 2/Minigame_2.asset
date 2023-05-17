@@ -16,8 +16,11 @@ MonoBehaviour:
   instruction: Signe le plus de contrat possible
   id: 2
   preview: {fileID: 21300000, guid: aabad1661f340874a84230683dedeeb4, type: 3}
-  gameTime: 45
+  gameTime: 30
   cutsceneTime: 5
   hasTimer: 1
-  goodFeedbacks: []
+  goodFeedbacks:
+  - "Bien jou\xE9 !"
+  - Bonne pioche !
+  - Beau goose !
   badFeedbacks: []
