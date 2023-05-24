@@ -13,7 +13,7 @@ public class Minigame4 : MonoBehaviour
     public MinigameUI MinigameUI;
     private GameObject WebsocketManager;
 
-    public GameObject LectureGameobject;
+    public GameObject Lectern;
     public GameObject CharacterSprite;
     public GameObject DialogBox;
 
@@ -22,6 +22,7 @@ public class Minigame4 : MonoBehaviour
     List<string> shuffledList;
     int currentSentenceIndex = 0;
 
+    public List<Sprite> HandSprites;
 
     public GameObject HandPrefab;
     public List<GameObject> HandObjects;
@@ -87,7 +88,7 @@ public class Minigame4 : MonoBehaviour
     {
         Sequence speechAnim = DOTween.Sequence();
         //Zoom
-        speechAnim.Append(LectureGameobject.transform.DOScale(1.8f, 0.5f).SetEase(Ease.InElastic));
+        speechAnim.Append(Lectern.transform.DOScale(1.8f, 0.5f).SetEase(Ease.InElastic));
         //Parle
         speechAnim.Append(DialogBox.GetComponent<Image>().DOFade(1f, 0).SetDelay(0.3f));
         // Associe phrase
@@ -102,7 +103,7 @@ public class Minigame4 : MonoBehaviour
         speechAnim.Append(CharacterSprite.transform.DOScaleY(1, 0.1f));
     
         // Dézoom
-        speechAnim.Append(LectureGameobject.transform.DOScale(1f, 0.15f).SetDelay(1.5f));
+        speechAnim.Append(Lectern.transform.DOScale(1f, 0.15f).SetDelay(1.5f));
         speechAnim.Join(DialogBox.GetComponent<Image>().DOFade(0f, 0.2f));
         // Disparition bulle de texte
         speechAnim.Join(DialogBox.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().DOFade(0f, 0.2f));
@@ -127,6 +128,7 @@ public class Minigame4 : MonoBehaviour
     public void spawnHand()
     {
         GameObject hand = Instantiate(HandPrefab, transform.position, Quaternion.identity,transform);
+        hand.GetComponent<Image>().sprite = HandSprites[Random.Range(0,HandSprites.Count)];
         hand.transform.DORotate(new Vector3(0, 0, Random.Range(0, 360)), 0).OnComplete(() =>
         {
             
@@ -146,11 +148,10 @@ public class Minigame4 : MonoBehaviour
     void addDragEvent(GameObject hand)
     {
         var onDrag = new EventTrigger.Entry();
-        onDrag.eventID = EventTriggerType.Drag;
-        onDrag.callback.AddListener((data) => { removeHand((BaseEventData)data,hand); });
+        onDrag.eventID = EventTriggerType.EndDrag;
+        onDrag.callback.AddListener((data) => { removeHand(data,hand); });
 
         var trig = hand.AddComponent<EventTrigger>();
-
         trig.triggers.Add(onDrag);
 
 
@@ -161,12 +162,10 @@ public class Minigame4 : MonoBehaviour
         if (isPlaying)
         {
             Vector3 displacement = hand.transform.rotation * Vector3.right * -800f;
-
             hand.transform.DOLocalMove(displacement, 0.3f).OnComplete(() =>
             {
                 HandObjects.Remove(hand);
                 Destroy(hand);
-
                 checkHandNumber();
             });
         }
@@ -174,7 +173,7 @@ public class Minigame4 : MonoBehaviour
 
     void checkHandNumber()
     {
-        if (HandObjects.Count < 1)
+        if (HandObjects.Count == 0)
         {
             playerProgressIndex++;
             playerScore++;
@@ -193,7 +192,7 @@ public class Minigame4 : MonoBehaviour
     }
    void sendScore()
     {
-        if (GameData.joinedRoomCode != "")
+        if (GameData.joinedRoomCode != "" && GameObject.Find("Websocket") != null)
             WebsocketManager.GetComponent<WebsocketManager>().sendScore(playerScore);
     }
 

@@ -9,6 +9,8 @@ public class LobbyScreen : MonoBehaviour
 
     [SerializeField]
     private GameObject roomPincodeText;
+    [SerializeField]
+    private GameObject roomPincodeTextOutline;
     private GameObject WebsocketManager;
     string pincode;
 
@@ -16,7 +18,8 @@ public class LobbyScreen : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> playersListGameObject;
-
+    [SerializeField]
+    private List<Sprite> playersNamesSprites;
     void Start()
     {
         updatePlayersListInLobby();
@@ -25,7 +28,8 @@ public class LobbyScreen : MonoBehaviour
     public void setPincode(string getPincode)
     {
         pincode = getPincode;
-        roomPincodeText.GetComponent<TextMeshProUGUI>().text = "Room " + pincode;
+        roomPincodeText.GetComponent<TextMeshProUGUI>().text = pincode;
+        roomPincodeTextOutline.GetComponent<TextMeshProUGUI>().text = pincode;
 
     }
 
@@ -51,8 +55,13 @@ public class LobbyScreen : MonoBehaviour
                 {
                     transform.Find("Ok").gameObject.SetActive(false);
                 }
-                if (GameData.playerID == playersList[i].id.ToString())
-                    playerNumber.GetComponent<PlayerNumber>().isLocalClient = true;
+                if (GameData.playerID == playersList[i].id.ToString()) { 
+                    playerNumber.GetComponent<Image>().sprite = playersNamesSprites.Find(spr => spr.name == "player"+ GameData.playerID);
+                    playerNumber.transform.Find("PlayerNumber").gameObject.GetComponent<TextMeshProUGUI>().color = Color.white;
+                    playerNumber.transform.Find("PlayerName").gameObject.GetComponent<TextMeshProUGUI>().color = Color.white;
+                }
+
+                //playerNumber.GetComponent<PlayerNumber>().isLocalClient = true;
             }
 
         }

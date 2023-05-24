@@ -16,10 +16,15 @@ public class CharactersSelection : MonoBehaviour
     public GameObject CancelButton;
     public GameObject OkButton;
 
+
     [SerializeField]
     private List<GameObject> selectedCharactersGameobject;
     [SerializeField]
+    private List<Sprite> framesSprites;
+    [SerializeField]
     private List<Sprite> charactersSprites;
+    [SerializeField]
+    private List<Sprite> selectedCharactersSprites;
 
     void Start()
     {
@@ -117,6 +122,7 @@ public class CharactersSelection : MonoBehaviour
                 selectedCharacterFrame.SetActive(true);
 
                 CharactersGrid.Find(playersList[i].selectedCharacter).gameObject.GetComponent<Button>().interactable = false;
+                CharactersGrid.Find(playersList[i].selectedCharacter).gameObject.GetComponent<Image>().sprite = selectedCharactersSprites.Find(sprite => sprite.name == playersList[i].selectedCharacter.ToString() + "_selected");
 
 
                 switch (playersList[i].id.ToString())
@@ -137,13 +143,14 @@ public class CharactersSelection : MonoBehaviour
                 if (playersList[i].selectedCharacter == GameData.selectedCharacter)
                 {
                     selectedCharacterFrame.transform.Find("LocalSelected").gameObject.SetActive(true);
-                    selectedCharacterFrame.transform.Find("LocalSelected").gameObject.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "SelectedFrame" + playersList[i].id.ToString());
+                    selectedCharacterFrame.transform.Find("LocalSelected").gameObject.GetComponent<Image>().sprite = framesSprites.Find(spr => spr.name == "SelectedFrame" + playersList[i].id.ToString());
                     if (!selectedCharacterFrame.transform.Find("LocalSelected").gameObject.activeSelf)
                         selectedCharacterFrame.transform.Find("LocalSelected").DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.1f).OnComplete(() => { selectedCharacterFrame.transform.Find("LocalSelected").DOScale(new Vector3(1f, 1f, 1f), 0.1f); });
 
                 }
                 else
                 {
+                    selectedCharacterFrame.transform.Find("LocalSelected").gameObject.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "SelectedFrame" + playersList[i].id.ToString());
                     selectedCharacterFrame.transform.Find("LocalSelected").gameObject.SetActive(false);
                 }
             }
