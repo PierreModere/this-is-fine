@@ -18,13 +18,17 @@ public class CharactersSelection : MonoBehaviour
 
 
     [SerializeField]
-    private List<GameObject> selectedCharactersGameobject;
+    private List<GameObject> charactersButtons;
+
     [SerializeField]
-    private List<Sprite> framesSprites;
+    private List<Sprite> selectedOutlinesSprites;
+
     [SerializeField]
     private List<Sprite> charactersSprites;
     [SerializeField]
     private List<Sprite> selectedCharactersSprites;
+    [SerializeField]
+    private List<Sprite> playerNumbersSprites;
 
     void Start()
     {
@@ -105,9 +109,13 @@ public class CharactersSelection : MonoBehaviour
         hasSelectedCharacter();
         checkPlayersReadyState();
 
-        foreach (GameObject selectedCharacter in selectedCharactersGameobject)
+       foreach (GameObject button in charactersButtons)
         {
-            selectedCharacter.SetActive(false);
+            button.GetComponent<Image>().sprite = selectedOutlinesSprites.Find(spr => spr.name == "characterBackgroundCircle");
+            button.transform.Find("Mask").Find("Sprite").gameObject.GetComponent<Image>().sprite = charactersSprites.Find(sprite => sprite.name == button.name + "_idle");
+
+            button.transform.Find("PlayerNumber").gameObject.SetActive(false);
+
         }
 
         Transform CharactersGrid = transform.Find("CharactersGrid");
@@ -117,42 +125,17 @@ public class CharactersSelection : MonoBehaviour
 
             if (playersList[i].selectedCharacter != "")
             {
-                GameObject selectedCharacterFrame = selectedCharactersGameobject.Find(g => g.name == playersList[i].selectedCharacter).gameObject;
-                selectedCharacterFrame.transform.Find("PlayerColor").Find("PlayerNumber").GetComponent<TextMeshProUGUI>().text = playersList[i].id.ToString();
-                selectedCharacterFrame.SetActive(true);
+                GameObject selectedCharacter = charactersButtons.Find(g => g.name == playersList[i].selectedCharacter).gameObject;
+                selectedCharacter.GetComponent<Image>().sprite = selectedOutlinesSprites.Find(spr => spr.name == "selectedPlayer" + playersList[i].id);
 
-                CharactersGrid.Find(playersList[i].selectedCharacter).gameObject.GetComponent<Button>().interactable = false;
-                CharactersGrid.Find(playersList[i].selectedCharacter).gameObject.GetComponent<Image>().sprite = selectedCharactersSprites.Find(sprite => sprite.name == playersList[i].selectedCharacter.ToString() + "_selected");
+                GameObject PlayerNumber = selectedCharacter.transform.Find("PlayerNumber").gameObject;
+                PlayerNumber.GetComponent<Image>().sprite = playerNumbersSprites.Find(spr => spr.name == "player" + playersList[i].id);
 
+                GameObject Sprite = selectedCharacter.transform.Find("Mask").Find("Sprite").gameObject;
+                Sprite.GetComponent<Image>().sprite = selectedCharactersSprites.Find(sprite => sprite.name == playersList[i].selectedCharacter.ToString() + "_selected");
+                if (!PlayerNumber.activeInHierarchy) Sprite.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.1f).OnComplete(() => { Sprite.transform.DOScale(new Vector3(1f, 1f, 1f), 0.1f); });
 
-                switch (playersList[i].id.ToString())
-                {
-                    case "1":
-                        selectedCharacterFrame.transform.Find("PlayerColor").GetComponent<Image>().color = new Color32(255, 0, 0, 255);
-                        break;
-                    case "2":
-                        selectedCharacterFrame.transform.Find("PlayerColor").GetComponent<Image>().color = new Color32(0, 0, 255, 255);
-                        break;
-                    case "3":
-                        selectedCharacterFrame.transform.Find("PlayerColor").GetComponent<Image>().color = new Color32(0, 255, 0, 255);
-                        break;
-                    case "4":
-                        selectedCharacterFrame.transform.Find("PlayerColor").GetComponent<Image>().color = new Color32(255, 255, 0, 255);
-                        break;
-                }
-                if (playersList[i].selectedCharacter == GameData.selectedCharacter)
-                {
-                    selectedCharacterFrame.transform.Find("LocalSelected").gameObject.SetActive(true);
-                    selectedCharacterFrame.transform.Find("LocalSelected").gameObject.GetComponent<Image>().sprite = framesSprites.Find(spr => spr.name == "SelectedFrame" + playersList[i].id.ToString());
-                    if (!selectedCharacterFrame.transform.Find("LocalSelected").gameObject.activeSelf)
-                        selectedCharacterFrame.transform.Find("LocalSelected").DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.1f).OnComplete(() => { selectedCharacterFrame.transform.Find("LocalSelected").DOScale(new Vector3(1f, 1f, 1f), 0.1f); });
-
-                }
-                else
-                {
-                    selectedCharacterFrame.transform.Find("LocalSelected").gameObject.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "SelectedFrame" + playersList[i].id.ToString());
-                    selectedCharacterFrame.transform.Find("LocalSelected").gameObject.SetActive(false);
-                }
+                PlayerNumber.SetActive(true);
             }
         }
 

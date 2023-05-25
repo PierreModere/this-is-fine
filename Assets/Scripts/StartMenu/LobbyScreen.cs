@@ -9,8 +9,6 @@ public class LobbyScreen : MonoBehaviour
 
     [SerializeField]
     private GameObject roomPincodeText;
-    [SerializeField]
-    private GameObject roomPincodeTextOutline;
     private GameObject WebsocketManager;
     string pincode;
 
@@ -29,8 +27,6 @@ public class LobbyScreen : MonoBehaviour
     {
         pincode = getPincode;
         roomPincodeText.GetComponent<TextMeshProUGUI>().text = pincode;
-        roomPincodeTextOutline.GetComponent<TextMeshProUGUI>().text = pincode;
-
     }
 
     public void updatePlayersListInLobby()
