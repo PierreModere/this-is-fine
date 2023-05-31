@@ -143,8 +143,9 @@ public class MinigameUI : MonoBehaviour
 
                 GameObject playerCharacter = playerGameObject.transform.Find("PlayerCharacter").gameObject;
                 if (playerCharacter.GetComponent<Image>().sprite == null)
-                    playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == playersList[i].selectedCharacter);
+                    playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == playersList[i].selectedCharacter+"_score_first");
 
+                Debug.Log(playersList[i].selectedCharacter + "_score_first");
                 GameObject playerScore = playerGameObject.transform.Find("PlayerScore").gameObject;
                 if (playersList[i].score != null && playersList[i].score != "")
                     playerScore.GetComponent<TextMeshProUGUI>().text = playersList[i].score;

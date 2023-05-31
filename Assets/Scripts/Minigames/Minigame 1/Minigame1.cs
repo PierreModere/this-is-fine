@@ -6,32 +6,41 @@ using UnityEngine.UI;
 
 public class Minigame1 : MonoBehaviour
 {
-    int playerProgressIndex;
-    int[] indexesSuite = new int[25];
-
-    public GameObject valve;
-    public GameObject buttonInstruction;
-    public GameObject controls;
-    public GameObject redAlert;
-
-    public List<Sprite> buttonsInstructionsSprites;
-    public List<GameObject> buttonsGameobjects;
-
-    public GameObject FeedbackTextPrefab;
-
     public MinigameUI MinigameUI;
     public GameData GameData;
     private GameObject WebsocketManager;
 
-    public bool isMultiPressed=false;
-    Vector3 valvePos;
+    int playerProgressIndex;
+    int[] indexesSuite = new int[25];
+
+    public GameObject valve;
+    public GameObject valveShadow;
+
+    public GameObject goopFlow;
+    public GameObject backPipe;
+
+    public GameObject foregroundObjects;
+    public GameObject backgroundObjects;
+
+    public GameObject buttonInstruction;
+    public GameObject controls;
+
+    public List<Sprite> buttonsInstructionsSprites;
+    public List<GameObject> buttonsGameobjects;
+
+    private bool isMultiPressed=false;
+
+    public float rotateAmount = 0.1f; // Amplitude du mouvement de secousse
+    public float rotateSpeed = 20;
+    public float wiggleAmount = 0.1f;
+    public float wiggleSpeed = 5f; // Vitesse de la secousse
+    public float wiggleInterval = 0.01f; // Intervalle de temps entre chaque secousse
+
+    private Vector3 backPipeRotation; // Position d'origine de l'objet
 
     public void initMinigame()
     {
         WebsocketManager = GameObject.Find("WebsocketManager");
-
-        valvePos = valve.transform.position;
-
 
         playerProgressIndex = 0;
         for (int i = 0; i < indexesSuite.Length; i++)
@@ -39,10 +48,48 @@ public class Minigame1 : MonoBehaviour
             var randomIndex = Random.Range(0, buttonsInstructionsSprites.Count);
             indexesSuite[i] = randomIndex;
         }
+        backPipeRotation = goopFlow.transform.localRotation.eulerAngles;
+
+        InvokeRepeating("backPipeAnim", wiggleInterval, wiggleInterval);
+        InvokeRepeating("frontPipesAnims", wiggleInterval, wiggleInterval);
+
         activeButtons();
         updateInstruction();
         buttonInstruction.GetComponent<Image>().DOFade(1f, 0.1f);
     }
+
+    private void backPipeAnim()
+    {
+        // Calcule un décalage de secousse aléatoire dans les axes X, Y et Z
+        float offsetX = Mathf.Sin(Time.time * rotateSpeed) * rotateAmount;
+        float offsetZ = Mathf.Sin((Time.time + 0.5f) * rotateSpeed) * rotateAmount;
+
+        // Applique la secousse en ajoutant le décalage à la position d'origine de l'objet
+        backPipe.transform.DORotate(backPipeRotation + new Vector3(0, 0, offsetZ),0);
+        backPipe.transform.Find("PipeEnd").DORotate(backPipeRotation + new Vector3(0, 0, Random.Range(-1.5f,-1f)*offsetZ), 0);
+        GameObject.Find("GoopFlow").transform.DOLocalMoveX(1.7f - offsetX, 0);
+
+    }
+
+    private void frontPipesAnims() {
+        float offsetX = Mathf.Sin(Time.time * wiggleSpeed) * wiggleAmount;
+        float offsetY = Mathf.Sin(Time.time * wiggleSpeed) * wiggleAmount;
+
+        foreach (Transform pipe in foregroundObjects.transform.Find("BackgroundPipes"))
+        {
+            pipe.DOLocalMove(pipe.localPosition + new Vector3(offsetX*Random.Range(-1f,1), offsetY*Random.Range(-1f, 1), 0), 0);
+        }
+        foreach (Transform pipe in foregroundObjects.transform.Find("MiddlegroundPipes"))
+        {
+            pipe.DOLocalMove(pipe.localPosition + new Vector3(offsetX * Random.Range(-1f, 1), offsetY * Random.Range(-1f, 1), 0), 0);
+        }
+        foreach (Transform pipe in foregroundObjects.transform.Find("ForegroundPipes"))
+        {
+            pipe.DOLocalMove(pipe.localPosition + new Vector3(offsetX * Random.Range(-1f, 1), offsetY * Random.Range(-1f, 1), 0), 0);
+        }
+
+    }
+
     void updateInstruction()
     {
         buttonInstruction.GetComponent<Image>().sprite = buttonsInstructionsSprites[indexesSuite[playerProgressIndex]];
@@ -52,7 +99,13 @@ public class Minigame1 : MonoBehaviour
     {
         if (indexesSuite[playerProgressIndex] == index && !isMultiPressed)
         {
-            valve.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z - 45f), 0.2f);
+
+            Sequence valveRotation = DOTween.Sequence();
+
+            valveRotation.Append(valve.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z - 45f), 0.2f));
+            valveRotation.Join(valveShadow.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z - 45f), 0.2f));
+            valveRotation.Join(goopFlow.transform.DOScaleX(goopFlow.transform.localScale.x + 0.03f, 0.3f));
+
             playerProgressIndex++;
             sendScore();
             MinigameUI.displayFeedback(true);
@@ -63,30 +116,16 @@ public class Minigame1 : MonoBehaviour
         }
         else if (indexesSuite[playerProgressIndex] != index && !isMultiPressed)
         {
+            //finishMinigame();
             MinigameUI.displayFeedback(false);
 
-            valve.transform.DOShakePosition(0.3f, 20f).OnComplete(() => {
-                valve.transform.DOMove(valvePos, 0.1f).SetAutoKill(false);
-            });
-
-            redAlert.GetComponent<Image>().DOFade(0.25f,0.1f).OnComplete(() => {
-                redAlert.GetComponent<Image>().DOFade(0, 0.2f);
-            });
-
-            foreach (Transform child in GameObject.Find("BackgroundCanvas").transform)
-            {
-                Vector3 defaultPos = child.position;
-                child.DOShakePosition(0.3f, 15f).OnComplete(()=> {
-                    child.DOMove(defaultPos, 0.1f);
-                });
-            }
         }
     }
 
     void activeButtons()
     {
-        controls.transform.DOLocalMoveY(-1348, 0f);
-        controls.transform.DOLocalMoveY(-585, 0.4f).OnComplete(() =>
+        controls.SetActive(true);
+        controls.transform.DOLocalMoveY(-260, 0.4f).From().OnComplete(() =>
         {
             foreach (GameObject button in buttonsGameobjects)
             {
@@ -106,7 +145,27 @@ public class Minigame1 : MonoBehaviour
         {
             button.GetComponent<Button>().interactable = false;
         }
-        buttonInstruction.GetComponent<Image>().DOFade(0f, 0.2f);
+
+        Sequence endCutscene = DOTween.Sequence();
+
+        endCutscene.Append(buttonInstruction.GetComponent<Image>().DOFade(0f, 0.2f));
+        endCutscene.Join(foregroundObjects.transform.DOScale(1.46f, 0.6f).SetEase(Ease.InOutSine));
+        endCutscene.Join(backgroundObjects.transform.DOScale(1.3f, 0.8f).SetEase(Ease.InOutSine));
+
+        endCutscene.Join(controls.transform.DOLocalMoveY(-260, 0.5f).SetEase(Ease.InOutSine));
+
+        foreach (Transform element in backgroundObjects.transform)
+        {
+            if (element.gameObject.GetComponent<Image>() != null && element.Find("Blurry") != null)
+            {
+                element.gameObject.GetComponent<Image>().DOFade(1f, 0.5f);
+                element.Find("Blurry").gameObject.GetComponent<Image>().DOFade(0f, 0.5f);
+                element.Find("PipeEnd").gameObject.GetComponent<Image>().DOFade(1f, 0.5f);
+                element.Find("PipeEnd").Find("Blurry").gameObject.GetComponent<Image>().DOFade(1f, 0.5f);
+            }
+        }
+
+    
     }
 
     void sendScore()

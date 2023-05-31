@@ -15,7 +15,7 @@ MonoBehaviour:
   title: "Conf\xE9rence expresse"
   instruction: 
   id: 4
-  preview: {fileID: 0}
+  preview: {fileID: 914377660, guid: a1f744116ae6b744f8cb6a5e49ed5b33, type: 3}
   gameTime: 0
   cutsceneTime: 2
   hasTimer: 0
