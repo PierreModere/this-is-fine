@@ -18,7 +18,7 @@ public class Minigame3 : MonoBehaviour
     public GameObject CartridgesLine;
     public GameObject cartridgePrefab;
     private GameObject currentCartridge;
-    int moveOffset = 434;
+    int moveOffset = 500;
     int inkLevelMax = 216;
 
     int playerProgressIndex;
@@ -37,6 +37,8 @@ public class Minigame3 : MonoBehaviour
     private float interval = 0.04f;
     public float inkIncreaseLevel = 2f;
 
+    Animator beltAnimator;
+
 
       // Update is called once per frame
     void Update()
@@ -53,6 +55,8 @@ public class Minigame3 : MonoBehaviour
     public void initMinigame()
     {
         WebsocketManager = GameObject.Find("WebsocketManager");
+
+        beltAnimator = transform.Find("MovingBelt").gameObject.GetComponent<Animator>();
 
         playerProgressIndex = 0;
         playerScore = 0;
@@ -88,11 +92,14 @@ public class Minigame3 : MonoBehaviour
 
     void moveLineAnimation()
     {
-        Transform LineTransform = CartridgesLine.transform; 
+        Transform LineTransform = CartridgesLine.transform;
+
+        beltAnimator.Play("movingBelt");
 
         Sequence lineMoveAnim = DOTween.Sequence();
-        lineMoveAnim.Append(LineTransform.transform.DOLocalMoveX(LineTransform.localPosition.x - moveOffset, 0.3f)).OnComplete(() =>
+        lineMoveAnim.Append(LineTransform.transform.DOLocalMoveX(LineTransform.localPosition.x - moveOffset, 0.5f)).OnComplete(() =>
         {
+            beltAnimator.Play("notMovingBelt");
             pistonDownAnimation();
         });
     }
@@ -128,6 +135,7 @@ public class Minigame3 : MonoBehaviour
         fillButton.GetComponent<Button>().interactable = false;
 
         GameObject cartridge = Instantiate(cartridgePrefab, new Vector3(0, 0, 0), Quaternion.identity, CartridgesLine.transform);
+        cartridge.GetComponent<RectTransform>().sizeDelta = new Vector2(391, 337);
         cartridge.name = "Cartridge" + (playerProgressIndex + 2);
 
         cartridgesList.Add(cartridge);
@@ -140,7 +148,7 @@ public class Minigame3 : MonoBehaviour
     void fillUpCurrentCartridge()
     {
         RectTransform inkLevel = currentCartridge.transform.Find("InkLevelMask").Find("InkLevel").gameObject.GetComponent<RectTransform>();
-        inkLevel.sizeDelta = new Vector2(43, inkLevel.sizeDelta.y+inkIncreaseLevel);
+        inkLevel.sizeDelta = new Vector2(116, inkLevel.sizeDelta.y+inkIncreaseLevel);
         if (inkLevel.sizeDelta.y>=inkLevelMax)
         {
             if (isAbleToFill) addNewCartridge();
