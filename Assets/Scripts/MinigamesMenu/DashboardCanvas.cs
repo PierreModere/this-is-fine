@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,9 @@ public class DashboardCanvas : MonoBehaviour
 
     public GameObject DashboardSubtitle;
 
+
+
+
     private GameObject WebsocketManager;
 
     bool isHost;
@@ -28,12 +32,12 @@ public class DashboardCanvas : MonoBehaviour
 
         if (GameData.isHost)
         {
+
             BattleButton.GetComponent<Button>().interactable = true;
             EndGameButton.GetComponent<Button>().interactable = true;
 
             BattleButton.GetComponent<Button>().onClick.AddListener(() => { buttonOnClick("Battle", BattleButton); });
             EndGameButton.GetComponent<Button>().onClick.AddListener(() => { buttonOnClick("EndGame", EndGameButton); });
-
         }
 
         DuelButton.GetComponent<Button>().onClick.AddListener(() => { buttonOnClick("Duel", DuelButton); });
@@ -44,6 +48,8 @@ public class DashboardCanvas : MonoBehaviour
     {
         toggleBottomButtons();
         updateSubtitle();
+
+
     }
 
     void toggleBottomButtons()

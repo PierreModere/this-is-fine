@@ -22,6 +22,8 @@ public class Minigame1 : MonoBehaviour
     public GameObject foregroundObjects;
     public GameObject backgroundObjects;
 
+    public List<GameObject> allBlurryForegroundObj;
+
     public GameObject buttonInstruction;
     public GameObject controls;
 
@@ -38,6 +40,13 @@ public class Minigame1 : MonoBehaviour
 
     private Vector3 backPipeRotation; // Position d'origine de l'objet
 
+    private void Start()
+    {
+        backPipeRotation = goopFlow.transform.localRotation.eulerAngles;
+
+        InvokeRepeating("backPipeAnim", wiggleInterval, wiggleInterval);
+        InvokeRepeating("frontPipesAnims", wiggleInterval, wiggleInterval);
+    }
     public void initMinigame()
     {
         WebsocketManager = GameObject.Find("WebsocketManager");
@@ -48,11 +57,7 @@ public class Minigame1 : MonoBehaviour
             var randomIndex = Random.Range(0, buttonsInstructionsSprites.Count);
             indexesSuite[i] = randomIndex;
         }
-        backPipeRotation = goopFlow.transform.localRotation.eulerAngles;
-
-        InvokeRepeating("backPipeAnim", wiggleInterval, wiggleInterval);
-        InvokeRepeating("frontPipesAnims", wiggleInterval, wiggleInterval);
-
+  
         activeButtons();
         updateInstruction();
         buttonInstruction.GetComponent<Image>().DOFade(1f, 0.1f);
@@ -99,7 +104,6 @@ public class Minigame1 : MonoBehaviour
     {
         if (indexesSuite[playerProgressIndex] == index && !isMultiPressed)
         {
-
             Sequence valveRotation = DOTween.Sequence();
 
             valveRotation.Append(valve.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z - 45f), 0.2f));
@@ -116,7 +120,6 @@ public class Minigame1 : MonoBehaviour
         }
         else if (indexesSuite[playerProgressIndex] != index && !isMultiPressed)
         {
-            //finishMinigame();
             MinigameUI.displayFeedback(false);
 
         }
@@ -161,11 +164,19 @@ public class Minigame1 : MonoBehaviour
                 element.gameObject.GetComponent<Image>().DOFade(1f, 0.5f);
                 element.Find("Blurry").gameObject.GetComponent<Image>().DOFade(0f, 0.5f);
                 element.Find("PipeEnd").gameObject.GetComponent<Image>().DOFade(1f, 0.5f);
-                element.Find("PipeEnd").Find("Blurry").gameObject.GetComponent<Image>().DOFade(1f, 0.5f);
+                element.Find("PipeEnd").Find("Blurry").gameObject.GetComponent<Image>().DOFade(0f, 0.5f);
             }
         }
 
-    
+        foreach (GameObject element in allBlurryForegroundObj)
+        {
+            if (element.GetComponent<Image>() != null && element.transform.Find("Blurry") != null)
+            {
+                element.GetComponent<Image>().DOFade(0f, 0.6f);
+                element.transform.Find("Blurry").gameObject.GetComponent<Image>().DOFade(1f, 0.4f);
+            }
+        }
+
     }
 
     void sendScore()

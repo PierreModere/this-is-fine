@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using DG.Tweening;
+
 
 using static WebsocketManager;
 
@@ -22,6 +24,15 @@ public class ResultsCanvas : MonoBehaviour
 
     public List<Sprite> charactersSprites;
 
+    public GameObject Bandeau;
+    public GameObject NewsInstruction;
+    public GameObject NewsCardName;
+    public GameObject NewsCardCase;
+
+    public List<NewsCard> NewsCardsList;
+    List<NewsCard> newsCards;
+    int currentNewsCardIndex = 0;
+
 
     void Start()
     {
@@ -30,6 +41,10 @@ public class ResultsCanvas : MonoBehaviour
 
     void initScreen()
     {
+        if (newsCards == null) shuffleNewsCards();
+
+        displayNewsCard();
+
         if ((GameData.isHost && GameData.minigameMode != "Duel") || GameData.isDuelHost)
         {
             okButton.SetActive(true);
@@ -138,5 +153,55 @@ public class ResultsCanvas : MonoBehaviour
     public void returnToDashboard()
     {
         GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().returnToDashboard();
+    }
+
+    public void displayNewsCard()
+    {
+
+        if (GameData.isHost)
+        {
+            NewsCardName.GetComponent<Image>().sprite = GetRandomNewsCard().newsTitle;
+            NewsCardCase.GetComponent<TextMeshProUGUI>().text = "sur " + GetRandomNewsCard().boardCase;
+            Bandeau.SetActive(true);
+
+            Sequence newsAlert = DOTween.Sequence();
+
+            newsAlert.Append(Bandeau.transform.DOLocalMoveX(1080, 0.25f).SetEase(Ease.InOutBounce).From().OnComplete(() => { NewsCardName.SetActive(true); }));
+            newsAlert.Append(NewsInstruction.GetComponent<TextMeshProUGUI>().DOFade(0,0.2f).From());
+            newsAlert.Append(NewsCardName.transform.DOScale(0.8f,0.35f).SetEase(Ease.OutElastic).From());
+
+        }
+
+    }
+
+    public void hideNewsCard()
+    {
+        Bandeau.SetActive(false);
+        NewsCardName.SetActive(false);
+
+   }
+
+    void shuffleNewsCards()
+    {
+        System.Random random = new System.Random();
+
+        newsCards = new List<NewsCard>(NewsCardsList);
+
+        int n = newsCards.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = random.Next(n + 1);
+            NewsCard value = newsCards[k];
+            newsCards[k] = newsCards[n];
+            newsCards[n] = value;
+        }
+    }
+
+    NewsCard GetRandomNewsCard()
+    {
+        NewsCard sentence = newsCards[currentNewsCardIndex];
+        currentNewsCardIndex = (currentNewsCardIndex + 1) % newsCards.Count;
+        return sentence;
     }
 }
