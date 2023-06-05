@@ -18,8 +18,8 @@ MonoBehaviour:
     pas trop non plus, on n\u2019est pas une \u0153uvre de charit\xE9."
   id: 3
   preview: {fileID: 21300000, guid: fcb4a373db1998a4e8ff13900f8a9e84, type: 3}
-  gameTime: 5
-  cutsceneTime: 0
+  gameTime: 45
+  cutsceneTime: 5
   hasTimer: 1
   goodFeedbacks:
   - Parfait !

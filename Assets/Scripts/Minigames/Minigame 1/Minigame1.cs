@@ -40,6 +40,9 @@ public class Minigame1 : MonoBehaviour
 
     private Vector3 backPipeRotation; // Position d'origine de l'objet
 
+    public List <Sprite> TrashSprites;
+    public GameObject trashPrefab;
+
     private void Start()
     {
         backPipeRotation = goopFlow.transform.localRotation.eulerAngles;
@@ -104,10 +107,11 @@ public class Minigame1 : MonoBehaviour
     {
         if (indexesSuite[playerProgressIndex] == index && !isMultiPressed)
         {
+            spawnTrash();
             Sequence valveRotation = DOTween.Sequence();
 
-            valveRotation.Append(valve.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z - 45f), 0.2f));
-            valveRotation.Join(valveShadow.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z - 45f), 0.2f));
+            valveRotation.Append(valve.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z - 45f), 0.3f).SetEase(Ease.InOutBack));
+            valveRotation.Join(valveShadow.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z - 45f), 0.3f).SetEase(Ease.InOutBack));
             valveRotation.Join(goopFlow.transform.DOScaleX(goopFlow.transform.localScale.x + 0.03f, 0.3f));
 
             playerProgressIndex++;
@@ -120,6 +124,7 @@ public class Minigame1 : MonoBehaviour
         }
         else if (indexesSuite[playerProgressIndex] != index && !isMultiPressed)
         {
+            //finishMinigame();
             MinigameUI.displayFeedback(false);
 
         }
@@ -148,12 +153,12 @@ public class Minigame1 : MonoBehaviour
         {
             button.GetComponent<Button>().interactable = false;
         }
-
         Sequence endCutscene = DOTween.Sequence();
 
-        endCutscene.Append(buttonInstruction.GetComponent<Image>().DOFade(0f, 0.2f));
+        endCutscene.Append(buttonInstruction.GetComponent<Image>().DOFade(0f, 0.3f));
         endCutscene.Join(foregroundObjects.transform.DOScale(1.46f, 0.6f).SetEase(Ease.InOutSine));
         endCutscene.Join(backgroundObjects.transform.DOScale(1.3f, 0.8f).SetEase(Ease.InOutSine));
+
 
         endCutscene.Join(controls.transform.DOLocalMoveY(-260, 0.5f).SetEase(Ease.InOutSine));
 
@@ -176,7 +181,18 @@ public class Minigame1 : MonoBehaviour
                 element.transform.Find("Blurry").gameObject.GetComponent<Image>().DOFade(1f, 0.4f);
             }
         }
+    }
 
+    void spawnTrash()
+    {
+        GameObject trash = Instantiate(trashPrefab, new Vector3(0, 0, 0), Quaternion.identity, backgroundObjects.transform);
+        trash.transform.localPosition = new Vector3(Random.Range(-12,18), 80, 0);
+        trash.GetComponent<Image>().sprite = TrashSprites[Random.Range(0, TrashSprites.Count)];
+        trash.transform.SetSiblingIndex(1);
+        Sequence falling = DOTween.Sequence();
+
+        falling.Append(trash.transform.DORotate(new Vector3(0, 0, Random.Range(-360, 360)), 1f));
+        falling.Join(trash.transform.DOLocalMoveY(-130,1.8f).SetEase(Ease.InOutSine).OnComplete(() => { Destroy(trash); }));
     }
 
     void sendScore()

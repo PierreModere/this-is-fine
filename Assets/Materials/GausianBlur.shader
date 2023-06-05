@@ -37,7 +37,7 @@ Shader "Custom/BlurGaussian" {
             fixed4 frag(v2f i) : SV_Target {
                 fixed4 color = tex2D(_MainTex, i.uv);
                 fixed4 blurredColor = fixed4(0, 0, 0, 0);
-                float blurSize = _BlurSize*10;
+                float blurSize = _BlurSize;
                 float2 texelSize = 1.0 / _ScreenParams.xy;
  
                 // Calculer le flou gaussien en utilisant un kernel

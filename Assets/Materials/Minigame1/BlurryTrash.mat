@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BackgroundBlur
+  m_Name: BlurryTrash
   m_Shader: {fileID: 4800000, guid: eae540ff54323934f9672342d344d4a9, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
