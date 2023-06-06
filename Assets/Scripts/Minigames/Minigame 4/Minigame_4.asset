@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ea15ad910fcfd43a585cf6076f65ea, type: 3}
   m_Name: Minigame_4
   m_EditorClassIdentifier: 
-  title: "Conf\xE9rence expresse"
-  instruction: 
+  title: "Pol\xE9-mic "
+  instruction: "D\xE9barasse toi de tes d\xE9tracteurs le plus vite !"
   id: 4
   preview: {fileID: 914377660, guid: a1f744116ae6b744f8cb6a5e49ed5b33, type: 3}
   gameTime: 0

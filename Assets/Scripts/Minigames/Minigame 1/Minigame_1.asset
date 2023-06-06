@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ea15ad910fcfd43a585cf6076f65ea, type: 3}
   m_Name: Minigame_1
   m_EditorClassIdentifier: 
-  title: La valve a mis le temps
+  title: "Tout-\xE0-l'\xE9gout"
   instruction: "Reste appuyer n\u2019importe o\xF9 sur l\u2019\xE9cran pour remplir
     la cartouche. Rel\xE2che lorsque tu as termin\xE9 pour passer \xE0 la suivante."
   id: 1

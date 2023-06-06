@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BlurryTrash
-  m_Shader: {fileID: 4800000, guid: eae540ff54323934f9672342d344d4a9, type: 3}
+  m_Shader: {fileID: 4800000, guid: fee4bbe84fbf74345982982fa86f58e0, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -59,8 +59,13 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Stencil:
+        m_Texture: {fileID: 2800000, guid: 60ea892e224b5094390be7a8066aeebc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Alpha: 1
     - _BlurSize: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
@@ -69,12 +74,14 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _KernelSize: 4.8
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Spread: 5
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1

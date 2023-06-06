@@ -193,6 +193,7 @@ public class Minigame1 : MonoBehaviour
 
         falling.Append(trash.transform.DORotate(new Vector3(0, 0, Random.Range(-360, 360)), 1f));
         falling.Join(trash.transform.DOLocalMoveY(-130,1.8f).SetEase(Ease.InOutSine).OnComplete(() => { Destroy(trash); }));
+        falling.Join(trash.GetComponent<Image>().DOFade(0f, 0.3f).SetDelay(1.2f));
     }
 
     void sendScore()

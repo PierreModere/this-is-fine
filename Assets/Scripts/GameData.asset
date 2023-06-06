@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   websocketURL: wss://this-is-fine-server.me
   joinedRoomCode: 
-  playerID: 
-  selectedCharacter: 
-  displayedMinigameID: 
+  playerID: 1
+  selectedCharacter: youngman
+  displayedMinigameID: 2
   minigameMode: Battle
-  isFirstMinigame: 1
+  isFirstMinigame: 0
   isHost: 0
   isDuelHost: 0

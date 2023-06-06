@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ea15ad910fcfd43a585cf6076f65ea, type: 3}
   m_Name: Minigame_2
   m_EditorClassIdentifier: 
-  title: "D\xE9dale Bancale"
+  title: Tampognon
   instruction: Signe le plus de contrat possible
   id: 2
   preview: {fileID: 21300000, guid: aabad1661f340874a84230683dedeeb4, type: 3}

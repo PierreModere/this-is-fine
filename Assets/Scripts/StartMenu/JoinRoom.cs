@@ -24,16 +24,16 @@ public class JoinRoom : MonoBehaviour
 
             if (childButton != null)
             {
-                string buttonValue = childObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+                string buttonValue = childObject.name;
 
-                if (buttonValue != "delete" && buttonValue != "RET.")
+                if (buttonValue != "Delete" && buttonValue != "Return")
                 {
                     childButton.onClick.AddListener(delegate
                     {
                         addDigitToPin(buttonValue);
                     });
                 }
-                if (buttonValue == "delete")
+                if (buttonValue == "Delete")
                 {
                     childButton.onClick.AddListener(deleteLastDigit);
                 }
@@ -44,12 +44,12 @@ public class JoinRoom : MonoBehaviour
 
     void addDigitToPin(string buttonValue)
     {
-        if (PinInput.GetComponent<TMP_InputField>().text.Length < 4)
+        if (PinInput.GetComponent<TextMeshProUGUI>().text.Length < 4)
         {
-            PinInput.GetComponent<TMP_InputField>().text = PinInput.GetComponent<TMP_InputField>().text + buttonValue;
+            PinInput.GetComponent<TextMeshProUGUI>().text = PinInput.GetComponent<TextMeshProUGUI>().text + buttonValue;
         }
 
-        if (PinInput.GetComponent<TMP_InputField>().text.Length > 3)
+        if (PinInput.GetComponent<TextMeshProUGUI>().text.Length > 3)
         {
             joinRoom();
         }
@@ -58,9 +58,9 @@ public class JoinRoom : MonoBehaviour
 
     void deleteLastDigit()
     {
-        if (PinInput.GetComponent<TMP_InputField>().text.Length > 0)
+        if (PinInput.GetComponent<TextMeshProUGUI>().text.Length > 0)
         {
-            PinInput.GetComponent<TMP_InputField>().text = PinInput.GetComponent<TMP_InputField>().text.Remove(PinInput.GetComponent<TMP_InputField>().text.Length - 1);
+            PinInput.GetComponent<TextMeshProUGUI>().text = PinInput.GetComponent<TextMeshProUGUI>().text.Remove(PinInput.GetComponent<TextMeshProUGUI>().text.Length - 1);
         }
 
     }
@@ -68,7 +68,7 @@ public class JoinRoom : MonoBehaviour
     async public void joinRoom()
     {
         WebsocketManager = GameObject.Find("WebsocketManager");
-        string pincode = PinInput.GetComponent<TMP_InputField>().text.ToUpper();
+        string pincode = PinInput.GetComponent<TextMeshProUGUI>().text.ToUpper();
         var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
         string json = "{'type': 'join', 'params':{'code': '" + pincode + "'}}";
         await websocket.SendText(json);
@@ -76,7 +76,7 @@ public class JoinRoom : MonoBehaviour
 
     void OnDisable()
     {
-        PinInput.GetComponent<TMP_InputField>().text = "";
+        PinInput.GetComponent<TextMeshProUGUI>().text = "";
     }
 
 }
