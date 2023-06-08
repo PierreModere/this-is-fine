@@ -115,11 +115,35 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ui-score-young-man_win
+      name: ui-score-youngman_win
       rect:
         serializedVersion: 2
         x: 0
@@ -140,7 +164,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui-score-young-man_first
+      name: ui-score-youngman_first
       rect:
         serializedVersion: 2
         x: 300
@@ -161,7 +185,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui-score-young-man_mid
+      name: ui-score-youngman_mid
       rect:
         serializedVersion: 2
         x: 600
@@ -182,7 +206,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui-score-young-man_last
+      name: ui-score-youngman_last
       rect:
         serializedVersion: 2
         x: 900
@@ -213,10 +237,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ui-score-young-man_first: 456097941
-      ui-score-young-man_last: -1975161621
-      ui-score-young-man_mid: 2093226009
-      ui-score-young-man_win: -1129172011
+      ui-score-youngman_first: 456097941
+      ui-score-youngman_last: -1975161621
+      ui-score-youngman_mid: 2093226009
+      ui-score-youngman_win: -1129172011
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

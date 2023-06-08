@@ -712,10 +712,14 @@ MonoBehaviour:
   - {fileID: 1357008210}
   - {fileID: 924472792}
   charactersSprites:
-  - {fileID: -228811006, guid: 5dc03b9b60bede1418fd1041871626c3, type: 3}
-  - {fileID: -1304342626, guid: cb837549e517faa428d4a8974b76d668, type: 3}
-  - {fileID: 1517159293, guid: c603bebd1fd2d004b945d1041e04187e, type: 3}
-  - {fileID: -1346006863, guid: 314eef5baf9db364e87f0bc18184024c, type: 3}
+  - {fileID: -598086586, guid: 37c239b3fdc18477e9cfa9e7c32c40bf, type: 3}
+  - {fileID: 715770679, guid: 2069e7b858b684d46a1fff524a551c25, type: 3}
+  - {fileID: -1129172011, guid: 261709c48654c42daa3566390b971f09, type: 3}
+  - {fileID: 218598416, guid: ddc4644d178464efc9497fcb60151e3d, type: 3}
+  - {fileID: -563949352, guid: 37c239b3fdc18477e9cfa9e7c32c40bf, type: 3}
+  - {fileID: 234989550, guid: 2069e7b858b684d46a1fff524a551c25, type: 3}
+  - {fileID: -1975161621, guid: 261709c48654c42daa3566390b971f09, type: 3}
+  - {fileID: -1010709805, guid: ddc4644d178464efc9497fcb60151e3d, type: 3}
   NewsAlertGameObject: {fileID: 1729358558}
   NewAlertBackground: {fileID: 399703916}
   NewsAlertSprite:

@@ -115,11 +115,35 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ui-score-old-man_win
+      name: ui-score-oldman_win
       rect:
         serializedVersion: 2
         x: 0
@@ -140,7 +164,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui-score-old-man_first
+      name: ui-score-oldman_first
       rect:
         serializedVersion: 2
         x: 300
@@ -161,7 +185,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui-score-old-man_mid
+      name: ui-score-oldman_mid
       rect:
         serializedVersion: 2
         x: 600
@@ -182,7 +206,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui-score-old-man_last
+      name: ui-score-oldman_last
       rect:
         serializedVersion: 2
         x: 900
@@ -213,10 +237,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ui-score-old-man_first: -1695040531
-      ui-score-old-man_last: -563949352
-      ui-score-old-man_mid: 1996751167
-      ui-score-old-man_win: -598086586
+      ui-score-oldman_first: -1695040531
+      ui-score-oldman_last: -563949352
+      ui-score-oldman_mid: 1996751167
+      ui-score-oldman_win: -598086586
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
