@@ -24,7 +24,6 @@ public class Minigame2 : MonoBehaviour
     public float speed;
     Vector3 rightArmDefaultPos;
 
-    int index = 0;
     public void initMinigame()
     {
         WebsocketManager = GameObject.Find("WebsocketManager");

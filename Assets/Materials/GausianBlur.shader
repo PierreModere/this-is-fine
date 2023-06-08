@@ -1,7 +1,7 @@
 Shader "Custom/BlurGaussian" {
     Properties {
         _MainTex ("Texture", 2D) = "white" {}
-        _BlurSize ("Blur Size", Range(0.0, 10.0)) = 1.0
+        _BlurSize ("Blur Size", Range(0.0, 30.0)) = 1.0
     }
  
     SubShader {

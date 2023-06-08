@@ -192,7 +192,7 @@ public class Minigame4 : MonoBehaviour
     }
    void sendScore()
     {
-        if (GameData.joinedRoomCode != "" && GameObject.Find("Websocket") != null)
+        if (GameData.joinedRoomCode != "" && GameObject.Find("WebsocketManager") != null)
             WebsocketManager.GetComponent<WebsocketManager>().sendScore(playerScore);
     }
 

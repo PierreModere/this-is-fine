@@ -3,6 +3,7 @@ using DG.Tweening;
 using NativeWebSocket;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class WebsocketManager : MonoBehaviour
@@ -11,6 +12,8 @@ public class WebsocketManager : MonoBehaviour
     public GameData GameData;
 
     public WebSocket websocket;
+
+    public GameObject ReconnectionButton;
 
     public List<ClientsList> playersList;
 
@@ -90,18 +93,38 @@ public class WebsocketManager : MonoBehaviour
     }
 
     private ParsedJSON _ParsedJSON;
+
+    [DllImport("__Internal")]
+    private static extern void savePlayerData(string id, string roomCode);
+
+    [DllImport("__Internal")]
+    private static extern string getPlayerDataFromLocalStorage(string property);
+
+    [DllImport("__Internal")]
+    private static extern void console(string str);
+
     private void Awake()
     {
         resetGameData();
 
     }
-    async void Start()
+    void Start()
+    {
+        WebsocketConnect(false);
+    }
+
+    async void WebsocketConnect(bool isReconnecting)
     {
         websocket = new WebSocket(GameData.websocketURL);
 
         websocket.OnOpen += () =>
-        {
+        {        
             Debug.Log("Connexion open!");
+            if (isReconnecting)
+            {
+                reconnectToRoom(GameData.playerID, GameData.joinedRoomCode);
+            }
+            else checkPlayerHasBeenInRoom();
         };
 
         websocket.OnError += (e) =>
@@ -112,7 +135,7 @@ public class WebsocketManager : MonoBehaviour
 
         websocket.OnClose += (e) =>
         {
-            Debug.Log("Connexion closed!");
+            WebsocketConnect(true);
         };
 
         websocket.OnMessage += (bytes) =>
@@ -132,8 +155,15 @@ public class WebsocketManager : MonoBehaviour
                     showLobbyScreen(false);
                     GameData.isHost = false;
                     break;
+                case "hasBeenInARoom":
+                    ReconnectionButton.SetActive(true);
+                    break;
                 case "getMyPlayerID":
                     GameData.playerID = _ParsedJSON.@params.@data.message;
+                    if (!Application.isEditor)
+                    {
+                        savePlayerData(GameData.playerID, GameData.joinedRoomCode);
+                    }
                     break;
                 case "getMySelectedCharacter":
                     GameData.selectedCharacter = _ParsedJSON.@params.@data.message;
@@ -167,15 +197,15 @@ public class WebsocketManager : MonoBehaviour
                     GameData.displayedMinigameID = _ParsedJSON.@params.@data.message;
 
                     receivedMinigameTime++;
-            
+
                     switch (GameObject.FindWithTag("activeScreen").name)
                     {
                         case "FirstMinigameInstructionCanvas":
                             FindInactiveObjectByName("FirstMinigameInstructionCanvas").GetComponent<FirstMinigameAnimation>().displaySelectedMinigame();
-                              break;
-                      
+                            break;
+
                     }
-                     break;
+                    break;
                 case "setMinigameMode":
                     GameData.minigameMode = _ParsedJSON.@params.@data.message;
                     break;
@@ -330,6 +360,36 @@ public class WebsocketManager : MonoBehaviour
         GameData.isDuelHost = false;
 
     }
+
+    public async void checkPlayerHasBeenInRoom()
+    {
+        if (!Application.isEditor)
+        {
+            string id = getPlayerDataFromLocalStorage("playerID");
+            string roomCode = getPlayerDataFromLocalStorage("roomCode");
+            if (roomCode != null && id != null)
+            {
+                string json = "{'type': 'checkRoomExistance', 'params':{'code': '" + roomCode + "','id':'" + id + "'}}";
+                await websocket.SendText(json);
+            }
+        }
+      }
+
+    async void reconnectToRoom(string playerID, string roomCode)
+    {
+        string json = "{'type': 'reconnectPlayer', 'params':{'code': '" + roomCode + "','id':'" + playerID + "'}}";
+        await websocket.SendText(json);
+    }
+
+    public async void returnToRoom()
+    {
+        string playerID = getPlayerDataFromLocalStorage("playerID");
+        string roomCode = getPlayerDataFromLocalStorage("roomCode");
+
+        string json = "{'type': 'reconnectPlayer', 'params':{'code': '" + roomCode + "','id':'" + playerID + "'}}";
+        await websocket.SendText(json);
+    }
+
 
     GameObject FindInactiveObjectByName(string name)
     {

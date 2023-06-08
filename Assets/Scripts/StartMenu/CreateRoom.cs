@@ -4,6 +4,7 @@ public class CreateRoom : MonoBehaviour
 {
     public GameData GameData;
     private GameObject WebsocketManager;
+
     void Start()
     {
         WebsocketManager = GameObject.Find("WebsocketManager");
