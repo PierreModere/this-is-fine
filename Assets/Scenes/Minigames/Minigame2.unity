@@ -805,6 +805,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contractsList: {fileID: 191525020}
   contractPrefab: {fileID: 3434806890968252877, guid: 615f361a632a0894faaded360550e6a0, type: 3}
+  contractsSprites:
+  - {fileID: -162270135, guid: ffb2e5a66ea534ae1a89b959757ddf96, type: 3}
+  - {fileID: -1409046240, guid: ffb2e5a66ea534ae1a89b959757ddf96, type: 3}
+  - {fileID: 774601422, guid: ffb2e5a66ea534ae1a89b959757ddf96, type: 3}
+  - {fileID: -499886616, guid: ffb2e5a66ea534ae1a89b959757ddf96, type: 3}
+  - {fileID: -518600539, guid: ffb2e5a66ea534ae1a89b959757ddf96, type: 3}
   leftArm: {fileID: 1888380112}
   rightArm: {fileID: 20941004}
   GameData: {fileID: 11400000, guid: ba3771a198f3a604e9265af00ab5b853, type: 2}
@@ -3498,6 +3504,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 191525021}
     m_Modifications:
+    - target: {fileID: 923846533184036152, guid: 615f361a632a0894faaded360550e6a0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -162270135, guid: ffb2e5a66ea534ae1a89b959757ddf96, type: 3}
     - target: {fileID: 1380016841780134999, guid: 615f361a632a0894faaded360550e6a0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

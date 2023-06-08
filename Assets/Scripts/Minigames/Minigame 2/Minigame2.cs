@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 
@@ -11,6 +12,7 @@ public class Minigame2 : MonoBehaviour
     int touching = 0;
     public GameObject contractsList;
     public GameObject contractPrefab;
+    public List<Sprite> contractsSprites;
 
     public GameObject leftArm;
     public GameObject rightArm;
@@ -67,6 +69,8 @@ public class Minigame2 : MonoBehaviour
                 newContractObject.transform.localPosition = spawnPosition;
                 newContractObject.transform.SetAsFirstSibling();
                 newContractObject.name = playerScore.ToString();
+                int randomSpriteIndex = Random.Range(0, contractsSprites.Count);
+                newContractObject.GetComponent<Image>().sprite = contractsSprites[randomSpriteIndex];
 
 
                 GameObject stamp = currentContractObject.transform.Find("Stamp").gameObject;
