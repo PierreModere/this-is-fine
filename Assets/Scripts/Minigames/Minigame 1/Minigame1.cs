@@ -124,6 +124,10 @@ public class Minigame1 : MonoBehaviour
         }
         else if (indexesSuite[playerProgressIndex] != index && !isMultiPressed)
         {
+            Sequence valveError = DOTween.Sequence();
+
+            valveError.Append(valve.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z + 170f), 0.3f).SetEase(Ease.InOutBack));
+            valveError.Join(valveShadow.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z + 170f), 0.3f).SetEase(Ease.InOutBack));
             //finishMinigame();
             MinigameUI.displayFeedback(false);
 
@@ -188,7 +192,7 @@ public class Minigame1 : MonoBehaviour
         GameObject trash = Instantiate(trashPrefab, new Vector3(0, 0, 0), Quaternion.identity, backgroundObjects.transform);
         trash.transform.localPosition = new Vector3(Random.Range(-12,18), 80, 0);
         trash.GetComponent<Image>().sprite = TrashSprites[Random.Range(0, TrashSprites.Count)];
-        trash.transform.SetSiblingIndex(1);
+        trash.transform.SetSiblingIndex(2);
         Sequence falling = DOTween.Sequence();
 
         falling.Append(trash.transform.DORotate(new Vector3(0, 0, Random.Range(-360, 360)), 1f));
@@ -198,7 +202,7 @@ public class Minigame1 : MonoBehaviour
 
     void sendScore()
     {
-        if (GameData.joinedRoomCode!="" && GameData.joinedRoomCode!=null)
+        if (GameData.joinedRoomCode!="" && WebsocketManager != null)
             WebsocketManager.GetComponent<WebsocketManager>().sendScore(playerProgressIndex);
     }
 
