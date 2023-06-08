@@ -47,6 +47,18 @@ public class MinigameUI : MonoBehaviour
         gameObject.GetComponent<CanvasGroup>().alpha = 0f;
         if (!minigameData.hasTimer) timerGameobject.SetActive(false);
 
+        // Add DOTween animation to isLeading
+        var playersList = GameData.playersList;
+        for (int i = 0; i < playersList.Count; i++) {
+            if (playersList[i].selectedCharacter != "") {
+                GameObject playerGameObject = playersGameobjects.Find(g => g.name == "Player" + playersList[i].id);
+                GameObject isLeading = playerGameObject.transform.Find("IsLeading").gameObject;
+
+                isLeading.transform.DORotate(new Vector3(0f, 0f, 360f), 10f, RotateMode.FastBeyond360)
+                    .SetLoops(-1, LoopType.Restart)
+                    .SetEase(Ease.Linear);
+            }
+        }
     }
 
     void Update()
@@ -145,13 +157,21 @@ public class MinigameUI : MonoBehaviour
                     playerGameObject.SetActive(true);
 
                 GameObject playerCharacter = playerGameObject.transform.Find("PlayerCharacter").gameObject;
+                GameObject isLeading = playerGameObject.transform.Find("IsLeading").gameObject;
 
-                if (i == 0)
+                if (i == 0) {
                     playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "ui-score-" + sortedList[i].selectedCharacter + "_first");
-                else if (i == sortedList.Count - 1)
-                    playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "ui-score-" + sortedList[i].selectedCharacter + "_last");
-                else
-                    playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "ui-score-" + sortedList[i].selectedCharacter + "_mid");
+
+                    isLeading.SetActive(true);
+                } else {
+                    if (i == sortedList.Count - 1) {
+                        playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "ui-score-" + sortedList[i].selectedCharacter + "_last");
+                    } else {
+                        playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "ui-score-" + sortedList[i].selectedCharacter + "_mid");
+                    }
+
+                    isLeading.SetActive(false);
+                }
 
                 GameObject playerScore = playerGameObject.transform.Find("PlayerScore").gameObject;
                 if (sortedList[i].score != null && sortedList[i].score != "")
