@@ -45,17 +45,26 @@ public class ResultsCanvas : MonoBehaviour
             okButton.SetActive(false);
         }
 
-        if (GameData.minigameMode == "Battle") displayNewsCard();
-
-        updateWinnersList();
-
         if (GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().receivedMinigameTime > 1)
         {
             GameData.isFirstMinigame = false;
             GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().changeScreenForEveryone("DashboardCanvas");
         }
+        updateWinnersList();
     }
 
+    void animPlayerSlots()
+    {
+        Sequence sequence = DOTween.Sequence();
+        for (int i = 0; i < playerGameobjects.Count; ++i)
+        {
+            sequence.Append(playerGameobjects[i].transform.DOScale(1.05f,0.25f).SetEase(Ease.InOutBack).From());
+        }
+        sequence.OnComplete(() =>
+        {
+            if (GameData.minigameMode == "Battle") displayNewsCard();
+        });
+    }
     public void updateWinnersList()
     {
         var playersList = GameData.playersList;
@@ -89,8 +98,8 @@ public class ResultsCanvas : MonoBehaviour
 
                 GameObject playerFace = playerGameobject.transform.Find("PlayerFace").gameObject;
                 if (playerFace.GetComponent<Image>().sprite == null)
-                    playerFace.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == sortedList[i].selectedCharacter + "_score_first");
-
+                    if (i == 0) playerFace.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "ui-score-"+sortedList[i].selectedCharacter+"_win");
+                    else playerFace.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "ui-score-" + sortedList[i].selectedCharacter + "_last");
                 GameObject PlayerName = playerGameobject.transform.Find("PlayerName").gameObject;
                 PlayerName.GetComponent<TextMeshProUGUI>().text = "Joueur " + sortedList[i].id;
 
@@ -106,7 +115,6 @@ public class ResultsCanvas : MonoBehaviour
                     if (GameData.minigameMode == "Battle")
                     {
                         playerReward.SetActive(true);
-                        playerReward.transform.Find("Amount").DOLocalMoveY(-5, 0.2f).SetEase(Ease.OutElastic).From();
                     }
                     else
                     {
@@ -115,6 +123,7 @@ public class ResultsCanvas : MonoBehaviour
                 }
 
             }
+            animPlayerSlots();
         }
 
 
@@ -144,7 +153,7 @@ public class ResultsCanvas : MonoBehaviour
             else NewsAlertGameObject.GetComponent<Image>().sprite = NewsAlertSprite[1];
 
             Sequence newsShow = DOTween.Sequence();
-            newsShow.Append(NewAlertBackground.GetComponent<Image>().DOFade(0.6f, 0).SetDelay(2).OnComplete(() =>
+            newsShow.Append(NewAlertBackground.GetComponent<Image>().DOFade(0.6f, 0).SetDelay(1).OnComplete(() =>
             {
                 NewsAlertGameObject.SetActive(true);
                 NewAlertBackground.SetActive(true);
