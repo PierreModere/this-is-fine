@@ -3430,10 +3430,18 @@ MonoBehaviour:
   - {fileID: 990801666}
   - {fileID: 1367613329}
   charactersSprites:
-  - {fileID: -228811006, guid: 5dc03b9b60bede1418fd1041871626c3, type: 3}
-  - {fileID: -1304342626, guid: cb837549e517faa428d4a8974b76d668, type: 3}
-  - {fileID: 1517159293, guid: c603bebd1fd2d004b945d1041e04187e, type: 3}
-  - {fileID: -1346006863, guid: 314eef5baf9db364e87f0bc18184024c, type: 3}
+  - {fileID: -1695040531, guid: 37c239b3fdc18477e9cfa9e7c32c40bf, type: 3}
+  - {fileID: 1996751167, guid: 37c239b3fdc18477e9cfa9e7c32c40bf, type: 3}
+  - {fileID: -563949352, guid: 37c239b3fdc18477e9cfa9e7c32c40bf, type: 3}
+  - {fileID: -1615248537, guid: 2069e7b858b684d46a1fff524a551c25, type: 3}
+  - {fileID: -1128056037, guid: 2069e7b858b684d46a1fff524a551c25, type: 3}
+  - {fileID: 234989550, guid: 2069e7b858b684d46a1fff524a551c25, type: 3}
+  - {fileID: 456097941, guid: 261709c48654c42daa3566390b971f09, type: 3}
+  - {fileID: -1975161621, guid: 261709c48654c42daa3566390b971f09, type: 3}
+  - {fileID: 2093226009, guid: 261709c48654c42daa3566390b971f09, type: 3}
+  - {fileID: -519286664, guid: ddc4644d178464efc9497fcb60151e3d, type: 3}
+  - {fileID: 987943943, guid: ddc4644d178464efc9497fcb60151e3d, type: 3}
+  - {fileID: -1010709805, guid: ddc4644d178464efc9497fcb60151e3d, type: 3}
   goodFeedbackPrefab: {fileID: 6678758044579635928, guid: 936b002ec6d51234c89a226e936de313, type: 3}
   badFeedbackPrefab: {fileID: 3348082482859645401, guid: 26e835fbcc2aaa240b59cd9471318d4f, type: 3}
   feedbackPositions:

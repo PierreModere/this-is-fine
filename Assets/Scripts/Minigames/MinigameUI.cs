@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class MinigameUI : MonoBehaviour
 {
@@ -129,26 +130,32 @@ public class MinigameUI : MonoBehaviour
         var playersList = GameData.playersList;
         unactiveAllPlayersGameobjects();
 
-        for (int i = 0; i < playersList.Count; i++)
+        List<WebsocketManager.ClientsList> sortedList = playersList.OrderByDescending(x => int.Parse(x.score)).ToList();
+
+        for (int i = 0; i < sortedList.Count; i++)
         {
 
-            if (playersList[i].selectedCharacter != "")
+            if (sortedList[i].selectedCharacter != "")
             {
-                GameObject playerGameObject = playersGameobjects.Find(g => g.name == "Player" + playersList[i].id);
+                GameObject playerGameObject = playersGameobjects.Find(g => g.name == "Player" + sortedList[i].id);
 
-                if (GameData.minigameMode == "Duel" && playersList[i].isDuel == true && !playerGameObject.activeSelf)
+                if (GameData.minigameMode == "Duel" && sortedList[i].isDuel == true && !playerGameObject.activeSelf)
                     playerGameObject.SetActive(true);
                 else if (GameData.minigameMode == "Battle" && !playerGameObject.activeSelf)
                     playerGameObject.SetActive(true);
 
                 GameObject playerCharacter = playerGameObject.transform.Find("PlayerCharacter").gameObject;
-                if (playerCharacter.GetComponent<Image>().sprite == null)
-                    playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == playersList[i].selectedCharacter+"_score_first");
 
-                Debug.Log(playersList[i].selectedCharacter + "_score_first");
+                if (i == 0)
+                    playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "ui-score-" + sortedList[i].selectedCharacter + "_first");
+                else if (i == sortedList.Count - 1)
+                    playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "ui-score-" + sortedList[i].selectedCharacter + "_last");
+                else
+                    playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "ui-score-" + sortedList[i].selectedCharacter + "_mid");
+
                 GameObject playerScore = playerGameObject.transform.Find("PlayerScore").gameObject;
-                if (playersList[i].score != null && playersList[i].score != "")
-                    playerScore.GetComponent<TextMeshProUGUI>().text = playersList[i].score;
+                if (sortedList[i].score != null && sortedList[i].score != "")
+                    playerScore.GetComponent<TextMeshProUGUI>().text = sortedList[i].score;
 
             }
         }
