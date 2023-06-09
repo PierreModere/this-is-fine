@@ -543,7 +543,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 36ef92384f9b8cd429fc6edd0ed5d729, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5f39e589d02634844a569adc580c735e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1033,7 +1033,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 36ef92384f9b8cd429fc6edd0ed5d729, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5f39e589d02634844a569adc580c735e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3268,7 +3268,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 36ef92384f9b8cd429fc6edd0ed5d729, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5f39e589d02634844a569adc580c735e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3727,7 +3727,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 141.1, y: 0}
+  m_AnchoredPosition: {x: 141.1, y: 14}
   m_SizeDelta: {x: 133.7211, y: 133.7211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1200222636
@@ -4439,7 +4439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -129.9, y: 0}
+  m_AnchoredPosition: {x: -129.9, y: 14}
   m_SizeDelta: {x: 133.72107, y: 133.7211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1615163456
@@ -5479,7 +5479,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 36ef92384f9b8cd429fc6edd0ed5d729, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5f39e589d02634844a569adc580c735e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5708,10 +5708,18 @@ MonoBehaviour:
   - {fileID: 1091345253}
   - {fileID: 590451789}
   charactersSprites:
-  - {fileID: -228811006, guid: 5dc03b9b60bede1418fd1041871626c3, type: 3}
-  - {fileID: -1304342626, guid: cb837549e517faa428d4a8974b76d668, type: 3}
-  - {fileID: 1517159293, guid: c603bebd1fd2d004b945d1041e04187e, type: 3}
-  - {fileID: -1346006863, guid: 314eef5baf9db364e87f0bc18184024c, type: 3}
+  - {fileID: -1695040531, guid: 37c239b3fdc18477e9cfa9e7c32c40bf, type: 3}
+  - {fileID: 1996751167, guid: 37c239b3fdc18477e9cfa9e7c32c40bf, type: 3}
+  - {fileID: -563949352, guid: 37c239b3fdc18477e9cfa9e7c32c40bf, type: 3}
+  - {fileID: -1615248537, guid: 2069e7b858b684d46a1fff524a551c25, type: 3}
+  - {fileID: -1128056037, guid: 2069e7b858b684d46a1fff524a551c25, type: 3}
+  - {fileID: 234989550, guid: 2069e7b858b684d46a1fff524a551c25, type: 3}
+  - {fileID: 456097941, guid: 261709c48654c42daa3566390b971f09, type: 3}
+  - {fileID: -1975161621, guid: 261709c48654c42daa3566390b971f09, type: 3}
+  - {fileID: 2093226009, guid: 261709c48654c42daa3566390b971f09, type: 3}
+  - {fileID: -519286664, guid: ddc4644d178464efc9497fcb60151e3d, type: 3}
+  - {fileID: 987943943, guid: ddc4644d178464efc9497fcb60151e3d, type: 3}
+  - {fileID: -1010709805, guid: ddc4644d178464efc9497fcb60151e3d, type: 3}
   goodFeedbackPrefab: {fileID: 6678758044579635928, guid: 936b002ec6d51234c89a226e936de313, type: 3}
   badFeedbackPrefab: {fileID: 3348082482859645401, guid: 26e835fbcc2aaa240b59cd9471318d4f, type: 3}
   feedbackPositions:
@@ -5983,7 +5991,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -129.9, y: 0}
+  m_AnchoredPosition: {x: -129.9, y: 14}
   m_SizeDelta: {x: 133.72107, y: 133.7211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1888948765
@@ -6135,7 +6143,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 141.1, y: 0}
+  m_AnchoredPosition: {x: 141.1, y: 14}
   m_SizeDelta: {x: 133.7211, y: 133.7211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1939707601
