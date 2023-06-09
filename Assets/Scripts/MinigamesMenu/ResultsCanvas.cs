@@ -23,9 +23,11 @@ public class ResultsCanvas : MonoBehaviour
     public List<Sprite> charactersSprites;
 
     public GameObject NewsAlertGameObject;
-    public GameObject NewAlertBackground;
+    public GameObject FadeBackground;
 
     public List<Sprite> NewsAlertSprite;
+
+    public GameObject FirstPlayerToPlayAlert;
 
     void Start()
     {
@@ -45,24 +47,28 @@ public class ResultsCanvas : MonoBehaviour
             okButton.SetActive(false);
         }
 
-        if (GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().receivedMinigameTime > 1)
+        if (GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().receivedMinigameTime > 2)
         {
             GameData.isFirstMinigame = false;
-            GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().changeScreenForEveryone("DashboardCanvas");
+            // GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().changeScreenForEveryone("DashboardCanvas");
         }
         updateWinnersList();
     }
 
-    void animPlayerSlots()
+    void animPlayerSlots(int firstPlayerID)
     {
         Sequence sequence = DOTween.Sequence();
         for (int i = 0; i < playerGameobjects.Count; ++i)
         {
-            sequence.Append(playerGameobjects[i].transform.DOScale(1.05f,0.25f).SetEase(Ease.InOutBack).From());
+            sequence.Append(playerGameobjects[i].transform.DOScale(1.2f, 0.25f).SetEase(Ease.InOutBack).SetDelay(0.15f).From());
         }
-        sequence.OnComplete(() =>
-        {
-            if (GameData.minigameMode == "Battle") displayNewsCard();
+        sequence.OnComplete(() => {
+            if (GameData.minigameMode == "Battle")
+            {
+                if (GameData.isFirstMinigame) displayFirstPlayerToPlayer(firstPlayerID);
+                else displayNewsCard();
+            }
+
         });
     }
     public void updateWinnersList()
@@ -76,19 +82,9 @@ public class ResultsCanvas : MonoBehaviour
         if (sortedList.Count > 0)
         {
             int playersNumberToShow;
-
-            if (GameData.isFirstMinigame)
-            {
-                startToPlayText.SetActive(true);
-                startToPlayText.transform.DOLocalMoveY(60, 0.2f).From();
-                playersNumberToShow = 1;
-            }
-            else
-            {
-                startToPlayText.SetActive(false);
-                if (GameData.minigameMode == "Battle") playersNumberToShow = sortedList.Count;
-                else playersNumberToShow = 2;
-            }
+            if (GameData.minigameMode == "Battle") playersNumberToShow = sortedList.Count;
+            else playersNumberToShow = 2;
+            
 
             for (int i = 0; i < playersNumberToShow; i++)
             {
@@ -123,7 +119,7 @@ public class ResultsCanvas : MonoBehaviour
                 }
 
             }
-            animPlayerSlots();
+            animPlayerSlots(sortedList[0].id);
         }
 
 
@@ -142,6 +138,49 @@ public class ResultsCanvas : MonoBehaviour
         GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().returnToDashboard();
     }
 
+    void displayFirstPlayerToPlayer(int firstPlayerID)
+    {
+        string color = "";
+        switch (firstPlayerID)
+        {
+            case 1:
+                color = "ea4645";
+                break;
+            case 2:
+                color = "8acF72";
+                break;
+
+            case 3:
+                color = "7ebbe9";
+                break;
+
+            case 4:
+                color = "a079ac";
+                break;
+        }
+        string text = "Le <color=#"+color+">Joueur "+ firstPlayerID.ToString() +"</color> lance\r\nle dé en premier";
+        FirstPlayerToPlayAlert.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().text = text;
+
+        Sequence popUp = DOTween.Sequence();
+
+        FirstPlayerToPlayAlert.SetActive(true);
+        FadeBackground.SetActive(true);
+        popUp.Append(FadeBackground.GetComponent<Image>().DOFade(0.6f, 0.2f));
+        popUp.Join(FirstPlayerToPlayAlert.transform.DOScale(0.5f, 0.25f).SetEase(Ease.InOutBack).From());
+    }
+
+    public void hideFirstPlayer()
+    {
+        Sequence firstPlayerHide = DOTween.Sequence();
+        firstPlayerHide.Append(FirstPlayerToPlayAlert.transform.DOScale(0, 0.15f).SetEase(Ease.InBack));
+        firstPlayerHide.Join(FadeBackground.GetComponent<Image>().DOFade(0f, 0.2f));
+        firstPlayerHide.Join(FirstPlayerToPlayAlert.GetComponent<Image>().DOFade(0f, 0.15f)).OnComplete(() => {
+            FadeBackground.SetActive(false);
+            FirstPlayerToPlayAlert.SetActive(false);
+            displayNewsCard();
+        });
+    }
+
     public void displayNewsCard()
     {
         if (GameData.isHost)
@@ -153,12 +192,12 @@ public class ResultsCanvas : MonoBehaviour
             else NewsAlertGameObject.GetComponent<Image>().sprite = NewsAlertSprite[1];
 
             Sequence newsShow = DOTween.Sequence();
-            newsShow.Append(NewAlertBackground.GetComponent<Image>().DOFade(0.6f, 0).SetDelay(1).OnComplete(() =>
+            newsShow.Append(FadeBackground.GetComponent<Image>().DOFade(0.6f, 0).SetDelay(0.6f).OnComplete(() =>
             {
                 NewsAlertGameObject.SetActive(true);
-                NewAlertBackground.SetActive(true);
+                FadeBackground.SetActive(true);
             }));
-            newsShow.Append(NewAlertBackground.GetComponent<Image>().DOFade(0f, 0.2f).From());
+            newsShow.Append(FadeBackground.GetComponent<Image>().DOFade(0.6f, 0.2f));
             newsShow.Join(NewsAlertGameObject.transform.DOScale(0.5f, 0.25f).SetEase(Ease.InOutBack).From());
         }
     }
@@ -167,9 +206,9 @@ public class ResultsCanvas : MonoBehaviour
     {
         Sequence newsHide = DOTween.Sequence();
         newsHide.Append(NewsAlertGameObject.transform.DOScale(0, 0.15f).SetEase(Ease.InBack));
-        newsHide.Join(NewAlertBackground.GetComponent<Image>().DOFade(0f, 0.2f));
+        newsHide.Join(FadeBackground.GetComponent<Image>().DOFade(0f, 0.2f));
         newsHide.Join(NewsAlertGameObject.GetComponent<Image>().DOFade(0f, 0.15f)).OnComplete(() => {
-            NewAlertBackground.SetActive(false);
+            FadeBackground.SetActive(false);
             NewsAlertGameObject.SetActive(false);
             okButton.GetComponent<Button>().interactable = true;
         });
