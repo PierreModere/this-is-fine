@@ -53,13 +53,14 @@ public class MinigameInstructions : MonoBehaviour
         {
             setMinigameData();
             //setMinigameMode();
-           // if (GameData.playersList.Count > 0) updatePlayersList();
+            unactiveAllPlayersGameobjects();
+           if (GameData.playersList != null && GameData.playersList.Count > 0) updatePlayersList();
         }
         Sequence popUpPreview = DOTween.Sequence();
         popUpPreview.Append(minigamePreviewAll.transform.DOScale(1.3f, 0));
         popUpPreview.Join(instructionText.GetComponent<TextMeshProUGUI>().DOFade(0, 0));
         popUpPreview.Append(minigamePreviewAll.transform.DOScale(1f, 0.25f).SetEase(Ease.InOutBack));
-        popUpPreview.Join(instructionText.GetComponent<TextMeshProUGUI>().DOFade(1,0.4f));
+        popUpPreview.Append(instructionText.GetComponent<TextMeshProUGUI>().DOFade(1,0.4f));
 
     }
 
