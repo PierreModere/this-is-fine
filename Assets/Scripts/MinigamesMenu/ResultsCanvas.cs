@@ -40,18 +40,13 @@ public class ResultsCanvas : MonoBehaviour
         if ((GameData.isHost && GameData.minigameMode != "Duel") || GameData.isDuelHost)
         {
             okButton.SetActive(true);
-            okButton.GetComponent<Button>().interactable = false;
+            okButton.GetComponent<Button>().interactable = GameData.isHost && GameData.minigameMode != "Duel" ? false : true;
         }
         else
         {
             okButton.SetActive(false);
         }
 
-        if (GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().receivedMinigameTime > 2)
-        {
-            GameData.isFirstMinigame = false;
-            // GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().changeScreenForEveryone("DashboardCanvas");
-        }
         updateWinnersList();
     }
 
@@ -61,6 +56,7 @@ public class ResultsCanvas : MonoBehaviour
         for (int i = 0; i < playerGameobjects.Count; ++i)
         {
             sequence.Append(playerGameobjects[i].transform.DOScale(1.2f, 0.25f).SetEase(Ease.InOutBack).SetDelay(0.15f).From());
+            sequence.Append(playerGameobjects[i].transform.Find("Reward").Find("Amount").DOLocalMoveY(-5,0.2f).SetEase(Ease.InOutBack).From());
         }
         sequence.OnComplete(() => {
             if (GameData.minigameMode == "Battle")
@@ -196,10 +192,12 @@ public class ResultsCanvas : MonoBehaviour
             {
                 NewsAlertGameObject.SetActive(true);
                 FadeBackground.SetActive(true);
+                disableFirstMinigame();
             }));
             newsShow.Append(FadeBackground.GetComponent<Image>().DOFade(0.6f, 0.2f));
             newsShow.Join(NewsAlertGameObject.transform.DOScale(0.5f, 0.25f).SetEase(Ease.InOutBack).From());
         }
+        else disableFirstMinigame();
     }
 
     public void hideNewsCard()
@@ -212,6 +210,15 @@ public class ResultsCanvas : MonoBehaviour
             NewsAlertGameObject.SetActive(false);
             okButton.GetComponent<Button>().interactable = true;
         });
+    }
+
+    void disableFirstMinigame()
+    {
+        if (GameData.isFirstMinigame)
+        {
+            GameData.isFirstMinigame = false;
+            GameData.firstMinigameID = null;
+        }
     }
 
 }

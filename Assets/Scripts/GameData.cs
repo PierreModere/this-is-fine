@@ -11,8 +11,9 @@ public class GameData : ScriptableObject
     public string playerID;
     public string selectedCharacter;
     public string displayedMinigameID;
-    public string minigameMode;
+    public string firstMinigameID;
     public bool isFirstMinigame;
+    public string minigameMode;
     public bool isHost;
     public bool isDuelHost;
 

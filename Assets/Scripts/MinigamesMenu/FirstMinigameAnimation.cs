@@ -38,8 +38,7 @@ public class FirstMinigameAnimation : MonoBehaviour
 
         if (!GameData.isFirstMinigame) WebsocketManager.GetComponent<WebsocketManager>().changeScreenForEveryone("DashboardCanvas");
 
-        bool isHost = GameData.isHost;
-        if (isHost)
+        if (GameData.isHost)
         {
             OkButton.SetActive(true);
         }
@@ -47,8 +46,6 @@ public class FirstMinigameAnimation : MonoBehaviour
         {
             OkButton.SetActive(false);
         }
-
-        setRandomFirstMinigame();
 
         Sequence mySequence = DOTween.Sequence();
 
@@ -67,14 +64,8 @@ public class FirstMinigameAnimation : MonoBehaviour
     {
         Sequence test = DOTween.Sequence();
         test.Append(OkButton.transform.DOLocalMoveY(-715f, 0.2f));
-        test.Append(OkButton.transform.DOLocalMoveY(-1150, 0.3f)).OnComplete(()=> { WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(randomID.ToString()); });
+        test.Append(OkButton.transform.DOLocalMoveY(-1150, 0.3f)).OnComplete(()=> { WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(GameData.firstMinigameID); });
         
-    }
-
-    void setRandomFirstMinigame()
-    {
-        randomID = Random.Range(1, minigamesList.Count);
-        WebsocketManager.GetComponent<WebsocketManager>().sendSelectedMinigame(randomID.ToString(), true);
     }
 
     public void displaySelectedMinigame()

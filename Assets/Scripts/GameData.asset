@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7446a40727ff35458e1da0b2febc368, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  websocketURL: wss://this-is-fine-server.me
+  websocketURL: ws://localhost:1234
   joinedRoomCode: 
   playerID: 
   selectedCharacter: 
   displayedMinigameID: 
-  minigameMode: Battle
+  firstMinigameID: 
   isFirstMinigame: 1
+  minigameMode: Battle
   isHost: 1
   isDuelHost: 0

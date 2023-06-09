@@ -17,8 +17,6 @@ public class WebsocketManager : MonoBehaviour
 
     public List<ClientsList> playersList;
 
-    public int receivedMinigameTime = 0;
-
     public class ParsedJSON
     {
         public string type
@@ -150,6 +148,7 @@ public class WebsocketManager : MonoBehaviour
                 case "createdRoom":
                     showLobbyScreen(true);
                     GameData.isHost = true;
+
                     break;
                 case "joinedRoom":
                     showLobbyScreen(false);
@@ -193,10 +192,12 @@ public class WebsocketManager : MonoBehaviour
                     }
 
                     break;
+                case "receivedFirstMinigameID":
+                    GameData.firstMinigameID = _ParsedJSON.@params.@data.message;
+                    GameData.displayedMinigameID = GameData.firstMinigameID;
+                    break;
                 case "receivedSelectedMinigame":
                     GameData.displayedMinigameID = _ParsedJSON.@params.@data.message;
-
-                    receivedMinigameTime++;
 
                     switch (GameObject.FindWithTag("activeScreen").name)
                     {
@@ -317,11 +318,10 @@ public class WebsocketManager : MonoBehaviour
         await websocket.SendText(json);
     }
 
-    public async void sendSelectedMinigame(string minigameID, bool isFirstMinigame = false)
+    public async void sendSelectedMinigame(string minigameID)
     {
-        string json;
-        if (isFirstMinigame) json = "{'type': 'selectMinigame', 'params':{'code': '" + GameData.joinedRoomCode + "','minigameID':'" + minigameID + "','isFirstMinigame':'" + isFirstMinigame + "'}}";
-        else json = "{'type': 'selectMinigame', 'params':{'code': '" + GameData.joinedRoomCode + "','minigameID':'" + minigameID + "'}}";
+       
+        string json = "{'type': 'selectMinigame', 'params':{'code': '" + GameData.joinedRoomCode + "','minigameID':'" + minigameID + "'}}";
         await websocket.SendText(json);
     }
 

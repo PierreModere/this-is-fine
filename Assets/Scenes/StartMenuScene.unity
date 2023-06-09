@@ -346,7 +346,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameData: {fileID: 11400000, guid: ba3771a198f3a604e9265af00ab5b853, type: 2}
   ReconnectionButton: {fileID: 1799939844}
-  receivedMinigameTime: 0
 --- !u!1 &30509724
 GameObject:
   m_ObjectHideFlags: 0
