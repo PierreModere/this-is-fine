@@ -46,6 +46,7 @@ public class FirstMinigameAnimation : MonoBehaviour
         {
             OkButton.SetActive(false);
         }
+        displaySelectedMinigame();
 
         Sequence mySequence = DOTween.Sequence();
 
@@ -58,6 +59,7 @@ public class FirstMinigameAnimation : MonoBehaviour
         mySequence.Append(OkButton.transform.DOLocalMoveY(-740f, 0.8f).SetDelay(-0.2f));
 
         OkButton.GetComponent<Button>().onClick.AddListener(onBtnClick);
+
     }
 
     public void onBtnClick()

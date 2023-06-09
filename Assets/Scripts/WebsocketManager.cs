@@ -198,14 +198,6 @@ public class WebsocketManager : MonoBehaviour
                     break;
                 case "receivedSelectedMinigame":
                     GameData.displayedMinigameID = _ParsedJSON.@params.@data.message;
-
-                    switch (GameObject.FindWithTag("activeScreen").name)
-                    {
-                        case "FirstMinigameInstructionCanvas":
-                            FindInactiveObjectByName("FirstMinigameInstructionCanvas").GetComponent<FirstMinigameAnimation>().displaySelectedMinigame();
-                            break;
-
-                    }
                     break;
                 case "setMinigameMode":
                     GameData.minigameMode = _ParsedJSON.@params.@data.message;

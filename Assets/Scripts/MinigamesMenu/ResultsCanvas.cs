@@ -55,8 +55,10 @@ public class ResultsCanvas : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
         for (int i = 0; i < playerGameobjects.Count; ++i)
         {
-            sequence.Append(playerGameobjects[i].transform.DOScale(1.2f, 0.25f).SetEase(Ease.InOutBack).SetDelay(0.15f).From());
-            sequence.Append(playerGameobjects[i].transform.Find("Reward").Find("Amount").DOLocalMoveY(-5,0.2f).SetEase(Ease.InOutBack).From());
+            sequence.Append(playerGameobjects[i].transform.DOScale(1.3f, 0.25f).SetEase(Ease.InOutBack).SetDelay(0.15f).From());
+            sequence.Append(playerGameobjects[i].transform.Find("Reward").Find("Coin").DOScale(1.3f, 0.15f).SetEase(Ease.InSine));
+            sequence.Append(playerGameobjects[i].transform.Find("Reward").Find("Coin").DOScale(1f, 0.1f));
+
         }
         sequence.OnComplete(() => {
             if (GameData.minigameMode == "Battle")
