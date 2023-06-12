@@ -13,6 +13,7 @@ public class Minigame3 : MonoBehaviour
     public GameObject controls;
     public GameObject fillButton;
     public GameObject pistonGameobject;
+    private Animator pistonAnimator;
 
     public List<GameObject> cartridgesList;
     public GameObject CartridgesLine;
@@ -30,17 +31,15 @@ public class Minigame3 : MonoBehaviour
     private bool isHolding = false;
     public bool isAbleToFill = true;
 
-    int pistonUpPos = 610;
-    int pistonDownPos = 390;
+    int pistonUpPos = 580;
+    int pistonDownPos = 480;
 
     private float timer = 0.0f;
     private float interval = 0.04f;
     public float inkIncreaseLevel = 2f;
 
     Animator beltAnimator;
-
-
-      // Update is called once per frame
+    
     void Update()
     {
         timer += Time.deltaTime;
@@ -57,6 +56,8 @@ public class Minigame3 : MonoBehaviour
         WebsocketManager = GameObject.Find("WebsocketManager");
 
         beltAnimator = transform.Find("MovingBelt").gameObject.GetComponent<Animator>();
+
+        pistonAnimator = pistonGameobject.GetComponent<Animator>();
 
         playerProgressIndex = 0;
         playerScore = 0;
@@ -105,23 +106,31 @@ public class Minigame3 : MonoBehaviour
     }
     void pistonUpAnimation()
     {
+        pistonAnimator.Play("machine_going-up");
+
         Sequence downAnim = DOTween.Sequence();
         downAnim.Append(pistonGameobject.transform.DOLocalMoveY(pistonUpPos + 20, 0.2f));
         downAnim.Append(pistonGameobject.transform.DOLocalMoveY(pistonUpPos, 0.1f)).OnComplete(() =>
         {
             moveLineAnimation();
+
+            pistonAnimator.Play("machine_idle-top");
         });
 
     }
     void pistonDownAnimation()
     {
+        pistonAnimator.Play("machine_going-down");
+
         Sequence downAnim = DOTween.Sequence();
-        downAnim.Append(pistonGameobject.transform.DOLocalMoveY(pistonDownPos-20, 0.2f));
+        downAnim.Append(pistonGameobject.transform.DOLocalMoveY(pistonDownPos - 20, 0.2f));
         downAnim.Append(pistonGameobject.transform.DOLocalMoveY(pistonDownPos, 0.1f)).OnComplete(() =>
         {
             inkIncreaseLevel = 2f;
             fillButton.GetComponent<Button>().interactable = true;
             isAbleToFill = true;
+
+            pistonAnimator.Play("machine_idle-bottom");
         });
 
     }
