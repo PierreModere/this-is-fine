@@ -133,13 +133,13 @@ public class CharactersSelection : MonoBehaviour
                 PlayerNumber.SetActive(true);
 
                 GameObject Sprite = selectedCharacter.transform.Find("Mask").Find("Sprite").gameObject;
-                if (Sprite.GetComponent<Image>().sprite.name != playersList[i].selectedCharacter.ToString() + "_selected")
+                if (Sprite.GetComponent<Image>().sprite.name == playersList[i].selectedCharacter.ToString() + "_idle" && !selectedCharacter.GetComponent<Button>().interactable)
                 {
+                    Sprite.GetComponent<Image>().sprite = selectedCharactersSprites.Find(sprite => sprite.name == playersList[i].selectedCharacter.ToString() + "_selected");
                     Sequence anim = DOTween.Sequence();
                     anim.Append(Sprite.transform.DOLocalMoveY(20, 0.1f).SetEase(Ease.OutElastic).From());
                     anim.Join(Sprite.transform.DOScale(1.2f, 0.15f).From());
                 }
-                Sprite.GetComponent<Image>().sprite = selectedCharactersSprites.Find(sprite => sprite.name == playersList[i].selectedCharacter.ToString() + "_selected");
 
             }
         }

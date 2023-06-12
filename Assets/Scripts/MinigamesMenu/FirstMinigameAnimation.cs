@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
@@ -11,8 +12,9 @@ public class FirstMinigameAnimation : MonoBehaviour
 
     public GameObject InstructionText;
     public GameObject FirstMinigamePreview;
-    public GameObject FirstMinigamePreviewShadow;
-    public GameObject OkButton;
+    public GameObject Preview;
+
+    public GameObject OkButton; 
 
     private GameObject WebsocketManager;
 
@@ -46,19 +48,25 @@ public class FirstMinigameAnimation : MonoBehaviour
         {
             OkButton.SetActive(false);
         }
-        displaySelectedMinigame();
+
+        InstructionText.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "Définissons qui va commencer...";
 
         Sequence mySequence = DOTween.Sequence();
 
-        mySequence.Append(InstructionText.transform.DOScale(1.25f, 0.15f));
-        mySequence.Append(InstructionText.transform.DOScale(1f, 0.2f));
-        mySequence.Append(InstructionText.transform.DOLocalMoveY(775f, 0.7f).SetDelay(0.6f));
-        mySequence.Join(FirstMinigamePreview.transform.DOLocalMoveY(75f, 0.8f));
-        mySequence.Join(FirstMinigamePreviewShadow.transform.DOLocalMoveY(60f, 0.82f));
+        FirstMinigamePreview.SetActive(false);
+        mySequence.Append(InstructionText.transform.DOLocalMoveY(0f, 0));
+        mySequence.Join(InstructionText.transform.Find("Text").DOScale(1.2f, 0.2f).SetEase(Ease.InOutBack).SetDelay(0.3f).From());
+        mySequence.Append(InstructionText.transform.Find("Text").DOScale(1.1f, 0.15f).SetDelay(1).OnStart(() =>
+        {
+            InstructionText.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "Avec un mini-jeu !";
+            InstructionText.transform.Find("Text").DOScale(1f, 0.15f).SetDelay(0.15f);
+            displaySelectedMinigame();
+        }));
 
-        mySequence.Append(OkButton.transform.DOLocalMoveY(-740f, 0.8f).SetDelay(-0.2f));
-
-        OkButton.GetComponent<Button>().onClick.AddListener(onBtnClick);
+        mySequence.Append(InstructionText.transform.DOLocalMoveY(680f, 0.4f).SetDelay(0.6f).OnComplete(() => {
+            FirstMinigamePreview.SetActive(true);
+            FirstMinigamePreview.transform.DOScale(1.1f, 0.25f).SetEase(Ease.InOutBack).From();
+        }));
 
     }
 
@@ -97,7 +105,7 @@ public class FirstMinigameAnimation : MonoBehaviour
         while (timeElapsed < totalTime)
         {
             // changer le sprite affiché sur le composant Image
-            FirstMinigamePreview.GetComponent<Image>().sprite = minigamesList[currentSpriteIndex].preview;
+            Preview.GetComponent<Image>().sprite = minigamesList[currentSpriteIndex].preview;
 
             // incrémenter l'index du sprite actuel
             currentSpriteIndex++;
@@ -117,15 +125,20 @@ public class FirstMinigameAnimation : MonoBehaviour
 
         string displayedMinigameID = GameData.displayedMinigameID;
 
-        Debug.Log(displayedMinigameID);
 
-        Sequence mySequence = DOTween.Sequence();
+        Sequence randomEndSequence = DOTween.Sequence();
 
-        mySequence.Append(FirstMinigamePreview.transform.DOScale(7.3f, 0.1f).OnComplete(() =>
+        randomEndSequence.Append(FirstMinigamePreview.transform.DOScale(1.1f, 0.2f).SetEase(Ease.InOutBack).From());
+
+        randomEndSequence.OnStart(()=>
         {
-            FirstMinigamePreview.GetComponent<Image>().sprite = minigamesList.Find(mg => mg.id == displayedMinigameID).preview;
-        }));
-        mySequence.Append(FirstMinigamePreview.transform.DOScale(7f, 0.15f));   
+            Preview.GetComponent<Image>().sprite = minigamesList.Find(mg => mg.id == displayedMinigameID).preview;
+        });
+
+        randomEndSequence.OnComplete(() =>
+        {
+            OkButton.GetComponent<Button>().interactable = true;
+        });
 
 
         // réinitialiser les variables

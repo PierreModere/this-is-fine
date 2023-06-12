@@ -92,7 +92,7 @@ public class MinigameInstructions : MonoBehaviour
                     playerGameObject.transform.Find("PlayerNumber").gameObject.GetComponent<TextMeshProUGUI>().color = new Color(255, 255, 255, 255);
                 }
 
-                if (playersList[i].isReady && !playerGameObject.transform.Find("isReady").gameObject.activeSelf)
+                if (playersList[i].isReady && !playerGameObject.transform.Find("isReady").gameObject.activeInHierarchy)
                 {
                     GameObject isReadyIcon = playerGameObject.transform.Find("isReady").gameObject;
                     isReadyIcon.SetActive(true);

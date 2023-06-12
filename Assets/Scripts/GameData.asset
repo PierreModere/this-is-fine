@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   websocketURL: wss://this-is-fine-server.me
-  joinedRoomCode: 9208
-  playerID: 1
-  selectedCharacter: youngwoman
-  displayedMinigameID: 1
+  joinedRoomCode: 
+  playerID: 
+  selectedCharacter: 
+  displayedMinigameID: 
   firstMinigameID: 
   isFirstMinigame: 0
   minigameMode: Battle

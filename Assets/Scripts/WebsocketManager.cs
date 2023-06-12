@@ -234,6 +234,7 @@ public class WebsocketManager : MonoBehaviour
         GameData.playerID = "";
         GameData.selectedCharacter = "";
         GameData.displayedMinigameID = "";
+        GameData.firstMinigameID = "";
         GameData.minigameMode = "Battle";
         GameData.isFirstMinigame = true;
         GameData.isDuelHost = false;
@@ -255,6 +256,7 @@ public class WebsocketManager : MonoBehaviour
             string json = "{'type': 'leave', 'params':{'code': '" + GameData.joinedRoomCode + "','id': '" + GameData.playerID + "'}}";
             await websocket.SendText(json);
         }
+        resetGameData();
         await websocket.Close();
     }
 
