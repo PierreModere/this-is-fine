@@ -63,8 +63,7 @@ public class Minigame3 : MonoBehaviour
         playerScore = 0;
         currentCartridge = cartridgesList[playerProgressIndex];
         activeButtons();
-        addNewCartridge();
-
+        pistonDownAnimation();
     }
 
     public void finishMinigame()
