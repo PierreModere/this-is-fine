@@ -22,6 +22,8 @@ public class Minigame3 : MonoBehaviour
     int moveOffset = 500;
     int inkLevelMax = 216;
 
+    public GameObject InkFlow;
+
     int playerProgressIndex;
     double playerScore;
 
@@ -39,6 +41,11 @@ public class Minigame3 : MonoBehaviour
     public float inkIncreaseLevel = 2f;
 
     Animator beltAnimator;
+
+    void Start()
+    {
+        InkFlow.transform.localScale = new Vector3(1f, 0f, 1f);
+    }
     
     void Update()
     {
@@ -80,14 +87,23 @@ public class Minigame3 : MonoBehaviour
 
     public void onButtonHold()
     {
-        if (isAbleToFill) isHolding = true;
+        if (isAbleToFill)
+        {
+            isHolding = true;
 
+            InkFlow.transform.DOScaleY(1f, 0.2f);
+        }
     }
     public void onButtonRelease()
     {
-        if (isAbleToFill && currentCartridge.transform.Find("InkLevelMask").Find("InkLevel").gameObject.GetComponent<RectTransform>().sizeDelta.y>0) addNewCartridge();
-        isHolding = false;
-        
+        if (isAbleToFill && currentCartridge.transform.Find("InkLevelMask").Find("InkLevel").gameObject.GetComponent<RectTransform>().sizeDelta.y>0)
+        {
+            isHolding = false;
+
+            addNewCartridge();
+                
+            InkFlow.transform.DOScaleY(0f, 0.2f);
+        }
     }
 
     void moveLineAnimation()
