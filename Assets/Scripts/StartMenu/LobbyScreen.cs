@@ -37,7 +37,7 @@ public class LobbyScreen : MonoBehaviour
         {
             player.SetActive(false);
         }
-        if (playersList.Count > 0)
+        if (playersList !=null && playersList.Count > 0)
         {
             for (int i = 0; i < playersList.Count; i++)
             {

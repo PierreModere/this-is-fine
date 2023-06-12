@@ -13,14 +13,17 @@ public class MinigameInstructions : MonoBehaviour
 
     public GameObject GoButton;
     public GameObject ReadyButton;
-    public GameObject minigameMode;
+    //public GameObject minigameMode;
     public GameObject minigameTitle;
     public GameObject minigamePreview;
+    public GameObject minigamePreviewAll;
     public GameObject instructionText;
 
-    public List<Sprite> charactersSprites;
-    public List<GameObject> playersGameobjects;
     public List<Minigame> minigamesList;
+    public List<GameObject> playersGameobjects;
+    public List<Sprite> charactersSprites;
+    public List<Sprite> playerBgSprites;
+    public List<Sprite> playerReadySprites;
 
 
     // Start is called before the first frame update
@@ -49,9 +52,16 @@ public class MinigameInstructions : MonoBehaviour
         if (GameData.displayedMinigameID != "")
         {
             setMinigameData();
-            setMinigameMode();
-            updatePlayersList();
+            //setMinigameMode();
+            unactiveAllPlayersGameobjects();
+           if (GameData.playersList != null && GameData.playersList.Count > 0) updatePlayersList();
         }
+        Sequence popUpPreview = DOTween.Sequence();
+        popUpPreview.Append(minigamePreviewAll.transform.DOScale(1.3f, 0));
+        popUpPreview.Join(instructionText.GetComponent<TextMeshProUGUI>().DOFade(0, 0));
+        popUpPreview.Append(minigamePreviewAll.transform.DOScale(1f, 0.25f).SetEase(Ease.InOutBack));
+        popUpPreview.Append(instructionText.GetComponent<TextMeshProUGUI>().DOFade(1,0.4f));
+
     }
 
     public void updatePlayersList()
@@ -72,36 +82,29 @@ public class MinigameInstructions : MonoBehaviour
                 else if (GameData.minigameMode == "Battle")
                     playerGameObject.SetActive(true);
 
-                switch (playersList[i].id.ToString())
+                GameObject playerCharacter = playerGameObject.transform.Find("PlayerCharacter").gameObject;
+                playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == playersList[i].selectedCharacter+ "_score_first");
+
+                if (GameData.playerID == playersList[i].id.ToString())
                 {
-                    case "1":
-                        playerGameObject.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
-                        break;
-                    case "2":
-                        playerGameObject.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
-                        break;
-                    case "3":
-                        playerGameObject.GetComponent<Image>().color = new Color32(0, 255, 0, 255);
-                        break;
-                    case "4":
-                        playerGameObject.GetComponent<Image>().color = new Color32(255, 255, 0, 255);
-                        break;
+                    playerGameObject.transform.Find("isReady").GetComponent<Image>().sprite = playerReadySprites.Find(spr => spr.name == "player" + GameData.playerID + "Ready");
+                    playerGameObject.GetComponent<Image>().sprite = playerBgSprites.Find(spr => spr.name == "player" + GameData.playerID + "Background");
+                    playerGameObject.transform.Find("PlayerNumber").gameObject.GetComponent<TextMeshProUGUI>().color = new Color(255, 255, 255, 255);
                 }
 
-                GameObject playerCharacter = playerGameObject.transform.Find("PlayerCharacter").gameObject;
-                playerCharacter.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == playersList[i].selectedCharacter);
-
-                if (playersList[i].isReady)
+                if (playersList[i].isReady && !playerGameObject.transform.Find("isReady").gameObject.activeInHierarchy)
                 {
                     GameObject isReadyIcon = playerGameObject.transform.Find("isReady").gameObject;
                     isReadyIcon.SetActive(true);
+
+                  
                     isReadyIcon.transform.DOScale(1.05f, 0.1f).OnComplete(() => { isReadyIcon.transform.DOScale(1f, 0.1f); });
                 }
             }
         }
     }
 
-    public void setMinigameMode()
+/*    public void setMinigameMode()
     {
         TextMeshProUGUI minigameModeText = minigameMode.GetComponent<TextMeshProUGUI>();
         if (GameData.minigameMode == "Duel")
@@ -113,7 +116,7 @@ public class MinigameInstructions : MonoBehaviour
             minigameModeText.text = "Bataille";
         }
 
-    }
+    }*/
 
     public void setMinigameData()
     {
