@@ -32,7 +32,7 @@ public class Minigame3 : MonoBehaviour
     public bool isAbleToFill = true;
 
     int pistonUpPos = 580;
-    int pistonDownPos = 480;
+    int pistonDownPos = 530;
 
     private float timer = 0.0f;
     private float interval = 0.04f;
