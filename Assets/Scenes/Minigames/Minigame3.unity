@@ -1124,7 +1124,7 @@ MonoBehaviour:
   CartridgesLine: {fileID: 955605959}
   cartridgePrefab: {fileID: 5457602990659127653, guid: eedd444980aecd346a5be8afcacd3214, type: 3}
   InkFlow: {fileID: 995610244}
-  InkFlowParent: {fileID: 0}
+  InkFlowHeight: 208
   isAbleToFill: 1
   inkIncreaseLevel: 5
 --- !u!1 &460170258

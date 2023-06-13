@@ -23,6 +23,8 @@ public class Minigame3 : MonoBehaviour
     int inkLevelMax = 216;
 
     public GameObject InkFlow;
+    public float InkFlowHeight;
+    private float InkFlowPositionY;
 
     int playerProgressIndex;
     double playerScore;
@@ -45,6 +47,8 @@ public class Minigame3 : MonoBehaviour
     void Start()
     {
         InkFlow.transform.localScale = new Vector3(1f, 0f, 1f);
+
+        InkFlowPositionY = InkFlow.transform.localPosition.y;
     }
     
     void Update()
@@ -101,8 +105,12 @@ public class Minigame3 : MonoBehaviour
             isHolding = false;
 
             addNewCartridge();
-                
-            InkFlow.transform.DOScaleY(0f, 0.2f);
+
+            InkFlow.transform.DOLocalMoveY(InkFlowPositionY - InkFlowHeight, 0.2f).OnComplete(() =>
+            {
+                InkFlow.transform.localScale = new Vector3(1f, 0f, 1f);
+                InkFlow.transform.localPosition = new Vector3(InkFlow.transform.localPosition.x, InkFlowPositionY, InkFlow.transform.localPosition.z);
+            });
         }
     }
 
