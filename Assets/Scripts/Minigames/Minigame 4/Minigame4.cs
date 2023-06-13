@@ -13,9 +13,10 @@ public class Minigame4 : MonoBehaviour
     public MinigameUI MinigameUI;
     private GameObject WebsocketManager;
 
-    public GameObject Lectern;
+    public GameObject AllFrontObjects;
     public GameObject CharacterSprite;
     public GameObject DialogBox;
+    public GameObject Public;
 
 
     public List<string> SentencesList;
@@ -51,7 +52,7 @@ public class Minigame4 : MonoBehaviour
         {
             foreach (GameObject hand in HandObjects)
             {
-                hand.transform.localPosition = new Vector3(hand.transform.localPosition.x + Random.Range(-1, 1) * Mathf.Sin(speed * Time.time), hand.transform.localPosition.y + Random.Range(-1, 1) * Mathf.Sin(speed * Time.time), hand.transform.localPosition.z + Random.Range(-1, 1) * Mathf.Sin(speed * Time.time));
+                hand.transform.localPosition = new Vector3(hand.transform.localPosition.x + Random.Range(-0.3f, 0.3f) * Mathf.Sin(speed * Time.time), hand.transform.localPosition.y + Random.Range(-0.3f, 0.3f) * Mathf.Sin(speed * Time.time), hand.transform.localPosition.z + Random.Range(-0.3f, 0.3f) * Mathf.Sin(speed * Time.time));
             }
         }
     
@@ -88,28 +89,38 @@ public class Minigame4 : MonoBehaviour
     {
         Sequence speechAnim = DOTween.Sequence();
         //Zoom
-        speechAnim.Append(Lectern.transform.DOScale(1.8f, 0.5f).SetEase(Ease.InElastic));
+        speechAnim.Append(AllFrontObjects.transform.DOScale(1f, 0.7f));
+        speechAnim.Join(Public.transform.DOScale(1.7f, 0.5f));
         //Parle
-        speechAnim.Append(DialogBox.GetComponent<Image>().DOFade(1f, 0).SetDelay(0.3f));
+        DialogBox.SetActive(true);
+        speechAnim.Join(DialogBox.transform.DOScale(0.7f, 0));
+        speechAnim.Append(DialogBox.GetComponent<Image>().DOFade(1f, 0.4f).SetDelay(0.3f));
+        speechAnim.Join(DialogBox.transform.DOScale(1,0.4f));
+
         // Associe phrase
         DialogBox.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().text = GetRandomSentence();
         speechAnim.Join(CharacterSprite.transform.DOScaleY(1.2f, 0.05f));
         speechAnim.Append(CharacterSprite.transform.DOScaleY(1, 0.1f));
         // Apparition bulle de texte
         speechAnim.Join(DialogBox.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().DOFade(1f, 0));
-        speechAnim.Join(DialogBox.transform.DOLocalMoveY(-175f, 0.25f));
         // Fin parle
         speechAnim.Append(CharacterSprite.transform.DOScaleY(1.1f, 0.1f));
         speechAnim.Append(CharacterSprite.transform.DOScaleY(1, 0.1f));
     
         // Dézoom
-        speechAnim.Append(Lectern.transform.DOScale(1f, 0.15f).SetDelay(1.5f));
-        speechAnim.Join(DialogBox.GetComponent<Image>().DOFade(0f, 0.2f));
-        // Disparition bulle de texte
-        speechAnim.Join(DialogBox.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().DOFade(0f, 0.2f));
-        speechAnim.Join(DialogBox.transform.DOLocalMoveY(-50f, 0.25f)).OnComplete(() =>
+        speechAnim.Append(AllFrontObjects.transform.DOScale(0.8f, 0.4f).SetDelay(1.5f));
+        speechAnim.Join(Public.transform.DOScale(1f, 0.4f).OnStart(() =>
         {
             StartCoroutine(spawnWave());
+        }));
+        // Disparition bulle de texte
+        speechAnim.Join(DialogBox.GetComponent<Image>().DOFade(0f, 0.4f));
+        speechAnim.Join(DialogBox.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().DOFade(0f, 0.2f));
+        speechAnim.Join(DialogBox.transform.DOScale(0.6f, 0.4f));
+        
+        speechAnim.OnComplete(() =>
+        {
+            DialogBox.SetActive(false);
         });
  
     }
@@ -129,14 +140,15 @@ public class Minigame4 : MonoBehaviour
     {
         GameObject hand = Instantiate(HandPrefab, transform.position, Quaternion.identity,transform);
         hand.GetComponent<Image>().sprite = HandSprites[Random.Range(0,HandSprites.Count)];
+        hand.transform.SetSiblingIndex(Public.transform.GetSiblingIndex() - 1);
         hand.transform.DORotate(new Vector3(0, 0, Random.Range(0, 360)), 0).OnComplete(() =>
         {
             
-            Vector3 displacement = hand.transform.rotation * Vector3.right * 800f;
+            Vector3 displacement = hand.transform.rotation * Vector3.right * 250f;
 
             Sequence handArriving = DOTween.Sequence();
 
-            handArriving.Append(hand.transform.DOLocalMove(displacement, 0.5f).SetEase(Ease.InOutElastic)).OnComplete(() =>
+            handArriving.Append(hand.transform.DOLocalMove(displacement, 0.4f).SetEase(Ease.OutBack)).OnComplete(() =>
             {
                 HandObjects.Add(hand);
                 addDragEvent(hand);
@@ -161,7 +173,7 @@ public class Minigame4 : MonoBehaviour
     {
         if (isPlaying)
         {
-            Vector3 displacement = hand.transform.rotation * Vector3.right * -800f;
+            Vector3 displacement = hand.transform.rotation * Vector3.right * -230f;
             hand.transform.DOLocalMove(displacement, 0.3f).OnComplete(() =>
             {
                 HandObjects.Remove(hand);
@@ -177,6 +189,7 @@ public class Minigame4 : MonoBehaviour
         {
             playerProgressIndex++;
             playerScore++;
+            Debug.Log(playerScore);
             sendScore();
             if (playerProgressIndex == wavesNumber)
             {
@@ -192,7 +205,7 @@ public class Minigame4 : MonoBehaviour
     }
    void sendScore()
     {
-        if (GameData.joinedRoomCode != "" && GameObject.Find("WebsocketManager") != null)
+        if (GameData.joinedRoomCode != "" && WebsocketManager != null)
             WebsocketManager.GetComponent<WebsocketManager>().sendScore(playerScore);
     }
 
