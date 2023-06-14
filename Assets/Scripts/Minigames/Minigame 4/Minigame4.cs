@@ -17,6 +17,8 @@ public class Minigame4 : MonoBehaviour
     public GameObject CharacterSprite;
     public GameObject DialogBox;
     public GameObject Public;
+    
+    public Image BlurLayer;
 
 
     public List<string> SentencesList;
@@ -38,6 +40,16 @@ public class Minigame4 : MonoBehaviour
     int playerScore;
 
     public float speed; // vitesse de la levitation
+
+    [SerializeField] oldwoman_Animation youngwomanAnim;
+
+    ///////// TYPE WRITER EFFECT
+
+    string writer;
+    float timeBtwChars;
+    [SerializeField] float talkingDuration;
+
+
 
 
     private void OnEnable()
@@ -91,40 +103,50 @@ public class Minigame4 : MonoBehaviour
         //Zoom
         speechAnim.Append(AllFrontObjects.transform.DOScale(1f, 0.7f));
         speechAnim.Join(Public.transform.DOScale(1.7f, 0.5f));
-        //Parle
+        speechAnim.Join(BlurLayer.material.DOFloat(0f, "_Size", 0.6f));
+
+        // Apparition bulle de texte
         DialogBox.SetActive(true);
         speechAnim.Join(DialogBox.transform.DOScale(0.7f, 0));
         speechAnim.Append(DialogBox.GetComponent<Image>().DOFade(1f, 0.4f).SetDelay(0.3f));
         speechAnim.Join(DialogBox.transform.DOScale(1,0.4f));
 
+        speechAnim.Join(DialogBox.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().DOFade(1f, 0).OnStart(() => {
         // Associe phrase
-        DialogBox.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().text = GetRandomSentence();
-        speechAnim.Join(CharacterSprite.transform.DOScaleY(1.2f, 0.05f));
-        speechAnim.Append(CharacterSprite.transform.DOScaleY(1, 0.1f));
-        // Apparition bulle de texte
-        speechAnim.Join(DialogBox.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().DOFade(1f, 0));
+        StartTalking(GetRandomSentence());
+        }));
         // Fin parle
         speechAnim.Append(CharacterSprite.transform.DOScaleY(1.1f, 0.1f));
         speechAnim.Append(CharacterSprite.transform.DOScaleY(1, 0.1f));
     
+    }
+
+
+    public void hideDialogBox()
+    {
+
+        Sequence dialogHide = DOTween.Sequence();
+
         // Dézoom
-        speechAnim.Append(AllFrontObjects.transform.DOScale(0.8f, 0.4f).SetDelay(1.5f));
-        speechAnim.Join(Public.transform.DOScale(1f, 0.4f).OnStart(() =>
+        dialogHide.Append(AllFrontObjects.transform.DOScale(0.8f, 0.4f).SetDelay(1.5f));
+
+        dialogHide.Join(BlurLayer.material.DOFloat(2.2f, "_Size", 0.4f));
+
+        dialogHide.Join(Public.transform.DOScale(1f, 0.4f).OnStart(() =>
         {
             StartCoroutine(spawnWave());
         }));
-        // Disparition bulle de texte
-        speechAnim.Join(DialogBox.GetComponent<Image>().DOFade(0f, 0.4f));
-        speechAnim.Join(DialogBox.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().DOFade(0f, 0.2f));
-        speechAnim.Join(DialogBox.transform.DOScale(0.6f, 0.4f));
-        
-        speechAnim.OnComplete(() =>
-        {
-            DialogBox.SetActive(false);
-        });
- 
-    }
 
+        // Disparition bulle de texte
+        dialogHide.Join(DialogBox.GetComponent<Image>().DOFade(0f, 0.4f));
+        dialogHide.Join(DialogBox.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().DOFade(0f, 0.2f));
+        dialogHide.Join(DialogBox.transform.DOScale(0.6f, 0.4f));
+
+        dialogHide.OnComplete(() =>
+          {
+              DialogBox.SetActive(false);
+          });
+    }
 
     private IEnumerator spawnWave()
     {
@@ -140,7 +162,7 @@ public class Minigame4 : MonoBehaviour
     {
         GameObject hand = Instantiate(HandPrefab, transform.position, Quaternion.identity,transform);
         hand.GetComponent<Image>().sprite = HandSprites[Random.Range(0,HandSprites.Count)];
-        hand.transform.SetSiblingIndex(Public.transform.GetSiblingIndex() - 1);
+        hand.transform.SetSiblingIndex(Public.transform.GetSiblingIndex());
         hand.transform.DORotate(new Vector3(0, 0, Random.Range(0, 360)), 0).OnComplete(() =>
         {
             
@@ -232,5 +254,39 @@ public class Minigame4 : MonoBehaviour
         currentSentenceIndex = (currentSentenceIndex + 1) % shuffledList.Count;
         return sentence;
     }
+
+    public void StartTalking(string sentence)
+    {
+        writer = sentence;
+        timeBtwChars = talkingDuration / writer.Length;
+        DialogBox.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().text = "";
+        youngwomanAnim.eyesBlinkAnim(0.4f, 0.2f);
+        youngwomanAnim.moveLeftArm();
+        StartCoroutine("TypeWriterTMP");
+    }
+
+    IEnumerator TypeWriterTMP()
+    {
+        for (int i = 0; i < writer.Length; i++)
+        {
+            char c = writer[i];
+                
+            DialogBox.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>().text += c;
+
+            youngwomanAnim.changeMouth();
+
+            if (i == writer.Length - 1)
+            {
+                youngwomanAnim.closeMouth();
+                hideDialogBox();
+            }
+            if (i % 3 == 0) youngwomanAnim.bodyBouncingAnim();
+
+            yield return new WaitForSeconds(timeBtwChars);
+        }
+
+    }
+
+
 
 }
