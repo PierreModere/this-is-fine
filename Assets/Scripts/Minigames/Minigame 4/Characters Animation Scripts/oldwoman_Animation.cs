@@ -21,6 +21,7 @@ public class oldwoman_Animation : MonoBehaviour
 
     bool isTalking = false;
     bool isBouncing = false;
+    bool isBlinking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,11 @@ public class oldwoman_Animation : MonoBehaviour
             bodyBouncingAnim();
         }
 
+        if (!isBlinking && isTalking)
+        {
+            eyesBlinkAnim(Random.Range(0.65f, 1.6f), Random.Range(0.03f, 0.15f));
+        }
+
     }
 
     public void bodyBouncingAnim()
@@ -51,6 +57,7 @@ public class oldwoman_Animation : MonoBehaviour
 
     public void eyesBlinkAnim(float delay, float blinTime)
     {
+        isBlinking = true;
         Eyes.transform.DOScale(1f, 0).SetDelay(delay).OnComplete(() =>
         {
             Eyes.GetComponent<Image>().sprite = EyesSprites[0];
@@ -58,13 +65,17 @@ public class oldwoman_Animation : MonoBehaviour
             Eyes.transform.DOScale(1f, 0).SetDelay(blinTime).OnComplete(() =>
             {
                 Eyes.GetComponent<Image>().sprite = EyesSprites[1];
+                isBlinking = false;
             });
         });
-    }  
-    
+    }
+
     public void moveLeftArm()
     {
         isTalking = true;
+
+        Eyebrows.transform.DOLocalMoveY(Eyebrows.transform.localPosition.y - 30f, 0.2f).SetEase(Ease.InOutBack);
+
         Sequence leftArm = DOTween.Sequence();
 
         leftArm.Append(LeftArm.transform.DORotate(new Vector3(0, 0, Random.Range(6,16)), 0.2f).SetEase(Ease.InBack));
@@ -82,6 +93,7 @@ public class oldwoman_Animation : MonoBehaviour
     public void closeMouth()
     {
         isTalking = false;
+        Eyebrows.transform.DOLocalMoveY(Eyebrows.transform.localPosition.y + 30f, 0.2f).SetEase(Ease.OutBack).SetDelay(1.4f);
         Mouth.GetComponent<Image>().sprite = MouthSprites[0];
     }
     Sprite mouthSprite()

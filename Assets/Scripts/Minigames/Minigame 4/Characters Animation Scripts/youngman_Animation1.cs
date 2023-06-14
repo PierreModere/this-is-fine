@@ -28,8 +28,7 @@ public class youngman_Animation : MonoBehaviour
     bool isTalking = false;
     bool isDrinking = false;
     bool isBouncing = false;
-
-
+    bool isBlinking = false;
 
     // Update is called once per frame
     void Update()
@@ -42,6 +41,11 @@ public class youngman_Animation : MonoBehaviour
         else if (isTalking && !isBouncing)
         {
             bodyBouncingAnim();
+        }
+
+        if (!isBlinking && isTalking)
+        {
+            eyesBlinkAnim(Random.Range(0.5f, 1f), Random.Range(0.03f, 0.15f));
         }
     }
 
@@ -57,6 +61,7 @@ public class youngman_Animation : MonoBehaviour
 
     public void eyesBlinkAnim(float delay, float blinTime)
     {
+        isBlinking = true;
         Eyes.transform.DOScale(1f, 0).SetDelay(delay).OnComplete(() =>
         {
             Eyes.GetComponent<Image>().sprite = EyesSprites[0];
@@ -64,12 +69,14 @@ public class youngman_Animation : MonoBehaviour
             Eyes.transform.DOScale(1f, 0).SetDelay(blinTime).OnComplete(() =>
             {
                 Eyes.GetComponent<Image>().sprite = EyesSprites[1];
+                isBlinking = false;
             });
         });
-    }  
-    
+    }
+
     public void moveLeftArm()
     {
+        Eyebrows.transform.DOLocalMoveY(Eyebrows.transform.localPosition.y - 32f, 0.2f).SetEase(Ease.InOutBack);
 
         isTalking = true;
         Body.GetComponent<Image>().sprite = BodySprites[0];
@@ -92,6 +99,7 @@ public class youngman_Animation : MonoBehaviour
     public void closeMouth()
     {
         Mouth.GetComponent<Image>().sprite = MouthSprites[0];
+        Eyebrows.transform.DOLocalMoveY(Eyebrows.transform.localPosition.y + 32f, 0.2f).SetEase(Ease.OutBack).SetDelay(1.4f);
 
         LeftArm.transform.DORotate(new Vector3(0, 0, 90), 0f).SetDelay(2f).OnStart(() =>
         {
