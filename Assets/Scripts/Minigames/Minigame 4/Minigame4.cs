@@ -41,7 +41,7 @@ public class Minigame4 : MonoBehaviour
 
     public float speed; // vitesse de la levitation
 
-    [SerializeField] oldwoman_Animation youngwomanAnim;
+    [SerializeField] youngman_Animation youngwomanAnim;
 
     ///////// TYPE WRITER EFFECT
 
@@ -52,11 +52,11 @@ public class Minigame4 : MonoBehaviour
 
 
 
-    private void OnEnable()
+ /*   private void OnEnable()
     {
         if (GameData.selectedCharacter != "") CharacterSprite.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == GameData.selectedCharacter);
         else CharacterSprite.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == "youngwoman");
-    }
+    }*/
 
     void Update()
     {
