@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class youngwoman_Animation : MonoBehaviour
+public class oldman_Animation : MonoBehaviour
 {
 
     public GameObject Body;
+    public List<Sprite> BodySprites;
 
     public GameObject Mouth;
     public List<Sprite> MouthSprites;
@@ -16,8 +17,9 @@ public class youngwoman_Animation : MonoBehaviour
     public List<Sprite> EyesSprites;
 
     public GameObject Eyebrows;
-    public GameObject LeftArm;
-    public GameObject RigthArm;
+    public GameObject ShockWave;
+    public GameObject Cigar;
+    public GameObject Smoke;
 
     bool isTalking = false;
     bool isBouncing = false;
@@ -62,9 +64,23 @@ public class youngwoman_Animation : MonoBehaviour
         });
     }
 
-    public void moveLeftArm()
+    public void moveArms()
     {
-        isTalking = true;
+        Smoke.GetComponent<Image>().DOFade(0, 0.4f).OnComplete(() => { Smoke.SetActive(false); });
+
+        Sequence hitLectern = DOTween.Sequence();
+
+        hitLectern.Append(Eyebrows.transform.DOLocalMoveY(Eyebrows.transform.localPosition.y - 50f, 0.2f).SetEase(Ease.OutBack).OnStart(() => { Body.GetComponent<Image>().sprite = BodySprites[1]; }));
+        hitLectern.Join(ShockWave.GetComponent<Image>().DOFade(1, 0));
+        hitLectern.Append(Body.transform.DOScaleY(0.35f, 0.2f).SetDelay(0.2f));
+        hitLectern.Append(Body.transform.DOScaleY(0.32f, 0.1f).SetEase(Ease.OutBack).OnComplete(() => {
+            Body.GetComponent<Image>().sprite = BodySprites[2];
+            ShockWave.SetActive(true);
+        }));
+        hitLectern.Append(ShockWave.GetComponent<Image>().DOFade(0, 0.5f).OnComplete(() => {
+            ShockWave.SetActive(false);
+            isTalking = true;
+        }));
     }
 
     public void changeMouth()
@@ -76,6 +92,8 @@ public class youngwoman_Animation : MonoBehaviour
     {
         isTalking = false;
         Mouth.GetComponent<Image>().sprite = MouthSprites[0];
+        Eyebrows.transform.DOLocalMoveY(Eyebrows.transform.localPosition.y + 50f, 0.2f).SetEase(Ease.OutBack);
+        Smoke.GetComponent<Image>().DOFade(1, 0.5f).SetDelay(1f).OnComplete(() => { Smoke.SetActive(true); });
     }
     Sprite mouthSprite()
     {

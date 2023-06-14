@@ -19,25 +19,34 @@ public class oldwoman_Animation : MonoBehaviour
     public GameObject LeftArm;
     public GameObject RigthArm;
 
+    bool isTalking = false;
+    bool isBouncing = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        isTalking = false;
+        isBouncing = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+         if (isTalking && !isBouncing)
+        {
+            bodyBouncingAnim();
+        }
+
     }
 
     public void bodyBouncingAnim()
     {
+        isBouncing = true;
         Body.transform.DOScaleY(0.34f, 0.15f).OnComplete(() =>
         {
-            Body.transform.DOScaleY(0.33f, 0.2f);
+            Body.transform.DOScaleY(0.33f, 0.2f).OnComplete(() => { isBouncing = false; });
         });
-       
+
     }
 
     public void eyesBlinkAnim(float delay, float blinTime)
@@ -55,6 +64,7 @@ public class oldwoman_Animation : MonoBehaviour
     
     public void moveLeftArm()
     {
+        isTalking = true;
         Sequence leftArm = DOTween.Sequence();
 
         leftArm.Append(LeftArm.transform.DORotate(new Vector3(0, 0, Random.Range(6,16)), 0.2f).SetEase(Ease.InBack));
@@ -71,6 +81,7 @@ public class oldwoman_Animation : MonoBehaviour
 
     public void closeMouth()
     {
+        isTalking = false;
         Mouth.GetComponent<Image>().sprite = MouthSprites[0];
     }
     Sprite mouthSprite()

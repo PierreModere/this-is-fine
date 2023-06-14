@@ -26,25 +26,33 @@ public class youngman_Animation : MonoBehaviour
     public List<Sprite> Sweatsprites;
 
     bool isTalking = false;
-    bool isDrinking = true;
+    bool isDrinking = false;
+    bool isBouncing = false;
+
 
 
     // Update is called once per frame
     void Update()
     {
-        if (!isTalking && !isDrinking)
+        if (!isTalking && isDrinking)
         {
-            drinkWater();
+            float wiggleAngle = Mathf.Sin(Time.time * 5f) * 0.02f;
+            LeftArm.transform.rotation = LeftArm.transform.rotation * Quaternion.Euler(0f, 0f, wiggleAngle);
+        }
+        else if (isTalking && !isBouncing)
+        {
+            bodyBouncingAnim();
         }
     }
 
     public void bodyBouncingAnim()
     {
+        isBouncing = true;
         Body.transform.DOScaleY(0.34f, 0.15f).OnComplete(() =>
         {
-            Body.transform.DOScaleY(0.33f, 0.2f);
+            Body.transform.DOScaleY(0.33f, 0.2f).OnComplete(() => { isBouncing = false; });
         });
-       
+        
     }
 
     public void eyesBlinkAnim(float delay, float blinTime)
@@ -66,12 +74,7 @@ public class youngman_Animation : MonoBehaviour
         isTalking = true;
         Body.GetComponent<Image>().sprite = BodySprites[0];
         Sweat.GetComponent<Image>().sprite = sweatSprite();
-        Sweat.transform.DOMoveY(80, 0).OnComplete(() =>
-        {
-            Sweat.transform.DOLocalMoveY(Sweat.transform.localPosition.y - 80, 2f);
-        });
-
-
+      
         BothArms.SetActive(true);
         Glass.SetActive(true);
         Glass.transform.DOScale(0.35f, 0.15f).From();
@@ -79,27 +82,6 @@ public class youngman_Animation : MonoBehaviour
         LeftArm.SetActive(false);
         RigthArm.SetActive(false);
 
-    }
-
-    void drinkWater()
-    {
-        isDrinking = true;
-
-        BothArms.SetActive(false);
-        Glass.SetActive(false);
-
-        LeftArm.SetActive(true);
-        RigthArm.SetActive(true);
-
-        Sequence leftArm = DOTween.Sequence();
-
-        leftArm.Append(LeftArm.transform.DORotate(new Vector3(0, 0, 3.38f), 0.4f).SetEase(Ease.OutBack));
-        leftArm.Append(LeftArm.transform.DORotate(new Vector3(0, 0, Random.Range(-12, -16)), 0.2f));
-        leftArm.Append(LeftArm.transform.DORotate(new Vector3(0, 0, Random.Range(-12, -16)), 0.2f));
-        leftArm.Append(LeftArm.transform.DORotate(new Vector3(0, 0, Random.Range(-12, -16)), 0.2f));
-        leftArm.Append(LeftArm.transform.DORotate(new Vector3(0, 0, Random.Range(-12, -16)), 0.2f));
-
-        leftArm.OnComplete(() => { isDrinking = false; });
     }
 
     public void changeMouth()
@@ -110,16 +92,22 @@ public class youngman_Animation : MonoBehaviour
     public void closeMouth()
     {
         Mouth.GetComponent<Image>().sprite = MouthSprites[0];
-        Body.GetComponent<Image>().sprite = BodySprites[1];
-        LeftArm.transform.DORotate(new Vector3(0, 0, 100), 0f).SetDelay(2f).OnStart(() => {
-            LeftArm.SetActive(true);
-        }).OnComplete(() => {
-            isTalking = false;
-            isDrinking = false;
-        });
 
-       
+        LeftArm.transform.DORotate(new Vector3(0, 0, 90), 0f).SetDelay(2f).OnStart(() =>
+        {
+            Body.GetComponent<Image>().sprite = BodySprites[1];
+            LeftArm.SetActive(true);
+            RigthArm.SetActive(true);
+            BothArms.SetActive(false);
+            Glass.SetActive(false);
+        }).OnComplete(() => {
+            LeftArm.transform.DORotate(new Vector3(0, 0, -15), 0.3f).SetEase(Ease.OutBack).OnComplete(() => {
+                isTalking = false;
+                isDrinking = true;
+            });
+        });
     }
+
     Sprite mouthSprite()
     {
         return MouthSprites[Random.Range(0, MouthSprites.Count-1)];
