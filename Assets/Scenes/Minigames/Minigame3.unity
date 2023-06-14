@@ -1124,7 +1124,7 @@ MonoBehaviour:
   CartridgesLine: {fileID: 955605959}
   cartridgePrefab: {fileID: 5457602990659127653, guid: eedd444980aecd346a5be8afcacd3214, type: 3}
   InkFlow: {fileID: 995610244}
-  InkFlowHeight: 208
+  InkFlowHeight: 172
   isAbleToFill: 1
   inkIncreaseLevel: 5
 --- !u!1 &460170258
@@ -2154,6 +2154,7 @@ GameObject:
   - component: {fileID: 995610245}
   - component: {fileID: 995610247}
   - component: {fileID: 995610246}
+  - component: {fileID: 995610248}
   m_Layer: 5
   m_Name: InkFlow
   m_TagString: Untagged
@@ -2178,8 +2179,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 249.00005}
-  m_SizeDelta: {x: 32, y: 208}
+  m_AnchoredPosition: {x: 0, y: 190}
+  m_SizeDelta: {x: 64, y: 172}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &995610246
 MonoBehaviour:
@@ -2194,14 +2195,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16078432, g: 0.21568629, b: 0.30980393, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -131307484, guid: d3216526eefc14fcebf88c9be821ab55, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2219,6 +2220,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995610244}
   m_CullTransparentMesh: 1
+--- !u!95 &995610248
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995610244}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d560794314fa2439ca9dcedb4633ca10, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1039627429
 GameObject:
   m_ObjectHideFlags: 0

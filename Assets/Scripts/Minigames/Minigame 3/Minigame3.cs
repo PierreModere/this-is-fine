@@ -105,12 +105,6 @@ public class Minigame3 : MonoBehaviour
             isHolding = false;
 
             addNewCartridge();
-
-            InkFlow.transform.DOLocalMoveY(InkFlowPositionY - InkFlowHeight, 0.2f).OnComplete(() =>
-            {
-                InkFlow.transform.localScale = new Vector3(1f, 0f, 1f);
-                InkFlow.transform.localPosition = new Vector3(InkFlow.transform.localPosition.x, InkFlowPositionY, InkFlow.transform.localPosition.z);
-            });
         }
     }
 
@@ -140,6 +134,11 @@ public class Minigame3 : MonoBehaviour
             pistonAnimator.Play("machine_idle-top");
         });
 
+        InkFlow.transform.DOLocalMoveY(InkFlowPositionY - InkFlowHeight, 0.2f).OnComplete(() =>
+        {
+            InkFlow.transform.localScale = new Vector3(1f, 0f, 1f);
+            InkFlow.transform.localPosition = new Vector3(InkFlow.transform.localPosition.x, InkFlowPositionY, InkFlow.transform.localPosition.z);
+        });
     }
     void pistonDownAnimation()
     {
