@@ -13,6 +13,7 @@ public class Minigame3 : MonoBehaviour
     public GameObject controls;
     public GameObject fillButton;
     public GameObject pistonGameobject;
+    private Animator pistonAnimator;
 
     public List<GameObject> cartridgesList;
     public GameObject CartridgesLine;
@@ -20,6 +21,10 @@ public class Minigame3 : MonoBehaviour
     private GameObject currentCartridge;
     int moveOffset = 500;
     int inkLevelMax = 216;
+
+    public GameObject InkFlow;
+    public float InkFlowHeight;
+    private float InkFlowPositionY;
 
     int playerProgressIndex;
     double playerScore;
@@ -30,8 +35,8 @@ public class Minigame3 : MonoBehaviour
     private bool isHolding = false;
     public bool isAbleToFill = true;
 
-    int pistonUpPos = 610;
-    int pistonDownPos = 390;
+    int pistonUpPos = 580;
+    int pistonDownPos = 530;
 
     private float timer = 0.0f;
     private float interval = 0.04f;
@@ -39,8 +44,13 @@ public class Minigame3 : MonoBehaviour
 
     Animator beltAnimator;
 
+    void Start()
+    {
+        InkFlow.transform.localScale = new Vector3(1f, 0f, 1f);
 
-      // Update is called once per frame
+        InkFlowPositionY = InkFlow.transform.localPosition.y;
+    }
+    
     void Update()
     {
         timer += Time.deltaTime;
@@ -58,12 +68,13 @@ public class Minigame3 : MonoBehaviour
 
         beltAnimator = transform.Find("MovingBelt").gameObject.GetComponent<Animator>();
 
+        pistonAnimator = pistonGameobject.GetComponent<Animator>();
+
         playerProgressIndex = 0;
         playerScore = 0;
         currentCartridge = cartridgesList[playerProgressIndex];
         activeButtons();
-        addNewCartridge();
-
+        pistonDownAnimation();
     }
 
     public void finishMinigame()
@@ -80,14 +91,21 @@ public class Minigame3 : MonoBehaviour
 
     public void onButtonHold()
     {
-        if (isAbleToFill) isHolding = true;
+        if (isAbleToFill)
+        {
+            isHolding = true;
 
+            InkFlow.transform.DOScaleY(1f, 0.2f);
+        }
     }
     public void onButtonRelease()
     {
-        if (isAbleToFill && currentCartridge.transform.Find("InkLevelMask").Find("InkLevel").gameObject.GetComponent<RectTransform>().sizeDelta.y>0) addNewCartridge();
-        isHolding = false;
-        
+        if (isAbleToFill && currentCartridge.transform.Find("InkLevelMask").Find("InkLevel").gameObject.GetComponent<RectTransform>().sizeDelta.y>0)
+        {
+            isHolding = false;
+
+            addNewCartridge();
+        }
     }
 
     void moveLineAnimation()
@@ -105,23 +123,36 @@ public class Minigame3 : MonoBehaviour
     }
     void pistonUpAnimation()
     {
+        pistonAnimator.Play("machine_going-up");
+
         Sequence downAnim = DOTween.Sequence();
         downAnim.Append(pistonGameobject.transform.DOLocalMoveY(pistonUpPos + 20, 0.2f));
         downAnim.Append(pistonGameobject.transform.DOLocalMoveY(pistonUpPos, 0.1f)).OnComplete(() =>
         {
             moveLineAnimation();
+
+            pistonAnimator.Play("machine_idle-top");
         });
 
+        InkFlow.transform.DOLocalMoveY(InkFlowPositionY - InkFlowHeight, 0.2f).OnComplete(() =>
+        {
+            InkFlow.transform.localScale = new Vector3(1f, 0f, 1f);
+            InkFlow.transform.localPosition = new Vector3(InkFlow.transform.localPosition.x, InkFlowPositionY, InkFlow.transform.localPosition.z);
+        });
     }
     void pistonDownAnimation()
     {
+        pistonAnimator.Play("machine_going-down");
+
         Sequence downAnim = DOTween.Sequence();
-        downAnim.Append(pistonGameobject.transform.DOLocalMoveY(pistonDownPos-20, 0.2f));
+        downAnim.Append(pistonGameobject.transform.DOLocalMoveY(pistonDownPos - 20, 0.2f));
         downAnim.Append(pistonGameobject.transform.DOLocalMoveY(pistonDownPos, 0.1f)).OnComplete(() =>
         {
             inkIncreaseLevel = 2f;
             fillButton.GetComponent<Button>().interactable = true;
             isAbleToFill = true;
+
+            pistonAnimator.Play("machine_idle-bottom");
         });
 
     }
