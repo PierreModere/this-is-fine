@@ -24,6 +24,8 @@ public class Minigame1 : MonoBehaviour
 
     public List<GameObject> allBlurryForegroundObj;
 
+    public Image BlurLayer;
+
     public GameObject buttonInstruction;
     public GameObject controls;
 
@@ -46,12 +48,14 @@ public class Minigame1 : MonoBehaviour
     private void Start()
     {
         backPipeRotation = goopFlow.transform.localRotation.eulerAngles;
-
+        BlurLayer.material.DOFloat(2.2f, "_Size", 0);
         InvokeRepeating("backPipeAnim", wiggleInterval, wiggleInterval);
         InvokeRepeating("frontPipesAnims", wiggleInterval, wiggleInterval);
     }
     public void initMinigame()
     {
+        BlurLayer.material.DOFloat(2.2f, "_Size", 0);
+
         WebsocketManager = GameObject.Find("WebsocketManager");
 
         playerProgressIndex = 0;
@@ -128,7 +132,6 @@ public class Minigame1 : MonoBehaviour
 
             valveError.Append(valve.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z + 170f), 0.3f).SetEase(Ease.InOutBack));
             valveError.Join(valveShadow.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z + 170f), 0.3f).SetEase(Ease.InOutBack));
-            //finishMinigame();
             MinigameUI.displayFeedback(false);
 
         }
@@ -165,24 +168,14 @@ public class Minigame1 : MonoBehaviour
 
 
         endCutscene.Join(controls.transform.DOLocalMoveY(-260, 0.5f).SetEase(Ease.InOutSine));
-
-        foreach (Transform element in backgroundObjects.transform)
-        {
-            if (element.gameObject.GetComponent<Image>() != null && element.Find("Blurry") != null)
-            {
-                element.gameObject.GetComponent<Image>().DOFade(1f, 0.5f);
-                element.Find("Blurry").gameObject.GetComponent<Image>().DOFade(0f, 0.5f);
-                element.Find("PipeEnd").gameObject.GetComponent<Image>().DOFade(1f, 0.5f);
-                element.Find("PipeEnd").Find("Blurry").gameObject.GetComponent<Image>().DOFade(0f, 0.5f);
-            }
-        }
+        endCutscene.Join(BlurLayer.material.DOFloat(0, "_Size", 0.5f));
 
         foreach (GameObject element in allBlurryForegroundObj)
         {
             if (element.GetComponent<Image>() != null && element.transform.Find("Blurry") != null)
             {
-                element.GetComponent<Image>().DOFade(0f, 0.6f);
-                element.transform.Find("Blurry").gameObject.GetComponent<Image>().DOFade(1f, 0.4f);
+                endCutscene.Join(element.GetComponent<Image>().DOFade(0f, 0.6f));
+                endCutscene.Join(element.transform.Find("Blurry").gameObject.GetComponent<Image>().DOFade(1f, 0.4f));
             }
         }
     }
