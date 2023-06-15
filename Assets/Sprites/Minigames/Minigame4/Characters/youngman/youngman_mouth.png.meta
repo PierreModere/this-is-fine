@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a220f08a86a786b448f011ddca65e46f
+guid: f2e9ed52ff1beb54ebed0e2083f0c4a0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -141,7 +141,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: youngman_mouth_0
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 185
+        width: 239
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4202d983982639f42846f811bff44af3
+      internalID: -564933372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: youngman_mouth_1
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 173
+        width: 239
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7ef62901548b5145a9841308867eb0e
+      internalID: 654291425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: youngman_mouth_2
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 0
+        width: 239
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b0d0b6fbabece84a9483d7c21c7627e
+      internalID: 319974779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: youngman_mouth_3
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 20
+        width: 239
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10b8abc468c15e944af080b941661ce2
+      internalID: 963618107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -152,7 +236,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      youngman_mouth_0: -564933372
+      youngman_mouth_1: 654291425
+      youngman_mouth_2: 319974779
+      youngman_mouth_3: 963618107
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
