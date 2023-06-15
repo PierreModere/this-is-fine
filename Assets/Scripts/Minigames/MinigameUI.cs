@@ -19,8 +19,7 @@ public class MinigameUI : MonoBehaviour
     bool isCutscene = true;
     float cutsceneTimeLeft;
 
-    public GameObject GoText;
-    public GameObject FinishText;
+    public GameObject StartAndStop;
 
     public List<GameObject> playersGameobjects;
     public List<Sprite> charactersSprites;
@@ -75,7 +74,7 @@ public class MinigameUI : MonoBehaviour
                 isCutscene = false;
                 gameObject.GetComponent<CanvasGroup>().DOFade(1f, 0.1f).OnComplete(() =>
                 {
-                    popUpAnimationText(GoText);
+                    startPopUpAnimationText("start");
                 });
 
             }
@@ -117,7 +116,7 @@ public class MinigameUI : MonoBehaviour
 
     public void finishMinigameAnimation()
     {
-        popUpAnimationText(FinishText);
+        startPopUpAnimationText("stop");
 
         switch (minigameData.id)
         {
@@ -188,37 +187,28 @@ public class MinigameUI : MonoBehaviour
         }
     }
 
-    void popUpAnimationText(GameObject textTarget)
+    public void startPopUpAnimationText(string type)
     {
-        textTarget.SetActive(true);
+        StartAndStop.SetActive(true);
+        StartAndStop.GetComponent<Animator>().Play(type+"Anim");
+    }
 
-        Sequence mySequence = DOTween.Sequence();
+    public async void popUpAnimationEnd(string type)
+    {
+        StartAndStop.SetActive(false);
 
-        mySequence.Append(textTarget.transform.DOScale(1.05f, 0.1f));
-        mySequence.Append(textTarget.transform.DOScale(1f, 0.1f));
-        mySequence.Append(textTarget.transform.DOScale(1.1f, 0.11f).SetDelay(1.2f).OnComplete(() =>
+        if (type == "start")
         {
-            if (textTarget.name == "GoText")
-            {
-                initMinigame();
-            };
-        }));
-        mySequence.Append(textTarget.transform.DOScale(0f, 0.08f).OnComplete(async () =>
+            initMinigame();
+            isPlaying = true;
+        }
+        if (type == "stop" && GameData.isHost)
         {
-            textTarget.SetActive(false);
-            if (textTarget.name == "GoText")
-            {
-                isPlaying = true;
-            }
-            if (textTarget.name == "FinishText" && GameData.isHost)
-            {
-                var websocket = GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().websocket;
-                string sceneName = "ResultsScene";
-                string json = "{'type': 'changeScene', 'params':{'code': '" + GameData.joinedRoomCode + "','sceneName':'" + sceneName + "'}}";
-                await websocket.SendText(json);
-            }
-        }));
-
+            var websocket = GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().websocket;
+            string sceneName = "ResultsScene";
+            string json = "{'type': 'changeScene', 'params':{'code': '" + GameData.joinedRoomCode + "','sceneName':'" + sceneName + "'}}";
+            await websocket.SendText(json);
+        }
     }
 
     void initMinigame()

@@ -96,7 +96,7 @@ public class FirstMinigameAnimation : MonoBehaviour
         isChangingSprite = true;
 
         // démarrer une coroutine pour changer le sprite
-        StartCoroutine(ChangeSpriteCoroutine());
+        if (gameObject.activeSelf) StartCoroutine(ChangeSpriteCoroutine());
     }
 
     // coroutine pour changer le sprite toutes les `timeInterval` secondes pendant `totalTime` secondes
