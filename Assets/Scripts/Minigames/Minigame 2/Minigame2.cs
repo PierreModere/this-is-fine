@@ -16,12 +16,15 @@ public class Minigame2 : MonoBehaviour
     public GameObject leftHandGroup;
     private GameObject leftHand;
     private GameObject leftHandShadow;
+    private Vector3 leftHandPosition;
     public GameObject rightHandGroup;
     private GameObject rightHand;
     private GameObject rightHandShadow;
+    private Vector3 rightHandPosition;
 
     private GameObject currentContractObject;
     private GameObject stamp;
+    private bool isAnimating = false;
 
     public GameData GameData;
     public MinigameUI MinigameUI;
@@ -32,10 +35,15 @@ public class Minigame2 : MonoBehaviour
         WebsocketManager = GameObject.Find("WebsocketManager");
         isPlaying = true;
 
+        // Left hand
         leftHand = leftHandGroup.transform.Find("Hand").gameObject;
         leftHandShadow = leftHandGroup.transform.Find("Shadow").gameObject;
+        leftHandPosition = leftHandGroup.transform.position;
+
+        // Right hand
         rightHand = rightHandGroup.transform.Find("Hand").gameObject;
         rightHandShadow = rightHandGroup.transform.Find("Shadow").gameObject;
+        rightHandPosition = rightHandGroup.transform.position;
     }
 
     public void finishMinigame()
@@ -86,10 +94,16 @@ public class Minigame2 : MonoBehaviour
     {
         Sequence stampedContractAnim = DOTween.Sequence();
 
+        stampedContractAnim.OnStart(() =>
+        {
+            isAnimating = true;
+            Debug.Log("Animation starts! (" + isAnimating + ")");
+        });
+
         // Right hand going down and display stamp
         stampedContractAnim.Append(rightHandGroup.transform.DOScale(new Vector3(0.9f, 0.9f, 0.9f), 0.2f).SetEase(Ease.InQuint))
             .Join(rightHandShadow.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f).SetEase(Ease.InQuint))
-            .Join(rightHandGroup.transform.DOMoveX(rightHandGroup.transform.position.x - 60f, 0.2f).SetEase(Ease.InQuint))
+            .Join(rightHandGroup.transform.DOMoveX(rightHandPosition.x - 60f, 0.2f).SetEase(Ease.InQuint))
             .AppendCallback(() =>
             {
                 stamp.SetActive(true);
@@ -98,7 +112,7 @@ public class Minigame2 : MonoBehaviour
         // Right hand going up
         stampedContractAnim.Append(rightHandGroup.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f))
             .Join(rightHandShadow.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.2f))
-            .Join(rightHandGroup.transform.DOMoveX(rightHandGroup.transform.position.x, 0.2f));
+            .Join(rightHandGroup.transform.DOMoveX(rightHandPosition.x, 0.2f));
             
         // Left hand going down at the same time
         stampedContractAnim.Join(leftHandGroup.transform.DOScale(new Vector3(0.9f, 0.9f, 0.9f), 0.2f))
@@ -106,7 +120,7 @@ public class Minigame2 : MonoBehaviour
         
         // Left hand removing current contract
         stampedContractAnim.Append(leftHandGroup.transform.DORotate(new Vector3(0f, 0f, 25f), 0.2f))
-            .Join(leftHandGroup.transform.DOMoveX(leftHandGroup.transform.position.x - 250f, 0.2f))
+            .Join(leftHandGroup.transform.DOMoveX(leftHandPosition.x - 250f, 0.2f))
             .Join(currentContractObject.transform.DORotate(new Vector3(0f, 0f, 25f), 0.2f))
             .Join(currentContractObject.transform.DOMoveX(currentContractObject.transform.position.x - 900f, 0.4f));
         
@@ -114,12 +128,15 @@ public class Minigame2 : MonoBehaviour
         stampedContractAnim.Insert(0.6f, leftHandGroup.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f))
             .Join(leftHandShadow.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.2f))
             .Join(leftHandGroup.transform.DORotate(new Vector3(0f, 0f, 0f), 0.2f))
-            .Join(leftHandGroup.transform.DOMoveX(leftHandGroup.transform.position.x, 0.2f));
+            .Join(leftHandGroup.transform.DOMoveX(leftHandPosition.x, 0.2f));
         
         // Destroy current contract when the animation is complete
         stampedContractAnim.OnComplete(() =>
         {
             Destroy(currentContractObject.gameObject);
+
+            isAnimating = false;
+            Debug.Log("Animation complete! (" + isAnimating + ")");
         });
         
         // Use timeScale setting to accelerate animation (default 1f, quicker >1f, slower <1f)
