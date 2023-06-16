@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Tampognon
   instruction: Signe le plus de contrat possible
   id: 2
-  preview: {fileID: 21300000, guid: aabad1661f340874a84230683dedeeb4, type: 3}
+  preview: {fileID: 21300000, guid: 9e073ba84b83a9a48af0dbc26f7e52b7, type: 3}
   gameTime: 15
   cutsceneTime: 5
   hasTimer: 1

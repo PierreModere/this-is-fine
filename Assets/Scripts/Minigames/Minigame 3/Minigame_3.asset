@@ -17,7 +17,7 @@ MonoBehaviour:
     tu te rends dans ton usine Esponne !   <b>Remplis les cartouches d\u2019encre
     mais pas trop non plus, on n\u2019est pas une \u0153uvre de charit\xE9.</b>"
   id: 3
-  preview: {fileID: 21300000, guid: fcb4a373db1998a4e8ff13900f8a9e84, type: 3}
+  preview: {fileID: 21300000, guid: c8b7cc6c5f084694a9f24df32d1f422f, type: 3}
   gameTime: 45
   cutsceneTime: 3
   hasTimer: 1
