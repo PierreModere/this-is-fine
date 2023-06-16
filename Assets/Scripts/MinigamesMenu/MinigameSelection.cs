@@ -10,7 +10,10 @@ public class MinigameSelection : MonoBehaviour
     public GameObject ReturnButton;
     public GameObject OkButton;
 
-    public List<GameObject> minigameButtons;
+    public GameObject Title;
+    public GameObject Instruction;
+
+    public Transform minigameButtonsContainer;
 
     private GameObject WebsocketManager;
 
@@ -24,17 +27,40 @@ public class MinigameSelection : MonoBehaviour
         addClickEvents();
     }
 
+    private void OnEnable()
+    {
+        titleApperance();
+    }
+
     void addClickEvents()
     {
 
-        foreach (GameObject minigameButton in minigameButtons)
+        for (int i = 0; i < minigameButtonsContainer.childCount; i++)
         {
-            var button = minigameButton.GetComponent<Button>();
-            string minigameID = minigameButton.transform.Find("MinigameID").transform.GetComponent<Text>().text;
-            button.onClick.AddListener(() => { selectMinigame(minigameID, minigameButton); });
+            GameObject minigameButton = minigameButtonsContainer.GetChild(i).gameObject;
+
+             if (minigameButton.name != "Locked")
+             {
+                var button = minigameButton.GetComponent<Button>();
+                string minigameID = minigameButton.transform.Find("MinigameID").gameObject.GetComponent<Text>().text;
+                button.onClick.AddListener(() => { selectMinigame(minigameID, minigameButton.gameObject); });
+             }
         }
 
 
+
+    }
+
+    void titleApperance()
+    {
+        Sequence showTitle = DOTween.Sequence();
+
+        showTitle.AppendCallback(() => { Title.SetActive(true); });
+        showTitle.Append(Title.transform.DOLocalMoveY(200, 0.2f).SetEase(Ease.OutBack).From());
+        showTitle.AppendInterval(1.3f);
+        showTitle.AppendCallback(() => { Instruction.SetActive(true);});
+        showTitle.Append(Instruction.transform.DOScale(0.8f, 0.2f).SetEase(Ease.OutBack).From());
+        showTitle.AppendCallback(() => { Title.SetActive(false); });
 
     }
 
@@ -50,7 +76,7 @@ public class MinigameSelection : MonoBehaviour
         selectedMinigameID = id;
         selectedMinigame = button;
         selectedMinigame.transform.Find("Selected").gameObject.SetActive(isSelected);
-        selectedMinigame.transform.DOScale(1.05f, 0.1f).OnComplete(() => { selectedMinigame.transform.DOScale(1f, 0.1f); });
+        selectedMinigame.transform.Find("Selected").DOScale(1.20f, 0.2f).SetEase(Ease.OutBack).From();
 
         toggleOkButton();
     }
@@ -60,6 +86,7 @@ public class MinigameSelection : MonoBehaviour
         WebsocketManager = GameObject.Find("WebsocketManager");
 
         isSelected = false;
+        selectedMinigame.transform.Find("Selected").gameObject.SetActive(isSelected);
         selectedMinigame = null;
         selectedMinigameID = null;
         WebsocketManager.GetComponent<WebsocketManager>().resetDuelStatus();

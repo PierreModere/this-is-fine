@@ -15,10 +15,12 @@ MonoBehaviour:
   title: "Pol\xE9-mic "
   instruction: "D\xE9barasse toi de tes d\xE9tracteurs le plus vite !"
   id: 4
-  preview: {fileID: 914377660, guid: a1f744116ae6b744f8cb6a5e49ed5b33, type: 3}
+  preview: {fileID: 21300000, guid: 0c46095d8b0169849b929c58c298f4eb, type: 3}
   gameTime: 0
-  cutsceneTime: 2
+  cutsceneTime: 3
   hasTimer: 0
   goodFeedbacks:
   - "Bien jou\xE9"
+  - Assez !
+  - Chuuut !!
   badFeedbacks: []
