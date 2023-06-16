@@ -45,11 +45,11 @@ public class LobbyScreen : MonoBehaviour
                 playerNumber.SetActive(true);
                 if (playersList.Count > (requiredPlayersNumber - 1) && GameData.isHost == true)
                 {
-                    transform.Find("Ok").gameObject.SetActive(true);
+                    transform.Find("Ok").gameObject.GetComponent<Button>().interactable = true;
                 }
                 else
                 {
-                    transform.Find("Ok").gameObject.SetActive(false);
+                    transform.Find("Ok").gameObject.GetComponent<Button>().interactable = false;
                 }
                 if (GameData.playerID == playersList[i].id.ToString()) { 
                     playerNumber.GetComponent<Image>().sprite = playersNamesSprites.Find(spr => spr.name == "player"+ GameData.playerID);
