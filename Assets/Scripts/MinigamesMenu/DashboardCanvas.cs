@@ -86,12 +86,24 @@ public class DashboardCanvas : MonoBehaviour
 
     public void buttonOnClick(string mode, GameObject button)
     {
-        if (selectedButton != null) { selectedButton.transform.Find("Selected").gameObject.SetActive(false);
+        if (selectedButton != null) { 
+            selectedButton.transform.Find("Selected").gameObject.SetActive(false);
             selectedButton.transform.Find("Mask").Find("ButtonAnim").gameObject.GetComponent<Animator>().Play(selectedMode.ToLower() + "Unselection");
+            if (selectedButton.transform.Find("Mask").Find("ButtonBackground") != null)
+            {
+                Transform spike = selectedButton.transform.Find("Mask").Find("ButtonBackground");
+                spike.DORotate(new Vector3(0, 0, spike.localEulerAngles.z + 90), 2f).SetEase(Ease.OutSine);
+            }
         }
+      
         isSelected = true;
         selectedMode = mode;
         selectedButton = button;
+        if (selectedButton.transform.Find("Mask").Find("ButtonBackground") != null)
+        {
+            Transform spike = selectedButton.transform.Find("Mask").Find("ButtonBackground");
+            spike.DORotate(new Vector3(0, 0, spike.localEulerAngles.z - 90), 3f).SetEase(Ease.OutSine);
+        }
         Transform selectedFrame = selectedButton.transform.Find("Selected");
         selectedFrame.gameObject.SetActive(isSelected);
         selectedFrame.DOScale(1.20f, 0.2f).SetEase(Ease.OutBack).From();
@@ -105,6 +117,11 @@ public class DashboardCanvas : MonoBehaviour
         isSelected = false;
         selectedButton.transform.Find("Selected").gameObject.SetActive(isSelected);
         selectedButton.transform.Find("Mask").Find("ButtonAnim").gameObject.GetComponent<Animator>().Play(selectedMode.ToLower() + "Unselection");
+        if (selectedButton.transform.Find("Mask").Find("ButtonBackground") != null)
+        {
+            Transform spike = selectedButton.transform.Find("Mask").Find("ButtonBackground");
+            spike.DORotate(new Vector3(0, 0, spike.localEulerAngles.z + 90), 2f).SetEase(Ease.OutSine);
+        }
         selectedButton = null;
         selectedMode = null;
         updateSubtitle();
