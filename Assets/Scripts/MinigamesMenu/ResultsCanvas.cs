@@ -29,6 +29,8 @@ public class ResultsCanvas : MonoBehaviour
 
     public GameObject FirstPlayerToPlayAlert;
 
+    public float delfayBeforeFirstAlert;
+
     void Start()
     {
         initScreen();
@@ -161,6 +163,8 @@ public class ResultsCanvas : MonoBehaviour
 
         Sequence popUp = DOTween.Sequence();
 
+        popUp.SetDelay(delfayBeforeFirstAlert);
+
         FirstPlayerToPlayAlert.SetActive(true);
         FadeBackground.SetActive(true);
         popUp.Append(FadeBackground.GetComponent<Image>().DOFade(0.6f, 0.2f));
@@ -190,7 +194,7 @@ public class ResultsCanvas : MonoBehaviour
             else NewsAlertGameObject.GetComponent<Image>().sprite = NewsAlertSprite[1];
 
             Sequence newsShow = DOTween.Sequence();
-            newsShow.Append(FadeBackground.GetComponent<Image>().DOFade(0.6f, 0).SetDelay(0.6f).OnComplete(() =>
+            newsShow.Append(FadeBackground.GetComponent<Image>().DOFade(0.6f, 0).SetDelay(0.4f).OnComplete(() =>
             {
                 NewsAlertGameObject.SetActive(true);
                 FadeBackground.SetActive(true);
