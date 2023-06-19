@@ -137,7 +137,7 @@ public class CharactersSelection : MonoBehaviour
                 {
                     Sprite.GetComponent<Image>().sprite = selectedCharactersSprites.Find(sprite => sprite.name == playersList[i].selectedCharacter.ToString() + "_selected");
                     Sequence anim = DOTween.Sequence();
-                    anim.Append(Sprite.transform.DOLocalMoveY(20, 0.1f).SetEase(Ease.OutElastic).From());
+                    anim.Append(Sprite.transform.DOLocalMoveY(Sprite.transform.localPosition.y + 10 , 0.15f).SetEase(Ease.InBack).From());
                     anim.Join(Sprite.transform.DOScale(1.2f, 0.15f).From());
                 }
 
