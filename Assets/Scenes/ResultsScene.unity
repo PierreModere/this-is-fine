@@ -727,6 +727,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 199dcff9698219146b70f1b3ec00f55c, type: 3}
   - {fileID: 21300000, guid: 1de9183d817859c4680b90d767304ff1, type: 3}
   FirstPlayerToPlayAlert: {fileID: 755247363}
+  delfayBeforeFirstAlert: 0.1
 --- !u!1 &399703916
 GameObject:
   m_ObjectHideFlags: 0
@@ -3742,7 +3743,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 766dcc37822596f4eb2aa93d5adf836c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ed7e38e1638fedf4d9a53051f4c2c436, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
