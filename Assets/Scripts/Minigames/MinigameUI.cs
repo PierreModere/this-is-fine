@@ -252,14 +252,13 @@ public class MinigameUI : MonoBehaviour
 
         int randomPosIndex = Random.Range(0, feedbackPositions.Length);
 
-        feedBackAnim.Append(text.transform.DOLocalMove(feedbackPositions[randomPosIndex], 0f));
-        feedBackAnim.Join(text.transform.DOLocalRotate(feedbackRotation[randomPosIndex], 0f));
-        feedBackAnim.Append(text.transform.DOScale(1.05f, 0.1f));
-        feedBackAnim.Append(text.transform.DOScale(1f, 0.1f));
-        feedBackAnim.Append(text.transform.DOScale(1.1f, 0.11f).SetDelay(0.5f));
-        feedBackAnim.Append(text.transform.DOScale(0f, 0.08f).OnComplete(() => {
+        feedBackAnim.Append(text.transform.DOLocalMove(new Vector3(0, -350,0), 0f));
+        feedBackAnim.Append(text.transform.DOScale(0.85f, 0.1f).SetEase(Ease.OutBack).From());
+        feedBackAnim.Join(text.transform.DOLocalMoveY(text.transform.localPosition.y + 100 , 0.15f).SetEase(Ease.InBack).SetDelay(0.6f));
+        feedBackAnim.Join(text.GetComponent<TextMeshProUGUI>().DOFade(0, 0.15f));
+        feedBackAnim.OnComplete(() => {
             Destroy(text);
-        }));
+        });
 
     }
 }

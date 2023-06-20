@@ -135,7 +135,7 @@ public class Minigame3 : MonoBehaviour
         beltAnimator.Play("movingBelt");
 
         Sequence lineMoveAnim = DOTween.Sequence();
-        lineMoveAnim.Append(LineTransform.transform.DOLocalMoveX(LineTransform.localPosition.x - moveOffset, 0.5f)).OnComplete(() =>
+        lineMoveAnim.Append(LineTransform.transform.DOLocalMoveX(LineTransform.localPosition.x - moveOffset, 0.5f).SetEase(Ease.OutBack)).OnComplete(() =>
         {
             beltAnimator.Play("notMovingBelt");
             pistonDownAnimation();
