@@ -9,7 +9,7 @@ public class InfiniteScroll : MonoBehaviour
 
     private float contentHeight;
     private Vector2 previousScrollPosition;
-    private bool scrollingDown = false;
+    bool scrollingDown = false;
 
     void Start()
     {

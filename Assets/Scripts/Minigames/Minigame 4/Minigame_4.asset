@@ -16,6 +16,7 @@ MonoBehaviour:
   instruction: "D\xE9barasse toi de tes d\xE9tracteurs le plus vite !"
   id: 4
   preview: {fileID: 21300000, guid: 0c46095d8b0169849b929c58c298f4eb, type: 3}
+  videoPreview: {fileID: 32900000, guid: 818a7f14c45fda547ab7a468f2b2c5c0, type: 3}
   gameTime: 0
   cutsceneTime: 3
   hasTimer: 0

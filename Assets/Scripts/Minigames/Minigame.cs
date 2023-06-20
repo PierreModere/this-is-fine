@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.Video;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Minigame", order = 1)]
 public class Minigame : ScriptableObject
@@ -8,6 +9,7 @@ public class Minigame : ScriptableObject
     public string instruction;
     public string id;
     public Sprite preview;
+    public VideoClip videoPreview;
     public int gameTime;
     public int cutsceneTime;
     public bool hasTimer;

@@ -17,6 +17,7 @@ MonoBehaviour:
     la cartouche. Rel\xE2che lorsque tu as termin\xE9 pour passer \xE0 la suivante."
   id: 1
   preview: {fileID: 21300000, guid: 1c813ab63e5f4404495bff8a9ea26445, type: 3}
+  videoPreview: {fileID: 32900000, guid: 77d2f592352eadf4b980c191af9e91ba, type: 3}
   gameTime: 0
   cutsceneTime: 0
   hasTimer: 0

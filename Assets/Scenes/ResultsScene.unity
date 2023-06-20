@@ -727,7 +727,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 199dcff9698219146b70f1b3ec00f55c, type: 3}
   - {fileID: 21300000, guid: 1de9183d817859c4680b90d767304ff1, type: 3}
   FirstPlayerToPlayAlert: {fileID: 755247363}
-  delfayBeforeFirstAlert: -0.5
+  delfayBeforeFirstAlert: 0
 --- !u!1 &399703916
 GameObject:
   m_ObjectHideFlags: 0
