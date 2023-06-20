@@ -26,6 +26,8 @@ public class Minigame2 : MonoBehaviour
     private GameObject stamp;
     private bool isAnimating = false;
 
+    public GameObject backgroundCanvas;
+
     public GameData GameData;
     public MinigameUI MinigameUI;
     private GameObject WebsocketManager;
@@ -44,6 +46,11 @@ public class Minigame2 : MonoBehaviour
         rightHand = rightHandGroup.transform.Find("Hand").gameObject;
         rightHandShadow = rightHandGroup.transform.Find("Shadow").gameObject;
         rightHandPosition = rightHandGroup.transform.position;
+
+        // Shake background canvas
+        Sequence shakeBackground = DOTween.Sequence();
+
+        shakeBackground.Append(backgroundCanvas.transform.DORotate(new Vector3(0f, 0f, 25f), 0.2f));
     }
 
     public void finishMinigame()
