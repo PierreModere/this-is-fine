@@ -211,7 +211,10 @@ public class WebsocketManager : MonoBehaviour
                 case "changedScene":
                     string sceneName = _ParsedJSON.@params.@data.message;
                     if (sceneName != "")
-                        GameObject.Find("SceneManager").GetComponent<ChangeScene>().changeScene(sceneName);
+                    {
+                        GameData.currentScene = sceneName;
+                        GameObject.Find("SceneManager").GetComponent<ChangeScene>().playTransitionAnim();
+                    }
                     break;
                 case "serverErrorMessage":
                     var ErrorsManager = FindInactiveObjectByName("ErrorCanvas").GetComponent<ErrorsManager>();
@@ -239,6 +242,7 @@ public class WebsocketManager : MonoBehaviour
         GameData.isFirstMinigame = true;
         GameData.isDuelHost = false;
         GameData.isHost = false;
+        GameData.currentScene = "";
 
     }
 

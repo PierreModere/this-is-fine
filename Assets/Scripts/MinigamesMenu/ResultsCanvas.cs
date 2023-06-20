@@ -52,10 +52,12 @@ public class ResultsCanvas : MonoBehaviour
         updateWinnersList();
     }
 
-    void animPlayerSlots(int firstPlayerID)
+    void animPlayerSlots(int firstPlayerID, int playersNumber)
     {
         Sequence sequence = DOTween.Sequence();
-        for (int i = 0; i < playerGameobjects.Count; ++i)
+
+        sequence.SetDelay(0.4f);
+        for (int i = 0; i < playersNumber; ++i)
         {
             sequence.Append(playerGameobjects[i].transform.DOScale(1.3f, 0.25f).SetEase(Ease.InOutBack).SetDelay(0.15f).From());
             sequence.Append(playerGameobjects[i].transform.Find("Reward").Find("Coin").DOScale(1.3f, 0.15f).SetEase(Ease.InSine));
@@ -119,7 +121,7 @@ public class ResultsCanvas : MonoBehaviour
                 }
 
             }
-            animPlayerSlots(sortedList[0].id);
+            animPlayerSlots(sortedList[0].id, playersNumberToShow);
         }
 
 

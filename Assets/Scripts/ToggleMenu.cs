@@ -11,7 +11,6 @@ public class ToggleMenu : MonoBehaviour
     public void disableMenu()
     {
         menuToDisable.SetActive(false);
-
         menuToDisable.tag = "Untagged";
     }
     public void enableMenu()

@@ -16,6 +16,7 @@ public class GameData : ScriptableObject
     public string minigameMode;
     public bool isHost;
     public bool isDuelHost;
+    public string currentScene;
 
     public List<ClientsList> playersList;
 }

@@ -56,7 +56,7 @@ public class FirstMinigameAnimation : MonoBehaviour
         FirstMinigamePreview.SetActive(false);
         mySequence.Append(InstructionText.transform.DOLocalMoveY(0f, 0));
         mySequence.Join(InstructionText.transform.Find("Text").DOScale(1.2f, 0.2f).SetEase(Ease.InOutBack).SetDelay(0.3f).From());
-        mySequence.Append(InstructionText.transform.Find("Text").DOScale(1.1f, 0.15f).SetDelay(1).OnStart(() =>
+        mySequence.Append(InstructionText.transform.Find("Text").DOScale(1.1f, 0.15f).SetDelay(1.6f).OnStart(() =>
         {
             InstructionText.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "Avec un mini-jeu !";
             InstructionText.transform.Find("Text").DOScale(1f, 0.15f).SetDelay(0.15f);
