@@ -9,7 +9,7 @@ public class Minigame : ScriptableObject
     public string instruction;
     public string id;
     public Sprite preview;
-    public VideoClip videoPreview;
+    public string videoPreview;
     public int gameTime;
     public int cutsceneTime;
     public bool hasTimer;

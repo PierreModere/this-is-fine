@@ -42,6 +42,11 @@ public class Minigame3 : MonoBehaviour
     private float interval = 0.04f;
     public float inkIncreaseLevel = 2f;
 
+    public GameObject pipes;
+    public float wiggleAmount = 0.1f;
+    public float wiggleSpeed = 5f; // Vitesse de la secousse
+    public float wiggleInterval = 0.01f;
+
     Animator beltAnimator;
 
     void Start()
@@ -49,8 +54,11 @@ public class Minigame3 : MonoBehaviour
         InkFlow.transform.localScale = new Vector3(1f, 0f, 1f);
 
         InkFlowPositionY = InkFlow.transform.localPosition.y;
+
+        InvokeRepeating("pipesAnim", wiggleInterval, wiggleInterval);
+
     }
-    
+
     void Update()
     {
         timer += Time.deltaTime;
@@ -73,7 +81,7 @@ public class Minigame3 : MonoBehaviour
         playerProgressIndex = 0;
         playerScore = 0;
         currentCartridge = cartridgesList[playerProgressIndex];
-        activeButtons();
+        //activeButtons();
         pistonDownAnimation();
     }
 
@@ -81,6 +89,18 @@ public class Minigame3 : MonoBehaviour
     {
         isAbleToFill = false;
         fillButton.GetComponent<Button>().interactable = false;
+    }
+
+    private void pipesAnim()
+    {
+        float offsetX = Mathf.Sin(Time.time * wiggleSpeed) * wiggleAmount;
+        float offsetY = Mathf.Sin(Time.time * wiggleSpeed) * wiggleAmount;
+
+        foreach (Transform pipe in pipes.transform)
+        {
+            pipe.DOLocalMoveX(pipe.localPosition.x + offsetX * UnityEngine.Random.Range(-0.2f, 0.2f), 0);
+        }
+
     }
 
     void activeButtons()
