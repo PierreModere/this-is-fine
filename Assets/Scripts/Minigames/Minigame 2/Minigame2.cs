@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using System.Threading;
 
 public class Minigame2 : MonoBehaviour
 {
@@ -32,6 +33,60 @@ public class Minigame2 : MonoBehaviour
     public MinigameUI MinigameUI;
     private GameObject WebsocketManager;
 
+
+    public List<Sprite> leftHandSprites;
+    public List<Sprite> shadowLeftHandSprites;
+    public List<Sprite> rightHandSprites;
+    public List<Sprite> shadowRightHandSprites;
+
+    public List<Sprite> stampSprites;
+
+    public List<GameObject> cameraMovementParents;
+    public List<Vector3> cameraMovementParentsOriginalPositions;
+
+    private float timer = 0.0f;
+
+    private Sequence stampedContractAnim;
+
+
+    private void OnEnable()
+    {
+        initCharacterAssets();
+        cameraMovement();
+
+        foreach (GameObject parent in cameraMovementParents)
+        {
+            parent.transform.DOLocalMove(cameraMovementParentsOriginalPositions[cameraMovementParents.IndexOf(parent)],0);
+        }
+    }
+
+    void initCharacterAssets()
+    {
+        if (GameData.selectedCharacter != "") {
+            leftHandGroup.transform.Find("Hand").gameObject.GetComponent<Image>().sprite = leftHandSprites.Find(spr => spr.name == "hand-left-"+GameData.selectedCharacter);
+            leftHandGroup.transform.Find("Shadow").gameObject.GetComponent<Image>().sprite = shadowLeftHandSprites.Find(spr => spr.name == "hand-left-" + GameData.selectedCharacter);
+                
+            rightHandGroup.transform.Find("Hand").gameObject.GetComponent<Image>().sprite = rightHandSprites.Find(spr => spr.name == "hand-right-" + GameData.selectedCharacter);
+            rightHandGroup.transform.Find("Shadow").gameObject.gameObject.GetComponent<Image>().sprite = shadowRightHandSprites.Find(spr => spr.name == "hand-right-" + GameData.selectedCharacter);
+
+            contractsList.transform.Find("0").Find("Stamp").gameObject.GetComponent<Image>().sprite = stampSprites.Find(spr => spr.name == "stamp-" + GameData.selectedCharacter);
+        }
+    }
+
+    void cameraMovement()
+    {
+        int randomZ = Random.Range(-2, 2);
+        Vector3 randomPostion = new Vector3(Random.Range(-10,10), Random.Range(-10, 10), 0);
+        Sequence cameraMove = DOTween.Sequence();
+
+        foreach (GameObject parent in cameraMovementParents)
+        {
+            cameraMove.Join(parent.transform.DOLocalRotate(new Vector3(0, 0, randomZ) ,2f).SetEase(Ease.Linear))
+                .Join(parent.transform.DOLocalMove(cameraMovementParentsOriginalPositions[cameraMovementParents.IndexOf(parent)] + randomPostion, 1f).SetEase(Ease.Linear));
+        }
+
+        cameraMove.OnComplete(() => { cameraMovement(); });
+    }
     public void initMinigame()
     {
         WebsocketManager = GameObject.Find("WebsocketManager");
@@ -46,11 +101,6 @@ public class Minigame2 : MonoBehaviour
         rightHand = rightHandGroup.transform.Find("Hand").gameObject;
         rightHandShadow = rightHandGroup.transform.Find("Shadow").gameObject;
         rightHandPosition = rightHandGroup.transform.position;
-
-        // Shake background canvas
-        Sequence shakeBackground = DOTween.Sequence();
-
-        shakeBackground.Append(backgroundCanvas.transform.DORotate(new Vector3(0f, 0f, 25f), 0.2f));
     }
 
     public void finishMinigame()
@@ -65,6 +115,8 @@ public class Minigame2 : MonoBehaviour
 
     void Update()
     {
+        timer += Time.deltaTime;
+
         if (Input.touchCount == 1)
         {
             touching++;
@@ -88,23 +140,29 @@ public class Minigame2 : MonoBehaviour
                 newContractObject.GetComponent<Image>().sprite = contractsSprites[randomSpriteIndex];
 
                 // Stamp current contract and remove it
-                AnimateStamp();
+                AnimateStamp(timer, playerScore-1);
+                timer = 0.0f;
             }
         }
         else if (Input.touchCount == 0)
         {
             touching = 0;
         }
+
+
     }
 
-    void AnimateStamp()
+    void AnimateStamp(float timeBetweenClick,int contractID)
     {
-        Sequence stampedContractAnim = DOTween.Sequence();
+        if (stampedContractAnim.IsActive()) stampedContractAnim.Restart();
+        stampedContractAnim = DOTween.Sequence();
+
+        GameObject contract = contractsList.transform.Find(contractID.ToString()).gameObject;
 
         stampedContractAnim.OnStart(() =>
         {
             isAnimating = true;
-            Debug.Log("Animation starts! (" + isAnimating + ")");
+            //Debug.Log("Animation starts! (" + isAnimating + ")");
         });
 
         // Right hand going down and display stamp
@@ -113,7 +171,7 @@ public class Minigame2 : MonoBehaviour
             .Join(rightHandGroup.transform.DOMoveX(rightHandPosition.x - 60f, 0.2f).SetEase(Ease.InQuint))
             .AppendCallback(() =>
             {
-                stamp.SetActive(true);
+                contract.transform.Find("Stamp").gameObject.SetActive(true);
             });
         
         // Right hand going up
@@ -128,8 +186,8 @@ public class Minigame2 : MonoBehaviour
         // Left hand removing current contract
         stampedContractAnim.Append(leftHandGroup.transform.DORotate(new Vector3(0f, 0f, 25f), 0.2f))
             .Join(leftHandGroup.transform.DOMoveX(leftHandPosition.x - 250f, 0.2f))
-            .Join(currentContractObject.transform.DORotate(new Vector3(0f, 0f, 25f), 0.2f))
-            .Join(currentContractObject.transform.DOMoveX(currentContractObject.transform.position.x - 900f, 0.4f));
+            .Join(contract.transform.DORotate(new Vector3(0f, 0f, 25f), 0.2f))
+            .Join(contract.transform.DOMoveX(contract.transform.position.x - 900f, 0.4f));
         
         // Left hand going up
         stampedContractAnim.Insert(0.6f, leftHandGroup.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f))
@@ -140,13 +198,14 @@ public class Minigame2 : MonoBehaviour
         // Destroy current contract when the animation is complete
         stampedContractAnim.OnComplete(() =>
         {
-            Destroy(currentContractObject.gameObject);
+            Destroy(contract);
 
             isAnimating = false;
-            Debug.Log("Animation complete! (" + isAnimating + ")");
+            //Debug.Log("Animation complete! (" + isAnimating + ")");
         });
-        
+
         // Use timeScale setting to accelerate animation (default 1f, quicker >1f, slower <1f)
-        stampedContractAnim.timeScale = 1f;
+
+        stampedContractAnim.timeScale = playerScore < 2 ? 1f : 1f * (1 + timeBetweenClick);
     }
 }

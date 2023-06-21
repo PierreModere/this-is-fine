@@ -212,11 +212,10 @@ public class Minigame3 : MonoBehaviour
         float inkLevel = currentCartridge.transform.Find("InkLevelMask").Find("InkLevel").gameObject.GetComponent<RectTransform>().sizeDelta.y;
         double score = Math.Round(scoreMax - Mathf.Abs(((inkLevel * scoreRange) / inkLevelMax) - scoreMax), 0, MidpointRounding.AwayFromZero);
 
-        if (score > 8 && score < 11) MinigameUI.displayFeedback(true);
-        if (score < 8 || score > 11) MinigameUI.displayFeedback(false);
+        if (score >= 8 && score < 12) MinigameUI.displayFeedback(true);
+        if (score < 8 || score >= 12) MinigameUI.displayFeedback(false);
 
         playerScore += score;
-        Debug.Log(score);
         sendScore();
 
 

@@ -10,8 +10,11 @@ public class ToggleMenu : MonoBehaviour
 
     public void disableMenu()
     {
-        menuToDisable.SetActive(false);
-        menuToDisable.tag = "Untagged";
+        if (menuToDisable.name != "StartMenuCanvas")
+        {
+            menuToDisable.SetActive(false);
+            menuToDisable.tag = "Untagged";
+        }
     }
     public void enableMenu()
     {

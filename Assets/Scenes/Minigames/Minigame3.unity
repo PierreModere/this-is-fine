@@ -1228,6 +1228,10 @@ PrefabInstance:
       propertyPath: minigameLogic
       value: 
       objectReference: {fileID: 436042160}
+    - target: {fileID: 6128357661364153168, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: feedbackPositions.Array.data[0].y
+      value: 240
+      objectReference: {fileID: 0}
     - target: {fileID: 7657794045070853575, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

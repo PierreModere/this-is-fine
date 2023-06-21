@@ -18,10 +18,16 @@ MonoBehaviour:
   preview: {fileID: 21300000, guid: 9e073ba84b83a9a48af0dbc26f7e52b7, type: 3}
   videoPreview: minigame1
   gameTime: 15
-  cutsceneTime: 0
+  cutsceneTime: 1
   hasTimer: 1
   goodFeedbacks:
   - "Bien jou\xE9 !"
   - Bonne pioche !
-  - Beau goose !
+  - Beau gosse !
+  - Un contrat juteux !
+  - "Un tr\xE8s beau deal"
+  - "Vous \xEAtes Mr. Musk ?"
+  - Et un de plus  !
+  - Encore ??
+  - "Inarr\xEAtable !"
   badFeedbacks: []

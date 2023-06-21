@@ -1449,6 +1449,10 @@ PrefabInstance:
       propertyPath: minigameLogic
       value: 
       objectReference: {fileID: 436042160}
+    - target: {fileID: 6128357661364153168, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: feedbackPositions.Array.data[0].y
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
