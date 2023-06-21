@@ -36,8 +36,8 @@ public class Minigame4 : MonoBehaviour
     bool isPlaying = false;
 
     public List<Sprite> charactersSprites;
-    int playerProgressIndex;
-    int playerScore;
+    int playerProgressIndex = 0;
+    int playerScore = 0;
 
     public float speed; // vitesse de la levitation
     public List<GameObject> charactersGameobjects;
@@ -75,12 +75,9 @@ public class Minigame4 : MonoBehaviour
     }
     public void initMinigame()
     {
-        //WebsocketManager = GameObject.Find("WebsocketManager");
-
+        WebsocketManager = GameObject.Find("WebsocketManager");
 
         isPlaying = true;
-        playerProgressIndex = 0;
-        playerScore = 0;
         shuffleSentences();
         initNewWave();
     }
@@ -98,6 +95,12 @@ public class Minigame4 : MonoBehaviour
     void initNewWave()
     {
         speechAnim();
+    }
+
+    void sendScore()
+    {
+        if (GameData.joinedRoomCode!="")
+            WebsocketManager.GetComponent<WebsocketManager>().sendScore(playerScore);
     }
 
     void speechAnim()
@@ -125,7 +128,7 @@ public class Minigame4 : MonoBehaviour
 
         Sequence dialogHide = DOTween.Sequence();
 
-        // Dézoom
+        // Dï¿½zoom
         dialogHide.Append(AllFrontObjects.transform.DOScale(0.8f, 0.4f).SetDelay(1.5f));
 
         dialogHide.Join(BlurLayer.material.DOFloat(2.2f, "_Size", 0.4f));
@@ -196,6 +199,9 @@ public class Minigame4 : MonoBehaviour
                 HandObjects.Remove(hand);
                 Destroy(hand);
                 checkHandNumber();
+
+                playerScore++;
+                sendScore();
             });
         }
     }
@@ -205,9 +211,7 @@ public class Minigame4 : MonoBehaviour
         if (HandObjects.Count == 0)
         {
             playerProgressIndex++;
-            playerScore++;
-            Debug.Log(playerScore);
-            sendScore();
+
             if (playerProgressIndex == wavesNumber)
             {
                 endMinigame();
@@ -219,11 +223,6 @@ public class Minigame4 : MonoBehaviour
                 initNewWave();
             }
         }
-    }
-    void sendScore()
-    {
-        if (GameData.joinedRoomCode != "" && WebsocketManager != null)
-            WebsocketManager.GetComponent<WebsocketManager>().sendScore(playerScore);
     }
 
     void shuffleSentences()
