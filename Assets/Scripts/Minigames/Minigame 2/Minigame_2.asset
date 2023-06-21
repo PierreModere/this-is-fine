@@ -18,7 +18,7 @@ MonoBehaviour:
   preview: {fileID: 21300000, guid: 9e073ba84b83a9a48af0dbc26f7e52b7, type: 3}
   videoPreview: minigame1
   gameTime: 15
-  cutsceneTime: 5
+  cutsceneTime: 0
   hasTimer: 1
   goodFeedbacks:
   - "Bien jou\xE9 !"

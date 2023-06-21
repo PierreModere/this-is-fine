@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 138e972f3840e426f9ae798cf822b0f4
+guid: 44163dd75272846b0ad65c52cd7378af
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,13 +119,139 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: contract_0
+      name: hand-left-oldman
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2250
+        width: 750
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5af53036e27f745169bdd068538d44ec
+      internalID: 713544740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hand-right-oldman
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 2250
+        width: 750
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a86537a278bbc4091800bbcafccd4b63
+      internalID: 324459023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hand-left-youngwoman
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1500
+        width: 750
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b86c8a3f1b0ce43eda06006d70b3c704
+      internalID: 660651912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hand-right-youngwoman
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 1500
+        width: 750
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 940c203b197dd417d8ae84f5714735b2
+      internalID: -654005614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hand-left-youngman
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 750
+        width: 750
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 085298dc5f19b4649b8751a9d2ebf685
+      internalID: -105350395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hand-right-youngman
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 750
+        width: 750
+        height: 750
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd6f46831a0e24b2bac5b62a3bd8bf46
+      internalID: 130793897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hand-left-oldwoman
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1400
-        height: 2000
+        width: 750
+        height: 750
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +259,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0ec2de48837d49c1b426faad986b4c1
-      internalID: -841965573
+      spriteID: 043ecb608761e4468abe155cf82c742f
+      internalID: -941154241
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: contract_1
+      name: hand-right-oldwoman
       rect:
         serializedVersion: 2
-        x: 1400
+        x: 750
         y: 0
-        width: 1400
-        height: 2000
+        width: 750
+        height: 750
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,71 +280,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd0d98e5d77204bba9437f04584ceb4d
-      internalID: 1872581982
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: contract_2
-      rect:
-        serializedVersion: 2
-        x: 2800
-        y: 0
-        width: 1400
-        height: 2000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa0a3a9d3c9394d848ec56e4e4e9d932
-      internalID: -1389008870
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: contract_3
-      rect:
-        serializedVersion: 2
-        x: 4200
-        y: 0
-        width: 1400
-        height: 2000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3692310abed12450f917277e145c7c82
-      internalID: -854874554
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: contract_4
-      rect:
-        serializedVersion: 2
-        x: 5600
-        y: 0
-        width: 1400
-        height: 2000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 762ad97e75b49460aa93b04fc97d8f95
-      internalID: -536589118
+      spriteID: e8bae8fe028244b709319a72a88fb4ef
+      internalID: -680593732
       vertices: []
       indices: 
       edges: []
@@ -234,11 +297,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      contract_0: -841965573
-      contract_1: 1872581982
-      contract_2: -1389008870
-      contract_3: -854874554
-      contract_4: -536589118
+      hand-left-oldman: 713544740
+      hand-left-oldwoman: -941154241
+      hand-left-youngman: -105350395
+      hand-left-youngwoman: 660651912
+      hand-right-oldman: 324459023
+      hand-right-oldwoman: -680593732
+      hand-right-youngman: 130793897
+      hand-right-youngwoman: -654005614
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
