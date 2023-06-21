@@ -32,11 +32,15 @@ public class MinigameUI : MonoBehaviour
 
     private GameObject WebsocketManager;
 
+    Color redColor = new Color(0.9176471f, 0.2745098f, 0.2705882f, 1);
+    Color baseColor = new Color(0.1647059f, 0.2156863f, 0.3058824f, 1);
+
     void Start()
     {
         cutsceneTimeLeft = minigameData.cutsceneTime;
         timeLeft = minigameData.gameTime;
         TimerUI.text = timeLeft.ToString();
+        TimerUI.color = baseColor;
         gameObject.GetComponent<CanvasGroup>().alpha = 0f;
     }
 
@@ -103,6 +107,17 @@ public class MinigameUI : MonoBehaviour
         float seconds = Mathf.FloorToInt(currentTime % 60);
 
         TimerUI.text = seconds.ToString();
+
+        switch (seconds.ToString())
+        {
+            case "3":
+                TimerUI.color = redColor;
+                timerGameobject.transform.DOScale(1.5f, 0.1f).OnComplete(() =>
+                {
+                    timerGameobject.transform.DOScale(1, 0.15f);
+                });
+                break;
+        }
     }
 
     public void endMinigame()
@@ -252,7 +267,7 @@ public class MinigameUI : MonoBehaviour
 
         int randomPosIndex = Random.Range(0, feedbackPositions.Length);
 
-        feedBackAnim.Append(text.transform.DOLocalMove(new Vector3(0, -350,0), 0f));
+        feedBackAnim.Append(text.transform.DOLocalMove(feedbackPositions[0], 0f));
         feedBackAnim.Append(text.transform.DOScale(0.85f, 0.1f).SetEase(Ease.OutBack).From());
         feedBackAnim.Join(text.transform.DOLocalMoveY(text.transform.localPosition.y + 100 , 0.15f).SetEase(Ease.InBack).SetDelay(0.6f));
         feedBackAnim.Join(text.GetComponent<TextMeshProUGUI>().DOFade(0, 0.15f));

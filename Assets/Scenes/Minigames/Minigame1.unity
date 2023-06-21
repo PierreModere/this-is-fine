@@ -4429,6 +4429,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6128357661364153168, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: minigameData
+      value: 
+      objectReference: {fileID: 11400000, guid: 12dcf25b43f4d7340b690c9bda6731e8, type: 2}
+    - target: {fileID: 6128357661364153168, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
       propertyPath: minigameLogic
       value: 
       objectReference: {fileID: 436042160}

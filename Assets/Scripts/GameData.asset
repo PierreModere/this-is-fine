@@ -15,10 +15,11 @@ MonoBehaviour:
   websocketURL: wss://this-is-fine-server.me
   joinedRoomCode: 
   playerID: 
-  selectedCharacter: oldman
+  selectedCharacter: 
   displayedMinigameID: 
   firstMinigameID: 
   isFirstMinigame: 0
   minigameMode: Battle
   isHost: 1
   isDuelHost: 0
+  currentScene: 

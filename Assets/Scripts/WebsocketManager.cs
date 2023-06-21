@@ -298,15 +298,15 @@ public class WebsocketManager : MonoBehaviour
 
     public void changeScreenForEveryone(string screenName)
     {
-        var screenToEnable = FindInactiveObjectByName(screenName);
-        var screenToDisable = GameObject.FindWithTag("activeScreen");
+        GameObject screenToEnable = FindInactiveObjectByName(screenName);
+        GameObject screenToDisable = GameObject.FindWithTag("activeScreen");
         if (screenToEnable != null && screenToDisable != null && screenName!= screenToDisable.name)
         {
             screenToEnable.SetActive(true);
-            screenToEnable.transform.DOScale(new Vector3(1.03f, 1.03f, 1.03f), 0.1f).OnComplete(() => { screenToEnable.transform.DOScale(new Vector3(1f, 1f, 1f), 0.15f); });
             screenToEnable.tag = "activeScreen";
             screenToDisable.SetActive(false);
             screenToDisable.tag = "Untagged";
+            screenToEnable.transform.DOScale(new Vector3(1.05f, 1.05f, 1.05f), 0.1f).OnComplete(() => { screenToEnable.transform.DOScale(new Vector3(1f, 1f, 1f), 0.15f); });
         }
     }
 

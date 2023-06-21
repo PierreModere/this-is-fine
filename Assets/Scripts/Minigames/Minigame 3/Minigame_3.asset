@@ -19,8 +19,8 @@ MonoBehaviour:
   id: 3
   preview: {fileID: 21300000, guid: c8b7cc6c5f084694a9f24df32d1f422f, type: 3}
   videoPreview: minigame3
-  gameTime: 45
-  cutsceneTime: 3
+  gameTime: 40
+  cutsceneTime: 2
   hasTimer: 1
   goodFeedbacks:
   - Parfait !
@@ -29,6 +29,8 @@ MonoBehaviour:
   - Continuez
   - Quel businessman !
   badFeedbacks:
-  - "Trop g\xE9n\xE9reux !"
+  - On a vu mieux
   - Pas ouf..
   - Faites un effort
+  - Vraiment ?
+  - C'est la faillite !
