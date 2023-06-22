@@ -50,6 +50,8 @@ public class MinigameUI : MonoBehaviour
         gameObject.GetComponent<CanvasGroup>().alpha = 0f;
         if (!minigameData.hasTimer) timerGameobject.SetActive(false);
 
+        TimerUI.color = baseColor;
+
         // Add DOTween animation to isLeading
         var playersList = GameData.playersList;
         for (int i = 0; i < playersList.Count; i++) {
@@ -106,17 +108,17 @@ public class MinigameUI : MonoBehaviour
 
         float seconds = Mathf.FloorToInt(currentTime % 60);
 
-        TimerUI.text = seconds.ToString();
-
-        switch (seconds.ToString())
+        if (TimerUI.text != seconds.ToString())
         {
-            case "3":
+            TimerUI.text = seconds.ToString();
+
+            if (seconds == 3 || seconds == 2 || seconds == 1 || seconds == 0)
+            {
                 TimerUI.color = redColor;
-                timerGameobject.transform.DOScale(1.5f, 0.1f).OnComplete(() =>
-                {
-                    timerGameobject.transform.DOScale(1, 0.15f);
-                });
-                break;
+                timerGameobject.transform.DOScale(1.5f, 0.2f).SetEase(Ease.OutBack).From();
+            }
+            else timerGameobject.transform.DOScale(1.1f, 0.1f).From();
+
         }
     }
 

@@ -12,7 +12,17 @@ public class DuelSelection : MonoBehaviour
     public GameObject OkButton;
 
     public List<Sprite> charactersSprites;
+
+    [SerializeField]
+    private List<Sprite> selectedCharactersSprites;
+
+    public List<Sprite> playerNumberSprites;
+
     public List<GameObject> playersGameobjects;
+
+    [SerializeField]
+    private List<Sprite> selectedOutlinesSprites;
+
 
     private GameObject WebsocketManager;
 
@@ -33,6 +43,7 @@ public class DuelSelection : MonoBehaviour
         foreach (GameObject playerGO in playersGameobjects)
         {
             playerGO.SetActive(false);
+            playerGO.GetComponent<Button>().interactable = true;
         }
     }
 
@@ -46,36 +57,24 @@ public class DuelSelection : MonoBehaviour
 
             if (playersList[i].selectedCharacter != "")
             {
-                GameObject playerGameObject = playersGameobjects.Find(g => g.name == "Player" + playersList[i].id);
+                GameObject playerGameObject = playersGameobjects.Find(g => g.name == playersList[i].selectedCharacter);
                 playerGameObject.SetActive(true);
 
-                string playerID = playerGameObject.transform.Find("PlayerColor").Find("PlayerNumber").gameObject.GetComponent<TextMeshProUGUI>().text.Substring(1);
+                string id = playersList[i].id.ToString();
+                playerGameObject.GetComponent<Button>().onClick.AddListener(() => { selecteContester(id, playerGameObject); });
 
-                playerGameObject.GetComponent<Button>().onClick.AddListener(() => { selecteContester(playerID, playerGameObject); });
 
-                switch (playersList[i].id.ToString())
-                {
-                    case "1":
-                        playerGameObject.transform.Find("PlayerColor").transform.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
-                        break;
-                    case "2":
-                        playerGameObject.transform.Find("PlayerColor").transform.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
-                        break;
-                    case "3":
-                        playerGameObject.transform.Find("PlayerColor").transform.GetComponent<Image>().color = new Color32(0, 255, 0, 255);
-                        break;
-                    case "4":
-                        playerGameObject.transform.Find("PlayerColor").transform.GetComponent<Image>().color = new Color32(255, 255, 0, 255);
-                        break;
-                }
+                GameObject PlayerNumber = playerGameObject.transform.Find("PlayerNumber").gameObject;
+                PlayerNumber.GetComponent<Image>().sprite = playerNumberSprites.Find(spr => spr.name == "player" + playersList[i].id);
+                PlayerNumber.SetActive(true);
 
-                playerGameObject.GetComponent<Image>().sprite = charactersSprites.Find(spr => spr.name == playersList[i].selectedCharacter);
+                GameObject Sprite = playerGameObject.transform.Find("Mask").Find("Sprite").gameObject;
+                Sprite.GetComponent<Image>().sprite = charactersSprites.Find(sprite => sprite.name == playersList[i].selectedCharacter + "_idle");
 
                 if (playersList[i].isDuel)
-                {
+                  {
                     playerGameObject.GetComponent<Button>().interactable = false;
-                    GameObject selectedFrame = playerGameObject.transform.Find("Selected").gameObject;
-                    selectedFrame.SetActive(true);
+                    playerGameObject.GetComponent<Image>().sprite = selectedOutlinesSprites.Find(spr => spr.name == "selectedPlayer" + playersList[i].id.ToString());
                 }
             }
         }
@@ -83,14 +82,24 @@ public class DuelSelection : MonoBehaviour
 
     public void selecteContester(string id, GameObject player)
     {
-        if (selectedContester != null) selectedContester.transform.Find("Selected").gameObject.SetActive(false);
+
+        if (selectedContester != null) selectedContester.GetComponent<Image>().sprite = selectedOutlinesSprites.Find(spr => spr.name == "characterBackgroundCircle");
         isSelected = true;
         selectedContesterID = id;
         selectedContester = player;
-        selectedContester.transform.Find("Selected").gameObject.SetActive(isSelected);
-        selectedContester.transform.DOScale(1.05f, 0.1f).OnComplete(() => { selectedContester.transform.DOScale(1f, 0.1f); });
+        selectedContester.GetComponent<Image>().sprite = selectedOutlinesSprites.Find(spr => spr.name == "selectedPlayer" + id);
+
+
+        GameObject Sprite = selectedContester.transform.Find("Mask").Find("Sprite").gameObject;
+        Debug.Log(selectedContester.name);
+        Sprite.GetComponent<Image>().sprite = selectedCharactersSprites.Find(sprite => sprite.name == selectedContester.name + "_selected");
+
+        Sequence anim = DOTween.Sequence();
+        anim.Append(Sprite.transform.DOLocalMoveY(20, 0.1f).SetEase(Ease.OutElastic).From());
+        anim.Join(Sprite.transform.DOScale(1.2f, 0.15f).From());
 
         toggleOkButton();
+
     }
 
     void toggleOkButton()

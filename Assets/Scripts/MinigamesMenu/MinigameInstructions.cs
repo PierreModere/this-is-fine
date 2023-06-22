@@ -97,8 +97,6 @@ public class MinigameInstructions : MonoBehaviour
                 {
                     GameObject isReadyIcon = playerGameObject.transform.Find("isReady").gameObject;
                     isReadyIcon.SetActive(true);
-
-                  
                     isReadyIcon.transform.DOScale(1.05f, 0.1f).OnComplete(() => { isReadyIcon.transform.DOScale(1f, 0.1f); });
                 }
             }
@@ -162,6 +160,7 @@ public class MinigameInstructions : MonoBehaviour
     {
         foreach (GameObject player in playersGameobjects)
         {
+            player.transform.Find("isReady").gameObject.SetActive(false);
             player.SetActive(false);
         }
     }
