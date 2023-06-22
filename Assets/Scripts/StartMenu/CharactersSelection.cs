@@ -109,10 +109,12 @@ public class CharactersSelection : MonoBehaviour
         hasSelectedCharacter();
         checkPlayersReadyState();
 
-       foreach (GameObject button in charactersButtons)
+        foreach (GameObject button in charactersButtons)
         {
             button.GetComponent<Image>().sprite = selectedOutlinesSprites.Find(spr => spr.name == "characterBackgroundCircle");
             button.transform.Find("Mask").Find("Sprite").gameObject.GetComponent<Image>().sprite = charactersSprites.Find(sprite => sprite.name == button.name + "_idle");
+
+            button.GetComponent<Button>().interactable = true;
 
             button.transform.Find("PlayerNumber").gameObject.SetActive(false);
 
@@ -127,6 +129,7 @@ public class CharactersSelection : MonoBehaviour
             {
                 GameObject selectedCharacter = charactersButtons.Find(g => g.name == playersList[i].selectedCharacter).gameObject;
                 selectedCharacter.GetComponent<Image>().sprite = selectedOutlinesSprites.Find(spr => spr.name == "selectedPlayer" + playersList[i].id);
+                selectedCharacter.GetComponent<Button>().interactable = false;
 
                 GameObject PlayerNumber = selectedCharacter.transform.Find("PlayerNumber").gameObject;
                 PlayerNumber.GetComponent<Image>().sprite = playerNumbersSprites.Find(spr => spr.name == "player" + playersList[i].id);
@@ -137,11 +140,12 @@ public class CharactersSelection : MonoBehaviour
                 {
                     Sprite.GetComponent<Image>().sprite = selectedCharactersSprites.Find(sprite => sprite.name == playersList[i].selectedCharacter.ToString() + "_selected");
                     Sequence anim = DOTween.Sequence();
-                    anim.Append(Sprite.transform.DOLocalMoveY(20, 0.1f).SetEase(Ease.OutElastic).From());
+                    //anim.Append(Sprite.transform.DOLocalMoveY(20, 0.1f).SetEase(Ease.OutElastic).From());
                     anim.Join(Sprite.transform.DOScale(1.2f, 0.15f).From());
                 }
 
             }
+            
         }
 
     }
@@ -170,7 +174,7 @@ public class CharactersSelection : MonoBehaviour
     {
         if (GameData.selectedCharacter != "")
         {
-            removeClickEventOnCharactersGrid();
+            //removeClickEventOnCharactersGrid();
             CancelButton.SetActive(true);
 
             if (GameData.isHost)
@@ -178,7 +182,7 @@ public class CharactersSelection : MonoBehaviour
         }
         else
         {
-            reenableClickEvents();
+            //reenableClickEvents();
             if (GameData.isHost)
                 ReturnButton.SetActive(true);
             else CancelButton.SetActive(false);

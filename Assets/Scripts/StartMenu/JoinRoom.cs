@@ -28,8 +28,7 @@ public class JoinRoom : MonoBehaviour
 
                 if (buttonValue != "Delete" && buttonValue != "Return")
                 {
-                    childButton.onClick.AddListener(delegate
-                    {
+                    childButton.onClick.AddListener(delegate {
                         addDigitToPin(buttonValue);
                     });
                 }
@@ -44,16 +43,18 @@ public class JoinRoom : MonoBehaviour
 
     void addDigitToPin(string buttonValue)
     {
-        if (PinInput.GetComponent<TextMeshProUGUI>().text.Length < 4)
+        if (PinInput.GetComponent<TextMeshProUGUI>().text.Length < 4 || PinInput.GetComponent<TextMeshProUGUI>().text == "----")
         {
-            PinInput.GetComponent<TextMeshProUGUI>().text = PinInput.GetComponent<TextMeshProUGUI>().text + buttonValue;
-        }
+            if (PinInput.GetComponent<TextMeshProUGUI>().text == "----") PinInput.GetComponent<TextMeshProUGUI>().text = "" + buttonValue;
+            else PinInput.GetComponent<TextMeshProUGUI>().text = PinInput.GetComponent<TextMeshProUGUI>().text + buttonValue;
 
-        if (PinInput.GetComponent<TextMeshProUGUI>().text.Length > 3)
-        {
-            joinRoom();
-        }
 
+            if (PinInput.GetComponent<TextMeshProUGUI>().text.Length > 3 && PinInput.GetComponent<TextMeshProUGUI>().text != "----")
+            {
+                joinRoom();
+            }
+
+        }
     }
 
     void deleteLastDigit()
@@ -61,6 +62,10 @@ public class JoinRoom : MonoBehaviour
         if (PinInput.GetComponent<TextMeshProUGUI>().text.Length > 0)
         {
             PinInput.GetComponent<TextMeshProUGUI>().text = PinInput.GetComponent<TextMeshProUGUI>().text.Remove(PinInput.GetComponent<TextMeshProUGUI>().text.Length - 1);
+            if (PinInput.GetComponent<TextMeshProUGUI>().text.Length == 0)
+            {
+                PinInput.GetComponent<TextMeshProUGUI>().text = "----";
+            }
         }
 
     }
@@ -76,7 +81,7 @@ public class JoinRoom : MonoBehaviour
 
     void OnDisable()
     {
-        PinInput.GetComponent<TextMeshProUGUI>().text = "";
+        PinInput.GetComponent<TextMeshProUGUI>().text = "----";
     }
 
 }
