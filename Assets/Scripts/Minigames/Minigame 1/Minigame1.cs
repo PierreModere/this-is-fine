@@ -45,6 +45,8 @@ public class Minigame1 : MonoBehaviour
     public List <Sprite> TrashSprites;
     public GameObject trashPrefab;
 
+    public GameObject whooshSFX;
+
     private void Start()
     {
         backPipeRotation = goopFlow.transform.localRotation.eulerAngles;
@@ -72,11 +74,11 @@ public class Minigame1 : MonoBehaviour
 
     private void backPipeAnim()
     {
-        // Calcule un décalage de secousse aléatoire dans les axes X, Y et Z
+        // Calcule un dï¿½calage de secousse alï¿½atoire dans les axes X, Y et Z
         float offsetX = Mathf.Sin(Time.time * rotateSpeed) * rotateAmount;
         float offsetZ = Mathf.Sin((Time.time + 0.5f) * rotateSpeed) * rotateAmount;
 
-        // Applique la secousse en ajoutant le décalage à la position d'origine de l'objet
+        // Applique la secousse en ajoutant le dï¿½calage ï¿½ la position d'origine de l'objet
         backPipe.transform.DORotate(backPipeRotation + new Vector3(0, 0, offsetZ),0);
         backPipe.transform.Find("PipeEnd").DORotate(backPipeRotation + new Vector3(0, 0, Random.Range(-1.5f,-1f)*offsetZ), 0);
         GameObject.Find("GoopFlow").transform.DOLocalMoveX(1.7f - offsetX, 0);
@@ -161,6 +163,11 @@ public class Minigame1 : MonoBehaviour
             button.GetComponent<Button>().interactable = false;
         }
         Sequence endCutscene = DOTween.Sequence();
+
+        endCutscene.OnStart(() =>
+        {
+            whooshSFX.GetComponent<AudioSource>().Play();
+        });
 
         endCutscene.Append(buttonInstruction.GetComponent<Image>().DOFade(0f, 0.3f));
         endCutscene.Join(foregroundObjects.transform.DOScale(1.46f, 0.6f).SetEase(Ease.InOutSine));
