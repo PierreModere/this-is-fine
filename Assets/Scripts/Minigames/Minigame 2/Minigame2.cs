@@ -129,7 +129,7 @@ public class Minigame2 : MonoBehaviour
                 // Increase player score
                 playerScore++;
                 sendScore();
-                MinigameUI.displayFeedback(true);
+                if (playerScore%8 == 0) MinigameUI.displayFeedback(true);
 
                 // Duplicate contract GameObject
                 GameObject newContractObject = Instantiate(currentContractObject, new Vector3(0,0,0), Quaternion.identity, contractsList.transform);
