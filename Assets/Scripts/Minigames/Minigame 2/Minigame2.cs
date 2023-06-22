@@ -25,7 +25,6 @@ public class Minigame2 : MonoBehaviour
 
     private GameObject currentContractObject;
     private GameObject stamp;
-    private bool isAnimating = false;
 
     public GameObject backgroundCanvas;
 
@@ -48,6 +47,8 @@ public class Minigame2 : MonoBehaviour
 
     private Sequence stampedContractAnim;
 
+    public List<GameObject> stampSFX;
+    public List<GameObject> paperSFX;
 
     private void OnEnable()
     {
@@ -159,12 +160,6 @@ public class Minigame2 : MonoBehaviour
 
         GameObject contract = contractsList.transform.Find(contractID.ToString()).gameObject;
 
-        stampedContractAnim.OnStart(() =>
-        {
-            isAnimating = true;
-            //Debug.Log("Animation starts! (" + isAnimating + ")");
-        });
-
         // Right hand going down and display stamp
         stampedContractAnim.Append(rightHandGroup.transform.DOScale(new Vector3(0.9f, 0.9f, 0.9f), 0.2f).SetEase(Ease.InQuint))
             .Join(rightHandShadow.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f).SetEase(Ease.InQuint))
@@ -172,6 +167,9 @@ public class Minigame2 : MonoBehaviour
             .AppendCallback(() =>
             {
                 contract.transform.Find("Stamp").gameObject.SetActive(true);
+
+                stampSFX[Random.Range(0, 3)].GetComponent<AudioSource>().Play();
+                paperSFX[Random.Range(0, 3)].GetComponent<AudioSource>().Play();
             });
         
         // Right hand going up
@@ -199,13 +197,9 @@ public class Minigame2 : MonoBehaviour
         stampedContractAnim.OnComplete(() =>
         {
             Destroy(contract);
-
-            isAnimating = false;
-            //Debug.Log("Animation complete! (" + isAnimating + ")");
         });
 
         // Use timeScale setting to accelerate animation (default 1f, quicker >1f, slower <1f)
-
         stampedContractAnim.timeScale = playerScore < 2 ? 1f : 1f * (1 + timeBetweenClick);
     }
 }
