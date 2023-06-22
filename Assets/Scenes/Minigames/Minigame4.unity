@@ -562,13 +562,6 @@ MonoBehaviour:
   DialogBox: {fileID: 1152336562}
   Public: {fileID: 1233601820}
   BlurLayer: {fileID: 759235635}
-  SentencesList:
-  - '@#$%&!'
-  - "J'ai obtenu ma premi\xE8re Rolex \xE0 8 ans"
-  - Payez 8$ par mois
-  - J'aime bien l'AI
-  - Je suis un selfmade millionnaire
-  - To the Moon !!
   HandSprites:
   - {fileID: 2010077311, guid: a1f744116ae6b744f8cb6a5e49ed5b33, type: 3}
   - {fileID: -1277863165, guid: a1f744116ae6b744f8cb6a5e49ed5b33, type: 3}
@@ -594,6 +587,46 @@ MonoBehaviour:
   - {fileID: 1888936617}
   - {fileID: 345761067}
   talkingDuration: 1.5
+  oldmanSentences:
+  - Je me suis fait tout seul !
+  - "J'ai obtenu ma premi\xE8re Rolex \xE0 l'\xE2ge de 8 ans"
+  - "Levez-vous \xE0 la m\xEAme heure que moi avant de critiquer"
+  - Si je disparaissais dans un sous-marin on viendrait me chercher
+  - "J'ai travaill\xE9 8 heures par jour pendant au moins 2 ans avant d'en arriver
+    l\xE0"
+  - "Vous \xEAtes s\xFBr que vous \xEAtes journaliste ?"
+  - "Evitons de parler de ce probl\xE8me de tuyaux.."
+  - Des cartouches d'encre vous dites ?
+  oldwomanSentences:
+  - "Je n'ai h\xE9rit\xE9 que de 20 millions !"
+  - Je me sens si seule vous savez...
+  - C'est toi Christian ?
+  - "Arr\xEAtez de me montrer du doigt"
+  - "O\xF9 est-ce que je suis......"
+  - "C'est tr\xE8s mapoli !"
+  - "Vous savez \xE0 l'\xE9poque....."
+  - J'ai perdu mon chien..
+  - "Evitons de parler de ce probl\xE8me de tuyaux.."
+  youngmanSentences:
+  - Ca va remonter je vous assure...
+  - Ceci n'est pas une arnaque.
+  - Ce n'est que 8$ par mois...
+  - "Un arbre plant\xE9 pour un NFT achet\xE9 !"
+  - "Vous \xEAtes s\xFBr que vous \xEAtes journaliste ?"
+  - Qui c'est le plus fort ?
+  - To the Moon !
+  - Des cartouches d'encre vous dites ?
+  - "Evitons de parler de ce probl\xE8me de tuyaux.."
+  - Hahahaha oui....
+  youngwomanSentences:
+  - "Je suis all\xE9e \xE0 la salle \xE0 5h ce matin"
+  - J'ai pris des risques en investissant !
+  - "Le prochain qui me pointe est un d\xE9bile"
+  - J'ai pris une douche froide avant de venir
+  - "Vous \xEAtes s\xFBr que vous \xEAtes journaliste ?"
+  - Vous voulez me journaliste aux fesses ?
+  - "D\xE9p\xEAchez, j'ai des contrats \xE0 signer"
+  - Des cartouches d'encre vous dites ?
 --- !u!1 &460170258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,6 +1470,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2810200468255586089, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810200468255586089, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810200468255586089, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810200468255586089, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810200468255586089, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810200468255586089, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4993590591434046779, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
       propertyPath: m_Name
       value: MinigameInfoCanvas
@@ -1452,6 +1509,78 @@ PrefabInstance:
     - target: {fileID: 6128357661364153168, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
       propertyPath: feedbackPositions.Array.data[0].y
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7657794045070853575, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7657794045070853575, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7657794045070853575, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7657794045070853575, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7657794045070853575, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7657794045070853575, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691360730682941143, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691360730682941143, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691360730682941143, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691360730682941143, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691360730682941143, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691360730682941143, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769494686016413134, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769494686016413134, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769494686016413134, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769494686016413134, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769494686016413134, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769494686016413134, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1943,6 +2072,30 @@ PrefabInstance:
     - target: {fileID: 7345316880835422900, guid: efa1e79ede3b31c4fa940998232879eb, type: 3}
       propertyPath: m_Name
       value: oldwoman
+      objectReference: {fileID: 0}
+    - target: {fileID: 7345316880835422900, guid: efa1e79ede3b31c4fa940998232879eb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917462646058176409, guid: efa1e79ede3b31c4fa940998232879eb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.9999806
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917462646058176409, guid: efa1e79ede3b31c4fa940998232879eb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0062282076
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917462646058176409, guid: efa1e79ede3b31c4fa940998232879eb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 38.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917462646058176409, guid: efa1e79ede3b31c4fa940998232879eb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -68.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917462646058176409, guid: efa1e79ede3b31c4fa940998232879eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.714
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

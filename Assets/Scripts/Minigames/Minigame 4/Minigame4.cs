@@ -19,7 +19,6 @@ public class Minigame4 : MonoBehaviour
 
     public Image BlurLayer;
 
-    public List<string> SentencesList;
     List<string> shuffledList;
     int currentSentenceIndex = 0;
 
@@ -47,7 +46,14 @@ public class Minigame4 : MonoBehaviour
 
     string writer;
     float timeBtwChars = 0.07f;
-  [SerializeField] float talkingDuration;
+
+
+    [SerializeField] float talkingDuration;
+
+    public List<string> oldmanSentences;
+    public List<string> oldwomanSentences;
+    public List<string> youngmanSentences;
+    public List<string> youngwomanSentences;
 
     private void OnEnable()
     {
@@ -229,7 +235,24 @@ public class Minigame4 : MonoBehaviour
     {
         System.Random random = new System.Random();
 
-        shuffledList = new List<string>(SentencesList);
+
+
+        switch (GameData.selectedCharacter)
+        {
+            case "youngman":
+                shuffledList = new List<string>(youngmanSentences);
+                break;
+            case "youngwoman":
+                shuffledList = new List<string>(youngwomanSentences);
+                break;
+            case "oldwoman":
+                shuffledList = new List<string>(oldwomanSentences);
+                break;
+            case "oldman":
+                shuffledList = new List<string>(oldmanSentences);
+                break;
+
+        }
 
         int n = shuffledList.Count;
         while (n > 1)
