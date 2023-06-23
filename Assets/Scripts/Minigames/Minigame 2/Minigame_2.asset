@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Minigame_2
   m_EditorClassIdentifier: 
   title: Tampognon
-  instruction: Signe le plus de contrat possible
+  instruction: "En tant que bon patron v\xE9reux vous n'avez qu'une seule ambition
+    : faire du profit \xE0 tout prix.  <b>Votre objectif est de signer le plus de
+    contrats possibles </b> pour maximiser vos gains en <b> spammant l'\xE9cran</b>,
+    m\xEAme si cela signifie s'engager dans des affaires louches et douteuses."
   id: 2
   preview: {fileID: 21300000, guid: 9e073ba84b83a9a48af0dbc26f7e52b7, type: 3}
   videoPreview: minigame1

@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Minigame_4
   m_EditorClassIdentifier: 
   title: "Pol\xE9-mic "
-  instruction: "D\xE9barasse toi de tes d\xE9tracteurs le plus vite !"
+  instruction: "Vous voil\xE0 en conf\xE9rence de presse, vos pratiques douteuses
+    et controvers\xE9es sont expos\xE9es sous les feux des projecteurs et vos d\xE9tracteurs
+    pointent du doigt vos actions ! <b>Balayez</b> les critiques en vous <b>d\xE9barassant
+    des mains tendues des journalistes </b> pour faire redescendre cette tension
+    palpable !"
   id: 4
   preview: {fileID: 21300000, guid: 0c46095d8b0169849b929c58c298f4eb, type: 3}
   videoPreview: minigame4

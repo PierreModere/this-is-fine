@@ -127,8 +127,8 @@ public class WebsocketManager : MonoBehaviour
 
         websocket.OnError += (e) =>
         {
-            var ErrorsManager = FindInactiveObjectByName("ErrorCanvas").GetComponent<ErrorsManager>();
-            ErrorsManager.manageErrors(e);
+            /*var ErrorsManager = FindInactiveObjectByName("ErrorCanvas").GetComponent<ErrorsManager>();
+            ErrorsManager.manageErrors(e);*/
         };
 
         websocket.OnClose += (e) =>
@@ -155,7 +155,7 @@ public class WebsocketManager : MonoBehaviour
                     GameData.isHost = false;
                     break;
                 case "hasBeenInARoom":
-                    ReconnectionButton.SetActive(true);
+                    //ReconnectionButton.SetActive(true);
                     break;
                 case "getMyPlayerID":
                     GameData.playerID = _ParsedJSON.@params.@data.message;
@@ -371,7 +371,7 @@ public class WebsocketManager : MonoBehaviour
                 await websocket.SendText(json);
             }
         }
-      }
+    }
 
     async void reconnectToRoom(string playerID, string roomCode)
     {
