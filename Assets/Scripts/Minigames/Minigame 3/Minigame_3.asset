@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Cartouches en folie
   instruction: "Toi aussi tu peux mettre la main \xE0 la p\xE2te. Aujourd\u2019hui
-    tu te rends dans ton usine Esponne !   <b>Remplis les cartouches d\u2019encre
+    tu te rends dans ton usine Esponne ! \\n <b>Remplis les cartouches d\u2019encre
     mais pas trop non plus, on n\u2019est pas une \u0153uvre de charit\xE9.</b>"
   id: 3
   preview: {fileID: 21300000, guid: c8b7cc6c5f084694a9f24df32d1f422f, type: 3}
