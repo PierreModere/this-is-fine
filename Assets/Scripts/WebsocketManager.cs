@@ -300,7 +300,7 @@ public class WebsocketManager : MonoBehaviour
     {
         GameObject screenToEnable = FindInactiveObjectByName(screenName);
         GameObject screenToDisable = GameObject.FindWithTag("activeScreen");
-        if (screenToEnable != null && screenToDisable != null && screenName!= screenToDisable.name)
+        if (screenToEnable != null && screenToDisable != null && screenToDisable.name != "StartMenuCanvas")
         {
             screenToEnable.SetActive(true);
             screenToEnable.tag = "activeScreen";

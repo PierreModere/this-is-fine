@@ -20,9 +20,18 @@ public class ChangeScene : MonoBehaviour
         }
     }
     
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    async void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         gameObject.GetComponent<Animator>().Play("screenTransitionEnd");
+
+        if (scene.name.Contains("Minigame") && scene.name != "MinigamesMenuScene")
+        {
+            GameObject WebsocketManager = GameObject.Find("WebsocketManager");
+
+            var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
+            string json = "{'type': 'playerIsReady', 'params':{'code': '" + GameData.joinedRoomCode + "','id':'" + GameData.playerID + "'}}";
+            await websocket.SendText(json);
+        }
     }
 
 

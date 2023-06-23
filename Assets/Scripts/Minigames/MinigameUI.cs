@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using static WebsocketManager;
 
 public class MinigameUI : MonoBehaviour
 {
@@ -78,10 +79,7 @@ public class MinigameUI : MonoBehaviour
             {
                 cutsceneTimeLeft = 0;
                 isCutscene = false;
-                gameObject.GetComponent<CanvasGroup>().DOFade(1f, 0.1f).OnComplete(() =>
-                {
-                    startPopUpAnimationText("start");
-                });
+                
 
             }
         }
@@ -155,6 +153,8 @@ public class MinigameUI : MonoBehaviour
 
     public void updatePlayersListAndScore()
     {
+        if (!isPlaying) checkPlayersReadyState();
+
         var playersList = GameData.playersList;
         unactiveAllPlayersGameobjects();
 
@@ -277,5 +277,33 @@ public class MinigameUI : MonoBehaviour
             Destroy(text);
         });
 
+    }
+
+    void checkPlayersReadyState()
+    {
+
+        bool everyoneReady = true;
+
+        List<ClientsList> playersList;
+
+        if (GameData.minigameMode == "Duel")
+            playersList = GameData.playersList.FindAll(player => player.isDuel);
+
+        else playersList = GameData.playersList;
+
+        foreach (var player in playersList)
+        {
+            if (!player.isReady)
+                everyoneReady = false;
+        }
+        if (everyoneReady)
+        {
+            Debug.Log("Tout le monde est prêt !");
+            gameObject.GetComponent<CanvasGroup>().DOFade(1f, 0.1f).OnComplete(() =>
+            {
+                startPopUpAnimationText("start");
+            });
+        }
+        else Debug.Log("Pas tout le monde est prêt !");
     }
 }
