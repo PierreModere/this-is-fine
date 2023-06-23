@@ -86,12 +86,12 @@ public class MinigameSelection : MonoBehaviour
         WebsocketManager = GameObject.Find("WebsocketManager");
 
         isSelected = false;
-        selectedMinigame.transform.Find("Selected").gameObject.SetActive(isSelected);
+        if (selectedMinigame != null) selectedMinigame.transform.Find("Selected").gameObject.SetActive(isSelected);
         selectedMinigame = null;
         selectedMinigameID = null;
         WebsocketManager.GetComponent<WebsocketManager>().resetDuelStatus();
         GameData.isDuelHost = false;
-
+        Instruction.SetActive(true);    
         toggleOkButton();
     }
 
