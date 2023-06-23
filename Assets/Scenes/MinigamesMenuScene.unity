@@ -3161,9 +3161,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Toi aussi tu peux mettre la main \xE0 la p\xE2te. Aujourd\u2019hui tu
-    te rends dans ton usine Esponne ! \n\n<b>Remplis les cartouches d\u2019encre
-    mais pas trop non plus, on n\u2019est pas une \u0153uvre de charit\xE9.</b>"
+  m_text: "Vos pratiques douteuses et contrevers\xE9es sont expos\xE9es au grand
+    jour en conf\xE9rence de presse.\\n<b>Balayez</b> les critiques pour vous <b>d\xE9barasser
+    au plus vite</b> de vos d\xE9tracteurs qui vous montrent du doigt !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 850717a7ad594a4478a6a7a5a6f0e786, type: 2}
   m_sharedMaterial: {fileID: 6059957701563351697, guid: 850717a7ad594a4478a6a7a5a6f0e786, type: 2}

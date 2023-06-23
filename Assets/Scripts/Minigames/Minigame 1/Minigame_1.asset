@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: Minigame_1
   m_EditorClassIdentifier: 
   title: "Tout-\xE0-l'\xE9gout"
-  instruction: "Dans cette course effr\xE9n\xE9e vers l'enrichissement personnel,
-    vous devez prendre des d\xE9cisions \xE9thiquement discutables pour atteindre
-    votre objectif sans vous soucier des r\xE9percussions sur les \xE9cosyst\xE8mes
-    marins. Votre objectif est de vous d\xE9barrasser rapidement de vos d\xE9chets
-    toxiques en les rejetant dans l'oc\xE9an <b>en faisant le bon encha\xEEnement
-    de boutons</b> "
+  instruction: "Ne vous souciez pas des r\xE9percussions sur les \xE9cosyst\xE8mes
+    marins ! R\xE9alisez le <b>bon encha\xEEnement de boutons</b> pour vous d\xE9barrassez
+    de vos d\xE9chets toxiques en les rejetant dans l'oc\xE9an <b>le plus rapidement.</b>"
   id: 1
   preview: {fileID: 21300000, guid: 1c813ab63e5f4404495bff8a9ea26445, type: 3}
   videoPreview: minigame1
