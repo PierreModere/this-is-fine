@@ -4,7 +4,10 @@ using NativeWebSocket;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WebsocketManager : MonoBehaviour
 {
@@ -220,7 +223,9 @@ public class WebsocketManager : MonoBehaviour
                     var ErrorsManager = FindInactiveObjectByName("ErrorCanvas").GetComponent<ErrorsManager>();
                     ErrorsManager.manageErrors(_ParsedJSON.@params.@data.message);
                     break;
-
+                case "selectedWinner":
+                    displayWinnerCutscene(_ParsedJSON.@params.@data.message);
+                    break;
                 default:
                     // code block
                     break;
@@ -229,6 +234,20 @@ public class WebsocketManager : MonoBehaviour
         };
         // waiting for messages
         await websocket.Connect();
+    }
+
+    void displayWinnerCutscene(string id)
+    {
+        if (id != "")
+        {
+            GameData.winnerID = id;
+            GameData.currentScene = "WinnerCinematicScene";
+            GameObject.Find("FadePanel").GetComponent<Image>().DOFade(1, 0.65f).OnComplete(() =>
+            {
+                SceneManager.LoadScene(GameData.currentScene, LoadSceneMode.Single);
+            });
+
+        }
     }
 
     void resetGameData()
@@ -243,6 +262,7 @@ public class WebsocketManager : MonoBehaviour
         GameData.isDuelHost = false;
         GameData.isHost = false;
         GameData.currentScene = "";
+        GameData.winnerID = "";
 
     }
 
