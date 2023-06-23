@@ -17,4 +17,13 @@ mergeInto(LibraryManager.library, {
   console: function (str) {
     window.alert(UTF8ToString(str));
   },
+
+  clearLocalStorage: function () {
+    localStorage.clear();
+    console.log("localstorage vidé !");
+  },
+
+  restartGame: function () {
+    window.location.reload();
+  },
 });

@@ -4,7 +4,6 @@ using NativeWebSocket;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -103,6 +102,9 @@ public class WebsocketManager : MonoBehaviour
 
     [DllImport("__Internal")]
     private static extern void console(string str);
+
+    [DllImport("__Internal")]
+    private static extern void clearLocalStorage();
 
     private void Awake()
     {
@@ -240,6 +242,12 @@ public class WebsocketManager : MonoBehaviour
     {
         if (id != "")
         {
+
+            if (!Application.isEditor)
+            {
+                clearLocalStorage();
+            }
+
             GameData.winnerID = id;
             GameData.currentScene = "WinnerCinematicScene";
             GameObject.Find("FadePanel").GetComponent<Image>().DOFade(1, 0.65f).OnComplete(() =>
