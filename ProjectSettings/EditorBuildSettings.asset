@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ResultsScene.unity
     guid: 746282b056b31b043a8ef3ffddbdaec5
+  - enabled: 1
+    path: Assets/Scenes/WinnerCinematicScene.unity
+    guid: 07c6e583cccfc014b94c4f25f1f97ab1
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 126ac55d127d7f74fb20e3d0ce589ed0, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 242ea15da6fa08e4884333fece534ede, type: 2}

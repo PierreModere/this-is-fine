@@ -132,6 +132,7 @@ public class MinigameUI : MonoBehaviour
     public void finishMinigameAnimation()
     {
         startPopUpAnimationText("stop");
+        TimerUI.text = "0";
 
         switch (minigameData.id)
         {

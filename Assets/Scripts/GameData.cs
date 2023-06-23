@@ -17,6 +17,7 @@ public class GameData : ScriptableObject
     public bool isHost;
     public bool isDuelHost;
     public string currentScene;
+    public string winnerID;
 
     public List<ClientsList> playersList;
 }

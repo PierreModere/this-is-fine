@@ -23,7 +23,9 @@ public class MenuAnimation : MonoBehaviour
 
         //Splashscreen BureauCrap
         startMenuAnim.Join(splashScreen.transform.Find("BureauCrapLogo").GetComponent<Image>().DOFade(0, 0.8f).From());
-        startMenuAnim.Append(splashScreen.transform.Find("BureauCrapLogo").GetComponent<Image>().DOFade(0, 0.7f).SetDelay(0.4f));
+
+        startMenuAnim.AppendCallback(() => { splashScreen.transform.Find("BureauCrapLogo").GetComponent<Animator>().Play("bureauCrapLogon"); });
+        startMenuAnim.Append(splashScreen.transform.Find("BureauCrapLogo").GetComponent<Image>().DOFade(0, 0.7f).SetDelay(3.5f));
         startMenuAnim.Append(splashScreen.GetComponent<Image>().DOFade(0, 0.5f).OnComplete(() => { splashScreen.SetActive(false); }));
 
         //Menu elements pop-up

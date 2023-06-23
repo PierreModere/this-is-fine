@@ -16,11 +16,10 @@ public class DashboardCanvas : MonoBehaviour
     public GameObject OkButton;
 
     public GameObject DashboardSubtitle;
-
-
-
+    public GameObject WinnerSelectionCanvas;
 
     private GameObject WebsocketManager;
+
 
     bool isHost;
     bool isSelected;
@@ -134,8 +133,20 @@ public class DashboardCanvas : MonoBehaviour
         {
             WebsocketManager = GameObject.Find("WebsocketManager");
 
-            if (selectedMode == "Duel") WebsocketManager.GetComponent<WebsocketManager>().sendMinigameMode(selectedMode, GameData.playerID);
-            else WebsocketManager.GetComponent<WebsocketManager>().sendMinigameMode(selectedMode, null);
+            switch (selectedMode)
+            {
+                case "Duel":
+                    WebsocketManager.GetComponent<WebsocketManager>().sendMinigameMode(selectedMode, GameData.playerID);
+                    break;
+                case "Battle":
+                    WebsocketManager.GetComponent<WebsocketManager>().sendMinigameMode(selectedMode, null);
+                    break;
+                case "EndGame":
+                    gameObject.GetComponent<ToggleMenu>().enableMenu();
+                    gameObject.GetComponent<ToggleMenu>().disableMenu();
+                    break;
+            }
+
             isSelected = false;
             selectedButton.transform.Find("Selected").gameObject.SetActive(isSelected);
             selectedButton = null;

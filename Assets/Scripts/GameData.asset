@@ -18,7 +18,7 @@ MonoBehaviour:
   selectedCharacter: 
   displayedMinigameID: 
   firstMinigameID: 
-  isFirstMinigame: 0
+  isFirstMinigame: 1
   minigameMode: Battle
   isHost: 1
   isDuelHost: 0
