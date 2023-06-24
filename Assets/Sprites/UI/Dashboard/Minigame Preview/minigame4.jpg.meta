@@ -1,0 +1,4564 @@
+fileFormatVersion: 2
+guid: 751aa063640fc5c48a1f9b4bd68e60ad
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: minigame4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 11520
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffb8edc415433c749b06a9e8393bbd6f
+      internalID: -1318824652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_1
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 11520
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d6517e313d438a4191af93ee21e6542
+      internalID: 571316730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_2
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 11520
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05333197e32d388418af393029d48bd7
+      internalID: 1859858169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_3
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 11520
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3585c6a57a4bb454b940a5b5508318eb
+      internalID: 70229066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_4
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 11520
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41c1de40c809a094695a7d925c118c96
+      internalID: 1580390051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_5
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 11520
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa7997fc506012c4c8016dafa5d370f7
+      internalID: -497693743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_6
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 11520
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6752cb868fa51f444b327d7e75df7f9f
+      internalID: 233299429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_7
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 11520
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cdf6d614db18404093ded127e551c1d
+      internalID: 1517769910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_8
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 11520
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca5a9bdcfaae8384aa0666b91fb9801a
+      internalID: -563215544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_9
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 11520
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62995b2530f41534eb5fe5e862df1788
+      internalID: -1805612435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_10
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 11520
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dce64dffd6040b6499ff39922373e114
+      internalID: -667982085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_11
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 11520
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 910071744f00c5149a143d9035b25219
+      internalID: 938389783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10800
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b7d3a610b27c884f957bd3567e2eeee
+      internalID: 1721200000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_13
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 10800
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c71bb811151ae24c89610b0f46b8624
+      internalID: 2130639110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_14
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 10800
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c58d2dd571cca1b47953844f2fc161d2
+      internalID: 1405117370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_15
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 10800
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dedecec68432594d955d7db564419b7
+      internalID: 199380546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_16
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 10800
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e9eb76454fb9c546a36e5a086f95b7d
+      internalID: -345502165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_17
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 10800
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d8c61fe83e6ae34ea0b4909e4f04863
+      internalID: 734297287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_18
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 10800
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afc09066e8117c44497ca6535d9218a3
+      internalID: 1702266477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_19
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 10800
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 661fed5d05fbd2a4285d456c63f59eb8
+      internalID: -783244126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_20
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 10800
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 552f6cdb969372e4a9a07344bc418356
+      internalID: 1615507217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_21
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 10800
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b919779dd3415a44aab8e610fed91d9
+      internalID: -1046756676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_22
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 10800
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f850c53abdbf1c48a431c8b347c5978
+      internalID: -1992699051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_23
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 10800
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7937a770e0a9fb4ba13d492d80dd705
+      internalID: 688962092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10080
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9379bbe06a2446b4099ec95eb7d3191f
+      internalID: 1284101232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_25
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 10080
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 114ac5133d7c12549928cee317b5395f
+      internalID: -1496629998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_26
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 10080
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a02137950b3aac419774549e041c683
+      internalID: -2064996684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_27
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 10080
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e9ffc7dd6395c04192e99d4a651c98e
+      internalID: -1986895340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_28
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 10080
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b803c4dbd8073284aba5fd9c2f1ade3e
+      internalID: 781213138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_29
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 10080
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b59c2e4329d56045849c66bb490c8d6
+      internalID: 996858796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_30
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 10080
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a09cec8fde0b8e48b6c231994b2ce17
+      internalID: 660939573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_31
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 10080
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aefeddd56aeff0344ab8b25c7be71925
+      internalID: -706384089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_32
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 10080
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22a52c29a100e284b86979d12aa60d75
+      internalID: -1489751155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_33
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 10080
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c8751cd0c5d8c74bb2fbab864bfc29e
+      internalID: -1581717844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_34
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 10080
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0e6cea5c047b054ea77f59bf97d1db1
+      internalID: -296746375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_35
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 10080
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ff6f1e8153b1b04b8418f9b984b140a
+      internalID: 2020383146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9360
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4b1fed5d38e0164e8ddf5d8fa2d0465
+      internalID: 1693513965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_37
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 9360
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7348084ebda080f4fa85ea067710e1aa
+      internalID: -486551548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_38
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 9360
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5548c4cb89f66f40871c342eb58db79
+      internalID: -1020956993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_39
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 9360
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da9d8a64001822b42aecfb020b93bedb
+      internalID: 502437019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_40
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 9360
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ac288a5290633e4ba2582440cc7833d
+      internalID: -42741492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_41
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 9360
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d400d87ebd40e94fa2bb9c87833c548
+      internalID: 231888290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_42
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 9360
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3711d88a85e726349980d29e91468c17
+      internalID: 691509771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_43
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 9360
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3208dd16a24b874c93bb871dd17c261
+      internalID: -1366057221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_44
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 9360
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d432437fe54c8b48a643adf2a793a90
+      internalID: -573938720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_45
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 9360
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afc18ae05234c2742a2a6fa1d2e10228
+      internalID: 655890008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_46
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 9360
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ab5ddf0a33859c458bf1fecc4e1443f
+      internalID: 1913997920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_47
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 9360
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a124eae993c11e4d8e410e8d0438136
+      internalID: -1106712625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8640
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40e26708b2a9e66448cd3e36c953f367
+      internalID: 2144555447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_49
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 8640
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd95fe76d1e3c8f42935f773ef4a6e50
+      internalID: 1599335645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_50
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 8640
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90e6f0ca82800f4468b75dbe4db60c97
+      internalID: 782773351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_51
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 8640
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f63af67f646c9e479f7cd483a6ed1fb
+      internalID: 599395954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_52
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 8640
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39937ccee9ad8ed4889289e4d630f0bf
+      internalID: 1739321940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_53
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 8640
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe88c152bf2955e4f898c44cac717222
+      internalID: -1848642623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_54
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 8640
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbb764014fedc304694fc9e06ff5e8ab
+      internalID: 1781664691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_55
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 8640
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d07a4593d21aec7498970ec6b402c7f5
+      internalID: -2088294830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_56
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 8640
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed1d8adb251e43d48b0272df11d2e9d4
+      internalID: -1408538723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_57
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 8640
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1093c05c0c41ca24fac5cce2458bd511
+      internalID: 1511167066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_58
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 8640
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83b473b3f610c6a48bd877f568fd2436
+      internalID: -1603341359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_59
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 8640
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c82a3cf6cd38cf4abc7430225d32fb3
+      internalID: -1739902365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7920
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a5e566bf1ab91c4d9f6d21ea208c586
+      internalID: 1176690698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_61
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 7920
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: decdab52eb84aef4fbdfcb43433c2e12
+      internalID: -181701552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_62
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 7920
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6b12d0e2148a82468410bbc92d24228
+      internalID: 375023866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_63
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 7920
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3d1b826600d2ea4c90406c2aeacb02e
+      internalID: -608584023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_64
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 7920
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a1bcfaa60e1df547a22c438798511b5
+      internalID: -124620417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_65
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 7920
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff26d2970cf8983469826e8d05ad32d5
+      internalID: 2001661661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_66
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 7920
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e521ef95090d5374b948319511a1eaa1
+      internalID: -204948592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_67
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 7920
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0edf62c77c2173b40b49ba808ab2d319
+      internalID: 1082794983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_68
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 7920
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd83b630ad64acf40aad9f13737cc65d
+      internalID: 777802097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_69
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 7920
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af84d43144e5e194c80d373e5a7caeae
+      internalID: -1844684049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_70
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 7920
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a266c164323b69f49a72730b93c21a9e
+      internalID: 313300461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_71
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 7920
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c929675287c35394086ac2382efaa9aa
+      internalID: -1171522602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7200
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03febe297561f0c4299a04fbedbcc4ff
+      internalID: 363518091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_73
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 7200
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c636bc8a9cecba04fa3670c96f3f110f
+      internalID: -248054160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_74
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 7200
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 086b8885424776642a5433c62ff3177c
+      internalID: 1935397772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_75
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 7200
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d599d48151df654286a498285af66d4
+      internalID: -965351486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_76
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 7200
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9e41c58331a718448f30ccb053335ec
+      internalID: 99745502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_77
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 7200
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7179e1f7bf0dee94b897bee34540520f
+      internalID: -596432117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_78
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 7200
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a1aec026b453fd4f9cf1e0c7755eaa6
+      internalID: -1162474931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_79
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 7200
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b887263148bc11d4a9dd48cfa6222026
+      internalID: 37854587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_80
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 7200
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4ae2a30313cfc1409ccb767bc225978
+      internalID: -1860189967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_81
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 7200
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8acd0f86c5c88bc47aaf41d6f3d0bb65
+      internalID: -1078533448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_82
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 7200
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 459e9d81e912e534a8e9c26b15f0071a
+      internalID: 1101262569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_83
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 7200
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7493751bc4350c34d88551e6cb85d702
+      internalID: 1303133330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6480
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6a29a41216155b42bfc72744e2e8670
+      internalID: 1680904429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_85
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 6480
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9997d1ec56187545abb328d1522f5ae
+      internalID: -605351605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_86
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 6480
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ec5c2c90ccb5a9489695a2891c03963
+      internalID: -145586623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_87
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 6480
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e437bc9bba709d44b76707f9d82ba55
+      internalID: 131013170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_88
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 6480
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc957adfe30fbeb4eb5360ffabc22307
+      internalID: -1162364210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_89
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 6480
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec1e25eb5e35bda4db3f81704f58f2f2
+      internalID: 1650611766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_90
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 6480
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a943345256dcb249a80ff1a1bc99db7
+      internalID: -1305663593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_91
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 6480
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7554b721146dbc9499a135917396f82d
+      internalID: 2037409864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_92
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 6480
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91943075fb8ff0647af23c18d30c1a71
+      internalID: -1168583124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_93
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 6480
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c887faa55704a804087a617f234f260f
+      internalID: 1497837539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_94
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 6480
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03f0b1143d6f0f2438e844d72d222dc1
+      internalID: 878033062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_95
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 6480
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9288d3cd8a1fa942bda7223ad2b7eb9
+      internalID: 1282177918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_96
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5760
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b862d433a3234342ac7502b569883e1
+      internalID: -1961073088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_97
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 5760
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 050ca25cfc3e02a4194795abbdb9bb5a
+      internalID: 1912948097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_98
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 5760
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18a2f48001878124b8d36f96a74cb378
+      internalID: 328866736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_99
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 5760
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d55ffcb2ddf4c904cbd9bdf89365fc0a
+      internalID: 797988401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_100
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 5760
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2695d9e0fb8edcc48ba649a2a13d2e75
+      internalID: 1292020991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_101
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 5760
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bf3f45886676854db3ce6a4551642b5
+      internalID: -62284356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_102
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 5760
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bafe12b63b99154aaecd83c02d8430e
+      internalID: -1688283903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_103
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 5760
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecda8e79a120c254e8ced0724c55a8e9
+      internalID: 106966414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_104
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 5760
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dbdc647fa4bf2245ab08f7396745774
+      internalID: -2109047052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_105
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 5760
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73c9daace852a76459af8e82aa20cc65
+      internalID: -973516626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_106
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 5760
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3446dfbe23e5454478b52a95d0c2d2f4
+      internalID: 790648787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_107
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 5760
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 044c65a2a2bb61344a05dfff908c5e0d
+      internalID: -856577273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_108
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5040
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94678453203f21a49823c041acf0c881
+      internalID: 1175620624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_109
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 5040
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0930dc967efca445b71ea06bbcd1ed8
+      internalID: -1842745434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_110
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 5040
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40a58acf507f8e34a936b263a8bda119
+      internalID: 1070469937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_111
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 5040
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ba6932203696c34393dfb7002593365
+      internalID: -1723896499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_112
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 5040
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ba7d760b53d2374a9531990e4070199
+      internalID: 1188698523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_113
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 5040
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beeb26853352f8145afb3bccbcfeb88c
+      internalID: 518837310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_114
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 5040
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5144fff8933a8214aae5146fbeb13c03
+      internalID: -459634095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_115
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 5040
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5543a97e11dfd2147835ffc5d3f85ad6
+      internalID: 2109356326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_116
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 5040
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8136e754e2d6294c9e3d5b3d09b0a75
+      internalID: 220602970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_117
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 5040
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf5a9610ec0c20c409ba98a086471afc
+      internalID: -1034708575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_118
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 5040
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe7b30fcd5d9b50489ddd963c425750f
+      internalID: -1069091542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_119
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 5040
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d34e2bbdfc0f50045a249c7bfeec934a
+      internalID: -967708464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_120
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4320
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 517ef9c3d60e68d40974bc239558f79c
+      internalID: 1150938613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_121
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 4320
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed087531ad55cbd419043de57b51230f
+      internalID: -828455314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_122
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 4320
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f3abd910038a124da968a86e97252db
+      internalID: 554410577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_123
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 4320
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e314b22ad2b5f2240a74715040f3be2a
+      internalID: 393644135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_124
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 4320
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faff6d00694cde34e986c4cd8cb70f04
+      internalID: -1389862165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_125
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 4320
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0b5a6b5f817ff84f9314aec59628dca
+      internalID: -1307474702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_126
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 4320
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5035005b0ba18a4988f3f4f91e56344
+      internalID: 1568801235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_127
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 4320
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93641da5666dec24499c4d91e54249ac
+      internalID: 1211518025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_128
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 4320
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db50dd55cf0093e41b9ac1f90e421f60
+      internalID: 308876208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_129
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 4320
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb7a292a61b7ddb40a3304c791bdfd04
+      internalID: 1119322633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_130
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 4320
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a187932418808b74dafee463f5bfacc3
+      internalID: -357886579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_131
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 4320
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a72bdf7d557530a44b4dce890da728b4
+      internalID: -383587181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_132
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3600
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e7e9f56a9a01b140b1e2029a81d8db1
+      internalID: 1761100317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_133
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 3600
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5de22ec9a67d18d4a8562ddb9f05b705
+      internalID: 240054792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_134
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 3600
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3df293ff08081ea4ba115a86b59decb1
+      internalID: -1075541573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_135
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 3600
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 315bdd0b3b73e1344a26b51a6bb2b422
+      internalID: -532278874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_136
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 3600
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69269f7f26e867346a67c4bdadfe716b
+      internalID: 89089976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_137
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 3600
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b185e8a48f461a4fb8c2ad71833c591
+      internalID: 1822590349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_138
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 3600
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24a8472c3e4470c40a4a5e6afcea948a
+      internalID: -2134835250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_139
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 3600
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1441317605a263444966c17169e3f912
+      internalID: -432267233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_140
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 3600
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7e9509d3cef49045bd07622d8302dba
+      internalID: 340965032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_141
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 3600
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ff14e1c117435d4c9468b8d4df0a059
+      internalID: 537028957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_142
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 3600
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90b8a254ba7efc64d9d9902e04a6d2a7
+      internalID: 1829706847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_143
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 3600
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1376999135e02442a6892084eea54f2
+      internalID: -936115236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_144
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb6353f934992a14aaf8516140745753
+      internalID: -1478057199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_145
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 836942a0234640e47acf471b64c32d26
+      internalID: -275069625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_146
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 107cc424e65c4a6479d6ba3e205914a1
+      internalID: -1459563950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_147
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f2f5c7dc7d7dd94eb3a7f2a0a531911
+      internalID: -1044565630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_148
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e30b4fd6ba04d8049ab1f5776536cbab
+      internalID: -1550573994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_149
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6c90f304bca03940b12d34be430b651
+      internalID: -602196389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_150
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 362b2c5d82eda2e44be8d3a6e1324023
+      internalID: 673863797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_151
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2974ff6dd012e8b45b7add0e2dfd29d7
+      internalID: 639258212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_152
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd9b40eadcbe8c641aceacca4df2b762
+      internalID: 1247652104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_153
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a5f8c80ef205204a85aa69e42b0d451
+      internalID: -2019547070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_154
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f433e70a5d4ad9640958b811eda3eb48
+      internalID: 2127785128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_155
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98873bf07779ffb469143fe0297694ed
+      internalID: -1060214898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_156
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3989b51ac0b1864c8b21ad43c6e9c33
+      internalID: -917245607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_157
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 802f2da84c749ca4083779ecc9976f6c
+      internalID: -1292560240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_158
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86d49878b337c324097eafaaa403c3d3
+      internalID: 1332024529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_159
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb09883103fd93341bbd40a019dd0865
+      internalID: -219828837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_160
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e058b0fb22cc9e418f5768b9fdbde48
+      internalID: 1956952420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_161
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b645de3badedf2459227d2f825ba2d0
+      internalID: 290561901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_162
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6df80528f2912fd4b994f8b7bf3c34fd
+      internalID: -205272043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_163
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54fcc7ad3444a804e93ca04fbdbe8f62
+      internalID: -2039769809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_164
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fd9ccbdf4ca94f4da212ab1bf0817ea
+      internalID: -2035658763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_165
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87181a8929c1c564ca43d60d7f6c5b49
+      internalID: 632036385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_166
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7958c8691848854eaeea6020795f20e
+      internalID: -1928303799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_167
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fdd3f9b80465784b9ab2b3007788e79
+      internalID: 846167101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_168
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b91e953ddc633646b14a6c7b2dacd11
+      internalID: -549103652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_169
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f8f8a6ae1d125a40b2480cb4b1fe567
+      internalID: -1306668124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_170
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d87f5005c18d0fc4c8b643ffa24a8750
+      internalID: -1133914957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_171
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0751214610e13a94e9265a69a970a572
+      internalID: -1022560355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_172
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e74749e4687ee884e86644c44e4c9416
+      internalID: 1904086770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_173
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18b3d3acdc940a24baa70f903dfc1403
+      internalID: -1192605380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_174
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce514c0716afe84428bbc232ac161b4b
+      internalID: -1711009547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_175
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef835ad2a71b2f2489add95fa419f0b0
+      internalID: 257901486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_176
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f475d88540854ec4a97f80e67ff96cac
+      internalID: 124074938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_177
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76d1f4cea9038c044ba2830dc637b6cd
+      internalID: -1847674583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_178
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 622bf5b236e230b44b01bc142a92f093
+      internalID: 838943067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_179
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 187f4cdc8701e0440a067e4456cdb379
+      internalID: -882946952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_180
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc47bcc89fee2114fbbfd339c1d87cdb
+      internalID: 358257809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_181
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5711b5990e4e7e14b9ca6550f2b74f9a
+      internalID: -267334239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_182
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 714183b0813e72c48bcc476ebabe5dbe
+      internalID: -734584248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_183
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86958f27177a06b4ca5fd6735179475a
+      internalID: 1437372576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_184
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 681e5242a25276346a6b1e956e5caf8e
+      internalID: 24762476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_185
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec5d80eaaffd680499c9ffdac68faa57
+      internalID: -800360915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_186
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d5be6f1ee7078b418edbfb43a095933
+      internalID: 1158934558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_187
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94593b799f7feb843a9399f5db48d310
+      internalID: -1296593970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_188
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cf2a908a1f05bd4db91be7bfe1c209d
+      internalID: 1228513728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_189
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbcae2799a040b8469bc03c01a653f7a
+      internalID: -33541751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_190
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 517ef2fd5deb03647a13a90a6dbc18fc
+      internalID: -536048159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_191
+      rect:
+        serializedVersion: 2
+        x: 7920
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2d785bf1583b2044bd0d8d212763088
+      internalID: 2050854279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_192
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3232c9e472d937747b4cdf9e3727de8d
+      internalID: -1461287784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_193
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ed1cc9836cd86b4ab8787ca655d4179
+      internalID: -472260639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_194
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ed64a2904373054d811757d8c9a5211
+      internalID: 86009154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_195
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 0
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d86e021420e2b6e46903f5b4baaf2457
+      internalID: 1648935758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_196
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 0
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62de1d791b947da46ba4b40e3253a5e3
+      internalID: -2057633022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_197
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 0
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcceace7a8e135641b1d690bcdd17f40
+      internalID: -851284952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_198
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 0
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 005eba301f2cb264a924ce56ee6735de
+      internalID: 324080789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: minigame4_199
+      rect:
+        serializedVersion: 2
+        x: 5040
+        y: 0
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e38198b7f7678b4c888f31cf9b18b19
+      internalID: 1375402767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      minigame4_0: -1318824652
+      minigame4_1: 571316730
+      minigame4_10: -667982085
+      minigame4_100: 1292020991
+      minigame4_101: -62284356
+      minigame4_102: -1688283903
+      minigame4_103: 106966414
+      minigame4_104: -2109047052
+      minigame4_105: -973516626
+      minigame4_106: 790648787
+      minigame4_107: -856577273
+      minigame4_108: 1175620624
+      minigame4_109: -1842745434
+      minigame4_11: 938389783
+      minigame4_110: 1070469937
+      minigame4_111: -1723896499
+      minigame4_112: 1188698523
+      minigame4_113: 518837310
+      minigame4_114: -459634095
+      minigame4_115: 2109356326
+      minigame4_116: 220602970
+      minigame4_117: -1034708575
+      minigame4_118: -1069091542
+      minigame4_119: -967708464
+      minigame4_12: 1721200000
+      minigame4_120: 1150938613
+      minigame4_121: -828455314
+      minigame4_122: 554410577
+      minigame4_123: 393644135
+      minigame4_124: -1389862165
+      minigame4_125: -1307474702
+      minigame4_126: 1568801235
+      minigame4_127: 1211518025
+      minigame4_128: 308876208
+      minigame4_129: 1119322633
+      minigame4_13: 2130639110
+      minigame4_130: -357886579
+      minigame4_131: -383587181
+      minigame4_132: 1761100317
+      minigame4_133: 240054792
+      minigame4_134: -1075541573
+      minigame4_135: -532278874
+      minigame4_136: 89089976
+      minigame4_137: 1822590349
+      minigame4_138: -2134835250
+      minigame4_139: -432267233
+      minigame4_14: 1405117370
+      minigame4_140: 340965032
+      minigame4_141: 537028957
+      minigame4_142: 1829706847
+      minigame4_143: -936115236
+      minigame4_144: -1478057199
+      minigame4_145: -275069625
+      minigame4_146: -1459563950
+      minigame4_147: -1044565630
+      minigame4_148: -1550573994
+      minigame4_149: -602196389
+      minigame4_15: 199380546
+      minigame4_150: 673863797
+      minigame4_151: 639258212
+      minigame4_152: 1247652104
+      minigame4_153: -2019547070
+      minigame4_154: 2127785128
+      minigame4_155: -1060214898
+      minigame4_156: -917245607
+      minigame4_157: -1292560240
+      minigame4_158: 1332024529
+      minigame4_159: -219828837
+      minigame4_16: -345502165
+      minigame4_160: 1956952420
+      minigame4_161: 290561901
+      minigame4_162: -205272043
+      minigame4_163: -2039769809
+      minigame4_164: -2035658763
+      minigame4_165: 632036385
+      minigame4_166: -1928303799
+      minigame4_167: 846167101
+      minigame4_168: -549103652
+      minigame4_169: -1306668124
+      minigame4_17: 734297287
+      minigame4_170: -1133914957
+      minigame4_171: -1022560355
+      minigame4_172: 1904086770
+      minigame4_173: -1192605380
+      minigame4_174: -1711009547
+      minigame4_175: 257901486
+      minigame4_176: 124074938
+      minigame4_177: -1847674583
+      minigame4_178: 838943067
+      minigame4_179: -882946952
+      minigame4_18: 1702266477
+      minigame4_180: 358257809
+      minigame4_181: -267334239
+      minigame4_182: -734584248
+      minigame4_183: 1437372576
+      minigame4_184: 24762476
+      minigame4_185: -800360915
+      minigame4_186: 1158934558
+      minigame4_187: -1296593970
+      minigame4_188: 1228513728
+      minigame4_189: -33541751
+      minigame4_19: -783244126
+      minigame4_190: -536048159
+      minigame4_191: 2050854279
+      minigame4_192: -1461287784
+      minigame4_193: -472260639
+      minigame4_194: 86009154
+      minigame4_195: 1648935758
+      minigame4_196: -2057633022
+      minigame4_197: -851284952
+      minigame4_198: 324080789
+      minigame4_199: 1375402767
+      minigame4_2: 1859858169
+      minigame4_20: 1615507217
+      minigame4_200: 753428071
+      minigame4_201: -786592905
+      minigame4_202: 1613238600
+      minigame4_203: -2110908813
+      minigame4_21: -1046756676
+      minigame4_22: -1992699051
+      minigame4_23: 688962092
+      minigame4_24: 1284101232
+      minigame4_25: -1496629998
+      minigame4_26: -2064996684
+      minigame4_27: -1986895340
+      minigame4_28: 781213138
+      minigame4_29: 996858796
+      minigame4_3: 70229066
+      minigame4_30: 660939573
+      minigame4_31: -706384089
+      minigame4_32: -1489751155
+      minigame4_33: -1581717844
+      minigame4_34: -296746375
+      minigame4_35: 2020383146
+      minigame4_36: 1693513965
+      minigame4_37: -486551548
+      minigame4_38: -1020956993
+      minigame4_39: 502437019
+      minigame4_4: 1580390051
+      minigame4_40: -42741492
+      minigame4_41: 231888290
+      minigame4_42: 691509771
+      minigame4_43: -1366057221
+      minigame4_44: -573938720
+      minigame4_45: 655890008
+      minigame4_46: 1913997920
+      minigame4_47: -1106712625
+      minigame4_48: 2144555447
+      minigame4_49: 1599335645
+      minigame4_5: -497693743
+      minigame4_50: 782773351
+      minigame4_51: 599395954
+      minigame4_52: 1739321940
+      minigame4_53: -1848642623
+      minigame4_54: 1781664691
+      minigame4_55: -2088294830
+      minigame4_56: -1408538723
+      minigame4_57: 1511167066
+      minigame4_58: -1603341359
+      minigame4_59: -1739902365
+      minigame4_6: 233299429
+      minigame4_60: 1176690698
+      minigame4_61: -181701552
+      minigame4_62: 375023866
+      minigame4_63: -608584023
+      minigame4_64: -124620417
+      minigame4_65: 2001661661
+      minigame4_66: -204948592
+      minigame4_67: 1082794983
+      minigame4_68: 777802097
+      minigame4_69: -1844684049
+      minigame4_7: 1517769910
+      minigame4_70: 313300461
+      minigame4_71: -1171522602
+      minigame4_72: 363518091
+      minigame4_73: -248054160
+      minigame4_74: 1935397772
+      minigame4_75: -965351486
+      minigame4_76: 99745502
+      minigame4_77: -596432117
+      minigame4_78: -1162474931
+      minigame4_79: 37854587
+      minigame4_8: -563215544
+      minigame4_80: -1860189967
+      minigame4_81: -1078533448
+      minigame4_82: 1101262569
+      minigame4_83: 1303133330
+      minigame4_84: 1680904429
+      minigame4_85: -605351605
+      minigame4_86: -145586623
+      minigame4_87: 131013170
+      minigame4_88: -1162364210
+      minigame4_89: 1650611766
+      minigame4_9: -1805612435
+      minigame4_90: -1305663593
+      minigame4_91: 2037409864
+      minigame4_92: -1168583124
+      minigame4_93: 1497837539
+      minigame4_94: 878033062
+      minigame4_95: 1282177918
+      minigame4_96: -1961073088
+      minigame4_97: 1912948097
+      minigame4_98: 328866736
+      minigame4_99: 797988401
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
