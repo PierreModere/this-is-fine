@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Video;
 using static WebsocketManager;
 
 public class MinigameInstructions : MonoBehaviour
@@ -125,8 +124,7 @@ public class MinigameInstructions : MonoBehaviour
         {
             minigameTitle.GetComponent<TextMeshProUGUI>().text = displayedMinigame.title;
             instructionText.GetComponent<TextMeshProUGUI>().text = displayedMinigame.instruction;
-            minigamePreview.GetComponent<VideoPlayer>().url = System.IO.Path.Combine(Application.streamingAssetsPath, displayedMinigame.videoPreview+".mp4");
-            minigamePreview.GetComponent<VideoPlayer>().Play();
+            minigamePreview.GetComponent<Animator>().Play("minigame"+displayedMinigame.id);
         }
     }
 
