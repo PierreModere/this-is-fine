@@ -38,6 +38,7 @@ public class ResultsCanvas : MonoBehaviour
 
     void initScreen()
     {
+        gameObject.GetComponent<AudioSource>().Play();
 
         if ((GameData.isHost && GameData.minigameMode != "Duel") || GameData.isDuelHost)
         {
@@ -49,7 +50,7 @@ public class ResultsCanvas : MonoBehaviour
             okButton.SetActive(false);
         }
 
-        updateWinnersList();
+        if (GameData.playersList != null) updateWinnersList();
     }
 
     void animPlayerSlots(int firstPlayerID, int playersNumber)
