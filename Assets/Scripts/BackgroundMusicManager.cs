@@ -10,10 +10,20 @@ public class BackgroundMusicManager : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.GetComponent<AudioSource>().clip = audioClip;
+        // means it's in a minigame scene
+        if (GameObject.Find("MinigameInfoCanvas"))
+        {
+            gameObject.GetComponent<AudioSource>().clip = GameObject.Find("MinigameInfoCanvas").GetComponent<MinigameUI>().minigameData.backgroundMusic;
+        }
+        else
+        {
+            gameObject.GetComponent<AudioSource>().clip = audioClip;
+
+        }
     }
     void Start()
     {
+    
         if (GameObject.Find("WebsocketManager")){
             GameData GameData = GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().GameData;
             if (GameData != null && GameData.isHost && !isPlaying)

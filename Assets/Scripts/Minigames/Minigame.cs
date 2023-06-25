@@ -12,6 +12,7 @@ public class Minigame : ScriptableObject
     public int gameTime;
     public int cutsceneTime;
     public bool hasTimer;
+    public AudioClip backgroundMusic;
     public string[] goodFeedbacks;
     public string[] badFeedbacks;
  }
