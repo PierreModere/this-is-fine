@@ -42,10 +42,10 @@ public class MenuAnimation : MonoBehaviour
         startMenuAnim.Append(splashScreen.transform.Find("BureauCrapLogo").GetComponent<Image>().DOFade(0, 0.7f));
         startMenuAnim.Join(instruction.GetComponent<TextMeshProUGUI>().DOFade(0, 0.5f).OnComplete(() => { instruction.SetActive(false); }));
         startMenuAnim.Append(splashScreen.GetComponent<Image>().DOFade(0, 0.5f).OnComplete(() => { splashScreen.SetActive(false); }));
+        startMenuAnim.AppendCallback(() => { GameObject.Find("StartMenuMusic").GetComponent<AudioSource>().Play(); });
 
         //Menu elements pop-up
         startMenuAnim.Join(logo.transform.DOScale(0.7f, 0.3f).SetEase(Ease.InOutBack).SetDelay(0.2f).From());
-        startMenuAnim.AppendCallback(() => { GameObject.Find("StartMenuMusic").GetComponent<AudioSource>().Play(); });
         startMenuAnim.Append(createButton.GetComponent<Image>().DOFade(1f, 0.2f));
         startMenuAnim.Join(createButton.transform.DOLocalMoveY(-130, 0.3f).SetEase(Ease.InOutBack).From());
         startMenuAnim.Join(joinButton.GetComponent<Image>().DOFade(1f, 0.2f).SetDelay(-0.1f));
