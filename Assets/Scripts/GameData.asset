@@ -20,6 +20,7 @@ MonoBehaviour:
   firstMinigameID: 
   isFirstMinigame: 1
   minigameMode: Battle
-  isHost: 1
+  isHost: 0
   isDuelHost: 0
   currentScene: 
+  winnerID: 

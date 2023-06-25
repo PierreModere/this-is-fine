@@ -22,6 +22,10 @@ public class CreateRoom : MonoBehaviour
         string pincode = GameData.joinedRoomCode;
         if (pincode != null)
         {
+            GameData.isHost = false;
+            GameData.playerID = "";
+            GameData.playersList = null;
+            GameData.joinedRoomCode = "";
             var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
             string json = "{'type': 'delete', 'params':{'code': '" + pincode + "'}}";
             await websocket.SendText(json);

@@ -73,6 +73,9 @@ public class LobbyScreen : MonoBehaviour
             json = "{'type': 'leave', 'params':{'code': '" + pincode + "','id': '" + GameData.playerID + "'}}";
 
             await websocket.SendText(json);
+            GameData.isHost = false;
+            GameData.playerID = "";
+            GameData.playersList = null;
             GameData.joinedRoomCode = "";
         }
     }

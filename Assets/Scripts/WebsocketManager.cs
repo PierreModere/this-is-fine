@@ -113,6 +113,7 @@ public class WebsocketManager : MonoBehaviour
     }
     void Start()
     {
+        //GameObject.Find("TransitionAnim").GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
         WebsocketConnect(false);
     }
 
@@ -262,6 +263,7 @@ public class WebsocketManager : MonoBehaviour
     {
         GameData.joinedRoomCode = "";
         GameData.playerID = "";
+        GameData.playersList = null;
         GameData.selectedCharacter = "";
         GameData.displayedMinigameID = "";
         GameData.firstMinigameID = "";
