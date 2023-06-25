@@ -130,10 +130,13 @@ public class Minigame1 : MonoBehaviour
         }
         else if (indexesSuite[playerProgressIndex] != index && !isMultiPressed)
         {
+            playerProgressIndex--;
+            sendScore();
+
             Sequence valveError = DOTween.Sequence();
 
-            valveError.Append(valve.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z + 170f), 0.3f).SetEase(Ease.InOutBack));
-            valveError.Join(valveShadow.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z + 170f), 0.3f).SetEase(Ease.InOutBack));
+            valveError.Append(valve.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z + 360f), 0.3f, RotateMode.FastBeyond360).SetEase(Ease.InOutBack));
+            valveError.Join(valveShadow.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z + 3670f), 0.3f, RotateMode.FastBeyond360).SetEase(Ease.InOutBack));
             MinigameUI.displayFeedback(false);
 
         }
