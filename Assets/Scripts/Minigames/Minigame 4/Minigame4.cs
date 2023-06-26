@@ -55,6 +55,8 @@ public class Minigame4 : MonoBehaviour
     public List<string> youngmanSentences;
     public List<string> youngwomanSentences;
 
+    public GameObject crowdSFX;
+
     private void OnEnable()
     {
         BlurLayer.material.DOFloat(0, "_Size", 0);
@@ -116,6 +118,8 @@ public class Minigame4 : MonoBehaviour
         speechAnim.Append(AllFrontObjects.transform.DOScale(1, 0.7f));
         speechAnim.Join(Public.transform.DOScale(1.7f, 0.5f));
         speechAnim.Join(BlurLayer.material.DOFloat(0f, "_Size", 0.6f));
+        speechAnim.Join(crowdSFX.GetComponent<AudioSource>().DOFade(0.5f, 0.6f));
+
 
         // Apparition bulle de texte
         DialogBox.SetActive(true);
@@ -138,6 +142,7 @@ public class Minigame4 : MonoBehaviour
         dialogHide.Append(AllFrontObjects.transform.DOScale(0.8f, 0.4f).SetDelay(1.5f));
 
         dialogHide.Join(BlurLayer.material.DOFloat(2.2f, "_Size", 0.4f));
+        dialogHide.Join(crowdSFX.GetComponent<AudioSource>().DOFade(1.0f, 0.6f));
 
         dialogHide.Join(Public.transform.DOScale(1, 0.4f).OnStart(() => {
             StartCoroutine(spawnWave());
