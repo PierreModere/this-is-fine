@@ -1,8 +1,8 @@
+using System;
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class Minigame3 : MonoBehaviour
 {
@@ -49,6 +49,11 @@ public class Minigame3 : MonoBehaviour
 
     Animator beltAnimator;
 
+    public List<GameObject> beltSFX;
+    public List<GameObject> buttonSFX;
+
+    bool hasPlaySound = false;
+
     void Start()
     {
         InkFlow.transform.localScale = new Vector3(1f, 0f, 1f);
@@ -65,6 +70,13 @@ public class Minigame3 : MonoBehaviour
 
         if (isHolding && isAbleToFill && currentCartridge != null && timer >= interval)  {
 
+            if (!hasPlaySound)
+            {
+                GameObject.Find("Ink").GetComponent<AudioSource>().DOFade(1, 0);
+                GameObject.Find("Ink").GetComponent<AudioSource>().Play();
+                hasPlaySound = true;
+            }
+                
             fillUpCurrentCartridge();
             inkIncreaseLevel *= 1.15f;
             timer = 0.0f;
@@ -82,7 +94,6 @@ public class Minigame3 : MonoBehaviour
         playerProgressIndex = 0;
         playerScore = 0;
         currentCartridge = cartridgesList[playerProgressIndex];
-        //activeButtons();
         pistonDownAnimation();
     }
 
@@ -104,24 +115,21 @@ public class Minigame3 : MonoBehaviour
 
     }
 
-    void activeButtons()
-    {
-        controls.transform.DOLocalMoveY(-1300, 0f);
-        controls.transform.DOLocalMoveY(-700, 0.4f);       
-    }
-
     public void onButtonHold()
     {
-        if (!isHolding) isHolding = true;
+        buttonSFX[UnityEngine.Random.Range(0, 1)].GetComponent<AudioSource>().Play();
 
+        if (!isHolding) isHolding = true;
         if (isAbleToFill)
         {
 
             InkFlow.transform.DOScaleY(1f, 0.2f);
         }
     }
+
     public void onButtonRelease()
     {
+        GameObject.Find("Ink").GetComponent<AudioSource>().DOFade(0, 0.2f);
         if (isAbleToFill && currentCartridge.transform.Find("InkLevelMask").Find("InkLevel").gameObject.GetComponent<RectTransform>().sizeDelta.y>0)
         {
             isHolding = false;
@@ -132,6 +140,8 @@ public class Minigame3 : MonoBehaviour
 
     void moveLineAnimation()
     {
+        beltSFX[1].GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(0.85f, 1.1f);
+        beltSFX[1].GetComponent<AudioSource>().Play();
         Transform LineTransform = CartridgesLine.transform;
 
         beltAnimator.Play("movingBelt");
@@ -151,9 +161,10 @@ public class Minigame3 : MonoBehaviour
         downAnim.Append(pistonGameobject.transform.DOLocalMoveY(pistonUpPos + 20, 0.2f));
         downAnim.Append(pistonGameobject.transform.DOLocalMoveY(pistonUpPos, 0.1f)).OnComplete(() =>
         {
+            GameObject.Find("MachineUp").GetComponent<AudioSource>().Play();
             moveLineAnimation();
-
             pistonAnimator.Play("machine_idle-top");
+
         });
 
         InkFlow.transform.DOLocalMoveY(InkFlowPositionY - InkFlowHeight, 0.2f).OnComplete(() =>
@@ -164,6 +175,8 @@ public class Minigame3 : MonoBehaviour
     }
     void pistonDownAnimation()
     {
+        hasPlaySound = false;
+        GameObject.Find("MachineDown").GetComponent<AudioSource>().Play();
         pistonAnimator.Play("machine_going-down");
 
         Sequence downAnim = DOTween.Sequence();
@@ -206,7 +219,8 @@ public class Minigame3 : MonoBehaviour
         {
             if (isAbleToFill) addNewCartridge();
             isHolding = false;
-        }
+        }       
+
     }
 
     void checkInkLevel()

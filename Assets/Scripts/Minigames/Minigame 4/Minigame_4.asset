@@ -18,10 +18,10 @@ MonoBehaviour:
     au plus vite</b> de vos d\xE9tracteurs qui vous montrent du doigt !"
   id: 4
   preview: {fileID: 21300000, guid: 0c46095d8b0169849b929c58c298f4eb, type: 3}
-  videoPreview: minigame4
   gameTime: 0
   cutsceneTime: 3
   hasTimer: 0
+  backgroundMusic: {fileID: 8300000, guid: 02bef7f3410aadb4ca2dc364ab908f7e, type: 3}
   goodFeedbacks:
   - "Bien jou\xE9"
   - Assez !

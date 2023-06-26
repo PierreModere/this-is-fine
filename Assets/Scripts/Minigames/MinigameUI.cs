@@ -47,6 +47,8 @@ public class MinigameUI : MonoBehaviour
 
     private void OnEnable()
     {
+        startPopUpAnimationText("start");
+
         resetPlayersReadiness();
         if (GameData.playersList != null) updatePlayersListAndScore();
         gameObject.GetComponent<CanvasGroup>().alpha = 0f;
