@@ -79,8 +79,8 @@ public class oldman_Animation : MonoBehaviour
             Body.GetComponent<Image>().sprite = BodySprites[2];
             ShockWave.SetActive(true);
 
-            punchWoodSFX[Random.Range(0, 3)].GetComponent<AudioSource>().Play();
-            punchWoodSFX[Random.Range(0, 3)].GetComponent<AudioSource>().Play();
+            punchWoodSFX[Random.Range(0, punchWoodSFX.Count - 1)].GetComponent<AudioSource>().Play();
+            punchWoodSFX[Random.Range(0, punchWoodSFX.Count - 1)].GetComponent<AudioSource>().Play();
         }));
         hitLectern.Append(ShockWave.GetComponent<Image>().DOFade(0, 0.5f).OnComplete(() => {
             ShockWave.SetActive(false);
