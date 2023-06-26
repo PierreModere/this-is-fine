@@ -30,6 +30,8 @@ public class youngman_Animation : MonoBehaviour
     bool isBouncing = false;
     bool isBlinking = false;
 
+    public GameObject blinkSFX;
+
     // Update is called once per frame
     void Update()
     {
@@ -65,6 +67,8 @@ public class youngman_Animation : MonoBehaviour
         Eyes.transform.DOScale(1f, 0).SetDelay(delay).OnComplete(() =>
         {
             Eyes.GetComponent<Image>().sprite = EyesSprites[0];
+
+            blinkSFX.GetComponent<AudioSource>().Play();
 
             Eyes.transform.DOScale(1f, 0).SetDelay(blinTime).OnComplete(() =>
             {

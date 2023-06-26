@@ -24,6 +24,8 @@ public class oldman_Animation : MonoBehaviour
     bool isTalking = false;
     bool isBouncing = false;
 
+    public List<GameObject> punchWoodSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,6 +78,9 @@ public class oldman_Animation : MonoBehaviour
         hitLectern.Append(Body.transform.DOScaleY(0.32f, 0.1f).SetEase(Ease.OutBack).OnComplete(() => {
             Body.GetComponent<Image>().sprite = BodySprites[2];
             ShockWave.SetActive(true);
+
+            punchWoodSFX[Random.Range(0, punchWoodSFX.Count - 1)].GetComponent<AudioSource>().Play();
+            punchWoodSFX[Random.Range(0, punchWoodSFX.Count - 1)].GetComponent<AudioSource>().Play();
         }));
         hitLectern.Append(ShockWave.GetComponent<Image>().DOFade(0, 0.5f).OnComplete(() => {
             ShockWave.SetActive(false);

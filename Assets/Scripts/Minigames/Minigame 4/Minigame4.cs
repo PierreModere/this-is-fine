@@ -55,6 +55,11 @@ public class Minigame4 : MonoBehaviour
     public List<string> youngmanSentences;
     public List<string> youngwomanSentences;
 
+    public GameObject crowdSFX;
+    public List<GameObject> shhtSFX;
+    public GameObject slideInSFX;
+    public GameObject slideOutSFX;
+
     private void OnEnable()
     {
         BlurLayer.material.DOFloat(0, "_Size", 0);
@@ -114,8 +119,11 @@ public class Minigame4 : MonoBehaviour
         Sequence speechAnim = DOTween.Sequence();
         //Zoom
         speechAnim.Append(AllFrontObjects.transform.DOScale(1, 0.7f));
-        speechAnim.Join(Public.transform.DOScale(1.7f, 0.5f));
+        speechAnim.InsertCallback(0.0f, () => shhtSFX[Random.Range(0, shhtSFX.Count - 1)].GetComponent<AudioSource>().Play());
+        speechAnim.Join(crowdSFX.GetComponent<AudioSource>().DOFade(0.5f, 0.6f));
         speechAnim.Join(BlurLayer.material.DOFloat(0f, "_Size", 0.6f));
+        speechAnim.Join(Public.transform.DOScale(1.7f, 0.5f));
+
 
         // Apparition bulle de texte
         DialogBox.SetActive(true);
@@ -136,9 +144,8 @@ public class Minigame4 : MonoBehaviour
 
         // D�zoom
         dialogHide.Append(AllFrontObjects.transform.DOScale(0.8f, 0.4f).SetDelay(1.5f));
-
+        dialogHide.Join(crowdSFX.GetComponent<AudioSource>().DOFade(1.0f, 0.4f));
         dialogHide.Join(BlurLayer.material.DOFloat(2.2f, "_Size", 0.4f));
-
         dialogHide.Join(Public.transform.DOScale(1, 0.4f).OnStart(() => {
             StartCoroutine(spawnWave());
         }));
@@ -173,6 +180,9 @@ public class Minigame4 : MonoBehaviour
 
             Vector3 displacement = hand.transform.rotation * Vector3.right * 250f;
 
+            slideInSFX.GetComponent<AudioSource>().pitch = Random.Range(0.5f, 1.5f);
+            slideInSFX.GetComponent<AudioSource>().Play();
+
             Sequence handArriving = DOTween.Sequence();
 
             handArriving.Append(hand.transform.DOLocalMove(displacement, 0.4f).SetEase(Ease.OutBack)).OnComplete(() => {
@@ -201,6 +211,10 @@ public class Minigame4 : MonoBehaviour
         if (isPlaying)
         {
             Vector3 displacement = hand.transform.rotation * Vector3.right * -230f;
+
+            slideOutSFX.GetComponent<AudioSource>().pitch = Random.Range(0.5f, 1.5f);
+            slideOutSFX.GetComponent<AudioSource>().Play();
+
             hand.transform.DOLocalMove(displacement, 0.3f).OnComplete(() => {
                 HandObjects.Remove(hand);
                 Destroy(hand);
