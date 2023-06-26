@@ -180,6 +180,7 @@ public class Minigame4 : MonoBehaviour
 
             Vector3 displacement = hand.transform.rotation * Vector3.right * 250f;
 
+            slideInSFX.GetComponent<AudioSource>().pitch = Random.Range(0.5f, 1.5f);
             slideInSFX.GetComponent<AudioSource>().Play();
 
             Sequence handArriving = DOTween.Sequence();
@@ -211,6 +212,7 @@ public class Minigame4 : MonoBehaviour
         {
             Vector3 displacement = hand.transform.rotation * Vector3.right * -230f;
 
+            slideOutSFX.GetComponent<AudioSource>().pitch = Random.Range(0.5f, 1.5f);
             slideOutSFX.GetComponent<AudioSource>().Play();
 
             hand.transform.DOLocalMove(displacement, 0.3f).OnComplete(() => {
