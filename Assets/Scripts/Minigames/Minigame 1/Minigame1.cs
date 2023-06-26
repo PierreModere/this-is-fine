@@ -11,6 +11,7 @@ public class Minigame1 : MonoBehaviour
     private GameObject WebsocketManager;
 
     int playerProgressIndex;
+    int playerScore;
     int[] indexesSuite = new int[25];
 
     public GameObject valve;
@@ -61,6 +62,7 @@ public class Minigame1 : MonoBehaviour
         WebsocketManager = GameObject.Find("WebsocketManager");
 
         playerProgressIndex = 0;
+        playerScore = 0;
         for (int i = 0; i < indexesSuite.Length; i++)
         {
             var randomIndex = Random.Range(0, buttonsInstructionsSprites.Count);
@@ -120,6 +122,7 @@ public class Minigame1 : MonoBehaviour
             valveRotation.Join(valveShadow.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z - 45f), 0.3f).SetEase(Ease.InOutBack));
             valveRotation.Join(goopFlow.transform.DOScaleX(goopFlow.transform.localScale.x + 0.03f, 0.3f));
 
+            playerScore++;
             playerProgressIndex++;
             sendScore();
             MinigameUI.displayFeedback(true);
@@ -130,13 +133,13 @@ public class Minigame1 : MonoBehaviour
         }
         else if (indexesSuite[playerProgressIndex] != index && !isMultiPressed)
         {
-            playerProgressIndex--;
+            playerScore--;
             sendScore();
 
             Sequence valveError = DOTween.Sequence();
 
-            valveError.Append(valve.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z + 360f), 0.3f, RotateMode.FastBeyond360).SetEase(Ease.InOutBack));
-            valveError.Join(valveShadow.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z + 3670f), 0.3f, RotateMode.FastBeyond360).SetEase(Ease.InOutBack));
+            valveError.Append(valve.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z + 360f), 0.45f, RotateMode.FastBeyond360).SetEase(Ease.InOutBack));
+            valveError.Join(valveShadow.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z + 3670f), 0.45f, RotateMode.FastBeyond360).SetEase(Ease.InOutBack));
             MinigameUI.displayFeedback(false);
 
         }
@@ -206,7 +209,7 @@ public class Minigame1 : MonoBehaviour
     void sendScore()
     {
         if (GameData.joinedRoomCode!="" && WebsocketManager != null)
-            WebsocketManager.GetComponent<WebsocketManager>().sendScore(playerProgressIndex);
+            WebsocketManager.GetComponent<WebsocketManager>().sendScore(playerScore);
     }
 
      private void Update()
