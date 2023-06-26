@@ -23,6 +23,8 @@ public class youngwoman_Animation : MonoBehaviour
     bool isBouncing = false;
     bool isBlinking = false;
 
+    public GameObject blinkSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +63,8 @@ public class youngwoman_Animation : MonoBehaviour
         Eyes.transform.DOScale(1f, 0).SetDelay(delay).OnComplete(() =>
         {
             Eyes.GetComponent<Image>().sprite = EyesSprites[0];
+
+            blinkSFX.GetComponent<AudioSource>().Play();
 
             Eyes.transform.DOScale(1f, 0).SetDelay(blinTime).OnComplete(() =>
             {
