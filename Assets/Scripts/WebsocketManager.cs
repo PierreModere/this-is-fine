@@ -108,7 +108,7 @@ public class WebsocketManager : MonoBehaviour
 
     private void Awake()
     {
-        resetGameData();
+        GameData.resetGameData();
 
     }
     void Start()
@@ -259,23 +259,6 @@ public class WebsocketManager : MonoBehaviour
         }
     }
 
-    void resetGameData()
-    {
-        GameData.joinedRoomCode = "";
-        GameData.playerID = "";
-        GameData.playersList = null;
-        GameData.selectedCharacter = "";
-        GameData.displayedMinigameID = "";
-        GameData.firstMinigameID = "";
-        GameData.minigameMode = "Battle";
-        GameData.isFirstMinigame = true;
-        GameData.isDuelHost = false;
-        GameData.isHost = false;
-        GameData.currentScene = "";
-        GameData.winnerID = "";
-
-    }
-
     void Update()
     {
 #if !UNITY_WEBGL || UNITY_EDITOR
@@ -290,20 +273,8 @@ public class WebsocketManager : MonoBehaviour
             string json = "{'type': 'leave', 'params':{'code': '" + GameData.joinedRoomCode + "','id': '" + GameData.playerID + "'}}";
             await websocket.SendText(json);
         }
-        resetGameData();
+        GameData.resetGameData();
         await websocket.Close();
-    }
-
-    public async void OnWebglClose()
-    {
-        if (GameData.joinedRoomCode != null && GameData.joinedRoomCode != "")
-        {
-            string json = "{'type': 'leave', 'params':{'code': '" + GameData.joinedRoomCode + "','id': '" + GameData.playerID + "'}}";
-            await websocket.SendText(json);
-        }
-        await websocket.Close();
-        resetGameData();
-
     }
 
     void showLobbyScreen(bool isHost)
@@ -328,6 +299,7 @@ public class WebsocketManager : MonoBehaviour
 
     public void changeScreenForEveryone(string screenName)
     {
+        Debug.Log(screenName);
         GameObject screenToEnable = FindInactiveObjectByName(screenName);
         GameObject screenToDisable = GameObject.FindWithTag("activeScreen");
         if (screenToEnable != null && screenToDisable != null && screenToDisable.name != "StartMenuCanvas")

@@ -54,16 +54,21 @@ public class MinigameUI : MonoBehaviour
 
         TimerUI.color = baseColor;
 
-        // Add DOTween animation to isLeading
-        var playersList = GameData.playersList;
-        for (int i = 0; i < playersList.Count; i++) {
-            if (playersList[i].selectedCharacter != "") {
-                GameObject playerGameObject = playersGameobjects.Find(g => g.name == "Player" + playersList[i].id);
-                GameObject isLeading = playerGameObject.transform.Find("IsLeading").gameObject;
+        if (GameData.playersList != null)
+        {
+            // Add DOTween animation to isLeading
+            var playersList = GameData.playersList;
+            for (int i = 0; i < playersList.Count; i++)
+            {
+                if (playersList[i].selectedCharacter != "")
+                {
+                    GameObject playerGameObject = playersGameobjects.Find(g => g.name == "Player" + playersList[i].id);
+                    GameObject isLeading = playerGameObject.transform.Find("IsLeading").gameObject;
 
-                isLeading.transform.DORotate(new Vector3(0f, 0f, 360f), 10f, RotateMode.FastBeyond360)
-                    .SetLoops(-1, LoopType.Restart)
-                    .SetEase(Ease.Linear);
+                    isLeading.transform.DORotate(new Vector3(0f, 0f, 360f), 10f, RotateMode.FastBeyond360)
+                        .SetLoops(-1, LoopType.Restart)
+                        .SetEase(Ease.Linear);
+                }
             }
         }
     }
@@ -284,15 +289,17 @@ public class MinigameUI : MonoBehaviour
     void resetPlayersReadiness()
     {  
 
-        foreach (var player in GameData.playersList)
+        if (GameData.playersList!=null)
         {
-            player.isReady = false;
+            foreach (var player in GameData.playersList)
+            {
+                player.isReady = false;
+            }
         }
    
     }
     void checkPlayersReadyState()
     {
-
         bool everyoneReady = true;
 
         List<ClientsList> playersList;

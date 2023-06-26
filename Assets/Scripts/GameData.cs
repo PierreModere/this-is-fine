@@ -20,4 +20,20 @@ public class GameData : ScriptableObject
     public string winnerID;
 
     public List<ClientsList> playersList;
+
+    public void resetGameData()
+    {
+        joinedRoomCode = "";
+        playerID = "";
+        playersList = null;
+        selectedCharacter = "";
+        displayedMinigameID = "";
+        firstMinigameID = "";
+        minigameMode = "Battle";
+        isFirstMinigame = true;
+        isDuelHost = false;
+        isHost = false;
+        currentScene = "";
+        winnerID = "";
+    }
 }

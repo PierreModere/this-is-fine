@@ -63,7 +63,8 @@ public class Minigame3 : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (isHolding && currentCartridge != null && timer >= interval)  {
+        if (isHolding && isAbleToFill && currentCartridge != null && timer >= interval)  {
+
             fillUpCurrentCartridge();
             inkIncreaseLevel *= 1.15f;
             timer = 0.0f;
@@ -111,9 +112,10 @@ public class Minigame3 : MonoBehaviour
 
     public void onButtonHold()
     {
+        if (!isHolding) isHolding = true;
+
         if (isAbleToFill)
         {
-            isHolding = true;
 
             InkFlow.transform.DOScaleY(1f, 0.2f);
         }

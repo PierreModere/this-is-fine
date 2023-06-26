@@ -62,30 +62,6 @@ public class CharactersSelection : MonoBehaviour
         }
     }
 
-    void removeClickEventOnCharactersGrid()
-    {
-        Transform CharactersGrid = transform.Find("CharactersGrid");
-        for (int i = 0; i < CharactersGrid.childCount; i++)
-        {
-            GameObject characterSprite = CharactersGrid.GetChild(i).gameObject;
-            characterSprite.GetComponentInChildren<Button>().interactable = false;
-
-        }
-    }
-
-    void reenableClickEvents()
-    {
-        Transform CharactersGrid = transform.Find("CharactersGrid");
-        for (int i = 0; i < CharactersGrid.childCount; i++)
-        {
-            GameObject characterSprite = CharactersGrid.GetChild(i).gameObject;
-            characterSprite.GetComponentInChildren<Button>().interactable = true;
-
-        }
-    }
-
-
-
     async void selectCharacter(string characterName)
     {
         var websocket = WebsocketManager.GetComponent<WebsocketManager>().websocket;
@@ -174,7 +150,6 @@ public class CharactersSelection : MonoBehaviour
     {
         if (GameData.selectedCharacter != "")
         {
-            //removeClickEventOnCharactersGrid();
             CancelButton.SetActive(true);
 
             if (GameData.isHost)
@@ -182,7 +157,6 @@ public class CharactersSelection : MonoBehaviour
         }
         else
         {
-            //reenableClickEvents();
             if (GameData.isHost)
                 ReturnButton.SetActive(true);
             else CancelButton.SetActive(false);
