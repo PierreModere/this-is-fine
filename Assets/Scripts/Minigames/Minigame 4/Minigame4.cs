@@ -57,6 +57,8 @@ public class Minigame4 : MonoBehaviour
 
     public GameObject crowdSFX;
     public List<GameObject> shhtSFX;
+    public GameObject slideInSFX;
+    public GameObject slideOutSFX;
 
     private void OnEnable()
     {
@@ -178,6 +180,8 @@ public class Minigame4 : MonoBehaviour
 
             Vector3 displacement = hand.transform.rotation * Vector3.right * 250f;
 
+            slideInSFX.GetComponent<AudioSource>().Play();
+
             Sequence handArriving = DOTween.Sequence();
 
             handArriving.Append(hand.transform.DOLocalMove(displacement, 0.4f).SetEase(Ease.OutBack)).OnComplete(() => {
@@ -206,6 +210,9 @@ public class Minigame4 : MonoBehaviour
         if (isPlaying)
         {
             Vector3 displacement = hand.transform.rotation * Vector3.right * -230f;
+
+            slideOutSFX.GetComponent<AudioSource>().Play();
+
             hand.transform.DOLocalMove(displacement, 0.3f).OnComplete(() => {
                 HandObjects.Remove(hand);
                 Destroy(hand);
