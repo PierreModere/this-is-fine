@@ -47,6 +47,7 @@ public class MinigameUI : MonoBehaviour
 
     private void OnEnable()
     {
+        resetPlayersReadiness();
         if (GameData.playersList != null) updatePlayersListAndScore();
         gameObject.GetComponent<CanvasGroup>().alpha = 0f;
         if (!minigameData.hasTimer) timerGameobject.SetActive(false);
@@ -280,6 +281,15 @@ public class MinigameUI : MonoBehaviour
 
     }
 
+    void resetPlayersReadiness()
+    {  
+
+        foreach (var player in GameData.playersList)
+        {
+            player.isReady = false;
+        }
+   
+    }
     void checkPlayersReadyState()
     {
 

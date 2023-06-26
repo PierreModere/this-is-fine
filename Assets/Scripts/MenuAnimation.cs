@@ -13,6 +13,8 @@ public class MenuAnimation : MonoBehaviour
 
     public GameObject instruction;
 
+    public GameObject planet;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,12 +33,24 @@ public class MenuAnimation : MonoBehaviour
         });
         splashScreenAnim.Append(instruction.GetComponent<TextMeshProUGUI>().DOFade(1, 0.3f).SetDelay(2f));
         splashScreenAnim.AppendCallback(() => {
+            instructionLoop();
             splashScreen.transform.Find("BureauCrapLogo").GetComponent<Button>().interactable = true;
         });
     }
 
+    void instructionLoop()
+    {
+        Sequence instructionAnim = DOTween.Sequence();
+        instructionAnim.SetLoops(-1, LoopType.Restart);
+
+        instructionAnim.Append(instruction.GetComponent<TextMeshProUGUI>().DOFade(0.3f, 0.5f).SetDelay(0.5f))
+            .Append(instruction.GetComponent<TextMeshProUGUI>().DOFade(1, 0.6f).SetDelay(0.2f));
+    }
+
     public void tapScreenToStart()
     {
+        planet.transform.DORotate(new Vector3(0f, 0f, 360f), 120f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
+
         Sequence startMenuAnim = DOTween.Sequence();
 
         startMenuAnim.Append(splashScreen.transform.Find("BureauCrapLogo").GetComponent<Image>().DOFade(0, 0.7f));
@@ -47,7 +61,7 @@ public class MenuAnimation : MonoBehaviour
         });
 
         //Menu elements pop-up
-        startMenuAnim.Join(logo.transform.DOScale(0.7f, 0.3f).SetEase(Ease.InOutBack).SetDelay(0.2f).From());
+        startMenuAnim.Join(logo.transform.DOScale(0.7f, 0.3f).SetEase(Ease.InOutBack).From());
         startMenuAnim.Append(createButton.GetComponent<Image>().DOFade(1f, 0.2f));
         startMenuAnim.Join(createButton.transform.DOLocalMoveY(-130, 0.3f).SetEase(Ease.InOutBack).From());
         startMenuAnim.Join(joinButton.GetComponent<Image>().DOFade(1f, 0.2f).SetDelay(-0.1f));

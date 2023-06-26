@@ -133,9 +133,6 @@ public class Minigame1 : MonoBehaviour
         }
         else if (indexesSuite[playerProgressIndex] != index && !isMultiPressed)
         {
-            playerScore--;
-            sendScore();
-
             Sequence valveError = DOTween.Sequence();
 
             valveError.Append(valve.transform.DORotate(new Vector3(0, 0, valve.transform.rotation.eulerAngles.z + 360f), 0.45f, RotateMode.FastBeyond360).SetEase(Ease.InOutBack));
