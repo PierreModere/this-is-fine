@@ -25,6 +25,7 @@ public class oldman_Animation : MonoBehaviour
     bool isBouncing = false;
 
     public List<GameObject> punchWoodSFX;
+    public List<GameObject> voiceSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +69,8 @@ public class oldman_Animation : MonoBehaviour
 
     public void moveArms()
     {
+        voiceSFX[Random.Range(0, voiceSFX.Count - 1)].GetComponent<AudioSource>().Play();
+
         Smoke.GetComponent<Image>().DOFade(0, 0.4f).OnComplete(() => { Smoke.SetActive(false); });
 
         Sequence hitLectern = DOTween.Sequence();
