@@ -106,14 +106,9 @@ public class WebsocketManager : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void clearLocalStorage();
 
-    private void Awake()
-    {
-        GameData.resetGameData();
-
-    }
     void Start()
     {
-        //GameObject.Find("TransitionAnim").GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
+        GameData.resetGameData();
         WebsocketConnect(false);
     }
 
@@ -135,6 +130,7 @@ public class WebsocketManager : MonoBehaviour
         {
             /*var ErrorsManager = FindInactiveObjectByName("ErrorCanvas").GetComponent<ErrorsManager>();
             ErrorsManager.manageErrors(e);*/
+            WebsocketConnect(true);
         };
 
         websocket.OnClose += (e) =>
@@ -161,10 +157,11 @@ public class WebsocketManager : MonoBehaviour
                     GameData.isHost = false;
                     break;
                 case "hasBeenInARoom":
-                    //ReconnectionButton.SetActive(true);
+                    Debug.Log("connard");
                     break;
                 case "getMyPlayerID":
                     GameData.playerID = _ParsedJSON.@params.@data.message;
+                    console(GameData.playerID);
                     if (!Application.isEditor)
                     {
                         savePlayerData(GameData.playerID, GameData.joinedRoomCode);
@@ -377,6 +374,7 @@ public class WebsocketManager : MonoBehaviour
 
     async void reconnectToRoom(string playerID, string roomCode)
     {
+        console("tentative de reconnexion");
         string json = "{'type': 'reconnectPlayer', 'params':{'code': '" + roomCode + "','id':'" + playerID + "'}}";
         await websocket.SendText(json);
     }

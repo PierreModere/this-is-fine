@@ -38,6 +38,7 @@ public class MinigameUI : MonoBehaviour
     Color redColor = new Color(0.9176471f, 0.2745098f, 0.2705882f, 1);
     Color baseColor = new Color(0.1647059f, 0.2156863f, 0.3058824f, 1);
 
+    bool allPlayersReady = false;
 
     [DllImport("__Internal")]
     private static extern void vibrate();
@@ -53,7 +54,7 @@ public class MinigameUI : MonoBehaviour
 
     private void OnEnable()
     {
-        startPopUpAnimationText("start");
+        //startPopUpAnimationText("start");
 
         resetPlayersReadiness();
         if (GameData.playersList != null) updatePlayersListAndScore();
@@ -83,7 +84,7 @@ public class MinigameUI : MonoBehaviour
 
     void Update()
     {
-        if (isCutscene)
+        if (isCutscene && allPlayersReady)
         {
             if (cutsceneTimeLeft > 0)
             {
@@ -93,7 +94,10 @@ public class MinigameUI : MonoBehaviour
             {
                 cutsceneTimeLeft = 0;
                 isCutscene = false;
-                
+                gameObject.GetComponent<CanvasGroup>().DOFade(1f, 0.1f).OnComplete(() =>
+                {
+                    startPopUpAnimationText("start");
+                });
 
             }
         }
@@ -278,7 +282,11 @@ public class MinigameUI : MonoBehaviour
             randomIndex = Random.Range(0, minigameData.badFeedbacks.Length);
             text = Instantiate(badFeedbackPrefab, new Vector3(0, 0, 0), Quaternion.identity,transform);
             text.GetComponent<TextMeshProUGUI>().text = minigameData.badFeedbacks[randomIndex];
-            vibrate();
+
+            if (!Application.isEditor)
+            {
+                vibrate();
+            }
         }
 
         Sequence feedBackAnim = DOTween.Sequence();
@@ -325,12 +333,7 @@ public class MinigameUI : MonoBehaviour
         }
         if (everyoneReady)
         {
-            Debug.Log("Tout le monde est prêt !");
-            gameObject.GetComponent<CanvasGroup>().DOFade(1f, 0.1f).OnComplete(() =>
-            {
-                startPopUpAnimationText("start");
-            });
+            allPlayersReady = true;
         }
-        else Debug.Log("Pas tout le monde est prêt !");
     }
 }
