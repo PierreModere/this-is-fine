@@ -160,12 +160,11 @@ public class WebsocketManager : MonoBehaviour
                     Debug.Log("connard");
                     break;
                 case "getMyPlayerID":
-                    GameData.playerID = _ParsedJSON.@params.@data.message;
-                    console(GameData.playerID);
-                    if (!Application.isEditor)
+                    if (!Application.isEditor && GameData.playerID=="")
                     {
-                        savePlayerData(GameData.playerID, GameData.joinedRoomCode);
+                        savePlayerData(_ParsedJSON.@params.@data.message, GameData.joinedRoomCode);
                     }
+                    GameData.playerID = _ParsedJSON.@params.@data.message;
                     break;
                 case "getMySelectedCharacter":
                     GameData.selectedCharacter = _ParsedJSON.@params.@data.message;
