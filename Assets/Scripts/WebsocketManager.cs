@@ -123,14 +123,11 @@ public class WebsocketManager : MonoBehaviour
             {
                 reconnectToRoom(GameData.playerID, GameData.joinedRoomCode);
             }
-            else checkPlayerHasBeenInRoom();
         };
 
         websocket.OnError += (e) =>
         {
-            /*var ErrorsManager = FindInactiveObjectByName("ErrorCanvas").GetComponent<ErrorsManager>();
-            ErrorsManager.manageErrors(e);*/
-            WebsocketConnect(true);
+            //WebsocketConnect(true);
         };
 
         websocket.OnClose += (e) =>

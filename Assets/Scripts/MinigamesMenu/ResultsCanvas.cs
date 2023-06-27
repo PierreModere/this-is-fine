@@ -230,4 +230,9 @@ public class ResultsCanvas : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        disableFirstMinigame();
+    }
+
 }
