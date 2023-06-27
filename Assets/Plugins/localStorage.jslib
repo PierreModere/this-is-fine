@@ -26,4 +26,9 @@ mergeInto(LibraryManager.library, {
   restartGame: function () {
     window.location.reload();
   },
+
+  vibrate: function () {
+    const canVibrate = window.navigator.vibrate;
+    if (canVibrate) window.navigator.vibrate(200);
+  },
 });

@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using static WebsocketManager;
+using System.Runtime.InteropServices;
+
 
 public class MinigameUI : MonoBehaviour
 {
@@ -35,6 +37,10 @@ public class MinigameUI : MonoBehaviour
 
     Color redColor = new Color(0.9176471f, 0.2745098f, 0.2705882f, 1);
     Color baseColor = new Color(0.1647059f, 0.2156863f, 0.3058824f, 1);
+
+
+    [DllImport("__Internal")]
+    private static extern void vibrate();
 
     void Start()
     {
@@ -272,6 +278,7 @@ public class MinigameUI : MonoBehaviour
             randomIndex = Random.Range(0, minigameData.badFeedbacks.Length);
             text = Instantiate(badFeedbackPrefab, new Vector3(0, 0, 0), Quaternion.identity,transform);
             text.GetComponent<TextMeshProUGUI>().text = minigameData.badFeedbacks[randomIndex];
+            vibrate();
         }
 
         Sequence feedBackAnim = DOTween.Sequence();
