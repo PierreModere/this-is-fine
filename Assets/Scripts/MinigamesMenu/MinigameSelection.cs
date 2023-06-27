@@ -53,6 +53,10 @@ public class MinigameSelection : MonoBehaviour
 
     void titleApperance()
     {
+        Title.SetActive(false);
+        Instruction.SetActive(false);
+
+
         Sequence showTitle = DOTween.Sequence();
 
         showTitle.AppendCallback(() => { Title.SetActive(true); });

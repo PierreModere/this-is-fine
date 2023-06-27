@@ -17,7 +17,8 @@ MonoBehaviour:
     marins ! R\xE9alisez le <b>bon encha\xEEnement de boutons</b> pour vous d\xE9barrassez
     de vos d\xE9chets toxiques en les rejetant dans l'oc\xE9an <b>le plus rapidement.</b>"
   id: 1
-  preview: {fileID: 21300000, guid: 1c813ab63e5f4404495bff8a9ea26445, type: 3}
+  thumbnail: {fileID: 0}
+  preview: {fileID: 21300000, guid: f321eecda78040a4392195502616f573, type: 3}
   gameTime: 0
   cutsceneTime: 0
   hasTimer: 0

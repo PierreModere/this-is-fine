@@ -5670,6 +5670,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MinigameInfoCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4993590591434046779, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5304774558199129105, guid: edea3c5c47169eb41b2a782b80e00ee4, type: 3}
       propertyPath: m_Camera
       value: 

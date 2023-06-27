@@ -33,7 +33,7 @@ public class Minigame3 : MonoBehaviour
     int scoreRange = 10 * 2;
 
     private bool isHolding = false;
-    public bool isAbleToFill = true;
+    public bool isAbleToFill = false;
 
     int pistonUpPos = 580;
     int pistonDownPos = 530;
@@ -53,6 +53,7 @@ public class Minigame3 : MonoBehaviour
     public List<GameObject> buttonSFX;
 
     bool hasPlaySound = false;
+    bool isPlaying = false;
 
     void Start()
     {
@@ -75,8 +76,10 @@ public class Minigame3 : MonoBehaviour
                 GameObject.Find("Ink").GetComponent<AudioSource>().DOFade(1, 0);
                 GameObject.Find("Ink").GetComponent<AudioSource>().Play();
                 hasPlaySound = true;
+                InkFlow.transform.DOScaleY(1f, 0.2f);
+
             }
-                
+
             fillUpCurrentCartridge();
             inkIncreaseLevel *= 1.15f;
             timer = 0.0f;
@@ -85,6 +88,7 @@ public class Minigame3 : MonoBehaviour
 
     public void initMinigame()
     {
+        isPlaying = true;
         WebsocketManager = GameObject.Find("WebsocketManager");
 
         beltAnimator = transform.Find("MovingBelt").gameObject.GetComponent<Animator>();
@@ -100,6 +104,7 @@ public class Minigame3 : MonoBehaviour
     public void finishMinigame()
     {
         isAbleToFill = false;
+        isPlaying = false;
         fillButton.GetComponent<Button>().interactable = false;
     }
 
@@ -117,14 +122,9 @@ public class Minigame3 : MonoBehaviour
 
     public void onButtonHold()
     {
-        buttonSFX[UnityEngine.Random.Range(0, 1)].GetComponent<AudioSource>().Play();
+        if (isPlaying) buttonSFX[UnityEngine.Random.Range(0, 1)].GetComponent<AudioSource>().Play();
 
         if (!isHolding) isHolding = true;
-        if (isAbleToFill)
-        {
-
-            InkFlow.transform.DOScaleY(1f, 0.2f);
-        }
     }
 
     public void onButtonRelease()
@@ -186,7 +186,6 @@ public class Minigame3 : MonoBehaviour
             inkIncreaseLevel = 2f;
             fillButton.GetComponent<Button>().interactable = true;
             isAbleToFill = true;
-
             pistonAnimator.Play("machine_idle-bottom");
         });
 

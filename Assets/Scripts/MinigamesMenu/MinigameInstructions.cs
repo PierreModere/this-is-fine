@@ -16,6 +16,7 @@ public class MinigameInstructions : MonoBehaviour
     //public GameObject minigameMode;
     public GameObject minigameTitle;
     public GameObject minigamePreview;
+    public GameObject minigameThumbnail;
     public GameObject minigamePreviewAll;
     public GameObject instructionText;
 
@@ -124,7 +125,8 @@ public class MinigameInstructions : MonoBehaviour
         {
             minigameTitle.GetComponent<TextMeshProUGUI>().text = displayedMinigame.title;
             instructionText.GetComponent<TextMeshProUGUI>().text = displayedMinigame.instruction;
-            minigamePreview.GetComponent<Animator>().Play("minigame"+displayedMinigame.id);
+            minigameThumbnail.GetComponent<Image>().sprite = displayedMinigame.thumbnail;
+            minigamePreview.GetComponent<Image>().sprite = displayedMinigame.preview;
         }
     }
 

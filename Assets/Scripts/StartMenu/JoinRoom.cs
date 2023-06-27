@@ -59,7 +59,7 @@ public class JoinRoom : MonoBehaviour
 
     void deleteLastDigit()
     {
-        if (PinInput.GetComponent<TextMeshProUGUI>().text.Length > 0)
+        if (PinInput.GetComponent<TextMeshProUGUI>().text.Length > 0 && PinInput.GetComponent<TextMeshProUGUI>().text != "----")
         {
             PinInput.GetComponent<TextMeshProUGUI>().text = PinInput.GetComponent<TextMeshProUGUI>().text.Remove(PinInput.GetComponent<TextMeshProUGUI>().text.Length - 1);
             if (PinInput.GetComponent<TextMeshProUGUI>().text.Length == 0)

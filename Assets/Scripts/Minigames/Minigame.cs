@@ -8,6 +8,7 @@ public class Minigame : ScriptableObject
     public string title;
     public string instruction;
     public string id;
+    public Sprite thumbnail;
     public Sprite preview;
     public int gameTime;
     public int cutsceneTime;

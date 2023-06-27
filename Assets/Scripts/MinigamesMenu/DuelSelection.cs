@@ -32,7 +32,7 @@ public class DuelSelection : MonoBehaviour
     string selectedContesterID;
 
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         displayPlayers();
 
@@ -55,7 +55,7 @@ public class DuelSelection : MonoBehaviour
         for (int i = 0; i < playersList.Count; i++)
         {
 
-            if (playersList[i].selectedCharacter != "")
+            if (playersList[i].selectedCharacter != "" && playersList[i].id.ToString() != GameData.playerID)
             {
                 GameObject playerGameObject = playersGameobjects.Find(g => g.name == playersList[i].selectedCharacter);
                 playerGameObject.SetActive(true);
@@ -109,6 +109,9 @@ public class DuelSelection : MonoBehaviour
 
     public void cancelSelection()
     {
+        selectedContester.GetComponent<Image>().sprite = selectedOutlinesSprites.Find(spr => spr.name == "characterBackgroundCircle");
+        selectedContester.transform.Find("Mask").Find("Sprite").GetComponent<Image>().sprite = selectedCharactersSprites.Find(sprite => sprite.name == selectedContester.name + "_idle");
+
         isSelected = false;
         selectedContester = null;
         selectedContesterID = null;
@@ -135,7 +138,8 @@ public class DuelSelection : MonoBehaviour
             GameData.isDuelHost = true;
 
             isSelected = false;
-            selectedContester.SetActive(isSelected);
+            selectedContester.GetComponent<Image>().sprite = selectedOutlinesSprites.Find(spr => spr.name == "characterBackgroundCircle");
+            selectedContester.transform.Find("Mask").Find("Sprite").GetComponent<Image>().sprite = selectedCharactersSprites.Find(sprite => sprite.name == selectedContester.name + "_idle");
             selectedContester = null;
             selectedContesterID = null;
             toggleOkButton();
