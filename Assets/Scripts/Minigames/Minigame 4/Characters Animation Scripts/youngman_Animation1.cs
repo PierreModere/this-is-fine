@@ -31,6 +31,7 @@ public class youngman_Animation : MonoBehaviour
     bool isBlinking = false;
 
     public GameObject blinkSFX;
+    public List<GameObject> voiceSFX;
 
     // Update is called once per frame
     void Update()
@@ -80,6 +81,8 @@ public class youngman_Animation : MonoBehaviour
 
     public void moveLeftArm()
     {
+        voiceSFX[Random.Range(0, voiceSFX.Count - 1)].GetComponent<AudioSource>().Play();
+        
         Eyebrows.transform.DOLocalMoveY(Eyebrows.transform.localPosition.y - 32f, 0.2f).SetEase(Ease.InOutBack);
 
         isTalking = true;

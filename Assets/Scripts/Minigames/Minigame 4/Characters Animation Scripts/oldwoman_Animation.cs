@@ -24,6 +24,7 @@ public class oldwoman_Animation : MonoBehaviour
     bool isBlinking = false;
 
     public GameObject blinkSFX;
+    public List<GameObject> voiceSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +77,8 @@ public class oldwoman_Animation : MonoBehaviour
 
     public void moveLeftArm()
     {
+        voiceSFX[Random.Range(0, voiceSFX.Count - 1)].GetComponent<AudioSource>().Play();
+        
         isTalking = true;
 
         Eyebrows.transform.DOLocalMoveY(Eyebrows.transform.localPosition.y - 30f, 0.2f).SetEase(Ease.InOutBack);
