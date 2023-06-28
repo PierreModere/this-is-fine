@@ -57,10 +57,10 @@ public class ResultsCanvas : MonoBehaviour
     {
         Sequence sequence = DOTween.Sequence();
 
-        sequence.SetDelay(0.4f);
+        sequence.SetDelay(0.75f);
         for (int i = 0; i < playersNumber; ++i)
         {
-            sequence.Append(playerGameobjects[i].transform.DOScale(1.3f, 0.25f).SetEase(Ease.InOutBack).SetDelay(0.15f).From());
+            sequence.Join(playerGameobjects[i].transform.DOScale(1.15f, 0.25f).SetEase(Ease.InOutBack).From());
             sequence.Append(playerGameobjects[i].transform.Find("Reward").Find("Coin").DOScale(1.3f, 0.15f).SetEase(Ease.InSine));
             sequence.Append(playerGameobjects[i].transform.Find("Reward").Find("Coin").DOScale(1f, 0.1f));
 

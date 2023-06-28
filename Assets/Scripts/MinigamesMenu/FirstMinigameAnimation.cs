@@ -105,7 +105,7 @@ public class FirstMinigameAnimation : MonoBehaviour
         while (timeElapsed < totalTime)
         {
             // changer le sprite affiché sur le composant Image
-            Preview.GetComponent<Image>().sprite = minigamesList[currentSpriteIndex].preview;
+            Preview.GetComponent<Image>().sprite = minigamesList[currentSpriteIndex].thumbnail;
 
             // incrémenter l'index du sprite actuel
             currentSpriteIndex++;
@@ -132,7 +132,7 @@ public class FirstMinigameAnimation : MonoBehaviour
 
         randomEndSequence.OnStart(()=>
         {
-            Preview.GetComponent<Image>().sprite = minigamesList.Find(mg => mg.id == displayedMinigameID).preview;
+            Preview.GetComponent<Image>().sprite = minigamesList.Find(mg => mg.id == displayedMinigameID).thumbnail;
         });
 
         randomEndSequence.OnComplete(() =>
