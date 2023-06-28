@@ -14,7 +14,7 @@ public class MinigameUI : MonoBehaviour
     public GameData GameData;
     public Minigame minigameData;
     public GameObject minigameLogic;
-    public bool isPlaying;
+    public bool isPlaying = false;
 
     public GameObject timerGameobject;
     public TextMeshProUGUI TimerUI;
@@ -54,8 +54,6 @@ public class MinigameUI : MonoBehaviour
 
     private void OnEnable()
     {
-        //startPopUpAnimationText("start");
-
         resetPlayersReadiness();
         if (GameData.playersList != null) updatePlayersListAndScore();
         gameObject.GetComponent<CanvasGroup>().alpha = 0f;
@@ -228,6 +226,8 @@ public class MinigameUI : MonoBehaviour
     {
         StartAndStop.SetActive(true);
         StartAndStop.GetComponent<Animator>().Play(type+"Anim");
+
+        if (type == "stop") GameObject.Find("Stop").GetComponent<AudioSource>().Play();
     }
 
     public async void popUpAnimationEnd(string type)
@@ -239,7 +239,7 @@ public class MinigameUI : MonoBehaviour
             initMinigame();
             isPlaying = true;
         }
-        if (type == "stop" && GameData.isHost)
+        if (type == "stop" && GameData.isHost || (type == "stop" && !GameData.isHost && GameData.isDuelHost))
         {
             var websocket = GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().websocket;
             string sceneName = "ResultsScene";

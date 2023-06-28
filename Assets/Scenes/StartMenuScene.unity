@@ -1248,7 +1248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: b272247f28ff3a54ebfcfe25b009de32, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -4783,9 +4783,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: b272247f28ff3a54ebfcfe25b009de32, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5520,7 +5520,6 @@ GameObject:
   - component: {fileID: 1175285176}
   - component: {fileID: 1175285175}
   - component: {fileID: 1175285174}
-  - component: {fileID: 1175285172}
   m_Layer: 5
   m_Name: Ok
   m_TagString: Untagged
@@ -5548,19 +5547,6 @@ RectTransform:
   m_AnchoredPosition: {x: -91.5, y: 48.21219}
   m_SizeDelta: {x: 128.6069, y: 53.0956}
   m_Pivot: {x: 0.5, y: 0}
---- !u!114 &1175285172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1175285170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b452b37d31f3e2444b1e947596460490, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ScreenToSwitchTo: {fileID: 1766284285}
 --- !u!114 &1175285174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5605,18 +5591,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1175285172}
-        m_TargetAssemblyTypeName: SendWSScreenUpdate, Assembly-CSharp
-        m_MethodName: sendScreenNameToSwitchTo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2038987801}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
@@ -6399,7 +6373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameData: {fileID: 11400000, guid: ba3771a198f3a604e9265af00ab5b853, type: 2}
   roomPincodeText: {fileID: 1248969348}
-  requiredPlayersNumber: 1
+  requiredPlayersNumber: 2
   playersListGameObject:
   - {fileID: 595238286}
   - {fileID: 2112832165}
@@ -9196,7 +9170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: b272247f28ff3a54ebfcfe25b009de32, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}

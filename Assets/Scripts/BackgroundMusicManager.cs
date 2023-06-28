@@ -26,7 +26,7 @@ public class BackgroundMusicManager : MonoBehaviour
     
         if (GameObject.Find("WebsocketManager")){
             GameData GameData = GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().GameData;
-            if (GameData != null && GameData.isHost && !isPlaying)
+            if ((GameData != null && GameData.isHost && !isPlaying) || (GameData != null && !GameData.isHost && GameData.isDuelHost && !isPlaying))
             {
                 gameObject.GetComponent<AudioSource>().Play();
             }
