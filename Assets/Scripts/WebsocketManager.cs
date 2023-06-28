@@ -370,7 +370,7 @@ public class WebsocketManager : MonoBehaviour
 
     async void reconnectToRoom(string playerID, string roomCode)
     {
-        console("tentative de reconnexion");
+        if (!Application.isEditor) console("tentative de reconnexion");
         string json = "{'type': 'reconnectPlayer', 'params':{'code': '" + roomCode + "','id':'" + playerID + "'}}";
         await websocket.SendText(json);
     }

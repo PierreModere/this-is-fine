@@ -1207,6 +1207,7 @@ GameObject:
   - component: {fileID: 184963512}
   - component: {fileID: 184963514}
   - component: {fileID: 184963513}
+  - component: {fileID: 184963515}
   m_Layer: 5
   m_Name: Code
   m_TagString: Untagged
@@ -1273,6 +1274,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 184963511}
   m_CullTransparentMesh: 1
+--- !u!114 &184963515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184963511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a93a7ad0d6dd6a34a9122dd2c3a8c603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &190946191
 GameObject:
   m_ObjectHideFlags: 0
@@ -3143,6 +3156,7 @@ GameObject:
   - component: {fileID: 791551180}
   - component: {fileID: 791551182}
   - component: {fileID: 791551181}
+  - component: {fileID: 791551183}
   m_Layer: 5
   m_Name: RoomCreationText
   m_TagString: Untagged
@@ -3267,6 +3281,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791551179}
   m_CullTransparentMesh: 1
+--- !u!114 &791551183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791551179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a93a7ad0d6dd6a34a9122dd2c3a8c603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &818981263
 GameObject:
   m_ObjectHideFlags: 0
@@ -4717,6 +4743,7 @@ GameObject:
   - component: {fileID: 1010236724}
   - component: {fileID: 1010236726}
   - component: {fileID: 1010236725}
+  - component: {fileID: 1010236727}
   m_Layer: 5
   m_Name: ChooseYourCharacter
   m_TagString: Untagged
@@ -4734,7 +4761,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1766284286}
   m_RootOrder: -1
@@ -4782,6 +4809,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010236723}
   m_CullTransparentMesh: 1
+--- !u!114 &1010236727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010236723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a93a7ad0d6dd6a34a9122dd2c3a8c603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1012889138
 GameObject:
   m_ObjectHideFlags: 0
@@ -9116,6 +9155,7 @@ GameObject:
   - component: {fileID: 1961074473}
   - component: {fileID: 1961074475}
   - component: {fileID: 1961074474}
+  - component: {fileID: 1961074476}
   m_Layer: 5
   m_Name: RoomCode
   m_TagString: Untagged
@@ -9182,6 +9222,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1961074472}
   m_CullTransparentMesh: 1
+--- !u!114 &1961074476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961074472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a93a7ad0d6dd6a34a9122dd2c3a8c603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1963981774
 GameObject:
   m_ObjectHideFlags: 0
