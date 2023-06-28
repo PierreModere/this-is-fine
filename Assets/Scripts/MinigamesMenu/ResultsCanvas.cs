@@ -60,7 +60,7 @@ public class ResultsCanvas : MonoBehaviour
         sequence.SetDelay(0.75f);
         for (int i = 0; i < playersNumber; ++i)
         {
-            sequence.Join(playerGameobjects[i].transform.DOScale(1.15f, 0.25f).SetEase(Ease.InOutBack).From());
+            sequence.Join(playerGameobjects[i].transform.DOScale(1.15f, 0.25f).SetEase(Ease.InOutBack).SetDelay(0.1f).From());
             sequence.Append(playerGameobjects[i].transform.Find("Reward").Find("Coin").DOScale(1.3f, 0.15f).SetEase(Ease.InSine));
             sequence.Append(playerGameobjects[i].transform.Find("Reward").Find("Coin").DOScale(1f, 0.1f));
 
