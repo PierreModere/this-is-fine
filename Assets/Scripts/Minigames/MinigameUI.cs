@@ -239,7 +239,7 @@ public class MinigameUI : MonoBehaviour
             initMinigame();
             isPlaying = true;
         }
-        if (type == "stop" && GameData.isHost)
+        if (type == "stop" && GameData.isHost || (type == "stop" && !GameData.isHost && GameData.isDuelHost))
         {
             var websocket = GameObject.Find("WebsocketManager").GetComponent<WebsocketManager>().websocket;
             string sceneName = "ResultsScene";

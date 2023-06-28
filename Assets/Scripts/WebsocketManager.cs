@@ -157,7 +157,8 @@ public class WebsocketManager : MonoBehaviour
                             GameObject.Find("SceneManager").GetComponent<ChangeScene>().playTransitionAnim();
                         }
 
-                        changeScreenForEveryone(_ParsedJSON.@params.@data.message.Split(char.Parse("-"))[1]);
+                        if (GameObject.FindWithTag("activeScreen").name != _ParsedJSON.@params.@data.message.Split(char.Parse("-"))[1])
+                            changeScreenForEveryone(_ParsedJSON.@params.@data.message.Split(char.Parse("-"))[1]);
 
                     }
                     break;
