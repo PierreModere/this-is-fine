@@ -1,4 +1,3 @@
-
 using DG.Tweening;
 using NativeWebSocket;
 using Newtonsoft.Json;
@@ -116,8 +115,7 @@ public class WebsocketManager : MonoBehaviour
     {
         websocket = new WebSocket(GameData.websocketURL);
 
-        websocket.OnOpen += () =>
-        {        
+        websocket.OnOpen += () => {
             Debug.Log("Connexion open!");
             if (isReconnecting)
             {
@@ -125,18 +123,15 @@ public class WebsocketManager : MonoBehaviour
             }
         };
 
-        websocket.OnError += (e) =>
-        {
+        websocket.OnError += (e) => {
             //WebsocketConnect(true);
         };
 
-        websocket.OnClose += (e) =>
-        {
+        websocket.OnClose += (e) => {
             WebsocketConnect(true);
         };
 
-        websocket.OnMessage += (bytes) =>
-        {
+        websocket.OnMessage += (bytes) => {
             var json = System.Text.Encoding.UTF8.GetString(bytes);
             var jsonResult = JsonConvert.DeserializeObject(json).ToString();
 
@@ -154,10 +149,20 @@ public class WebsocketManager : MonoBehaviour
                     GameData.isHost = false;
                     break;
                 case "hasBeenInARoom":
-                    Debug.Log("connard");
+                    if (_ParsedJSON.@params.@data.message != "")
+                    {
+                        if (_ParsedJSON.@params.@data.message.Split(char.Parse("-"))[0] != GameData.currentScene && _ParsedJSON.@params.@data.message.Split(char.Parse("-"))[0] != "undefined")
+                        {
+                            GameData.currentScene = _ParsedJSON.@params.@data.message.Split(char.Parse("-"))[0];
+                            GameObject.Find("SceneManager").GetComponent<ChangeScene>().playTransitionAnim();
+                        }
+
+                        changeScreenForEveryone(_ParsedJSON.@params.@data.message.Split(char.Parse("-"))[1]);
+
+                    }
                     break;
                 case "getMyPlayerID":
-                    if (!Application.isEditor && GameData.playerID=="")
+                    if (!Application.isEditor && GameData.playerID == "")
                     {
                         savePlayerData(_ParsedJSON.@params.@data.message, GameData.joinedRoomCode);
                     }
@@ -244,8 +249,7 @@ public class WebsocketManager : MonoBehaviour
 
             GameData.winnerID = id;
             GameData.currentScene = "WinnerCinematicScene";
-            GameObject.Find("FadePanel").GetComponent<Image>().DOFade(1, 0.65f).OnComplete(() =>
-            {
+            GameObject.Find("FadePanel").GetComponent<Image>().DOFade(1, 0.65f).OnComplete(() => {
                 SceneManager.LoadScene(GameData.currentScene, LoadSceneMode.Single);
             });
 
@@ -285,7 +289,9 @@ public class WebsocketManager : MonoBehaviour
             GameObject.Find("JoinRoomCanvas").SetActive(false);
         }
         FindInactiveObjectByName("LobbyCanvas").SetActive(true);
-        FindInactiveObjectByName("LobbyCanvas").transform.DOScale(new Vector3(1.03f, 1.03f, 1.03f), 0.1f).OnComplete(() => { FindInactiveObjectByName("LobbyCanvas").transform.DOScale(new Vector3(1f, 1f, 1f), 0.15f); });
+        FindInactiveObjectByName("LobbyCanvas").transform.DOScale(new Vector3(1.03f, 1.03f, 1.03f), 0.1f).OnComplete(() => {
+            FindInactiveObjectByName("LobbyCanvas").transform.DOScale(new Vector3(1f, 1f, 1f), 0.15f);
+        });
         FindInactiveObjectByName("LobbyCanvas").tag = "activeScreen";
         FindInactiveObjectByName("LobbyCanvas").GetComponent<LobbyScreen>().setPincode(GameData.joinedRoomCode);
     }
@@ -301,7 +307,9 @@ public class WebsocketManager : MonoBehaviour
             screenToEnable.tag = "activeScreen";
             screenToDisable.SetActive(false);
             screenToDisable.tag = "Untagged";
-            screenToEnable.transform.DOScale(new Vector3(1.05f, 1.05f, 1.05f), 0.1f).OnComplete(() => { screenToEnable.transform.DOScale(new Vector3(1f, 1f, 1f), 0.15f); });
+            screenToEnable.transform.DOScale(new Vector3(1.05f, 1.05f, 1.05f), 0.1f).OnComplete(() => {
+                screenToEnable.transform.DOScale(new Vector3(1f, 1f, 1f), 0.15f);
+            });
         }
     }
 
@@ -313,7 +321,7 @@ public class WebsocketManager : MonoBehaviour
 
     public async void sendSelectedMinigame(string minigameID)
     {
-       
+
         string json = "{'type': 'selectMinigame', 'params':{'code': '" + GameData.joinedRoomCode + "','minigameID':'" + minigameID + "'}}";
         await websocket.SendText(json);
     }
@@ -370,7 +378,7 @@ public class WebsocketManager : MonoBehaviour
 
     async void reconnectToRoom(string playerID, string roomCode)
     {
-        if (!Application.isEditor) console("tentative de reconnexion");
+       // if (!Application.isEditor) console("tentative de reconnexion");
         string json = "{'type': 'reconnectPlayer', 'params':{'code': '" + roomCode + "','id':'" + playerID + "'}}";
         await websocket.SendText(json);
     }
@@ -383,7 +391,6 @@ public class WebsocketManager : MonoBehaviour
         string json = "{'type': 'reconnectPlayer', 'params':{'code': '" + roomCode + "','id':'" + playerID + "'}}";
         await websocket.SendText(json);
     }
-
 
     GameObject FindInactiveObjectByName(string name)
     {
