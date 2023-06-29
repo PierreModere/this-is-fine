@@ -21,7 +21,7 @@ MonoBehaviour:
   thumbnail: {fileID: 21300000, guid: 9e073ba84b83a9a48af0dbc26f7e52b7, type: 3}
   preview: {fileID: 21300000, guid: 798578f3ef143cf4a897549c90cb3114, type: 3}
   gameTime: 15
-  cutsceneTime: 1
+  cutsceneTime: 2
   hasTimer: 1
   backgroundMusic: {fileID: 8300000, guid: cc9c9ac15bcc4934894e24163cbe038a, type: 3}
   goodFeedbacks:
