@@ -34,8 +34,22 @@ public class DashboardCanvas : MonoBehaviour
 
             BattleButton.GetComponent<Button>().interactable = true;
             EndGameButton.GetComponent<Button>().interactable = true;
-            BattleButton.transform.Find("Locked").gameObject.SetActive(false);
-            EndGameButton.transform.Find("Locked").gameObject.SetActive(false);
+
+            foreach (Transform child in BattleButton.transform.Find("Mask"))
+            {
+                if (child.gameObject.GetComponent<Image>())
+                {
+                    child.gameObject.GetComponent<Image>().DOFade(1, 0);
+                }
+            }
+
+            foreach (Transform child in EndGameButton.transform.Find("Mask"))
+            {
+                if (child.gameObject.GetComponent<Image>())
+                {
+                    child.gameObject.GetComponent<Image>().DOFade(1, 0);
+                }
+            }
 
             BattleButton.GetComponent<Button>().onClick.AddListener(() => { buttonOnClick("Battle", BattleButton); });
             EndGameButton.GetComponent<Button>().onClick.AddListener(() => { buttonOnClick("EndGame", EndGameButton); });
@@ -43,8 +57,24 @@ public class DashboardCanvas : MonoBehaviour
 
         else
         {
-            BattleButton.transform.Find("Locked").gameObject.SetActive(true);
-            EndGameButton.transform.Find("Locked").gameObject.SetActive(true);
+            BattleButton.GetComponent<Button>().interactable = false;
+            EndGameButton.GetComponent<Button>().interactable = false;
+
+            foreach (Transform child in BattleButton.transform.Find("Mask"))
+            {
+                if (child.gameObject.GetComponent<Image>())
+                {
+                    child.gameObject.GetComponent<Image>().DOFade(0.3f, 0);
+                }
+            }
+
+            foreach (Transform child in EndGameButton.transform.Find("Mask"))
+            {
+                if (child.gameObject.GetComponent<Image>())
+                {
+                    child.gameObject.GetComponent<Image>().DOFade(0.3f, 0);
+                }
+            }
         }
 
         DuelButton.GetComponent<Button>().onClick.AddListener(() => { buttonOnClick("Duel", DuelButton); });
