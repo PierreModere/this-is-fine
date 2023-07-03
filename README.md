@@ -1,5 +1,5 @@
 
-# This is fine
+# This is fine 🔥
 
 Sur une planète qui court à sa perte, une poignée de **super-riches** s’affrontent pour remporter l’enchère pour **l’unique ticket de sortie restant**, qui leur permettra d’échapper à la catastrophe...
 Du calme, **la Terre brûle**, mais tout va bien : 
